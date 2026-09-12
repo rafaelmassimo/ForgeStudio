@@ -1,0 +1,22 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="58.5" height="216.67" viewBox="0 0 58.5 216.67" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Shadow">
+<g id="Soft shadow" opacity="0.1" filter="url(#filter0_f_0_253)">
+<path d="M39 15C37.4 128.378 20.5 164.336 15 201.67H36.75L39 15Z" fill="black"/>
+</g>
+<g id="Hard shadow" opacity="0.3" filter="url(#filter1_f_0_253)">
+<path d="M47.25 39.4609L36 199.636L48.5 199.888L47.25 39.4609Z" fill="black"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_0_253" x="0" y="0" width="54" height="216.67" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="7.5" result="effect1_foregroundBlur_0_253"/>
+</filter>
+<filter id="filter1_f_0_253" x="26" y="29.4609" width="32.5" height="180.427" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="5" result="effect1_foregroundBlur_0_253"/>
+</filter>
+</defs>
+</svg>

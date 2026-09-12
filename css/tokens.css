@@ -1,0 +1,176 @@
+/* ==========================================================================
+   FORGE Strength Studio — Design tokens
+   Generated from the Figma local styles in "FORGE Strength Studio | Figma"
+   (file gA1vHmz70RHrFZyswUQFT1 › UI Kit, node 309:5162).
+
+   Every colour and type value below is copied verbatim from a Figma local
+   style. Do not hand-edit — regenerate when the Figma styles change.
+
+   Fonts: Antonio and Poppins are on Google Fonts (imported below).
+   "Lao Sans Pro" is an Adobe Fonts family with no free web host; the stack
+   falls back to Source Sans 3. Swap in the Adobe kit <link> when available.
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Antonio:wght@700&family=Poppins:wght@300;500&family=Source+Sans+3:wght@400&display=swap");
+
+:root {
+  /* ---- Colour styles ---------------------------------------------------
+     Names and descriptions mirror the Figma paint styles.               */
+
+  --primary-colour: #e1d3c3;         /* Mainly backgrounds                */
+  --slightly-darker-colour: #d9c8b7; /* Bento and grid sections           */
+  --secondary-colour: #935424;       /* Headers, buttons                  */
+  --highlight-colour: #588a65;       /* Primary buttons, links            */
+  --subordinate-colour: #8a6b4f;     /* Sub-headers, sub-titles, rules    */
+  --primary-shapes-fill: #864f2a;    /* Decorative shapes, 2nd accent     */
+  --secondary-shapes-fill: #c4ae99;  /* Subtle background shapes          */
+  --black: #121212;                  /* Text, footer bg, high contrast    */
+
+  /* ---- Radius (Figma variable) ----------------------------------------- */
+  --corner-radius-primary: 24px;
+
+  /* ---- Font families ---------------------------------------------------- */
+  --font-display: "Antonio", "Arial Narrow", sans-serif;              /* H1, H2       */
+  --font-ui: "Poppins", system-ui, sans-serif;                        /* H3, buttons  */
+  --font-body: "Lao Sans Pro", "Source Sans 3", system-ui, sans-serif;/* H4, body     */
+
+  /* ---- Type styles ------------------------------------------------------
+     Headers/H1 — Antonio Bold 96 / 110% / uppercase                    */
+  --h1-family: var(--font-display);
+  --h1-weight: 700;
+  --h1-size: 96px;
+  --h1-leading: 1.1;
+  --h1-case: uppercase;
+
+  /* Headers/H2 — Antonio Bold 56 / 100% / uppercase */
+  --h2-family: var(--font-display);
+  --h2-weight: 700;
+  --h2-size: 56px;
+  --h2-leading: 1;
+  --h2-case: uppercase;
+
+  /* Headers/H3 — Poppins Medium 48 / 48px / title case */
+  --h3-family: var(--font-ui);
+  --h3-weight: 500;
+  --h3-size: 48px;
+  --h3-leading: 48px;
+  --h3-case: capitalize;
+
+  /* Headers/H4 — Lao Sans Pro Regular 22 / 32px / title case */
+  --h4-family: var(--font-body);
+  --h4-weight: 400;
+  --h4-size: 22px;
+  --h4-leading: 32px;
+  --h4-case: capitalize;
+
+  /* Body Text/Body Text 18pts — Lao Sans Pro Regular 18 / 22px */
+  --body-family: var(--font-body);
+  --body-weight: 400;
+  --body-size: 18px;
+  --body-leading: 22px;
+
+  /* Body Text/Button Text 18pts — Poppins Light 18 / 18px / title case */
+  --button-family: var(--font-ui);
+  --button-weight: 300;
+  --button-size: 18px;
+  --button-leading: 18px;
+  --button-case: capitalize;
+}
+
+/* ==========================================================================
+   Type ramp
+   Element defaults plus matching utility classes, so the styles can be
+   applied either semantically or by class.
+   ========================================================================== */
+
+h1, .h1 {
+  font-family: var(--h1-family);
+  font-weight: var(--h1-weight);
+  font-size: var(--h1-size);
+  line-height: var(--h1-leading);
+  text-transform: var(--h1-case);
+  letter-spacing: 0;
+  margin: 0;
+}
+
+h2, .h2 {
+  font-family: var(--h2-family);
+  font-weight: var(--h2-weight);
+  font-size: var(--h2-size);
+  line-height: var(--h2-leading);
+  text-transform: var(--h2-case);
+  letter-spacing: 0;
+  margin: 0;
+}
+
+h3, .h3 {
+  font-family: var(--h3-family);
+  font-weight: var(--h3-weight);
+  font-size: var(--h3-size);
+  line-height: var(--h3-leading);
+  text-transform: var(--h3-case);
+  letter-spacing: 0;
+  margin: 0;
+}
+
+h4, .h4 {
+  font-family: var(--h4-family);
+  font-weight: var(--h4-weight);
+  font-size: var(--h4-size);
+  line-height: var(--h4-leading);
+  text-transform: var(--h4-case);
+  letter-spacing: 0;
+  margin: 0;
+}
+
+.body-18 {
+  font-family: var(--body-family);
+  font-weight: var(--body-weight);
+  font-size: var(--body-size);
+  line-height: var(--body-leading);
+  letter-spacing: 0;
+}
+
+.button-18 {
+  font-family: var(--button-family);
+  font-weight: var(--button-weight);
+  font-size: var(--button-size);
+  line-height: var(--button-leading);
+  text-transform: var(--button-case);
+  letter-spacing: 0;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background-color: var(--primary-colour);
+  color: var(--black);
+  font-family: var(--body-family);
+  font-weight: var(--body-weight);
+  font-size: var(--body-size);
+  line-height: var(--body-leading);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   Colour utilities
+   ========================================================================== */
+
+.bg-primary   { background-color: var(--primary-colour); }
+.bg-darker    { background-color: var(--slightly-darker-colour); }
+.bg-secondary { background-color: var(--secondary-colour); }
+.bg-highlight { background-color: var(--highlight-colour); }
+.bg-black     { background-color: var(--black); }
+
+.text-secondary   { color: var(--secondary-colour); }
+.text-subordinate { color: var(--subordinate-colour); }
+.text-highlight   { color: var(--highlight-colour); }
+.text-black       { color: var(--black); }
+.text-on-dark     { color: var(--primary-colour); }
