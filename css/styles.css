@@ -369,35 +369,40 @@
   /* --- Top navbar (808:9912) -------------------------------------------- */
 
   .navbar {
-    position: relative;
     background-color: var(--primary-colour);
-    display: flex;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: center;
+    column-gap: 10px;
     overflow: hidden;
     padding: 24px;
     width: 100%;
+    /* overflow:hidden zeroes the automatic min-width a grid container would
+       otherwise get from its tracks, so it has to be restored explicitly.
+       This keeps the floor exactly at "as small as the three columns can go
+       before their own content would collide" — derived from the content
+       itself rather than a guessed pixel value. */
+    min-width: min-content;
   }
 
   .navbar__group {
     display: flex;
     align-items: center;
+    grid-column: 1;
+    grid-row: 1;
   }
 
   .navbar__group--right {
-    flex: 1 0 0;
+    grid-column: 3;
     gap: 8px;
     justify-content: flex-end;
-    min-width: 1px;
   }
 
-  /* Centred on the navbar, not between the two link groups. */
+  /* Its own grid column, centred between the two link groups. */
   .navbar__wordmark {
-    position: absolute;
-    left: calc(50% + 1px);
-    top: calc(50% - 23px);
-    translate: -50% 0;
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: center;
     font-family: var(--font-display);
     font-weight: 700;
     font-size: 36px;
