@@ -54,6 +54,11 @@
     --chapter-ink: #1a1a1a;            /* Next-chapter body copy           */
     --timeline-rule: 3px;              /* Stroke of every timeline line    */
 
+    /* ---- One-off fills used by the contact frame (808:9718) ----------- */
+    --form-surface: #ede5db;                       /* Contact form card    */
+    --form-shadow: 4px 4px 2px rgb(0 0 0 / 0.1);   /* Its drop shadow      */
+    --faq-rule: rgb(111 63 27 / 0.9);              /* #6F3F1B at 90%       */
+
     /* ---- Radius (Figma variable --corner-radius-primary) -------------- */
     --corner-radius-primary: 24px;
 

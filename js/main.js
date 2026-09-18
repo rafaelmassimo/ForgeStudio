@@ -166,6 +166,38 @@
     });
   }
 
+  /* ------------------------------------------------------------------------
+     Contact form (Contact, Figma 1319:5236).
+
+     The site has no backend, so the form hands off to the visitor's email
+     app: on submit it builds a mailto: link addressed to the value of
+     data-mailto-form, with the fields as subject and body. The browser's
+     own validation (required, type="email") runs first — the submit event
+     only fires once the fields are valid.
+     ---------------------------------------------------------------------- */
+
+  function initMailtoForms() {
+    var forms = document.querySelectorAll('[data-mailto-form]');
+    Array.prototype.forEach.call(forms, function (form) {
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        var field = function (name) {
+          var input = form.elements[name];
+          return input ? input.value.trim() : '';
+        };
+        var name = [field('first-name'), field('last-name')].filter(Boolean).join(' ');
+        var subject = 'Website enquiry from ' + name;
+        var body = field('message') + '\n\n' + name + '\n' + field('email');
+
+        window.location.href = 'mailto:' + form.getAttribute('data-mailto-form') +
+          '?subject=' + encodeURIComponent(subject) +
+          '&body=' + encodeURIComponent(body);
+      });
+    });
+  }
+
+  initMailtoForms();
   initCarousels();
   initMarquees();
   whenFontsReady(initMarquees);

@@ -1,0 +1,330 @@
+/* ==========================================================================
+   FORGE Strength Studio — Contact
+   Transcribed from Figma "contact" (file gA1vHmz70RHrFZyswUQFT1,
+   node 808:9718). Shell, navbar, buttons and footer come from styles.css;
+   this file holds only what is particular to this page.
+
+   Agreed departures from the frame (Rafael's calls):
+   - The frame keeps the shared 24px corners; Figma draws this one at 20px.
+   - Submit is the desktop button (18px, 42px tall), not Figma's mobile one.
+   ========================================================================== */
+
+@layer sections {
+
+  /* --- Page body (808:9721, 808:9722) -------------------------------------- */
+
+  .contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-block: 100px;
+    width: 100%;
+  }
+
+  .contact__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 130px;
+    align-items: center;
+    max-width: 1400px;
+    padding-inline: 138px;
+    width: 100%;
+  }
+
+  /* --- Heading, lede, info + form (808:9723) ------------------------------- */
+
+  .contact__intro {
+    display: flex;
+    flex-direction: column;
+    gap: 96px;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .contact__title {
+    color: var(--secondary-colour);
+    white-space: nowrap;
+  }
+
+  .contact__body {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  /* Figma keeps the double space after "from you." */
+  .contact__lede {
+    color: #000;
+    white-space: pre-wrap;
+    width: 100%;
+  }
+
+  .contact__content {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 40px;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  /* --- Contact info column (808:9729) ----------------------------------------
+     598px tall: the hours and socials blocks share whatever the details
+     block (132px) and the two 85px gaps leave, 118px each. */
+
+  .contact-info {
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    gap: 85px;
+    align-items: flex-start;
+    height: 598px;
+    width: 468px;
+    max-width: 480px;
+    min-width: 250px;
+    padding-block: 30px;
+    color: var(--black);
+  }
+
+  .contact-info__block {
+    border-left: 3px solid var(--secondary-colour);
+    padding-left: 53px;
+    width: 100%;
+  }
+
+  .contact-info__block--hours {
+    flex: 1 0 0;
+    min-height: 1px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-right: 53px;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .contact-info__block--details {
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .contact-info__row {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    height: 24px;
+  }
+
+  .contact-info__row img {
+    flex: none;
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Address and phone text sit 1px lower than the email in Figma. */
+  .contact-info__row p {
+    padding-top: 1px;
+    white-space: nowrap;
+  }
+
+  .contact-info__row--mail p { padding-top: 0; }
+
+  /* Figma flips the handset: rotate 180 then mirror vertically. */
+  .contact-info__row--phone img { transform: rotate(180deg) scaleY(-1); }
+
+  .contact-info a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .contact-info__block--socials {
+    flex: 1 0 0;
+    min-height: 1px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .contact-info__block--socials li {
+    flex: 1 0 0;
+    min-height: 1px;
+    display: flex;
+  }
+
+  .contact-info__social {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .contact-info__social img {
+    flex: none;
+    width: 40px;
+    height: 40px;
+  }
+
+  .contact-info__social > span { width: 179px; }
+
+  /* --- Form card (1319:5236) ------------------------------------------------- */
+
+  .contact-form {
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: 598px;
+    width: 568px;
+    max-width: 568px;
+    padding: 50px 30px;
+    border-radius: var(--corner-radius-primary);
+    background-color: var(--form-surface);
+    filter: drop-shadow(var(--form-shadow));
+  }
+
+  .contact-form__fields {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .contact-form__row {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .contact-form__field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .contact-form__row .contact-form__field {
+    flex: 1 0 0;
+    min-width: 1px;
+  }
+
+  /* Figma spaces the email label 8px from its line, the others 5px. */
+  .contact-form__field--email { gap: 8px; }
+
+  .contact-form label {
+    font-size: var(--body-16-size);
+    line-height: var(--body-16-leading);
+    color: var(--black);
+    width: 100%;
+  }
+
+  /* Figma draws each field as a bare underline, 50px tall (100px for the
+     message) with 10px padding. */
+  .contact-form input,
+  .contact-form textarea {
+    display: block;
+    width: 100%;
+    height: 50px;
+    margin: 0;
+    padding: 10px;
+    border: 0;
+    border-bottom: 1px solid var(--black);
+    border-radius: 0;
+    background: transparent;
+    font-family: var(--body-family);
+    font-size: var(--body-16-size);
+    line-height: var(--body-16-leading);
+    color: var(--black);
+  }
+
+  .contact-form textarea {
+    height: 100px;
+    resize: none;
+  }
+
+  /* --- Map (808:9768) ----------------------------------------------------------- */
+
+  .contact__map {
+    position: relative;
+    height: 280px;
+    width: 100%;
+  }
+
+  .contact__map img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    pointer-events: none;
+  }
+
+  /* --- FAQ prompt (808:9769) ------------------------------------------------------
+     Two rules, 5px full width and 2px × 923px, their centres 25px apart
+     (Figma: zero-height lines with the stroke centred on them). */
+
+  .contact-faq {
+    display: flex;
+    flex-direction: column;
+    gap: 29px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .contact-faq__rules {
+    position: relative;
+    height: 25px;
+    width: 100%;
+  }
+
+  .contact-faq__rule {
+    position: absolute;
+    left: 0;
+    background-color: var(--faq-rule);
+  }
+
+  .contact-faq__rule--thick {
+    top: -2.5px;
+    width: 100%;
+    height: 5px;
+  }
+
+  .contact-faq__rule--thin {
+    top: 24px;
+    width: 923px;
+    height: 2px;
+  }
+
+  .contact-faq__panel {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    padding: 60px 100px;
+    border-radius: 20px;
+    width: 100%;
+  }
+
+  .contact-faq__text {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: flex-start;
+    padding-inline: 40px;
+    width: 568px;
+    text-align: center;
+    color: var(--black);
+    word-break: break-word;
+  }
+
+  .contact-faq__text > * { width: 100%; }
+}
