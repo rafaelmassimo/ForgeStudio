@@ -197,6 +197,37 @@
     });
   }
 
+  /* ------------------------------------------------------------------------
+     FAQ accordion (Figma component 382:3642, Default ⇄ Expanded on click).
+
+     Each question opens and closes on its own, as in the Figma prototype.
+     The script only flips state — aria-expanded on the button, .is-open on
+     the item, inert on the hidden answer — and css/faq.css does the motion.
+     ---------------------------------------------------------------------- */
+
+  function initAccordions() {
+    var roots = document.querySelectorAll('[data-accordion]');
+    Array.prototype.forEach.call(roots, function (root) {
+      var toggles = root.querySelectorAll('.faq-item__toggle');
+      Array.prototype.forEach.call(toggles, function (toggle) {
+        var item = toggle.closest('.faq-item');
+        var answer = document.getElementById(toggle.getAttribute('aria-controls'));
+
+        function set(open) {
+          toggle.setAttribute('aria-expanded', String(open));
+          item.classList.toggle('is-open', open);
+          if (answer) answer.inert = !open;
+        }
+
+        set(false);
+        toggle.addEventListener('click', function () {
+          set(toggle.getAttribute('aria-expanded') !== 'true');
+        });
+      });
+    });
+  }
+
+  initAccordions();
   initMailtoForms();
   initCarousels();
   initMarquees();
