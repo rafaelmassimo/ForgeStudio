@@ -24,6 +24,14 @@
     --slightly-darker-colour: #d9c8b7; /* Bento and grid sections          */
     --secondary-colour: #935424;       /* Headers, secondary buttons       */
     --highlight-colour: #588a65;       /* Primary buttons, links           */
+
+    /* ---- Button interaction states (Figma "Buttons" component, 289:4002)
+       Hover/active fills for Primary and Secondary; Navbar's hover fill. --- */
+    --highlight-colour-hover: #42624a;
+    --highlight-colour-active: #324838;
+    --secondary-colour-hover: #74421f;
+    --secondary-colour-active: #563017;
+    --navbar-hover-fill: #d0bfaa;
     --subordinate-colour: #8a6b4f;     /* Sub-headers, sub-titles, rules   */
     --primary-shapes-fill: #864f2a;    /* Decorative shapes, 2nd accent    */
     --secondary-shapes-fill: #c4ae99;  /* Subtle background shapes, links  */
