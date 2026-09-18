@@ -49,6 +49,11 @@
     --accent-rust: #8f4f2b;            /* Board colour grade, footer dot   */
     --photo-scrim: rgb(0 0 0 / 0.5);   /* Our Space image darkener         */
 
+    /* ---- One-off fills used by the who-we-are frame (1272:9563) ------- */
+    --card-ink: #ece2d5;               /* Copy on rust and black cards     */
+    --chapter-ink: #1a1a1a;            /* Next-chapter body copy           */
+    --timeline-rule: 3px;              /* Stroke of every timeline line    */
+
     /* ---- Radius (Figma variable --corner-radius-primary) -------------- */
     --corner-radius-primary: 24px;
 

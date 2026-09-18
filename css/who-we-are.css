@@ -1,0 +1,556 @@
+/* ==========================================================================
+   FORGE Strength Studio — Who We Are
+   Transcribed from Figma "who-we-are" (file gA1vHmz70RHrFZyswUQFT1,
+   node 1272:9563). Shell, navbar, marquee, page hero and footer come from
+   styles.css; this file holds only what is particular to this page.
+
+   Same rules as the home page: every length is the value Figma reports,
+   in px, because the page is pixel-locked to the 1440px desktop frame.
+   ========================================================================== */
+
+@layer sections {
+
+  /* --- Meet the founder (1272:9569) --------------------------------------- */
+
+  .founder {
+    display: flex;
+    gap: 170px;
+    align-items: center;
+    justify-content: center;
+    padding-block: 96px;
+    width: 100%;
+    background-color: var(--slightly-darker-colour);
+  }
+
+  /* Square corners here, unlike the timeline photos. The white fill is the
+     frame's own background in Figma, showing only if the photo fails. */
+  .founder__picture {
+    position: relative;
+    flex: none;
+    width: 551px;
+    height: 700px;
+    background-color: #fff;
+  }
+
+  .founder__picture img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+  }
+
+  .founder__text {
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    align-items: flex-start;
+    justify-content: center;
+    width: 462px;
+    word-break: break-word;
+  }
+
+  .founder__text h2 {
+    color: var(--secondary-colour);
+    width: 100%;
+  }
+
+  .founder__prose {
+    color: var(--black);
+    width: 100%;
+  }
+
+  /* Figma separates paragraphs with an empty line of body text. */
+  .founder__prose p + p { margin-block-start: var(--body-leading); }
+
+  /* --- Timeline (1272:9574) ------------------------------------------------
+     One continuous vertical rule runs from the top of this section to the
+     top of the next-chapter rows. It is drawn in segments — two per header,
+     one "rail" per step, one per divider — each a 3px column whose RIGHT
+     edge sits on the section's centre line (Figma: a zero-width box with
+     the stroke inset -3px to its left). Every segment uses the same rule,
+     so they meet edge to edge. */
+
+  .timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .timeline__rule {
+    position: relative;
+    flex: none;
+    width: 0;
+  }
+
+  .timeline__rule::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: var(--timeline-rule);
+    background-color: var(--secondary-colour);
+  }
+
+  .timeline__rule--header  { height: 194px; }
+  .timeline__rule--rail    { height: 700px; z-index: 2; }
+  .timeline__rule--divider { height: 116px; }
+
+  /* Header: rule / heading / rule, 66px apart (1272:9575, 1272:9613). */
+  .timeline__header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 66px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .timeline__header h2 {
+    color: var(--secondary-colour);
+    text-align: center;
+    width: 778px;
+    max-width: 778px;
+    word-break: break-word;
+  }
+
+  /* Divider between steps: 116px of rule (1272:9593, 1272:9603). */
+  .timeline__divider {
+    display: flex;
+    height: 116px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    width: 100%;
+  }
+
+  /* A step: photo and card either side of the rail, with a node on the
+     centre and a horizontal branch behind both. Isolated so the z-index
+     below only orders things within the step. */
+  .timeline__step {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    height: 700px;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 96px;
+    width: 100%;
+  }
+
+  /* Figma centres the node half a pixel off the step centre, so its ring
+     lands at x 678–713 while the rail runs 693–696. Kept as drawn. */
+  .timeline__node {
+    position: absolute;
+    z-index: 3;
+    left: calc(50% - 0.5px);
+    top: calc(50% + 0.5px);
+    translate: -50% -50%;
+    width: 35px;
+    height: 35px;
+    max-width: none;
+  }
+
+  /* Runs the full 1178px under both the photo and the card, so only the
+     50px stubs between them and the node show. Rows 349–352 of the step. */
+  .timeline__branch {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: calc(50% - 1px);
+    translate: -50% 0;
+    width: 1178px;
+    height: var(--timeline-rule);
+    background-color: var(--secondary-colour);
+  }
+
+  .timeline__photo {
+    position: relative;
+    z-index: 2;
+    flex: 1 0 0;
+    height: 700px;
+    max-width: 550px;
+    min-width: 360px;
+    overflow: hidden;
+    border-radius: var(--corner-radius-primary);
+  }
+
+  .timeline__photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    pointer-events: none;
+  }
+
+  /* Step 2's photo is a 700px square placed 150px left of the frame. */
+  .timeline__photo--offset img {
+    inset: 0 auto auto -150px;
+    width: 700px;
+    height: 700px;
+  }
+
+  .timeline__card {
+    position: relative;
+    z-index: 2;
+    flex: 1 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 550px;
+    min-width: 360px;
+    padding: 96px 124px;
+    border-radius: 20px;
+    background-color: var(--accent-rust);
+  }
+
+  .timeline__card p {
+    color: var(--card-ink);
+    width: 100%;
+    word-break: break-word;
+  }
+
+  /* --- Decorative vectors ---------------------------------------------------
+     Each is placed where Figma puts its box, then shifted by the stroke
+     overhang Figma reports, at the exported SVG's own size. */
+
+  .timeline__deco {
+    position: absolute;
+    max-width: none;
+    pointer-events: none;
+  }
+
+  /* Group 39: box 384×350 at right -150, bottom -39; SVG bleeds 1.5/2.5px. */
+  .timeline__deco--circles {
+    right: -152.5px;
+    bottom: -41.5px;
+    width: 388px;
+    height: 354px;
+  }
+
+  /* Step 1's ring: box 318 at left -40, bottom -120; behind the photo. */
+  .timeline__deco--circle {
+    z-index: 0;
+    left: -41.5px;
+    bottom: -121.5px;
+    width: 321px;
+    height: 321px;
+  }
+
+  /* Group 40: box 739×496.84 at right -466, bottom -126.84. */
+  .timeline__deco--circle-lines {
+    right: -466px;
+    bottom: -128.03px;
+    width: 740.193px;
+    height: 499.225px;
+  }
+
+  /* --- Next chapter rows (1322:5159, 1322:5172) ---------------------------- */
+
+  .chapter {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+  }
+
+  .chapter__text {
+    position: relative;
+    flex: 1 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 696px;
+    min-width: 600px;
+    background-color: var(--slightly-darker-colour);
+  }
+
+  .chapter__copy {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    align-items: flex-start;
+    width: 360px;
+    max-width: 360px;
+    color: var(--chapter-ink);
+    word-break: break-word;
+  }
+
+  .chapter__quote { color: var(--secondary-colour); }
+
+  .chapter__media {
+    position: relative;
+    flex: 1 0 0;
+    height: 696px;
+    min-width: 600px;
+  }
+
+  .chapter__media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    pointer-events: none;
+  }
+
+  /* Group 37: four rules hanging 39px above row 1, over the timeline. */
+  .chapter__lines {
+    position: absolute;
+    left: -0.5px;
+    top: -41.5px;
+    width: 405px;
+    height: 82px;
+    max-width: none;
+    pointer-events: none;
+  }
+
+  /* --- Community stories + CTA (1272:9637) ---------------------------------- */
+
+  .closing {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* The four faint curves behind both sections, wider than the page and
+     clipped by .body-content. */
+  .closing__lines {
+    position: absolute;
+    left: calc(50% - 0.5px);
+    top: -35px;
+    translate: -50% 0;
+    width: 2073.308px;
+    height: 1482px;
+    max-width: none;
+    pointer-events: none;
+  }
+
+  .community {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 77px;
+    align-items: center;
+    padding-block: 96px;
+    width: 100%;
+  }
+
+  .community__title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 77px;
+    width: 100%;
+    text-align: center;
+    color: var(--secondary-colour);
+    word-break: break-word;
+  }
+
+  /* Figma's frame is 1440 wide inside the 1392 column, so it overhangs
+     24px each side, and only 46px tall around 64px of text. */
+  .community__lede {
+    display: flex;
+    flex: none;
+    height: 46px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 48px;
+    width: 1440px;
+  }
+
+  .community__lede p {
+    font-family: var(--h4-family);
+    font-weight: var(--h4-weight);
+    font-size: var(--h4-size);
+    line-height: var(--h4-leading);
+    text-transform: var(--h4-case);
+    color: var(--prose-ink);
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  /* --- Testimonial carousel (1272:9648) ---------------------------------------
+     Three 318px cards, 58px apart, per page. main.js fills the track from
+     data/testimonials.json and slides it one page per arrow press. */
+
+  .carousel {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    justify-content: center;
+    max-width: 1400px;
+    width: 100%;
+  }
+
+  .carousel__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 1282px;
+  }
+
+  .carousel__arrow {
+    flex: none;
+    width: 96px;
+    height: 96px;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+  }
+
+  .carousel__arrow img {
+    width: 96px;
+    height: 96px;
+  }
+
+  .carousel__arrow--prev img { rotate: 180deg; }
+
+  .carousel__viewport {
+    flex: 1 0 0;
+    min-width: 1px;
+    height: 223px;
+    overflow: hidden;
+  }
+
+  /* Padding centres one page (3 × 318 + 2 × 58 = 1070px) in the viewport,
+     as Figma's justify-center does. */
+  .carousel__track {
+    --carousel-page-width: 1070px;
+    display: flex;
+    gap: 58px;
+    height: 100%;
+    align-items: center;
+    padding-inline: calc((100% - var(--carousel-page-width)) / 2);
+    translate: calc(-1 * var(--carousel-shift, 0px)) 0;
+    transition: translate 0.5s ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .carousel__track { transition: none; }
+  }
+
+  .story-card {
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+    justify-content: center;
+    width: 318px;
+    height: 223px;
+    padding: 24px;
+    border-radius: 20px;
+    background-color: var(--black);
+  }
+
+  .story-card blockquote {
+    color: var(--card-ink);
+    width: 100%;
+    word-break: break-word;
+  }
+
+  .carousel__dots {
+    display: flex;
+    height: 32px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .carousel__dot {
+    flex: none;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: 0;
+    background: url("../assets/icons/dot-outline.png") center / contain no-repeat;
+    cursor: pointer;
+  }
+
+  /* Figma draws the end dots 21px wide. */
+  .carousel__dot:first-child,
+  .carousel__dot:last-child { width: 21px; }
+
+  .carousel__dot[aria-current="true"] {
+    background-image: url("../assets/icons/dot-filled.png");
+  }
+
+  /* --- Closing CTA (1272:9664) -------------------------------------------------- */
+
+  .closing-cta {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 71px;
+    align-items: center;
+    padding-block: 96px;
+    width: 1388px;
+  }
+
+  .closing-cta__photos {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .closing-cta__photo {
+    position: relative;
+    flex: none;
+    width: 453px;
+    height: 255px;
+    overflow: hidden;
+  }
+
+  .closing-cta__photo img {
+    position: absolute;
+    max-width: none;
+    pointer-events: none;
+  }
+
+  /* Each crop is the one Figma sets on the photo inside its frame. */
+  .closing-cta__photo--1 { width: 455px; }
+  .closing-cta__photo--1 img { left: -0.01%; top: -1.82%; width: 100%;    height: 118.71%; }
+  .closing-cta__photo--2 img { left: -0.14%; top: 0;      width: 100.1%;  height: 118.3%; }
+  .closing-cta__photo--3 img { left: -40.4%; top: -9.31%; width: 200.07%; height: 199.93%; }
+
+  .closing-cta__action {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    align-items: center;
+    justify-content: center;
+    width: 1259px;
+  }
+
+  /* Figma "Headers/H3" on this frame: Poppins SemiBold 28 / 38.4px. */
+  .closing-cta__title {
+    font-family: var(--font-ui);
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 38.4px;
+    text-transform: capitalize;
+    color: var(--secondary-colour);
+    text-align: center;
+    width: 100%;
+    word-break: break-word;
+  }
+}
