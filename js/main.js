@@ -31,10 +31,18 @@
     if (!shift) return;
 
     /* The strip must be at least one group wider than the visible area, or
-       the loop point becomes visible as a gap. */
+       the loop point becomes visible as a gap.
+
+       The cap matters: this only terminates while the track sizes to its
+       content (width: max-content). If a stylesheet change ever pins the
+       track's width, the measurement stops growing and an uncapped loop
+       would append clones until the tab dies. */
     var needed = track.parentElement.getBoundingClientRect().width + shift;
-    while (track.getBoundingClientRect().width < needed) {
+    var limit = Math.ceil(needed / shift) + 2;
+    var added = 0;
+    while (track.getBoundingClientRect().width < needed && added < limit) {
       track.appendChild(groups[0].cloneNode(true));
+      added++;
     }
 
     track.style.setProperty('--marquee-shift', shift + 'px');
