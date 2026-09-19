@@ -1,16 +1,9 @@
 /* ==========================================================================
    FORGE — responsive behaviour
 
-   Deliberately empty for now.
-
-   The home page is a pixel-exact build of the Figma frame
-   "Desktop - 1440px" (node 808:9909). The previous breakpoints were written
-   against the earlier markup and would distort this one, so they have been
-   removed rather than guessed at: the tablet and mobile Figma frames will
-   drive what goes here, so those sizes are as exact as the desktop one.
-
-   Until then the page renders at its designed width and scrolls
-   horizontally on narrower viewports.
+   The pages are pixel-exact builds of the Figma desktop frames. The tablet
+   and mobile Figma frames will drive what goes here, so those sizes are as
+   exact as the desktop one; nothing below 768px has been guessed at yet.
 
    Rules added here land in the `responsive` layer, which is declared last in
    css/tokens.css — so they win over the shell, component and section rules
@@ -18,5 +11,49 @@
    ========================================================================== */
 
 @layer responsive {
-  /* Add the tablet and mobile rules here once those frames are available. */
+
+  /* --- Top navbar: 1002px → 768px ----------------------------------------
+     Below 1002px the desktop navbar (951px of content) no longer fits, so
+     every dimension scales down linearly with the viewport instead of
+     jumping, and the bar keeps shrinking until the tablet layout takes over
+     at 768px. Below 768px it simply holds the 768px sizes.
+
+     --nav-t runs 0px → 1px as the viewport goes 768px → 1002px; each size is
+     then `smallest + --nav-t × (largest − smallest)`.                      */
+
+  @media (max-width: 1002px) {
+    .navbar {
+      --nav-t: calc((clamp(768px, 100vw, 1002px) - 768px) / 234);
+      --nav-size: calc(14px + var(--nav-t) * 3);           /* 14 → 17 */
+      --nav-link-pad: calc(6px + var(--nav-t) * 8);        /*  6 → 14 */
+
+      column-gap: calc(8px + var(--nav-t) * 2);            /*  8 → 10 */
+      padding: calc(16px + var(--nav-t) * 6);              /* 16 → 22 */
+    }
+
+    /* Same 7:3 pill proportion as the desktop 42px button (18px line +
+       12px top and bottom). */
+    .navbar .btn {
+      font-size: var(--nav-size);
+      line-height: var(--nav-size);
+      padding-block: calc(var(--nav-size) * 2 / 3);
+    }
+
+    .navbar .btn--nav {
+      padding-inline: var(--nav-link-pad);
+    }
+
+    .navbar .btn--primary {
+      padding-inline: calc(var(--nav-link-pad) * 1.5);
+    }
+
+    .navbar__group--right {
+      gap: calc(4px + var(--nav-t) * 4);                   /*  4 → 8 */
+    }
+
+    .navbar__wordmark {
+      font-size: calc(24px + var(--nav-t) * 10);           /* 24 → 34 */
+      letter-spacing: calc(4px + var(--nav-t) * 3);        /*  4 → 7 */
+    }
+  }
 }

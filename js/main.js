@@ -267,10 +267,46 @@
     });
   }
 
+  /* ------------------------------------------------------------------------
+     Back to top. The button fades in once the visitor is a little way down
+     the page, and scrolls smoothly back up (instantly for reduced motion).
+     ---------------------------------------------------------------------- */
+
+  function initToTop() {
+    var button = document.querySelector('[data-to-top]');
+    if (!button) return;
+
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var ticking = false;
+
+    function update() {
+      ticking = false;
+      button.classList.toggle('is-visible', window.scrollY > window.innerHeight * 0.75);
+    }
+
+    window.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }, { passive: true });
+
+    button.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+
+      /* The button fades out once the page is back at the top, taking
+         keyboard focus with it, so hand focus to the first link in the bar. */
+      var first = document.querySelector('.navbar a');
+      if (first) first.focus({ preventScroll: true });
+    });
+
+    update();
+  }
+
   initDialogs();
   initAccordions();
   initMailtoForms();
   initCarousels();
+  initToTop();
   initMarquees();
   whenFontsReady(initMarquees);
   /* document.fonts.ready can resolve before the Google Fonts stylesheet has
