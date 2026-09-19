@@ -93,6 +93,21 @@
   .btn--secondary:hover { background-color: var(--secondary-colour-hover); }
   .btn--secondary:active { background-color: var(--secondary-colour-active); }
 
+  /* Tertiary = black; pressing it flips to cream with grey ink. */
+  .btn--tertiary { background-color: var(--black); }
+  .btn--tertiary:hover { background-color: var(--tertiary-hover); }
+  .btn--tertiary:active {
+    background-color: var(--primary-colour);
+    color: var(--tertiary-hover);
+  }
+
+  /* The component's optional leading icon ("Show/Hide Icons"). */
+  .btn__icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
   /* Navbar labels carry no pill; hovering shows one, the current page turns rust. */
   .btn--nav {
     min-width: 0;
@@ -110,6 +125,26 @@
 
   /* Instances that stretch to fill their row. */
   .btn--grow { flex: 1 0 0; }
+
+  /* --- Hover lift ---------------------------------------------------------
+     Not in Figma (Rafael's request): the element rises on hover and eases
+     back down when the pointer leaves. Pointer devices only, and held
+     still for reduced motion.
+
+     .hover-lift          lifts itself.
+     .hover-lift-group    lifts its .hover-lift__target children instead,
+                          for full-bleed sections that must not open a gap.
+     --lift               the distance (6px unless a page sets it).       */
+
+  .hover-lift,
+  .hover-lift__target { transition: translate 0.3s ease-in-out; }
+
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .hover-lift:hover,
+    .hover-lift-group:hover .hover-lift__target {
+      translate: 0 calc(-1 * var(--lift, 6px));
+    }
+  }
 
   /* --- Links ------------------------------------------------------------ */
 
@@ -391,6 +426,17 @@
     height: 100%;
     max-width: none;
     object-fit: cover;
+    pointer-events: none;
+  }
+
+  /* Variants that grade the photo (Services & Plans) add this layer:
+     the sub-header brown at 75%, multiplied. .body-content's isolation
+     keeps the blend inside the page. */
+  .page-hero__tint {
+    position: absolute;
+    inset: 0;
+    background-color: color-mix(in srgb, var(--subordinate-colour) 75%, transparent);
+    mix-blend-mode: multiply;
     pointer-events: none;
   }
 

@@ -423,10 +423,15 @@
 
   .carousel__arrow--prev img { rotate: 180deg; }
 
+  /* The window clips the off-page cards. It carries 6px of headroom above
+     the cards (padding, cancelled by the negative margin) so a card lifted
+     by .hover-lift isn't cut off; the cards stay exactly where they were. */
   .carousel__viewport {
     flex: 1 0 0;
     min-width: 1px;
-    height: 223px;
+    height: calc(223px + 6px);
+    margin-top: -6px;
+    padding-top: 6px;
     overflow: hidden;
   }
 

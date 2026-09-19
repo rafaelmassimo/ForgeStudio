@@ -90,7 +90,7 @@
     testimonials.forEach(function (item) {
       var card = document.createElement('li');
       var quote = document.createElement('blockquote');
-      card.className = 'story-card';
+      card.className = 'story-card hover-lift';
       quote.textContent = '“' + item.quote + '”';
       card.appendChild(quote);
       fragment.appendChild(card);
@@ -227,6 +227,47 @@
     });
   }
 
+  /* ------------------------------------------------------------------------
+     Modals (Services & Plans, Figma overlays 1174:17630–17702).
+
+     A button with data-dialog-open="<id>" opens that <dialog> as a modal;
+     anything with data-dialog-close inside it closes it. Esc and a click on
+     the backdrop close it too — natively via closedby="any", and by hand
+     where the browser doesn't support that yet (Safari). The slide in/out
+     lives in css/services-and-plans.css.
+     ---------------------------------------------------------------------- */
+
+  var supportsClosedBy = 'HTMLDialogElement' in window &&
+    'closedBy' in HTMLDialogElement.prototype;
+
+  function initDialogs() {
+    var openers = document.querySelectorAll('[data-dialog-open]');
+    Array.prototype.forEach.call(openers, function (opener) {
+      var dialog = document.getElementById(opener.getAttribute('data-dialog-open'));
+      if (!dialog || typeof dialog.showModal !== 'function') return;
+      opener.addEventListener('click', function () { dialog.showModal(); });
+    });
+
+    var dialogs = document.querySelectorAll('dialog');
+    Array.prototype.forEach.call(dialogs, function (dialog) {
+      dialog.addEventListener('click', function (event) {
+        if (event.target.closest('[data-dialog-close]')) {
+          dialog.close();
+          return;
+        }
+        if (supportsClosedBy || event.target !== dialog) return;
+
+        /* A click on the dialog itself is either its own padding or the
+           backdrop outside it; only the latter closes. */
+        var rect = dialog.getBoundingClientRect();
+        var inside = rect.top <= event.clientY && event.clientY <= rect.bottom &&
+          rect.left <= event.clientX && event.clientX <= rect.right;
+        if (!inside) dialog.close();
+      });
+    });
+  }
+
+  initDialogs();
   initAccordions();
   initMailtoForms();
   initCarousels();
