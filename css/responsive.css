@@ -1,171 +1,22 @@
 /* ==========================================================================
    FORGE — responsive behaviour
-   The Figma frame is "Desktop - 1440px - Responsive": its split sections
-   already carry min-widths that make them wrap. These rules pick up below
-   those wrap points, where the desktop frame stops giving guidance.
+
+   Deliberately empty for now.
+
+   The home page is a pixel-exact build of the Figma frame
+   "Desktop - 1440px" (node 808:9909). The previous breakpoints were written
+   against the earlier markup and would distort this one, so they have been
+   removed rather than guessed at: the tablet and mobile Figma frames will
+   drive what goes here, so those sizes are as exact as the desktop one.
+
+   Until then the page renders at its designed width and scrolls
+   horizontally on narrower viewports.
+
+   Rules added here land in the `responsive` layer, which is declared last in
+   css/tokens.css — so they win over the shell, component and section rules
+   without needing extra specificity.
    ========================================================================== */
 
-/* --- Fluid type above the stacking point ---------------------------------- */
-@media (max-width: 1360px) {
-  :root {
-    --h1-size: clamp(52px, 7vw, 96px);
-    --h2-size: clamp(36px, 4.4vw, 56px);
-  }
-}
-
-/* --- Splits stack --------------------------------------------------------- */
-@media (max-width: 1232px) {
-  .who-we-are__text,
-  .commitment__text,
-  .who-we-are__media,
-  .commitment__media {
-    min-width: 100%;
-    max-width: 100%;
-    height: auto;
-    padding-left: 48px;
-    padding-right: 48px;
-  }
-
-  .who-we-are__media,
-  .commitment__media { padding-bottom: 24px; }
-
-  /* Keep the image above the copy on the commitment section, as designed. */
-  .commitment__media { order: -1; }
-
-  .who-we-are__media .split__image,
-  .commitment__media .split__image {
-    min-width: 0;
-    height: clamp(320px, 42vw, 546px);
-  }
-
-  .deco--shapes { right: 20px; }
-  .deco--ornament { left: 4px; }
-}
-
-@media (max-width: 1002px) {
-  .meet__text,
-  .meet__media {
-    min-width: 100%;
-    max-width: 100%;
-    padding-left: 48px;
-    padding-right: 48px;
-  }
-  .meet__media { order: -1; padding-bottom: 24px; }
-  .deco--element { left: auto; right: 24px; top: auto; bottom: -40px; }
-}
-
-/* --- Tablet --------------------------------------------------------------- */
-@media (max-width: 900px) {
-  :root { --body-gutter: 16px; }
-
-  /* The designed line breaks in the headings only make sense at desktop
-     widths; below this let the headings wrap on their own. */
-  br.lb { display: none; }
-
-  .navbar { flex-wrap: wrap; gap: 8px; padding: 16px; }
-  .navbar__wordmark {
-    position: static;
-    order: -1;
-    width: 100%;
-    transform: none;
-  }
-  .navbar__group { flex-wrap: wrap; justify-content: center; }
-  .navbar__group--right { flex: 1 1 100%; justify-content: center; }
-
-  .hero { height: auto; min-height: 560px; padding: 48px 24px; }
-  .hero__actions { flex-wrap: wrap; }
-
-  .who-we-are { padding: 64px 0 32px; }
-  .commitment  { padding: 32px 0 64px; }
-  .meet        { padding: 32px 0 64px; }
-
-  .who-we-are__text,
-  .commitment__text,
-  .meet__text,
-  .who-we-are__media,
-  .commitment__media,
-  .meet__media {
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-
-  .split__text { gap: 32px; }
-  .split__copy { gap: 24px; }
-  .commitment__actions,
-  .split__actions { flex-wrap: wrap; gap: 16px; }
-
-  .our-space { height: auto; min-height: 520px; padding: 64px 16px; }
-
-  .meet__image { width: 100%; max-width: 420px; height: auto; aspect-ratio: 420 / 532; }
-
-  .footer__top { flex-wrap: wrap; height: auto; gap: 32px; padding: 32px 24px; }
-  .footer__info { flex-wrap: wrap; min-width: 0; gap: 32px; }
-  .footer__contact,
-  .footer__nav { width: 100%; height: auto; }
-  .footer__socials { align-items: flex-start; }
-  .footer__sns { height: auto; padding: 0; gap: 20px; }
-
-  .footer__bottom { flex-wrap: wrap; height: auto; padding: 24px; gap: 16px; }
-  .footer__wordmark { width: 100%; height: 96px; }
-  .footer__wordmark p { top: 46px; width: 100%; font-size: 96px; letter-spacing: 4px; }
-  .footer__dot { left: auto; right: 8px; width: 12px; height: 12px; }
-  .footer__legal { justify-content: flex-start; padding: 0; flex-wrap: wrap; }
-}
-
-/* --- The pinned board shrinks rather than overflowing --------------------- */
-@media (max-width: 1240px) {
-  .notes { transform: scale(0.82); transform-origin: 50% 100%; }
-}
-@media (max-width: 1000px) {
-  .stories__body { height: 600px; }
-  .notes { transform: scale(0.66); }
-}
-@media (max-width: 760px) {
-  .stories__body { height: 540px; }
-  .stories__board { height: 460px; padding: 48px 24px; }
-  .notes { transform: scale(0.5); }
-  .stories__actions { padding: 56px 24px; }
-}
-
-/* --- Phone ---------------------------------------------------------------- */
-@media (max-width: 560px) {
-  :root {
-    --h4-size: 18px;
-    --h4-leading: 26px;
-    --body-size: 16px;
-    --body-leading: 21px;
-    --button-size: 16px;
-  }
-
-  .btn { min-width: 0; width: 100%; white-space: normal; text-align: center; }
-  .btn--nav { width: auto; }
-  .btn--fixed { width: 100%; }
-
-  .hero__actions,
-  .our-space__actions,
-  .split__actions,
-  .commitment__actions { flex-direction: column; align-items: stretch; }
-
-  .who-we-are__text,
-  .commitment__text,
-  .meet__text,
-  .who-we-are__media,
-  .commitment__media,
-  .meet__media,
-  .stories__actions { padding-left: 16px; padding-right: 16px; }
-
-  .hero { padding: 40px 16px; }
-  .our-space { padding: 48px 8px; }
-  .our-space__content { padding: 0 8px; }
-
-  .notes { transform: scale(0.4); }
-  .stories__body { height: 480px; }
-
-  .footer__contact p,
-  .footer__legal p,
-  .footer__legal a { white-space: normal; }
-  .footer__nav a { width: 100%; }
-  .footer__wordmark p { font-size: 64px; }
-  .footer__wordmark { height: 72px; }
-  .footer__wordmark p { top: 34px; }
+@layer responsive {
+  /* Add the tablet and mobile rules here once those frames are available. */
 }

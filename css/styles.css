@@ -1,833 +1,1069 @@
 /* ==========================================================================
-   FORGE Strength Studio — Home (desktop 1440px, responsive)
+   FORGE Strength Studio — layout and components
+   Transcribed from Figma "home" (file gA1vHmz70RHrFZyswUQFT1, node 808:9909).
+
+   Every size, spacing and colour below is the value Figma reports for that
+   node. The frame is the fixed 1440px desktop board, so lengths are in px
+   on purpose — this page is pixel-locked to the design until the mobile and
+   tablet frames land. Responsive rules belong in responsive.css.
    ========================================================================== */
-
-/* --------------------------------------------------------------------------
-   Page-level values.
-
-   css/tokens.css carries the named Figma styles (palette, type ramp, corner
-   radius). The values below are the ones this screen uses that have no named
-   style behind them in the file — raw hex from the frame, plus the two
-   Figma variables (Ink/ink-black) and the layout constants. Keep them here so
-   tokens.css stays a faithful mirror of the Figma styles.
-   -------------------------------------------------------------------------- */
-
-:root {
-  --ink-black: #222222;            /* Figma variable: Ink/ink-black         */
-
-  --text-on-dark: #ffffff;
-  --text-on-dark-muted: #eaeaea;   /* hero + our-space body copy            */
-  --text-body: #1e1e1e;            /* section body copy                     */
-  --footer-wordmark: #ece2d5;
-  --footer-dot: #8f4f2b;
-  --sns-swatch: #9e9c9c;
-
-  --radius-pill: 1000px;
-
-  /* Antonio / Poppins / Lao Sans Pro come from tokens.css; these two are
-     only used by the footer meta and the sticky notes. */
-  --font-meta: "Inter", system-ui, sans-serif;
-  --font-hand: "Commissioner", system-ui, sans-serif;
-
-  --meta-size: 16px;
-  --body-gutter: 24px;
-}
-
-*,
-*::before,
-*::after { box-sizing: border-box; }
-
-html { -webkit-text-size-adjust: 100%; }
-
-body {
-  margin: 0;
-  background: var(--primary-colour);
-  color: var(--text-body);
-  font-family: var(--font-body);
-  font-size: var(--body-size);
-  line-height: var(--body-leading);
-}
-
-img { display: block; max-width: 100%; }
-
-a { color: inherit; text-decoration: none; }
-
-:focus-visible {
-  outline: 3px solid var(--highlight-colour);
-  outline-offset: 3px;
-}
-
-.visually-hidden {
-  position: absolute;
-  width: 1px; height: 1px;
-  margin: -1px; padding: 0;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
-
-/* --- Shared type ---------------------------------------------------------- */
-
-.h1,
-.h2 {
-  margin: 0;
-  font-family: var(--font-display);
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.h1 { font-size: var(--h1-size); line-height: var(--h1-leading); color: var(--text-on-dark); }
-.h2 { font-size: var(--h2-size); line-height: var(--h2-leading); color: var(--secondary-colour); }
-
-.lede {
-  margin: 0;
-  font-size: var(--h4-size);
-  line-height: var(--h4-leading);
-  text-transform: capitalize;
-  color: var(--text-on-dark-muted);
-}
-
-.prose { margin: 0; }
-.prose p { margin: 0; }
-/* Figma spaces these paragraphs with an empty 22px line. */
-.prose p + p { margin-top: var(--body-leading); }
-
-/* --- Buttons -------------------------------------------------------------- */
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 164px;
-  padding: 12px 24px;
-  border: 0;
-  border-radius: var(--radius-pill);
-  overflow: clip;
-  font-family: var(--font-ui);
-  font-weight: 300;
-  font-size: var(--button-size);
-  line-height: 18px;
-  text-transform: capitalize;
-  white-space: nowrap;
-  color: var(--text-on-dark);
-  cursor: pointer;
-  transition: filter 160ms ease, transform 160ms ease;
-}
-
-.btn:hover { filter: brightness(1.08); }
-.btn:active { transform: translateY(1px); }
-
-.btn--primary     { background: var(--secondary-colour); }
-.btn--subordinate { background: var(--subordinate-colour); }
-.btn--highlight   { background: var(--highlight-colour); }
-.btn--on-photo    { background: var(--subordinate-colour); color: var(--primary-colour); }
-
-.btn--nav {
-  min-width: 0;
-  padding: 12px 16px;
-  background: transparent;
-  color: var(--black);
-}
-
-.btn--fixed { width: 164px; }
-.btn--fill  { flex: 1 0 0; }
 
 /* ==========================================================================
-   Page shell
+   SHELL — the black frame around the content.
+   Shared by every page: .page__body paints the frame, .body-content is the
+   rounded, clipped surface the page's sections sit on. New pages reuse these
+   three elements verbatim and only change what goes inside .body-content.
    ========================================================================== */
 
-.page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  background: var(--primary-colour);
-}
+@layer shell {
+  .page {
+    background-color: var(--primary-colour);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
 
-.page__body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  padding: var(--body-gutter);
-  background: var(--black);
-}
+  /* The frame itself — black on all four sides of the content. */
+  .page__body {
+    background-color: var(--black);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--page-frame-width);
+    width: 100%;
+  }
 
-.body-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  overflow: clip;
-  border-radius: var(--corner-radius-primary);
-  background: var(--primary-colour);
+  .body-content {
+    background-color: var(--primary-colour);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    border-radius: var(--corner-radius-primary);
+    width: 100%;
+    /* Contains the hero's multiply blend, so it mixes with this surface
+       rather than punching through to the black frame behind it. */
+    isolation: isolate;
+  }
+
+  /* The footer sits outside .page__body, so its black runs full-bleed and
+     meets the bottom edge of the frame without a seam. */
 }
 
 /* ==========================================================================
-   Top navbar
+   COMPONENTS
    ========================================================================== */
 
-.navbar {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
-  padding: 24px;
-  overflow: clip;
-  background: var(--primary-colour);
-}
+@layer components {
 
-.navbar__group { display: flex; align-items: center; }
+  /* --- Buttons (Figma component 289:3997) -------------------------------
+     Primary = highlight green, Secondary = rust, Navbar = bare label.   */
 
-.navbar__group--right {
-  flex: 1 0 0;
-  min-width: 0;
-  gap: 8px;
-  justify-content: flex-end;
-}
+  .btn {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    min-width: 164px;
+    padding: 12px 24px;
+    border: 0;
+    border-radius: 1000px;
+    font-family: var(--button-family);
+    font-weight: var(--button-weight);
+    font-size: var(--button-size);
+    line-height: var(--button-leading);
+    text-transform: var(--button-case);
+    letter-spacing: 0;
+    color: #fff;
+    text-decoration: none;
+    white-space: nowrap;
+    word-break: break-word;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+  }
 
-.navbar__wordmark {
-  position: absolute;
-  top: calc(50% - 23px);
-  left: calc(50% + 1px);
-  transform: translateX(-50%);
-  margin: 0;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 36px;
-  line-height: normal;
-  letter-spacing: 8px;
-  text-transform: uppercase;
-  text-align: center;
-  white-space: nowrap;
-  color: var(--black);
-  pointer-events: none;
+  .btn--primary { background-color: var(--highlight-colour); }
+  .btn--primary:hover { background-color: var(--highlight-colour-hover); }
+  .btn--primary:active { background-color: var(--highlight-colour-active); }
+
+  .btn--secondary { background-color: var(--secondary-colour); }
+  .btn--secondary:hover { background-color: var(--secondary-colour-hover); }
+  .btn--secondary:active { background-color: var(--secondary-colour-active); }
+
+  /* Tertiary = black; pressing it flips to cream with grey ink. */
+  .btn--tertiary { background-color: var(--black); }
+  .btn--tertiary:hover { background-color: var(--tertiary-hover); }
+  .btn--tertiary:active {
+    background-color: var(--primary-colour);
+    color: var(--tertiary-hover);
+  }
+
+  /* The component's optional leading icon ("Show/Hide Icons"). */
+  .btn__icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  /* Navbar labels carry no pill; hovering shows one, the current page turns rust. */
+  .btn--nav {
+    min-width: 0;
+    padding: 12px 16px;
+    background-color: transparent;
+    color: var(--black);
+  }
+
+  .btn--nav:hover { background-color: var(--navbar-hover-fill); }
+
+  .btn--nav[aria-current="page"] { color: var(--secondary-colour); }
+
+  /* "Book Now" in the navbar keeps the pill but not the 164px floor. */
+  .btn--compact { min-width: 0; }
+
+  /* Instances that stretch to fill their row. */
+  .btn--grow { flex: 1 0 0; }
+
+  /* --- Hover lift ---------------------------------------------------------
+     Not in Figma (Rafael's request): the element rises on hover and eases
+     back down when the pointer leaves. Pointer devices only, and held
+     still for reduced motion.
+
+     .hover-lift          lifts itself.
+     .hover-lift-group    lifts its .hover-lift__target children instead,
+                          for full-bleed sections that must not open a gap.
+     --lift               the distance (6px unless a page sets it).       */
+
+  .hover-lift,
+  .hover-lift__target { transition: translate 0.3s ease-in-out; }
+
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .hover-lift:hover,
+    .hover-lift-group:hover .hover-lift__target {
+      translate: 0 calc(-1 * var(--lift, 6px));
+    }
+  }
+
+  /* --- Links ------------------------------------------------------------ */
+
+  .link {
+    font-size: var(--body-16-size);
+    line-height: var(--body-16-leading);
+    color: var(--secondary-shapes-fill);
+    text-decoration: none;
+    white-space: nowrap;
+    word-break: break-word;
+  }
+
+  /* --- Shared section pieces -------------------------------------------- */
+
+  /* Heading + prose stack (gap 36 in every section that uses it). */
+  .copy {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    align-items: flex-start;
+    width: 100%;
+    word-break: break-word;
+  }
+
+  .copy h2 {
+    color: var(--secondary-colour);
+    width: 100%;
+  }
+
+  .prose {
+    color: var(--prose-ink);
+    font-size: var(--body-size);
+    line-height: var(--body-leading);
+    width: 100%;
+  }
+
+  /* Figma separates paragraphs with an empty line of body text; one
+     line-height of margin is the same distance. */
+  .prose p + p { margin-block-start: var(--body-leading); }
+
+  /* Rounded photo that fills its slot. */
+  .media {
+    position: relative;
+    border-radius: var(--corner-radius-primary);
+  }
+
+  .media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  /* --- Decorative vectors ------------------------------------------------
+     Each sits in a box of the size Figma reports; the artwork inside bleeds
+     past that box by the insets Figma gives it (stroke overhang).       */
+
+  .deco {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .deco > img {
+    position: absolute;
+    inset: 0;
+    width: auto;
+    height: auto;
+    max-width: none;
+  }
+
+  .deco--shapes {
+    width: 54px;
+    height: 567px;
+    right: 51px;
+    top: calc(50% - 37.5px);
+    translate: 0 -50%;
+  }
+  .deco--shapes > img { inset: 0 -4.63%; }
+
+  .deco--ornament {
+    width: 198px;
+    height: 199px;
+    left: 16px;
+    top: calc(50% + 10.5px);
+    translate: 0 -50%;
+  }
+  .deco--ornament > img { inset: -1.26%; }
+
+  .deco--element {
+    width: 194px;
+    height: 186px;
+    left: 337px;
+    top: 406px;
+  }
+  .deco--element > img { inset: -1.34% -1.29%; }
+
+  /* --- Sticky notes (Figma component "Sticky note/Red") ------------------
+     Geometry differs per note, so each <li> supplies it as custom
+     properties: --bottom, --left (offset from centre), --size, --rotate. */
+
+  .notes {
+    position: absolute;
+    inset: 0;
+  }
+
+  /* --left is the offset of the note's CENTRE from the board's centre, which
+     is how Figma positions them: left: calc(50% + x) then pulled back by half
+     its own width. Without the translate every note sits half a note too far
+     right and the row runs off the edge. */
+  .note-slot {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: var(--bottom);
+    left: calc(50% + var(--left));
+    translate: -50% 0;
+    width: var(--size);
+    height: var(--size);
+  }
+
+  .note {
+    position: relative;
+    flex: none;
+    width: 204px;
+    height: 204px;
+    rotate: var(--rotate);
+  }
+
+  .note__shadow { position: absolute; inset: 9.95px 96.32% 7.38px -12.75%; }
+  .note__shadow > img {
+    position: absolute;
+    inset: -8.04% -29.85% -8.04% -44.78%;
+    width: auto;
+    height: auto;
+    max-width: none;
+  }
+
+  .note__paper { position: absolute; inset: 1.7% 2.21% 2.71% 2.21%; }
+  .note__paper > img {
+    position: absolute;
+    inset: 0 -1.03% -2.56% -1.54%;
+    width: auto;
+    height: auto;
+    max-width: none;
+  }
+
+  .note__author {
+    position: absolute;
+    inset: 17px 14px 172px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1;
+    text-align: right;
+    color: var(--ink-black);
+    word-break: break-word;
+  }
+
+  .note__quote {
+    position: absolute;
+    inset: 42px 14px 18px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: var(--font-note);
+    font-weight: 500;
+    font-style: italic;
+    font-variation-settings: "FLAR" 0, "VOLM" 0;
+    font-size: 12px;
+    line-height: 1;
+    color: var(--ink-black);
+    word-break: break-word;
+  }
+
+  /* --- Infinite horizontal scroll (Figma node 808:9948) ------------------
+     Figma animates the track 0 → -831px over 12s linear, forever. The shift
+     is one group's width; main.js measures the real width once the webfont
+     lands and feeds it back, so the loop point stays invisible.         */
+
+  .marquee {
+    background-color: var(--black);
+    display: flex;
+    flex-direction: column;
+    height: 72px;
+    align-items: flex-start;
+    justify-content: center;
+    overflow: hidden;
+    padding-block: 16px;
+    width: 100%;
+  }
+
+  /* Figma marks the track full-width, but its groups never shrink and always
+     overflow, so the CSS equivalent is a box that sizes to its content. That
+     also lets main.js measure the real strip width when it tops it up. */
+  .marquee__track {
+    display: flex;
+    height: 15px;
+    align-items: center;
+    width: max-content;
+    will-change: transform;
+    animation: marquee-scroll var(--marquee-duration, 12s) linear infinite;
+  }
+
+  @keyframes marquee-scroll {
+    from { translate: 0 0; }
+    to   { translate: calc(-1 * var(--marquee-shift, 831px)) 0; }
+  }
+
+  /* Decorative, endless and unstoppable — hold it still when asked. */
+  @media (prefers-reduced-motion: reduce) {
+    .marquee__track { animation: none; }
+  }
+
+  .marquee__group {
+    display: flex;
+    flex-shrink: 0;
+    height: 100%;
+    align-items: center;
+  }
+
+  .marquee__item {
+    display: flex;
+    align-items: center;
+  }
+
+  .marquee__label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-inline: 28px;
+  }
+
+  .marquee__label span {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 14.56px;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: var(--primary-colour);
+    white-space: nowrap;
+  }
+
+  .marquee__dot {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+  }
+
+  /* On secondary pages the strip has no fixed height: 16 + 15 + 16 = 47px. */
+  .marquee--fit { height: auto; }
+
+  /* --- Secondary page hero (Figma component "Secondary Pages Hero
+     Sections", 749:9257) ------------------------------------------------
+     A 400px photo band with the page title sitting bottom-left and a rust
+     full stop. Every secondary page reuses it with its own photo.      */
+
+  .page-hero {
+    position: relative;
+    display: flex;
+    height: 400px;
+    align-items: flex-end;
+    padding: 48px 96px;
+    width: 100%;
+  }
+
+  .page-hero__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    pointer-events: none;
+  }
+
+  /* Variants that grade the photo (Services & Plans) add this layer:
+     the sub-header brown at 75%, multiplied. .body-content's isolation
+     keeps the blend inside the page. */
+  .page-hero__tint {
+    position: absolute;
+    inset: 0;
+    background-color: color-mix(in srgb, var(--subordinate-colour) 75%, transparent);
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+
+  .page-hero__title {
+    position: relative;
+    color: #fff;
+    white-space: nowrap;
+    word-break: break-word;
+  }
+
+  .page-hero__dot { color: var(--secondary-colour); }
 }
 
 /* ==========================================================================
-   Hero
+   SECTIONS — in the order they appear in the home frame
    ========================================================================== */
 
-.hero {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 740px;
-  min-height: 600px;
-  padding: 64px 48px;
+@layer sections {
+
+  /* --- Top navbar (808:9912) -------------------------------------------- */
+
+  .navbar {
+    background-color: var(--primary-colour);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    column-gap: 10px;
+    overflow: hidden;
+    padding: 24px;
+    width: 100%;
+    /* overflow:hidden zeroes the automatic min-width a grid container would
+       otherwise get from its tracks, so it has to be restored explicitly.
+       This keeps the floor exactly at "as small as the three columns can go
+       before their own content would collide" — derived from the content
+       itself rather than a guessed pixel value. */
+    min-width: min-content;
+  }
+
+  .navbar__group {
+    display: flex;
+    align-items: center;
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .navbar__group--right {
+    grid-column: 3;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+
+  /* Its own grid column, centred between the two link groups.
+     In Figma the wordmark is absolutely positioned, so its 47px line box
+     overhangs the 42px buttons without making the bar taller (90px, not
+     94.5px). A zero-height flex box keeps it out of the row height and
+     lets the text overflow evenly around the row's centre line. */
+  .navbar__wordmark {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    height: 0;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 36px;
+    line-height: normal;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--black);
+    white-space: nowrap;
+    word-break: break-word;
+  }
+
+  /* --- Hero (808:9913) --------------------------------------------------- */
+
+  .hero {
+    position: relative;
+    display: flex;
+    height: 740px;
+    min-height: 600px;
+    align-items: center;
+    justify-content: center;
+    padding: 64px 48px;
+    width: 100%;
+  }
+
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+
+  .hero__content {
+    position: relative;
+    flex: 1 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 1px;
+  }
+
+  .hero__text {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    word-break: break-word;
+  }
+
+  .hero h1 {
+    color: #fff;
+    width: 100%;
+  }
+
+  .hero__lede {
+    font-size: var(--h4-size);
+    line-height: var(--h4-leading);
+    text-transform: capitalize;
+    color: var(--on-photo-ink);
+    width: 100%;
+  }
+
+  .hero__actions {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* --- Who we are (808:9921) --------------------------------------------- */
+
+  .who-we-are {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    isolation: isolate;
+    padding: 96px 0 48px;
+    width: 100%;
+  }
+
+  .who-we-are__text {
+    position: relative;
+    z-index: 2;
+    flex: 1 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    justify-content: center;
+    max-width: 768px;
+    min-width: 592px;
+    padding: 24px 88px;
+  }
+
+  .who-we-are__media {
+    position: relative;
+    z-index: 1;
+    flex: 1 0 0;
+    display: flex;
+    gap: 8px;
+    height: 544px;
+    align-items: center;
+    justify-content: center;
+    max-width: 800px;
+    min-width: 640px;
+    padding-left: 48px;
+    padding-right: 88px;
+  }
+
+  .who-we-are__media .media {
+    flex: 1 0 0;
+    height: 544px;
+    min-width: 546px;
+  }
+
+  /* --- Commitment (808:9935) ---------------------------------------------- */
+
+  .commitment {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    padding: 48px 0 96px;
+    width: 100%;
+  }
+
+  .commitment__media {
+    position: relative;
+    flex: 1 0 0;
+    display: flex;
+    gap: 8px;
+    height: 698px;
+    align-items: center;
+    justify-content: flex-end;
+    max-width: 800px;
+    min-width: 640px;
+    padding-left: 88px;
+    padding-right: 48px;
+  }
+
+  .commitment__media .media {
+    flex: 1 0 0;
+    height: 546px;
+    min-width: 1px;
+  }
+
+  .commitment__text {
+    flex: 1 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    align-items: flex-start;
+    max-width: 768px;
+    min-width: 592px;
+    padding: 24px 80px;
+  }
+
+  .commitment__actions {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  /* --- Our space (808:9949) ----------------------------------------------- */
+
+  .our-space {
+    position: relative;
+    display: flex;
+    height: 600px;
+    align-items: center;
+    justify-content: center;
+    padding-block: 64px;
+    width: 100%;
+  }
+
+  .our-space__bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .our-space__bg img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+  }
+
+  .our-space__scrim {
+    position: absolute;
+    inset: 0;
+    background-color: var(--photo-scrim);
+  }
+
+  .our-space__content {
+    position: relative;
+    flex: 1 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    align-items: center;
+    justify-content: center;
+    min-width: 1px;
+    padding-inline: 24px;
+  }
+
+  .our-space__text {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    word-break: break-word;
+  }
+
+  .our-space h2 {
+    color: #fff;
+    min-width: 100%;
+    width: min-content;
+  }
+
+  .our-space__body {
+    font-size: var(--body-size);
+    line-height: 22px;
+    color: var(--on-photo-ink);
+    max-width: 880px;
+    width: 600px;
+  }
+
+  .our-space__actions {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* --- Meet Gabriela (808:9956) -------------------------------------------- */
+
+  .meet {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    padding: 48px 0 96px;
+    width: 100%;
+  }
+
+  .meet__text {
+    flex: 1 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    max-width: 860px;
+    min-width: 446px;
+    padding: 24px 80px;
+  }
+
+  .meet__actions {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .meet__media {
+    position: relative;
+    display: flex;
+    flex-shrink: 0;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    padding-left: 48px;
+    padding-right: 88px;
+  }
+
+  .meet__media .media {
+    flex-shrink: 0;
+    width: 420px;
+    height: 532px;
+  }
+
+  /* --- Community stories (808:9968) ---------------------------------------- */
+
+  .stories {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .stories__body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 678px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .stories__board {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 528px;
+    align-items: flex-start;
+    opacity: 0.9;
+    padding: 72px 64px;
+    width: 100%;
+  }
+
+  .stories__board-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .stories__board-bg img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+  }
+
+  /* Three stacked grades push the photo towards the studio's rust.
+     The board's own opacity keeps the blending inside this box. */
+  .stories__tint {
+    position: absolute;
+    inset: 0;
+  }
+
+  .stories__tint--lighten {
+    background-color: color-mix(in srgb, var(--accent-rust) 25%, transparent);
+    mix-blend-mode: lighten;
+  }
+
+  .stories__tint--overlay {
+    background-color: color-mix(in srgb, var(--accent-rust) 50%, transparent);
+    mix-blend-mode: overlay;
+  }
+
+  .stories__tint--multiply {
+    background-color: color-mix(in srgb, var(--accent-rust) 60%, transparent);
+    mix-blend-mode: multiply;
+  }
+
+  .stories__board-text {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    color: var(--primary-colour);
+    word-break: break-word;
+  }
+
+  .stories__board-text h2 { width: 100%; }
+
+  .stories__board-text p {
+    font-size: var(--body-size);
+    line-height: var(--body-leading);
+    width: 100%;
+  }
+
+  .stories__actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: 88px;
+    width: 100%;
+  }
+
+  .stories__actions .btn { width: 778px; }
+
+  /* --- Footer (808:10017) --------------------------------------------------
+     Lives outside .page__body so the black runs edge to edge.            */
+
+  .footer {
+    background-color: var(--black);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .footer__top {
+    display: flex;
+    gap: 24px;
+    height: 260px;
+    align-items: flex-start;
+    overflow: hidden;
+    padding: 48px;
+    width: 100%;
+  }
+
+  .footer__info {
+    flex: 1 0 0;
+    display: flex;
+    gap: 24px;
+    height: 100%;
+    align-items: center;
+    min-width: 680px;
+  }
+
+  .footer__contact {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 100%;
+    align-items: flex-start;
+    width: 328px;
+  }
+
+  .footer__contact-row {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .footer__contact-row img {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  /* Figma flips the handset: rotate 180 then mirror vertically. */
+  .footer__contact-row--phone img { transform: rotate(180deg) scaleY(-1); }
+
+  .footer__hours {
+    font-size: var(--body-16-size);
+    line-height: var(--body-16-leading);
+    color: #fff;
+    white-space: nowrap;
+    word-break: break-word;
+  }
+
+  .footer__nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-items: flex-start;
+    gap: 16px;
+    height: 100%;
+    width: 328px;
+  }
+
+  .footer__nav li {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    width: 154px;
+  }
+
+  .footer__socials {
+    flex: 1 0 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: flex-end;
+    justify-content: center;
+    min-width: 1px;
+  }
+
+  .footer__sns {
+    display: flex;
+    height: 128px;
+    align-items: center;
+    padding-block: 64px;
+  }
+
+  .footer__sns img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .footer__bottom {
+    display: flex;
+    height: 192px;
+    align-items: flex-start;
+    overflow: hidden;
+    padding-inline: 48px;
+    width: 100%;
+  }
+
+  .footer__wordmark {
+    position: relative;
+    flex-shrink: 0;
+    height: 192px;
+    width: 540px;
+  }
+
+  .footer__wordmark p {
+    position: absolute;
+    left: 0;
+    top: 90px;
+    translate: 0 -50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 192px;
+    width: 485px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 200px;
+    line-height: 24px;
+    letter-spacing: 8px;
+    color: var(--wordmark-ink);
+    /* The word measures 487px against Figma's 485px box. Figma lets it
+       overflow on one line; break-word would split it into "FORG" + "E". */
+    white-space: nowrap;
+  }
+
+  .footer__dot {
+    position: absolute;
+    bottom: 0;
+    left: 495px;
+    width: 23px;
+    height: 23px;
+    background-color: var(--accent-rust);
+  }
+
+  .footer__legal {
+    flex: 1 0 0;
+    display: flex;
+    gap: 16px;
+    height: 100%;
+    align-items: flex-end;
+    justify-content: flex-end;
+    min-width: 1px;
+    padding: 24px 10px;
+  }
+
+  .footer__legal p {
+    font-size: var(--body-16-size);
+    line-height: var(--body-16-leading);
+    color: #fff;
+    text-align: right;
+    white-space: nowrap;
+    word-break: break-word;
+  }
 }
-
-/* Multiplies against the cream body-content ground, as in Figma. */
-.hero__bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  mix-blend-mode: multiply;
-  pointer-events: none;
-}
-
-.hero__content {
-  position: relative;
-  display: flex;
-  flex: 1 0 0;
-  min-width: 0;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 36px;
-}
-
-.hero__text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-  width: 100%;
-  text-align: center;
-}
-
-.hero__actions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
-  width: 100%;
-}
-
-/* ==========================================================================
-   Split sections (who-we-are / commitment / meet-gabriela)
-   ========================================================================== */
-
-.split {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-  width: 100%;
-}
-
-.split__text {
-  display: flex;
-  flex: 1 0 0;
-  flex-direction: column;
-  gap: 48px;
-}
-
-.split__copy {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 36px;
-  width: 100%;
-}
-
-.split__actions {
-  display: flex;
-  align-items: flex-start;
-  width: 100%;
-}
-
-.split__media {
-  position: relative;
-  display: flex;
-  flex: 1 0 0;
-  align-items: center;
-  gap: 8px;
-}
-
-.split__image {
-  flex: 1 0 0;
-  border-radius: var(--corner-radius-primary);
-}
-
-.split__image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: var(--corner-radius-primary);
-}
-
-/* Decorative vectors are absolutely placed; the inner <img> is drawn slightly
-   larger than its box exactly as the Figma frames specify. */
-.deco { position: absolute; pointer-events: none; }
-.deco img { width: 100%; height: 100%; }
-
-/* --- Who we are ----------------------------------------------------------- */
-
-.who-we-are { padding: 96px 0 48px; }
-
-.who-we-are__text {
-  z-index: 2;
-  align-items: center;
-  justify-content: center;
-  min-width: 592px;
-  padding: 24px 88px;
-}
-
-.who-we-are__media {
-  z-index: 1;
-  justify-content: center;
-  height: 544px;
-  min-width: 640px;
-  padding-left: 48px;
-  padding-right: 88px;
-}
-
-.who-we-are__media .split__image { height: 544px; min-width: 546px; }
-
-.deco--shapes {
-  top: calc(50% - 37.5px);
-  right: 51px;
-  width: 54px;
-  height: 567px;
-  transform: translateY(-50%);
-}
-.deco--shapes img { width: 109.26%; margin-left: -4.63%; }
-
-/* --- Commitment ----------------------------------------------------------- */
-
-.commitment { padding: 48px 0 96px; }
-
-.commitment__media {
-  justify-content: flex-end;
-  height: 698px;
-  min-width: 640px;
-  padding-left: 88px;
-  padding-right: 48px;
-}
-
-.commitment__media .split__image { height: 546px; min-width: 0; }
-
-.deco--ornament {
-  top: calc(50% + 10.5px);
-  left: 16px;
-  width: 198px;
-  height: 199px;
-  transform: translateY(-50%);
-}
-.deco--ornament img { width: 102.52%; height: 102.52%; margin: -1.26% 0 0 -1.26%; }
-
-.commitment__text {
-  align-items: flex-start;
-  height: 698px;
-  min-width: 592px;
-  padding: 24px 80px;
-}
-
-.commitment__actions { gap: 24px; }
-
-/* --- Meet Gabriela -------------------------------------------------------- */
-
-.meet { padding: 48px 0 96px; }
-
-.meet__text {
-  align-items: center;
-  min-width: 446px;
-  padding: 24px 80px;
-}
-
-.meet__media {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding-left: 48px;
-  padding-right: 88px;
-}
-
-.meet__image {
-  width: 420px;
-  height: 532px;
-  flex-shrink: 0;
-  border-radius: var(--corner-radius-primary);
-}
-
-.meet__image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: var(--corner-radius-primary);
-}
-
-.deco--element {
-  top: 406px;
-  left: 337px;
-  width: 194px;
-  height: 186px;
-}
-.deco--element img { width: 102.58%; height: 102.68%; margin: -1.34% 0 0 -1.29%; }
-
-/* ==========================================================================
-   Infinite horizontal scroll (marquee)
-   ========================================================================== */
-
-.marquee {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100%;
-  height: 72px;
-  padding: 16px 0;
-  overflow: clip;
-  background: var(--black);
-}
-
-.marquee__track {
-  display: flex;
-  align-items: center;
-  height: 15px;
-  width: max-content;
-  will-change: transform;
-  animation: marquee-scroll var(--marquee-duration, 12s) linear infinite;
-}
-
-.marquee__group { display: flex; align-items: center; height: 100%; }
-
-.marquee__item { display: flex; align-items: center; }
-
-.marquee__label {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 0 28px;
-}
-
-.marquee__label span {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 14.56px;
-  letter-spacing: 8px;
-  text-transform: uppercase;
-  white-space: nowrap;
-  color: var(--primary-colour);
-}
-
-.marquee__dot { width: 12px; height: 12px; flex-shrink: 0; }
-
-@keyframes marquee-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(calc(var(--marquee-shift, 831px) * -1)); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .marquee__track { animation: none; }
-}
-
-/* ==========================================================================
-   Our space
-   ========================================================================== */
-
-.our-space {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 600px;
-  padding: 64px 0;
-}
-
-.our-space__bg { position: absolute; inset: 0; pointer-events: none; }
-
-.our-space__bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.our-space__scrim {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.3);
-}
-
-.our-space__content {
-  position: relative;
-  display: flex;
-  flex: 1 0 0;
-  min-width: 0;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 36px;
-  padding: 0 24px;
-}
-
-.our-space__text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
-  width: 100%;
-  text-align: center;
-}
-
-.our-space__text .h2 { color: var(--text-on-dark); }
-
-.our-space__body {
-  width: 100%;
-  margin: 0;
-  color: var(--text-on-dark-muted);
-}
-
-.our-space__actions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
-  width: 100%;
-}
-
-/* ==========================================================================
-   Community stories
-   ========================================================================== */
-
-.stories { display: flex; flex-direction: column; align-items: center; width: 100%; }
-
-.stories__body {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 678px;
-}
-
-.stories__board {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-  height: 528px;
-  padding: 72px 64px;
-  opacity: 0.9;
-}
-
-.stories__board-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  pointer-events: none;
-}
-
-.stories__board-text {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  text-align: center;
-  color: var(--primary-colour);
-}
-
-.stories__board-text .h2 { color: inherit; }
-.stories__board-text p { margin: 0; }
-
-.stories__actions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 88px 0;
-}
-
-.stories__actions .btn { width: 778px; max-width: 100%; }
-
-/* --- Post-it notes -------------------------------------------------------- */
-
-.notes { position: absolute; inset: 0; pointer-events: none; }
-
-.note-slot {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: translateX(-50%);
-}
-
-.note {
-  position: relative;
-  width: 204px;
-  height: 204px;
-  flex: none;
-}
-
-.note__shadow { position: absolute; top: 9.95px; bottom: 7.38px; left: -12.75%; right: 96.32%; }
-.note__shadow img { width: 174.63%; height: 116.08%; margin: -8.04% 0 0 -44.78%; }
-
-.note__paper { position: absolute; top: 1.7%; right: 2.21%; bottom: 2.71%; left: 2.21%; }
-.note__paper img { width: 102.57%; height: 102.56%; margin-left: -1.54%; }
-
-.note__quote,
-.note__author {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0;
-  color: var(--ink-black);
-}
-
-.note__quote {
-  top: 42px; right: 14px; bottom: 18px; left: 15px;
-  font-family: var(--font-hand);
-  font-weight: 500;
-  font-style: italic;
-  font-size: 12px;
-  line-height: 1;
-  font-variation-settings: "FLAR" 0, "VOLM" 0;
-}
-
-.note__author {
-  top: 17px; right: 14px; bottom: 172px; left: 15px;
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 1;
-  text-align: right;
-}
-
-/* ==========================================================================
-   Footer
-   ========================================================================== */
-
-.footer {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-  background: var(--black);
-  font-family: var(--font-meta);
-  font-size: var(--meta-size);
-  line-height: normal;
-  color: var(--text-on-dark);
-}
-
-.footer__top {
-  display: flex;
-  align-items: flex-start;
-  gap: 24px;
-  width: 100%;
-  height: 260px;
-  padding: 48px;
-  overflow: clip;
-}
-
-.footer__info {
-  display: flex;
-  flex: 1 0 0;
-  align-items: center;
-  gap: 24px;
-  height: 100%;
-  min-width: 680px;
-}
-
-.footer__contact {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
-  width: 328px;
-  height: 100%;
-  margin: 0;
-  font-style: normal;   /* <address> defaults to italic */
-}
-
-.footer__contact-row {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.footer__contact-row img { width: 24px; height: 24px; flex-shrink: 0; }
-.footer__contact-row--phone img { transform: scaleX(-1); }
-.footer__contact p { margin: 0; white-space: nowrap; }
-
-.footer__nav {
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  align-items: flex-start;
-  gap: 16px;
-  width: 328px;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.footer__nav a {
-  display: flex;
-  align-items: center;
-  width: 154px;
-  overflow: clip;
-  white-space: nowrap;
-  color: var(--secondary-shapes-fill);
-}
-
-.footer__nav a:hover { text-decoration: underline; }
-
-.footer__socials {
-  display: flex;
-  flex: 1 0 0;
-  min-width: 0;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
-  height: 100%;
-}
-
-.footer__sns {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-  height: 128px;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.footer__sns a { display: block; }
-
-.footer__sns span {
-  display: block;
-  width: 40px;
-  height: 40px;
-  border-radius: 15px;
-  background: var(--sns-swatch);
-}
-
-.footer__bottom {
-  display: flex;
-  align-items: flex-start;
-  width: 100%;
-  height: 192px;
-  padding: 0 48px;
-  overflow: clip;
-}
-
-.footer__wordmark {
-  position: relative;
-  width: 540px;
-  height: 192px;
-  flex-shrink: 0;
-}
-
-.footer__wordmark p {
-  position: absolute;
-  top: 90px;
-  left: 0;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 485px;
-  height: 192px;
-  margin: 0;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 200px;
-  line-height: 24px;
-  letter-spacing: 8px;
-  color: var(--footer-wordmark);
-}
-
-.footer__dot {
-  position: absolute;
-  bottom: 0;
-  left: 495px;
-  width: 23px;
-  height: 23px;
-  background: var(--footer-dot);
-}
-
-.footer__legal {
-  display: flex;
-  flex: 1 0 0;
-  min-width: 0;
-  align-items: flex-end;
-  justify-content: flex-end;
-  gap: 16px;
-  height: 100%;
-  padding: 24px 10px;
-  font-size: 12px;
-}
-
-.footer__legal a { color: var(--secondary-shapes-fill); white-space: nowrap; }
-.footer__legal a:hover { text-decoration: underline; }
-.footer__legal p { margin: 0; text-align: right; white-space: nowrap; }
