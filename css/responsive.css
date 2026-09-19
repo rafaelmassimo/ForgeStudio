@@ -1,9 +1,17 @@
 /* ==========================================================================
    FORGE — responsive behaviour
 
-   The pages are pixel-exact builds of the Figma desktop frames. The tablet
-   and mobile Figma frames will drive what goes here, so those sizes are as
-   exact as the desktop one; nothing below 768px has been guessed at yet.
+   The pages are pixel-exact builds of the Figma desktop frames. Below
+   1002px (Rafael's breakpoint) the site switches to the 360px mobile frames
+   instead. There is no tablet frame: sections fill the width fluidly the way
+   the Figma auto-layout does, while fixed-size items (the 264px hero copy,
+   the 204px button stack, the notes…) keep their Figma size, centred.
+
+   What is here so far:
+     - the shared shell, navbar and footer ("mobile-home-sticky-navbar",
+       1427:9840), on every page;
+     - the home page sections (same frame).
+   The other pages keep their desktop sections until their frames are built.
 
    Rules added here land in the `responsive` layer, which is declared last in
    css/tokens.css — so they win over the shell, component and section rules
@@ -12,48 +20,399 @@
 
 @layer responsive {
 
-  /* --- Top navbar: 1002px → 768px ----------------------------------------
-     Below 1002px the desktop navbar (951px of content) no longer fits, so
-     every dimension scales down linearly with the viewport instead of
-     jumping, and the bar keeps shrinking until the tablet layout takes over
-     at 768px. Below 768px it simply holds the 768px sizes.
+  /* --- Breakpoint-only content -------------------------------------------
+     For the few places where the desktop and mobile frames differ in
+     content rather than layout (a heading's wording, the notes on the
+     community board). display: none also takes the hidden copy out of the
+     accessibility tree, so it is never read twice.                       */
 
-     --nav-t runs 0px → 1px as the viewport goes 768px → 1002px; each size is
-     then `smallest + --nav-t × (largest − smallest)`.                      */
+  @media (min-width: 1003px) {
+    .mobile-only { display: none; }
+  }
 
   @media (max-width: 1002px) {
+    .desktop-only { display: none; }
+  }
+
+  @media (max-width: 1002px) {
+
+    /* --- Tokens: the mobile type styles and the thinner frame ---------- */
+
+    :root {
+      --page-frame-width: 12px;   /* Figma --spacing-xsm                */
+      --h1-size: 48px;            /* Headers/H1 Mobile — Antonio 48/100% */
+      --h1-leading: 1;
+      --h2-size: 32px;            /* Headers/H2 Mobile — Antonio 32/100% */
+      --button-size: 16px;        /* Button Text 16pts Md — Poppins 16   */
+      --button-leading: normal;
+    }
+
+    /* =================================================================
+       SHELL — the frame is 12px on the top and sides. The footer carries
+       straight on from the content (no bottom frame), and its content
+       sits inside the same 12px.
+       ================================================================= */
+
+    .page__body { padding-bottom: 0; }
+
+    /* --- Top navbar (Figma "top-navbar-mobile") ------------------------
+       54px cream bar: the hamburger on the right, the wordmark centred.
+       It carries the top corners itself, so they stay rounded while it is
+       stuck to the top of the viewport. */
+
     .navbar {
-      --nav-t: calc((clamp(768px, 100vw, 1002px) - 768px) / 234);
-      --nav-size: calc(14px + var(--nav-t) * 3);           /* 14 → 17 */
-      --nav-link-pad: calc(6px + var(--nav-t) * 8);        /*  6 → 14 */
-
-      column-gap: calc(8px + var(--nav-t) * 2);            /*  8 → 10 */
-      padding: calc(16px + var(--nav-t) * 6);              /* 16 → 22 */
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      min-width: 0;
+      padding: 3px 8px;
+      border-radius: var(--corner-radius-primary) var(--corner-radius-primary) 0 0;
     }
 
-    /* Same 7:3 pill proportion as the desktop 42px button (18px line +
-       12px top and bottom). */
-    .navbar .btn {
-      font-size: var(--nav-size);
-      line-height: var(--nav-size);
-      padding-block: calc(var(--nav-size) * 2 / 3);
-    }
-
-    .navbar .btn--nav {
-      padding-inline: var(--nav-link-pad);
-    }
-
-    .navbar .btn--primary {
-      padding-inline: calc(var(--nav-link-pad) * 1.5);
-    }
-
-    .navbar__group--right {
-      gap: calc(4px + var(--nav-t) * 4);                   /*  4 → 8 */
-    }
+    .navbar__group { display: none; }
 
     .navbar__wordmark {
-      font-size: calc(24px + var(--nav-t) * 10);           /* 24 → 34 */
-      letter-spacing: calc(4px + var(--nav-t) * 3);        /*  4 → 7 */
+      position: absolute;
+      left: 50%;
+      top: calc(50% - 12px);
+      translate: -50% 0;
+      display: block;
+      height: auto;
+      font-size: 24px;
+      line-height: 24px;
+      letter-spacing: 2px;
+      color: var(--navbar-ink-mobile);
     }
+
+    .navbar__menu-btn { display: block; }
+
+    /* --- Footer (Figma "footer-mobile") --------------------------------
+       One column: contact, Instagram, the two-column link grid, the legal
+       lines, then the wordmark. The desktop wrappers step aside
+       (display: contents) so their children can be reordered. */
+
+    .footer {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      justify-items: start;
+      row-gap: 24px;
+      overflow: hidden;
+      padding: 24px calc(var(--page-frame-width) + 24px) 0;
+    }
+
+    .footer__top,
+    .footer__info,
+    .footer__bottom { display: contents; }
+
+    .footer__contact {
+      order: 1;
+      height: auto;
+    }
+
+    /* Address, phone and email are white in the mobile frame. */
+    .footer__contact .link { color: #fff; }
+
+    .footer__socials {
+      order: 2;
+      flex: none;
+      height: auto;
+      min-width: 0;
+      align-items: flex-start;
+    }
+
+    .footer__sns {
+      height: auto;
+      padding-block: 24px;
+    }
+
+    .footer__nav {
+      order: 3;
+      height: auto;
+      gap: 16px 0;
+    }
+
+    .footer__nav li { width: 130px; }
+
+    /* 123px box, content pinned to the bottom. The three lines are taller
+       than the box allows, so, as in Figma, they run up past its top
+       padding (Privacy Policy sits 12px from the top). */
+    .footer__legal {
+      order: 4;
+      flex: none;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      gap: 16px;
+      width: 100%;
+      height: 123px;
+      padding: 24px 0;
+    }
+
+    .footer__legal p {
+      font-size: 12px;
+      line-height: normal;
+      text-align: left;
+      white-space: normal;
+    }
+
+    /* "forge-big-text": a 265 × 192 box bottom-aligned in the 123px
+       bottom half, so its top 69px are cut off. Positions below are
+       measured from the visible 123px. */
+    .footer__wordmark {
+      order: 5;
+      width: 265px;
+      height: 123px;
+      margin-top: -24px;          /* no gap after the legal box */
+    }
+
+    .footer__wordmark p {
+      top: 74.5px;                /* Figma 143.5 − 69 */
+      height: 85px;
+      width: 248px;
+      font-size: 96px;
+    }
+
+    .footer__dot {
+      left: 254px;
+      width: 11px;
+      height: 11px;
+    }
+
+    /* =================================================================
+       HOME — "mobile-home-sticky-navbar" (1427:9840)
+       ================================================================= */
+
+    /* --- Hero (1427:9844): the photo plus a 20% black layer instead of
+       the desktop multiply blend. */
+
+    .hero {
+      height: 631px;
+      min-height: 300px;
+      padding: 64px 16px;
+    }
+
+    .hero__bg { mix-blend-mode: normal; }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: var(--hero-scrim-mobile);
+      pointer-events: none;
+    }
+
+    .hero__content {
+      z-index: 1;
+      flex: none;
+      width: 264px;
+    }
+
+    /* The desktop line break after "body" would split the mobile heading
+       differently from Figma, which just wraps it. */
+    .hero h1 br { display: none; }
+
+    .hero__lede {
+      font-size: var(--body-size);
+      line-height: var(--body-leading);
+      text-transform: none;
+    }
+
+    .hero__actions {
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* --- Who we are (1427:9852 text, 1427:9857 photo) ----------------- */
+
+    .who-we-are {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      padding: 0;
+    }
+
+    .who-we-are__text {
+      flex: none;
+      width: 100%;
+      min-width: 0;
+      max-width: none;
+      gap: 36px;
+      padding: 56px 24px;
+    }
+
+    /* Figma keeps a 640px floor on this band, so on a phone it is wider
+       than the screen and centred: the photo is cropped on both sides. */
+    .who-we-are__media {
+      flex: none;
+      width: 100%;
+      min-width: 640px;
+      max-width: none;
+      height: 300px;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .who-we-are__media .media {
+      height: 544px;
+      min-width: 546px;
+      border-radius: 0;
+    }
+
+    /* Outside the frame in Figma too, so it never shows. */
+    .deco--shapes {
+      right: -453px;
+      top: calc(50% - 29.5px);
+    }
+
+    /* --- Commitment (1427:9864): text first, then the photo band ------- */
+
+    .commitment {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      padding: 0;
+    }
+
+    .commitment__text {
+      order: -1;
+      flex: none;
+      width: 100%;
+      min-width: 0;
+      max-width: none;
+      gap: 36px;
+      padding: 56px 24px;
+    }
+
+    /* This section's body copy is the 16pt style on mobile. */
+    .commitment .prose {
+      --body-size: var(--body-16-size);
+      --body-leading: var(--body-16-leading);
+    }
+
+    .commitment__actions {
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      justify-content: flex-start;
+      padding-inline: 24px;
+    }
+
+    .commitment__actions .btn--grow { flex: none; }
+
+    /* The 546px photo is bottom-aligned in a 300px band. The ornament sits
+       beneath it in Figma's layer order, so it is covered here as well. */
+    .commitment__media {
+      flex: none;
+      width: 100%;
+      min-width: 0;
+      max-width: none;
+      height: 300px;
+      padding: 0;
+      align-items: flex-end;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .commitment__media .media {
+      height: 546px;
+      border-radius: 0;
+    }
+
+    .deco--ornament { top: calc(50% + 86.5px); }
+
+    /* --- Our space (1427:9877): buttons stack, Rent The Studio on top -- */
+
+    .our-space {
+      height: 464px;
+      padding: 88px 0 64px;
+    }
+
+    .our-space__body {
+      font-size: var(--body-16-size);
+      line-height: var(--body-16-leading);
+      width: 100%;
+      max-width: 260px;
+    }
+
+    .our-space__actions {
+      flex-direction: column-reverse;
+      gap: 12px;
+      width: 204px;
+    }
+
+    .our-space__actions .btn { width: 100%; }
+
+    /* --- Meet Gabriela (1427:9886): photo first, then the copy ---------
+       The 532px photo is centred in a 522px band, so it overhangs 5px
+       above and below; the band sits over its neighbours to show that. */
+
+    .meet {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      padding: 0;
+      isolation: isolate;
+    }
+
+    .meet__media {
+      order: -1;
+      z-index: 3;
+      width: 100%;
+      height: 522px;
+      padding: 0;
+    }
+
+    .meet__media .media {
+      flex: 1 0 0;
+      width: auto;
+      min-width: 1px;
+      height: 532px;
+      border-radius: 0;
+    }
+
+    /* Figma parks this ornament ~765px outside the frame. */
+    .deco--element { display: none; }
+
+    .meet__text {
+      position: relative;
+      z-index: 1;
+      flex: none;
+      width: 100%;
+      min-width: 0;
+      max-width: none;
+      gap: 36px;
+      padding: 48px 0;
+      background-color: var(--primary-colour);
+    }
+
+    .meet__text .copy,
+    .meet__actions { padding-inline: 24px; }
+
+    /* --- Community stories (1427:9898) ---------------------------------
+       A 1221px band: the 1055px photo board, the four stacked notes, and
+       the button centred 535.5px below the band's middle. */
+
+    .stories { position: relative; }
+
+    .stories__body { height: 1221px; }
+
+    .stories__board {
+      height: 1055px;
+      padding: 48px 64px;
+    }
+
+    /* The mobile title keeps the 56px desktop H2 size. */
+    .stories__board-text h2 {
+      font-size: 56px;
+      width: 272px;
+    }
+
+    .stories__actions {
+      position: absolute;
+      left: 50%;
+      top: calc(50% + 535.5px);
+      translate: -50% -50%;
+      width: auto;
+      padding: 0;
+    }
+
+    .stories__actions .btn { width: auto; }
   }
 }

@@ -69,6 +69,10 @@
     --modal-backdrop: rgb(18 18 18 / 0.9);        /* Overlay background     */
     --price-card-shadow: 0 4px 4px rgb(0 0 0 / 0.25);
 
+    /* ---- One-off fills used by the mobile frames (1427:9840, 1200:13840) */
+    --navbar-ink-mobile: #1a1a1a;       /* Mobile navbar and menu wordmark */
+    --hero-scrim-mobile: rgb(0 0 0 / 0.2); /* Mobile home hero darkener    */
+
     /* ---- Radius (Figma variable --corner-radius-primary) -------------- */
     --corner-radius-primary: 24px;
 

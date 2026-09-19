@@ -40,6 +40,12 @@
             <a class="btn btn--primary btn--compact" href="#">Book Now</a>
           </div>
           <p class="navbar__wordmark"><a href="index.html" aria-label="Forge Strength Studio, home">Forge</a></p>
+          <!-- Below 1002px the links above give way to this button and the
+               slide-in menu (Figma 1200:13840). -->
+          <button class="navbar__menu-btn" type="button" data-dialog-open="mobile-menu" aria-haspopup="dialog"
+            aria-controls="mobile-menu" aria-label="Open menu">
+            <img src="assets/icons/icon-menu.svg" alt="" width="48" height="48">
+          </button>
         </header>
 
         <!-- ================= FAQ (808:9784) =================  -->
@@ -329,7 +335,7 @@
         <div class="footer__socials">
           <ul class="footer__sns">
             <li>
-              <a href="#">
+              <a href="https://www.instagram.com/forgestrengthstudio" target="_blank" rel="noopener noreferrer">
                 <img src="assets/icons/icon-instagram.svg" alt="" width="40" height="40" loading="lazy">
                 <span class="visually-hidden">Instagram</span>
               </a>
@@ -351,6 +357,24 @@
       </div>
     </footer>
   </div>
+
+  <!-- ================= Mobile menu (Figma navbar-mobile, 1200:13840) =================
+       Opened by the navbar's hamburger below 1002px; slides in from the right. -->
+  <dialog class="mobile-menu" id="mobile-menu" aria-label="Menu">
+    <div class="mobile-menu__header">
+      <p class="mobile-menu__wordmark"><a href="index.html" aria-label="Forge Strength Studio, home">Forge</a></p>
+      <button class="mobile-menu__close" type="button" data-dialog-close aria-label="Close menu">
+        <img src="assets/icons/icon-close.svg" alt="" width="24" height="24">
+      </button>
+    </div>
+    <nav class="mobile-menu__nav" aria-label="Primary">
+      <a class="mobile-menu__link" href="index.html">Home</a>
+      <a class="mobile-menu__link" href="who-we-are.html">Who We Are</a>
+      <a class="mobile-menu__link" href="our-space.html">Our Space</a>
+      <a class="mobile-menu__link" href="services-and-plans.html">Services &amp; Plans</a>
+      <a class="mobile-menu__link" href="contact.html">Contact Us</a>
+    </nav>
+  </dialog>
 
   <button class="to-top" type="button" data-to-top aria-label="Back to top">
     <img src="assets/icons/arrow-up.svg" alt="" width="24" height="24">

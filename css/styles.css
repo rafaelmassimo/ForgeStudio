@@ -176,6 +176,155 @@
     height: 24px;
   }
 
+  /* --- Mobile menu (Figma "navbar-mobile", 1200:13840) --------------------
+     The hamburger in the mobile navbar opens it as a modal dialog. It is a
+     300px cream panel pinned top-right, 12px below the top edge, over the
+     90% black backdrop. Figma: Move In from the right, 0.2s ease-out, and
+     the backdrop does not close it (Esc and the close button do). */
+
+  .mobile-menu {
+    position: fixed;
+    inset: 12px 0 0 auto;
+    width: 300px;
+    max-width: 100%;
+    height: auto;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    overflow-y: auto;
+    background-color: var(--primary-colour);
+    border-top-left-radius: var(--corner-radius-primary);
+    color: var(--black);
+
+    /* Closed = parked off the right edge; open = in place. */
+    translate: 100% 0;
+    transition:
+      translate 0.2s ease-out,
+      display 0.2s allow-discrete,
+      overlay 0.2s allow-discrete;
+  }
+
+  .mobile-menu[open] {
+    display: flex;
+    flex-direction: column;
+    gap: 72px;
+    translate: 0 0;
+  }
+
+  @starting-style {
+    .mobile-menu[open] { translate: 100% 0; }
+  }
+
+  .mobile-menu::backdrop {
+    background-color: transparent;
+    transition:
+      background-color 0.2s ease-out,
+      display 0.2s allow-discrete,
+      overlay 0.2s allow-discrete;
+  }
+
+  .mobile-menu[open]::backdrop { background-color: var(--modal-backdrop); }
+
+  @starting-style {
+    .mobile-menu[open]::backdrop { background-color: transparent; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-menu,
+    .mobile-menu::backdrop { transition-duration: 0s; }
+  }
+
+  .mobile-menu__header {
+    position: relative;
+    display: flex;
+    flex-shrink: 0;
+    height: 48px;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* Absolutely centred in the header, as in Figma. */
+  .mobile-menu__wordmark {
+    position: absolute;
+    left: 50%;
+    top: calc(50% - 12px);
+    translate: -50% 0;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 24px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--navbar-ink-mobile);
+    white-space: nowrap;
+  }
+
+  .mobile-menu__wordmark a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* Close = the mobile Navbar button with the close icon; pressing it (and
+     hovering, on pointer devices) shows the navbar hover fill. */
+  .mobile-menu__close {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.15s ease-out;
+  }
+
+  .mobile-menu__close img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .mobile-menu__nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-inline: 12px;
+  }
+
+  .mobile-menu__link {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 12px 24px;
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: normal;
+    color: var(--black);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.15s ease-out;
+  }
+
+  .mobile-menu__link[aria-current="page"] { color: var(--secondary-colour); }
+
+  .mobile-menu__close:active,
+  .mobile-menu__link:active { background-color: var(--navbar-hover-fill); }
+
+  @media (hover: hover) {
+    .mobile-menu__close:hover,
+    .mobile-menu__link:hover { background-color: var(--navbar-hover-fill); }
+  }
+
+  .mobile-menu :focus-visible {
+    outline: 2px solid var(--secondary-colour);
+    outline-offset: -2px;
+  }
+
   /* --- Hover lift ---------------------------------------------------------
      Not in Figma (Rafael's request): the element rises on hover and eases
      back down when the pointer leaves. Pointer devices only, and held
@@ -234,6 +383,10 @@
   /* Figma separates paragraphs with an empty line of body text; one
      line-height of margin is the same distance. */
   .prose p + p { margin-block-start: var(--body-leading); }
+
+  /* Keeps runs of spaces the copy has in Figma; like Figma, spaces at a
+     line break hang off the end instead of indenting the next line. */
+  .keep-spaces { white-space: pre-wrap; }
 
   /* Rounded photo that fills its slot. */
   .media {
@@ -318,6 +471,14 @@
     translate: -50% 0;
     width: var(--size);
     height: var(--size);
+  }
+
+  /* The mobile board stacks its notes on the centre line, so each slot is
+     placed by its top edge (--top) instead of --bottom/--left. */
+  .notes--stack .note-slot {
+    top: var(--top);
+    bottom: auto;
+    left: 50%;
   }
 
   .note {
@@ -582,6 +743,29 @@
   .navbar__wordmark a:focus-visible {
     outline: 2px solid var(--secondary-colour);
     outline-offset: 4px;
+  }
+
+  /* Hamburger (Figma "mobile-navbar-hamburger"). Only shown below 1002px,
+     see responsive.css; it opens the #mobile-menu dialog. */
+  .navbar__menu-btn {
+    display: none;
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+  }
+
+  .navbar__menu-btn img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .navbar__menu-btn:focus-visible {
+    outline: 2px solid var(--secondary-colour);
+    outline-offset: -2px;
   }
 
   /* --- Hero (808:9913) --------------------------------------------------- */
@@ -941,6 +1125,10 @@
     background-color: color-mix(in srgb, var(--accent-rust) 60%, transparent);
     mix-blend-mode: multiply;
   }
+
+  /* The mobile board (1427:9899) swaps the three grades for a plain 50%
+     black scrim. */
+  .stories__tint--scrim { background-color: var(--photo-scrim); }
 
   .stories__board-text {
     position: relative;

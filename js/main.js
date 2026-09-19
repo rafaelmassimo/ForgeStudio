@@ -255,7 +255,10 @@
           dialog.close();
           return;
         }
-        if (supportsClosedBy || event.target !== dialog) return;
+        /* Only dialogs that opt in with closedby="any" close from the
+           backdrop; the mobile menu, like its Figma overlay, does not. */
+        if (supportsClosedBy || event.target !== dialog ||
+          dialog.getAttribute('closedby') !== 'any') return;
 
         /* A click on the dialog itself is either its own padding or the
            backdrop outside it; only the latter closes. */
@@ -264,6 +267,23 @@
           rect.left <= event.clientX && event.clientX <= rect.right;
         if (!inside) dialog.close();
       });
+    });
+  }
+
+  /* ------------------------------------------------------------------------
+     Mobile menu (Figma 1200:13840). Opening and closing go through
+     initDialogs (the hamburger carries data-dialog-open). The menu only
+     exists below the 1002px breakpoint, so it closes if the window is
+     widened past it while open.
+     ---------------------------------------------------------------------- */
+
+  function initMobileMenu() {
+    var menu = document.getElementById('mobile-menu');
+    if (!menu || !window.matchMedia) return;
+
+    var desktop = window.matchMedia('(min-width: 1003px)');
+    desktop.addEventListener('change', function (event) {
+      if (event.matches && menu.open) menu.close();
     });
   }
 
@@ -294,8 +314,12 @@
       window.scrollTo({ top: 0, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
 
       /* The button fades out once the page is back at the top, taking
-         keyboard focus with it, so hand focus to the first link in the bar. */
-      var first = document.querySelector('.navbar a');
+         keyboard focus with it, so hand focus to the first control in the
+         bar that is showing (the links on desktop, the wordmark on mobile). */
+      var controls = document.querySelectorAll('.navbar a, .navbar button');
+      var first = Array.prototype.find.call(controls, function (el) {
+        return el.getClientRects().length > 0;
+      });
       if (first) first.focus({ preventScroll: true });
     });
 
@@ -303,6 +327,7 @@
   }
 
   initDialogs();
+  initMobileMenu();
   initAccordions();
   initMailtoForms();
   initCarousels();
