@@ -59,6 +59,10 @@
     --form-shadow: 4px 4px 2px rgb(0 0 0 / 0.1);   /* Its drop shadow      */
     --faq-rule: rgb(111 63 27 / 0.9);              /* #6F3F1B at 90%       */
 
+    /* ---- One-off fills used by the our-space frame (808:9835) --------- */
+    --breathe-scrim: rgb(0 0 0 / 0.6);  /* "More time to focus" photo     */
+    --rental-scrim: rgb(0 0 0 / 0.3);   /* Private rentals photo          */
+
     /* ---- Radius (Figma variable --corner-radius-primary) -------------- */
     --corner-radius-primary: 24px;
 
