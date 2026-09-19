@@ -256,11 +256,122 @@
           </div>
         </section>
 
+        <!-- Membership modals (Responsive Prototype 1174:17630, 1174:17648),
+             opened by the two "Learn More" buttons above. Hidden until
+             opened; Close, Esc or a click outside closes them. -->
+        <dialog class="plan-modal" id="modal-group" closedby="any" aria-labelledby="modal-group-title">
+          <div class="plan-modal__info">
+            <div class="plan-modal__top">
+              <h2 id="modal-group-title">our group classes.</h2>
+              <button class="btn btn--nav" type="button" data-dialog-close>
+                <img class="btn__icon" src="assets/icons/icon-close.svg" alt="" width="24" height="24">Close
+              </button>
+            </div>
+            <div class="plan-modal__copy plan-modal__copy--led">
+              <p class="plan-modal__lead">4 people.</p>
+              <p>Build friends and connect through your journey. We believe community is the secret to consistency.</p>
+              <p>Book the same session with a partner, family member, or friend to exercise safely in our welcoming,
+                intimate space. We adapt the exercises based on ur current lifestyle, to make sure you stay maintain your
+                quality of life and get strong while doing it.</p>
+            </div>
+            <section class="plan-modal__pricing">
+              <h3 class="h2">packages.</h3>
+              <ul class="price-cards">
+                <li class="price-card">
+                  <h4 class="sp-card-title">8 Sessions</h4>
+                  <div class="price-card__body">
+                    <p>2 times per week</p>
+                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
+                        class="price__num">220</span><span class="price__unit">/mO</span></p>
+                  </div>
+                </li>
+                <li class="price-card">
+                  <h4 class="sp-card-title">12 Sessions</h4>
+                  <div class="price-card__body">
+                    <p>3 times per week</p>
+                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
+                        class="price__num">300</span><span class="price__unit">/mO</span></p>
+                  </div>
+                </li>
+                <li class="price-card">
+                  <h4 class="sp-card-title">16 Sessions</h4>
+                  <div class="price-card__body">
+                    <p>4 times per week</p>
+                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
+                        class="price__num">380</span><span class="price__unit">/mO</span></p>
+                  </div>
+                </li>
+                <li class="price-card price-card--accent">
+                  <h4 class="sp-card-title">Founding Member offer</h4>
+                  <p class="price-card__body">Discounted rate available for your first 2 launch classes.</p>
+                </li>
+              </ul>
+            </section>
+            <a class="btn btn--tertiary btn--block" href="#">Schedule Your group class</a>
+          </div>
+        </dialog>
+
+        <dialog class="plan-modal" id="modal-training" closedby="any" aria-labelledby="modal-training-title">
+          <div class="plan-modal__info">
+            <div class="plan-modal__top">
+              <h2 id="modal-training-title">personal training programs.</h2>
+              <button class="btn btn--nav" type="button" data-dialog-close>
+                <img class="btn__icon" src="assets/icons/icon-close.svg" alt="" width="24" height="24">Close
+              </button>
+            </div>
+            <div class="plan-modal__copy">
+              <p>Your journey with Gabriela doesn't end when the session does. Beyond your scheduled 45–60 minute
+                workouts, you'll have direct access to her as your coach throughout your 3 months together — a message
+                away whenever you hit a rough patch, need a push, have a question, or want guidance on your fitness
+                journey.</p>
+              <p>This is continuous coaching, not just 36 individual workouts. It's ongoing support, accountability, and
+                someone in your corner the whole way through — so progress doesn't stop when you leave the studio.</p>
+            </div>
+            <section class="plan-modal__pricing">
+              <h3 class="h2">packages.</h3>
+              <ul class="price-cards">
+                <li class="price-card">
+                  <h4 class="sp-card-title">Private Session</h4>
+                  <div class="price-card__body">
+                    <p class="price"><span class="price__cur">$</span><span class="price__sp"> </span><span
+                        class="price__num">130~</span></p>
+                    <p class="price"><span class="price__cur">$</span><span class="price__sp"> </span><span
+                        class="price__num">150</span><span class="price__unit">/Session</span></p>
+                  </div>
+                </li>
+                <li class="price-card">
+                  <h4 class="sp-card-title">Duo Training</h4>
+                  <div class="price-card__body">
+                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
+                        class="price__num">85</span><span class="price__unit">/Person</span></p>
+                  </div>
+                </li>
+                <li class="price-card">
+                  <h4 class="sp-card-title">Trio<br>training</h4>
+                  <div class="price-card__body">
+                    <p class="price"><span class="price__cur">$</span><span class="price__sp"> </span><span
+                        class="price__num">65~</span></p>
+                    <p class="price"><span class="price__cur">$</span><span class="price__sp"> </span><span
+                        class="price__num">75</span><span class="price__unit">/Person</span></p>
+                  </div>
+                </li>
+                <li class="price-card price-card--accent">
+                  <h4 class="sp-card-title">Founding Member offer</h4>
+                  <p class="price-card__body">Discounted rate available for your first 2 launch classes.</p>
+                </li>
+              </ul>
+            </section>
+            <a class="btn btn--tertiary btn--block" href="#">book your personal training program</a>
+          </div>
+        </dialog>
+
         <!-- ================= Single-use space activations (1539:12025) =================
              Hidden in Figma (note: "Comment this section out in HTML"),
-             shown here at Rafael's request. Its "Learn More" opens
-             #modal-single-use. To hide it again, wrap it and its modal in
-             a comment. -->
+             shown here at Rafael's request. The section and its modal
+             (1174:17666) sit together between the markers below.
+             To hide them: select every line between START and END and
+             press Cmd+/. Do the same again to show them. -->
+        <!-- ▼▼▼ SINGLE-USE — START commenting here ▼▼▼ -->
         <section class="sp-band">
           <div class="sp-band__col sp-band__col--copy hover-lift-group">
             <div class="sp-band__text hover-lift__target">
@@ -280,6 +391,49 @@
               loading="lazy">
           </div>
         </section>
+
+        <dialog class="plan-modal" id="modal-single-use" closedby="any" aria-labelledby="modal-single-use-title">
+          <div class="plan-modal__info">
+            <div class="plan-modal__top">
+              <h2 id="modal-single-use-title">single-use space activations.</h2>
+              <button class="btn btn--nav" type="button" data-dialog-close>
+                <img class="btn__icon" src="assets/icons/icon-close.svg" alt="" width="24" height="24">Close
+              </button>
+            </div>
+            <div class="plan-modal__copy plan-modal__copy--led">
+              <p class="plan-modal__lead">Drop-In Class.</p>
+              <p>Our studio also offers a drop-in exclusive space rental for you to use at your own pace. Enjoy a quiet,
+                focused environment with no crowd and no waiting time for equipment.</p>
+              <p>*Drop-in class availability varies based on studio availability.</p>
+            </div>
+            <section class="plan-modal__pricing">
+              <h3 class="h2">packages.</h3>
+              <ul class="price-cards price-cards--packed">
+                <li class="price-card">
+                  <h4 class="sp-card-title">Single Person</h4>
+                  <div class="price-card__body">
+                    <p class="price gap-2"><span class="price__cur">$</span><span class="price__sp"> </span><span
+                        class="price__num">50</span><span class="price__unit">/HR</span></p>
+                  </div>
+                </li>
+                <li class="price-card">
+                  <h4 class="sp-card-title sp-card-title--pad">Group</h4>
+                  <div class="price-card__body">
+                    <p>2 to 4 people</p>
+                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
+                        class="price__num">150</span><span class="price__unit">/HR</span></p>
+                  </div>
+                </li>
+                <li class="price-card price-card--accent">
+                  <h4 class="sp-card-title">Founding Member offer</h4>
+                  <p class="price-card__body">Discounted rate available for your first 2 launch classes.</p>
+                </li>
+              </ul>
+            </section>
+            <a class="btn btn--tertiary btn--block" href="#">claim your drop-in slot</a>
+          </div>
+        </dialog>
+        <!-- ▲▲▲ SINGLE-USE — END commenting here ▲▲▲ -->
 
         <!-- ================= Private gym space rentals (1040:14595) ================= -->
         <section class="sp-band">
@@ -306,10 +460,68 @@
           </div>
         </section>
 
+        <!-- Rentals modal (1174:17684), opened by "Learn More" above. -->
+        <dialog class="plan-modal" id="modal-rentals" closedby="any" aria-labelledby="modal-rentals-title">
+          <div class="plan-modal__info">
+            <div class="plan-modal__top">
+              <h2 id="modal-rentals-title">private gym space rentals.</h2>
+              <button class="btn btn--nav" type="button" data-dialog-close>
+                <img class="btn__icon" src="assets/icons/icon-close.svg" alt="" width="24" height="24">Close
+              </button>
+            </div>
+            <div class="plan-modal__copy">
+              <p>If you need a space to enter your zone and work out on your own terms, FORGE is also for you. Our members
+                can exclusively rent the space, enjoying full capacity of our equipment and inspiring environment, with no
+                distractions.</p>
+              <p>Independent personal trainers can also rent our fully equipped space to coach their own clients without
+                the heavy overhead. We offer a simple booking flow with flexible rescheduling and cancellation options,
+                plus clear equipment lists and usage rules upfront. This is a premium environment with absolutely no
+                crowd.</p>
+            </div>
+            <section class="plan-modal__pricing">
+              <h3 class="h2">packages.</h3>
+              <ul class="price-cards">
+                <li class="price-card">
+                  <h4 class="sp-card-title">Hourly rental</h4>
+                  <div class="price-card__body">
+                    <p class="price gap-2"><span class="price__cur">$</span><span class="price__sp"> </span><span
+                        class="price__num">50</span><span class="price__unit">/HR</span></p>
+                  </div>
+                </li>
+                <li class="price-card">
+                  <h4 class="sp-card-title">10 hours rental</h4>
+                  <div class="price-card__body">
+                    <p class="price gap-2"><span class="price__cur">$</span><span class="price__sp"> </span><span
+                        class="price__num">400</span><span class="price__unit">/mO</span></p>
+                  </div>
+                </li>
+                <li class="price-card">
+                  <h4 class="sp-card-title">20 hours rental</h4>
+                  <div class="price-card__body">
+                    <p class="price gap-2"><span class="price__cur">$</span><span class="price__sp"> </span><span
+                        class="price__num">750</span><span class="price__unit">/mO</span></p>
+                  </div>
+                </li>
+                <li class="price-card">
+                  <h4 class="sp-card-title">up to 40 hours</h4>
+                  <div class="price-card__body">
+                    <p class="price gap-2"><span class="price__cur">$</span><span class="price__sp"> </span><span
+                        class="price__num">1300</span><span class="price__unit">/mO</span></p>
+                  </div>
+                </li>
+              </ul>
+            </section>
+            <a class="btn btn--tertiary btn--block" href="#">Rent your gym space</a>
+          </div>
+        </dialog>
+
         <!-- ================= Hotel guest (1408:8946) =================
-             A regular page section. Its "Book Now" opens #modal-hotel,
-             further down. To hide the section again, wrap it in a comment
-             (and the modal with it). -->
+             Figma note: "Comment this section out in HTML"; shown at
+             Rafael's request. The section and its modal (1174:17702) sit
+             together between the markers below.
+             To hide them: select every line between START and END and
+             press Cmd+/. Do the same again to show them. -->
+        <!-- ▼▼▼ HOTEL GUEST — START commenting here ▼▼▼ -->
         <section class="sp-hotel">
           <img class="sp-band__photo" src="assets/img/sp-hotel-guest.jpg" alt="" width="2499" height="1666"
             loading="lazy">
@@ -324,6 +536,59 @@
               Now</button>
           </div>
         </section>
+
+        <dialog class="plan-modal" id="modal-hotel" closedby="any" aria-labelledby="modal-hotel-title">
+          <div class="plan-modal__info">
+            <div class="plan-modal__top">
+              <h2 id="modal-hotel-title">Hotel Guest<br>Exclusive Spots &amp; Discounts.</h2>
+              <button class="btn btn--nav" type="button" data-dialog-close>
+                <img class="btn__icon" src="assets/icons/icon-close.svg" alt="" width="24" height="24">Close
+              </button>
+            </div>
+            <div class="plan-modal__copy">
+              <p>Guests from the Holiday Inn and nearby hotels get a 10% discount at FORGE Studios. We believe your short
+                stay does not need to be full of dealing with crowded and under-equipped gyms, so we have a space ready for
+                you.</p>
+            </div>
+            <section class="plan-modal__pricing">
+              <h3 class="h2">Exclusive guest rates.</h3>
+              <ul class="price-cards">
+                <li class="price-card">
+                  <h4 class="sp-card-title">single<br>drop-in</h4>
+                  <div class="price-card__body">
+                    <p>20% off<br>Regularly $50/hr.</p>
+                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
+                        class="price__num">40</span><span class="price__unit">/Visit</span></p>
+                  </div>
+                </li>
+                <li class="price-card">
+                  <h4 class="sp-card-title">traveler’s pass</h4>
+                  <div class="price-card__body">
+                    <p>15% off<br>Valid for 3 visits during your stay.</p>
+                    <p class="price"><span class="price__cur">$</span><span class="price__sp"> </span><span
+                        class="price__num">85</span><span class="price__unit">/3 Visits</span></p>
+                  </div>
+                </li>
+                <li class="price-card">
+                  <h4 class="sp-card-title">small group drop-in</h4>
+                  <div class="price-card__body">
+                    <p>For up to 4 guests sharing a session.</p>
+                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
+                        class="price__num">380</span><span class="price__unit">/mO</span></p>
+                  </div>
+                </li>
+                <li class="price-card price-card--accent">
+                  <h4 class="sp-card-title">How to book</h4>
+                  <p class="price-card__body price-card__body--small">Simply show your room key at our front desk or use
+                    your
+                    exclusive hotel promo code on our booking app.</p>
+                </li>
+              </ul>
+            </section>
+            <a class="btn btn--tertiary btn--block" href="#">book your exclusive spot</a>
+          </div>
+        </dialog>
+        <!-- ▲▲▲ HOTEL GUEST — END commenting here ▲▲▲ -->
 
       </div>
     </div>
@@ -383,270 +648,6 @@
         </div>
       </div>
     </footer>
-
-    <!-- ================= Modals (Responsive Prototype, 1174:17630–17702) =================
-         Opened by the buttons with data-dialog-open. Close button, Esc or a
-         click outside the panel closes them. -->
-
-    <!-- Collective sessions (1174:17630) -->
-    <dialog class="plan-modal" id="modal-group" closedby="any" aria-labelledby="modal-group-title">
-      <div class="plan-modal__info">
-        <div class="plan-modal__top">
-          <h2 id="modal-group-title">our group classes.</h2>
-          <button class="btn btn--nav" type="button" data-dialog-close>
-            <img class="btn__icon" src="assets/icons/icon-close.svg" alt="" width="24" height="24">Close
-          </button>
-        </div>
-        <div class="plan-modal__copy plan-modal__copy--led">
-          <p class="plan-modal__lead">4 people.</p>
-          <p>Build friends and connect through your journey. We believe community is the secret to consistency.</p>
-          <p>Book the same session with a partner, family member, or friend to exercise safely in our welcoming,
-            intimate space. We adapt the exercises based on ur current lifestyle, to make sure you stay maintain your
-            quality of life and get strong while doing it.</p>
-        </div>
-        <section class="plan-modal__pricing">
-          <h3 class="h2">packages.</h3>
-          <ul class="price-cards">
-            <li class="price-card">
-              <h4 class="sp-card-title">8 Sessions</h4>
-              <div class="price-card__body">
-                <p>2 times per week</p>
-                <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                    class="price__num">220</span><span class="price__unit">/mO</span></p>
-              </div>
-            </li>
-            <li class="price-card">
-              <h4 class="sp-card-title">12 Sessions</h4>
-              <div class="price-card__body">
-                <p>3 times per week</p>
-                <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                    class="price__num">300</span><span class="price__unit">/mO</span></p>
-              </div>
-            </li>
-            <li class="price-card">
-              <h4 class="sp-card-title">16 Sessions</h4>
-              <div class="price-card__body">
-                <p>4 times per week</p>
-                <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                    class="price__num">380</span><span class="price__unit">/mO</span></p>
-              </div>
-            </li>
-            <li class="price-card price-card--accent">
-              <h4 class="sp-card-title">Founding Member offer</h4>
-              <p class="price-card__body">Discounted rate available for your first 2 launch classes.</p>
-            </li>
-          </ul>
-        </section>
-        <a class="btn btn--tertiary btn--block" href="#">Schedule Your group class</a>
-      </div>
-    </dialog>
-
-    <!-- Personal training (1174:17648) -->
-    <dialog class="plan-modal" id="modal-training" closedby="any" aria-labelledby="modal-training-title">
-      <div class="plan-modal__info">
-        <div class="plan-modal__top">
-          <h2 id="modal-training-title">personal training programs.</h2>
-          <button class="btn btn--nav" type="button" data-dialog-close>
-            <img class="btn__icon" src="assets/icons/icon-close.svg" alt="" width="24" height="24">Close
-          </button>
-        </div>
-        <div class="plan-modal__copy">
-          <p>Your journey with Gabriela doesn't end when the session does. Beyond your scheduled 45–60 minute
-            workouts, you'll have direct access to her as your coach throughout your 3 months together — a message
-            away whenever you hit a rough patch, need a push, have a question, or want guidance on your fitness
-            journey.</p>
-          <p>This is continuous coaching, not just 36 individual workouts. It's ongoing support, accountability, and
-            someone in your corner the whole way through — so progress doesn't stop when you leave the studio.</p>
-        </div>
-        <section class="plan-modal__pricing">
-          <h3 class="h2">packages.</h3>
-          <ul class="price-cards">
-            <li class="price-card">
-              <h4 class="sp-card-title">Private Session</h4>
-              <div class="price-card__body">
-                <p class="price"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                    class="price__num">130~</span></p>
-                <p class="price"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                    class="price__num">150</span><span class="price__unit">/Session</span></p>
-              </div>
-            </li>
-            <li class="price-card">
-              <h4 class="sp-card-title">Duo Training</h4>
-              <div class="price-card__body">
-                <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                    class="price__num">85</span><span class="price__unit">/Person</span></p>
-              </div>
-            </li>
-            <li class="price-card">
-              <h4 class="sp-card-title">Trio<br>training</h4>
-              <div class="price-card__body">
-                <p class="price"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                    class="price__num">65~</span></p>
-                <p class="price"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                    class="price__num">75</span><span class="price__unit">/Person</span></p>
-              </div>
-            </li>
-            <li class="price-card price-card--accent">
-              <h4 class="sp-card-title">Founding Member offer</h4>
-              <p class="price-card__body">Discounted rate available for your first 2 launch classes.</p>
-            </li>
-          </ul>
-        </section>
-        <a class="btn btn--tertiary btn--block" href="#">book your personal training program</a>
-      </div>
-    </dialog>
-
-    <!-- Single-use space activations (1174:17666) -->
-    <dialog class="plan-modal" id="modal-single-use" closedby="any" aria-labelledby="modal-single-use-title">
-      <div class="plan-modal__info">
-        <div class="plan-modal__top">
-          <h2 id="modal-single-use-title">single-use space activations.</h2>
-          <button class="btn btn--nav" type="button" data-dialog-close>
-            <img class="btn__icon" src="assets/icons/icon-close.svg" alt="" width="24" height="24">Close
-          </button>
-        </div>
-        <div class="plan-modal__copy plan-modal__copy--led">
-          <p class="plan-modal__lead">Drop-In Class.</p>
-          <p>Our studio also offers a drop-in exclusive space rental for you to use at your own pace. Enjoy a quiet,
-            focused environment with no crowd and no waiting time for equipment.</p>
-          <p>*Drop-in class availability varies based on studio availability.</p>
-        </div>
-        <section class="plan-modal__pricing">
-          <h3 class="h2">packages.</h3>
-          <ul class="price-cards price-cards--packed">
-            <li class="price-card">
-              <h4 class="sp-card-title">Single Person</h4>
-              <div class="price-card__body">
-                <p class="price gap-2"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                    class="price__num">50</span><span class="price__unit">/HR</span></p>
-              </div>
-            </li>
-            <li class="price-card">
-              <h4 class="sp-card-title sp-card-title--pad">Group</h4>
-              <div class="price-card__body">
-                <p>2 to 4 people</p>
-                <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                    class="price__num">150</span><span class="price__unit">/HR</span></p>
-              </div>
-            </li>
-            <li class="price-card price-card--accent">
-              <h4 class="sp-card-title">Founding Member offer</h4>
-              <p class="price-card__body">Discounted rate available for your first 2 launch classes.</p>
-            </li>
-          </ul>
-        </section>
-        <a class="btn btn--tertiary btn--block" href="#">claim your drop-in slot</a>
-      </div>
-    </dialog>
-
-    <!-- Gym rentals (1174:17684) -->
-    <dialog class="plan-modal" id="modal-rentals" closedby="any" aria-labelledby="modal-rentals-title">
-      <div class="plan-modal__info">
-        <div class="plan-modal__top">
-          <h2 id="modal-rentals-title">private gym space rentals.</h2>
-          <button class="btn btn--nav" type="button" data-dialog-close>
-            <img class="btn__icon" src="assets/icons/icon-close.svg" alt="" width="24" height="24">Close
-          </button>
-        </div>
-        <div class="plan-modal__copy">
-          <p>If you need a space to enter your zone and work out on your own terms, FORGE is also for you. Our members
-            can exclusively rent the space, enjoying full capacity of our equipment and inspiring environment, with no
-            distractions.</p>
-          <p>Independent personal trainers can also rent our fully equipped space to coach their own clients without
-            the heavy overhead. We offer a simple booking flow with flexible rescheduling and cancellation options,
-            plus clear equipment lists and usage rules upfront. This is a premium environment with absolutely no
-            crowd.</p>
-        </div>
-        <section class="plan-modal__pricing">
-          <h3 class="h2">packages.</h3>
-          <ul class="price-cards">
-            <li class="price-card">
-              <h4 class="sp-card-title">Hourly rental</h4>
-              <div class="price-card__body">
-                <p class="price gap-2"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                    class="price__num">50</span><span class="price__unit">/HR</span></p>
-              </div>
-            </li>
-            <li class="price-card">
-              <h4 class="sp-card-title">10 hours rental</h4>
-              <div class="price-card__body">
-                <p class="price gap-2"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                    class="price__num">400</span><span class="price__unit">/mO</span></p>
-              </div>
-            </li>
-            <li class="price-card">
-              <h4 class="sp-card-title">20 hours rental</h4>
-              <div class="price-card__body">
-                <p class="price gap-2"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                    class="price__num">750</span><span class="price__unit">/mO</span></p>
-              </div>
-            </li>
-            <li class="price-card">
-              <h4 class="sp-card-title">up to 40 hours</h4>
-              <div class="price-card__body">
-                <p class="price gap-2"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                    class="price__num">1300</span><span class="price__unit">/mO</span></p>
-              </div>
-            </li>
-          </ul>
-        </section>
-        <a class="btn btn--tertiary btn--block" href="#">Rent your gym space</a>
-      </div>
-    </dialog>
-
-    <!-- Hotel guest (1174:17702) — opened by the Hotel Guest section's
-         "Book Now". -->
-    <dialog class="plan-modal" id="modal-hotel" closedby="any" aria-labelledby="modal-hotel-title">
-      <div class="plan-modal__info">
-        <div class="plan-modal__top">
-          <h2 id="modal-hotel-title">Hotel Guest<br>Exclusive Spots &amp; Discounts.</h2>
-          <button class="btn btn--nav" type="button" data-dialog-close>
-            <img class="btn__icon" src="assets/icons/icon-close.svg" alt="" width="24" height="24">Close
-          </button>
-        </div>
-        <div class="plan-modal__copy">
-          <p>Guests from the Holiday Inn and nearby hotels get a 10% discount at FORGE Studios. We believe your short
-            stay does not need to be full of dealing with crowded and under-equipped gyms, so we have a space ready for
-            you.</p>
-        </div>
-        <section class="plan-modal__pricing">
-          <h3 class="h2">Exclusive guest rates.</h3>
-          <ul class="price-cards">
-            <li class="price-card">
-              <h4 class="sp-card-title">single<br>drop-in</h4>
-              <div class="price-card__body">
-                <p>20% off<br>Regularly $50/hr.</p>
-                <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                    class="price__num">40</span><span class="price__unit">/Visit</span></p>
-              </div>
-            </li>
-            <li class="price-card">
-              <h4 class="sp-card-title">traveler’s pass</h4>
-              <div class="price-card__body">
-                <p>15% off<br>Valid for 3 visits during your stay.</p>
-                <p class="price"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                    class="price__num">85</span><span class="price__unit">/3 Visits</span></p>
-              </div>
-            </li>
-            <li class="price-card">
-              <h4 class="sp-card-title">small group drop-in</h4>
-              <div class="price-card__body">
-                <p>For up to 4 guests sharing a session.</p>
-                <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                    class="price__num">380</span><span class="price__unit">/mO</span></p>
-              </div>
-            </li>
-            <li class="price-card price-card--accent">
-              <h4 class="sp-card-title">How to book</h4>
-              <p class="price-card__body price-card__body--small">Simply show your room key at our front desk or use
-                your
-                exclusive hotel promo code on our booking app.</p>
-            </li>
-          </ul>
-        </section>
-        <a class="btn btn--tertiary btn--block" href="#">book your exclusive spot</a>
-      </div>
-    </dialog>
   </div>
 
   <script src="js/main.js"></script>
