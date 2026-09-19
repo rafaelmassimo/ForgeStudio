@@ -73,6 +73,10 @@
     --navbar-ink-mobile: #1a1a1a;       /* Mobile navbar and menu wordmark */
     --hero-scrim-mobile: rgb(0 0 0 / 0.2); /* Mobile home hero darkener    */
 
+    /* ---- One-off fills used by the mobile our-space frame (1486:10685) */
+    --rental-scrim-mobile: rgb(0 0 0 / 0.6);   /* Private rentals photo   */
+    --breathe-fade-mobile: linear-gradient(180deg, rgb(0 0 0 / 0) 45.642%, rgb(0 0 0 / 0.8) 100%);
+
     /* ---- Radius (Figma variable --corner-radius-primary) -------------- */
     --corner-radius-primary: 24px;
 

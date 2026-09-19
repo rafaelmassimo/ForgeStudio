@@ -646,14 +646,17 @@
 
   /* Variants that grade the photo (Services & Plans) add this layer:
      the sub-header brown at 75%, multiplied. .body-content's isolation
-     keeps the blend inside the page. */
+     keeps the blend inside the page. --light is the mobile Our Space
+     variant's 35%. */
   .page-hero__tint {
     position: absolute;
     inset: 0;
-    background-color: color-mix(in srgb, var(--subordinate-colour) 75%, transparent);
+    background-color: color-mix(in srgb, var(--subordinate-colour) var(--page-hero-tint, 75%), transparent);
     mix-blend-mode: multiply;
     pointer-events: none;
   }
+
+  .page-hero__tint--light { --page-hero-tint: 35%; }
 
   .page-hero__title {
     position: relative;
@@ -745,7 +748,7 @@
     outline-offset: 4px;
   }
 
-  /* Hamburger (Figma "mobile-navbar-hamburger"). Only shown below 1002px,
+  /* Hamburger (Figma "mobile-navbar-hamburger"). Only shown below 767px,
      see responsive.css; it opens the #mobile-menu dialog. */
   .navbar__menu-btn {
     display: none;

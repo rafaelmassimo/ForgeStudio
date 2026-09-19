@@ -13,7 +13,8 @@
 @layer sections {
 
   /* --- Two-column bands (808:9860, 881:7040, 1408:8885) --------------------
-     Each band is two 696px-tall columns that wrap below 1200px.         */
+     Each band is two 696px-tall columns that stay side by side down to the
+     767px mobile breakpoint; the copy shrinks with its column.           */
 
   .space-band {
     display: flex;
@@ -32,7 +33,7 @@
     height: 696px;
     align-items: center;
     justify-content: center;
-    min-width: 600px;
+    min-width: 0;
   }
 
   /* Photo that fills its column. */
@@ -54,7 +55,7 @@
     gap: 32px;
     align-items: flex-start;
     max-width: 360px;
-    width: 360px;
+    width: 100%;
     word-break: break-word;
   }
 
@@ -129,13 +130,14 @@
     flex-direction: column;
     gap: 16px;
     align-items: flex-start;
-    width: 422px;
+    width: 100%;
+    max-width: 422px;
     word-break: break-word;
   }
 
   .space-block__text h2 {
     color: var(--secondary-colour);
-    height: 66px;
+    min-height: 66px;
     width: 100%;
   }
 

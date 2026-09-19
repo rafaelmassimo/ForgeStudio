@@ -11,7 +11,8 @@
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;500;700&family=Poppins:wght@500&family=Sarabun:wght@400&display=swap">
 
-  <link rel="preload" as="image" href="assets/img/os-hero.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/img/os-hero.jpg" media="(min-width: 768px)" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/img/os-hero-mobile.jpg" media="(max-width: 767px)" fetchpriority="high">
 
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/styles.css">
@@ -38,7 +39,7 @@
             <a class="btn btn--primary btn--compact" href="#">Book Now</a>
           </div>
           <p class="navbar__wordmark"><a href="index.html" aria-label="Forge Strength Studio, home">Forge</a></p>
-          <!-- Below 1002px the links above give way to this button and the
+          <!-- Below 767px the links above give way to this button and the
                slide-in menu (Figma 1200:13840). -->
           <button class="navbar__menu-btn" type="button" data-dialog-open="mobile-menu" aria-haspopup="dialog"
             aria-controls="mobile-menu" aria-label="Open menu">
@@ -48,8 +49,14 @@
 
         <!-- ================= Secondary page hero (870:5579) ================= -->
         <section class="page-hero">
-          <img class="page-hero__bg" src="assets/img/os-hero.jpg" alt="" aria-hidden="true"
-               width="1392" height="400" fetchpriority="high">
+          <!-- The mobile frame (1486:10689) uses its own photo, graded with
+               a light brown multiply the desktop hero doesn't have. -->
+          <picture>
+            <source media="(max-width: 767px)" srcset="assets/img/os-hero-mobile.jpg" width="336" height="289">
+            <img class="page-hero__bg" src="assets/img/os-hero.jpg" alt="" aria-hidden="true"
+                 width="1392" height="400" fetchpriority="high">
+          </picture>
+          <div class="page-hero__tint page-hero__tint--light mobile-only"></div>
           <h1 class="page-hero__title">Our Space<span class="page-hero__dot">.</span></h1>
         </section>
 
@@ -169,7 +176,7 @@
         </div>
 
         <!-- ================= Our space to breathe (808:9860) ================= -->
-        <section class="space-band">
+        <section class="space-band space-band--breathe">
           <div class="space-band__col space-band__col--breathe hover-lift-group">
             <div class="space-band__layers" aria-hidden="true">
               <img class="space-band__photo" src="assets/img/os-breathe.png" alt="" width="1024" height="683" loading="lazy">
@@ -205,7 +212,7 @@
         </section>
 
         <!-- ================= Our space equipment (881:7040) ================= -->
-        <section class="space-band">
+        <section class="space-band space-band--equipment">
           <div class="space-band__col hover-lift-group">
             <div class="space-band__text hover-lift__target">
               <h2>Essentials<br>done right.</h2>
@@ -214,7 +221,7 @@
                 without sacrificing any important exercises.</p>
             </div>
           </div>
-          <div class="space-band__col">
+          <div class="space-band__col space-band__col--photo">
             <img class="space-band__photo" src="assets/img/os-equipment.jpg" alt="" width="1274" height="1416" loading="lazy">
           </div>
         </section>
@@ -246,12 +253,17 @@
           <div class="our-space__content">
             <div class="our-space__text">
               <h2>Private gym space rentals.</h2>
-              <p class="our-space__body">If you need a space to workout on your own terms, FORGE is also for you. Our
+              <!-- The mobile frame words the copy and the button differently. -->
+              <p class="our-space__body desktop-only">If you need a space to workout on your own terms, FORGE is also for you. Our
                 members can exclusively rent the space, enjoying full capacity of our equipments and inspiring
                 environment, with no distractions.</p>
+              <p class="our-space__body mobile-only">If you need a space to enter your zone and workout on your own terms, FORGE
+                is also for you. Our members can exclusively rent the space, enjoying full capacity of our equipment,
+                with no distractions.</p>
             </div>
             <div class="our-space__actions">
-              <a class="btn btn--primary" href="#">Rent The Studio</a>
+              <a class="btn btn--primary desktop-only" href="#">Rent The Studio</a>
+              <a class="btn btn--primary mobile-only" href="#">Book Your Sessions</a>
             </div>
           </div>
         </section>
@@ -317,7 +329,7 @@
   </div>
 
   <!-- ================= Mobile menu (Figma navbar-mobile, 1200:13840) =================
-       Opened by the navbar's hamburger below 1002px; slides in from the right. -->
+       Opened by the navbar's hamburger below 767px; slides in from the right. -->
   <dialog class="mobile-menu" id="mobile-menu" aria-label="Menu">
     <div class="mobile-menu__header">
       <p class="mobile-menu__wordmark"><a href="index.html" aria-label="Forge Strength Studio, home">Forge</a></p>

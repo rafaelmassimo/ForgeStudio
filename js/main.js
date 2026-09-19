@@ -273,7 +273,7 @@
   /* ------------------------------------------------------------------------
      Mobile menu (Figma 1200:13840). Opening and closing go through
      initDialogs (the hamburger carries data-dialog-open). The menu only
-     exists below the 1002px breakpoint, so it closes if the window is
+     exists below the 767px breakpoint, so it closes if the window is
      widened past it while open.
      ---------------------------------------------------------------------- */
 
@@ -281,7 +281,7 @@
     var menu = document.getElementById('mobile-menu');
     if (!menu || !window.matchMedia) return;
 
-    var desktop = window.matchMedia('(min-width: 1003px)');
+    var desktop = window.matchMedia('(min-width: 768px)');
     desktop.addEventListener('change', function (event) {
       if (event.matches && menu.open) menu.close();
     });

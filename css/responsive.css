@@ -2,7 +2,7 @@
    FORGE — responsive behaviour
 
    The pages are pixel-exact builds of the Figma desktop frames. Below
-   1002px (Rafael's breakpoint) the site switches to the 360px mobile frames
+   767px (Rafael's breakpoint) the site switches to the 360px mobile frames
    instead. There is no tablet frame: sections fill the width fluidly the way
    the Figma auto-layout does, while fixed-size items (the 264px hero copy,
    the 204px button stack, the notes…) keep their Figma size, centred.
@@ -10,7 +10,9 @@
    What is here so far:
      - the shared shell, navbar and footer ("mobile-home-sticky-navbar",
        1427:9840), on every page;
-     - the home page sections (same frame).
+     - the home page sections (same frame);
+     - the secondary page hero, shared by every secondary page;
+     - the Our Space sections ("mobile-our-space-sticky-navbar", 1486:10685).
    The other pages keep their desktop sections until their frames are built.
 
    Rules added here land in the `responsive` layer, which is declared last in
@@ -26,15 +28,40 @@
      community board). display: none also takes the hidden copy out of the
      accessibility tree, so it is never read twice.                       */
 
-  @media (min-width: 1003px) {
+  @media (min-width: 768px) {
     .mobile-only { display: none; }
   }
 
-  @media (max-width: 1002px) {
+  @media (max-width: 767px) {
     .desktop-only { display: none; }
   }
 
-  @media (max-width: 1002px) {
+  /* --- Navbar between mobile and full desktop -----------------------------
+     The desktop bar needs about 1000px. From 768px up it stays, but the
+     labels, wordmark and padding step down so everything still fits.   */
+
+  @media (min-width: 768px) and (max-width: 1002px) {
+    .navbar {
+      padding-inline: 16px;
+      column-gap: 8px;
+    }
+
+    .navbar .btn--nav,
+    .navbar .btn--compact {
+      font-size: 14px;
+    }
+
+    .navbar .btn--nav { padding: 12px 8px; }
+    .navbar .btn--compact { padding: 12px 16px; }
+    .navbar__group--right { gap: 4px; }
+
+    .navbar__wordmark {
+      font-size: 26px;
+      letter-spacing: 4px;
+    }
+  }
+
+  @media (max-width: 767px) {
 
     /* --- Tokens: the mobile type styles and the thinner frame ---------- */
 
@@ -176,6 +203,15 @@
       left: 254px;
       width: 11px;
       height: 11px;
+    }
+
+    /* --- Secondary page hero (component 1041:8897) ---------------------
+       Every mobile variant is a 224px band with 48/24 padding; the title
+       takes the mobile H1 from the tokens above. */
+
+    .page-hero {
+      height: 224px;
+      padding: 48px 24px;
     }
 
     /* =================================================================
@@ -414,5 +450,117 @@
     }
 
     .stories__actions .btn { width: auto; }
+
+    /* =================================================================
+       OUR SPACE — "mobile-our-space-sticky-navbar" (1486:10685)
+       ================================================================= */
+
+    /* --- Calm / focus / consistency (Figma "Frame 259", 1486:10703) ----
+       One column, 48px apart and 48px top and bottom. The right-hand
+       stack steps aside so "Calm by design" can move above the photo
+       block. */
+
+    .space-band--breathe {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: stretch;
+      gap: 48px;
+      padding-block: 48px;
+    }
+
+    .space-band--breathe .space-band__col--stack { display: contents; }
+
+    .space-block--ruled { order: -1; }
+
+    .space-block {
+      flex: none;
+      min-height: 0;
+      padding: 0 24px;
+      border: 0;
+      overflow: visible;
+    }
+
+    .space-block__text {
+      gap: 24px;
+      width: 100%;
+    }
+
+    /* Fixed-height heading boxes, as drawn. */
+    .space-block__text h2 { min-height: 0; }
+    .space-block--ruled .space-block__text h2 { height: 40px; }
+    .space-block--consistency .space-block__text h2 { height: 41px; }
+
+    /* "focus-on-you" (1486:10707): the photo straight on the page (no
+       white under it), the 60% black, then a fade to 80% at the foot. */
+    .space-band__col--breathe {
+      flex: none;
+      height: auto;
+      min-width: 0;
+      align-items: flex-start;
+      padding: 48px 24px;
+    }
+
+    .space-band__layers { background-color: transparent; }
+
+    .space-band__scrim { background-image: var(--breathe-fade-mobile); }
+
+    .space-band--breathe .space-band__text {
+      gap: 24px;
+      width: 100%;
+      max-width: none;
+    }
+
+    /* --- Essentials done right (1486:10713): the 240px photo, then the
+       copy on cream. */
+
+    .space-band--equipment {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: stretch;
+    }
+
+    .space-band--equipment .space-band__col {
+      flex: none;
+      height: auto;
+      min-width: 0;
+      align-items: flex-start;
+      padding: 48px 24px;
+      background-color: var(--primary-colour);
+    }
+
+    .space-band--equipment .space-band__col--photo {
+      order: -1;
+      height: 240px;
+      padding: 0;
+    }
+
+    .space-band--equipment .space-band__text {
+      gap: 12px;
+      width: 100%;
+      max-width: none;
+    }
+
+    .space-band--equipment .space-band__text p {
+      font-size: var(--body-16-size);
+      line-height: var(--body-16-leading);
+    }
+
+    /* --- Private gym space rentals (1486:10724) ------------------------
+       The home band's mobile layout, but the height hugs the content, the
+       scrim is 60%, the copy is 252px wide and the one button keeps its
+       own width. */
+
+    .our-space--rental { height: auto; }
+
+    .our-space--rental .our-space__scrim { background-color: var(--rental-scrim-mobile); }
+
+    .our-space--rental .our-space__body {
+      color: var(--on-photo-ink);
+      max-width: 252px;
+    }
+
+    .our-space--rental .our-space__actions { width: 100%; }
+
+    .our-space--rental .our-space__actions .btn { width: auto; }
   }
 }
