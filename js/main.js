@@ -219,7 +219,9 @@
           if (answer) answer.inert = !open;
         }
 
-        set(false);
+        /* Start from the markup: an item that ships aria-expanded="true"
+           opens by default. */
+        set(toggle.getAttribute('aria-expanded') === 'true');
         toggle.addEventListener('click', function () {
           set(toggle.getAttribute('aria-expanded') !== 'true');
         });
@@ -228,13 +230,16 @@
   }
 
   /* ------------------------------------------------------------------------
-     Modals (Services & Plans, Figma overlays 1174:17630–17702).
+     Modals: the Services & Plans pricing sheets (Figma overlays
+     1174:17630–17702) and the footer's Privacy Policy and Terms &
+     Conditions, on every page.
 
      A button with data-dialog-open="<id>" opens that <dialog> as a modal;
      anything with data-dialog-close inside it closes it. Esc and a click on
      the backdrop close it too — natively via closedby="any", and by hand
-     where the browser doesn't support that yet (Safari). The slide in/out
-     lives in css/services-and-plans.css.
+     where the browser doesn't support that yet (Safari). The fade/rise in
+     and out lives in css/services-and-plans.css (.plan-modal) and
+     css/styles.css (.legal-modal).
      ---------------------------------------------------------------------- */
 
   var supportsClosedBy = 'HTMLDialogElement' in window &&
@@ -326,12 +331,69 @@
     update();
   }
 
+  /* ------------------------------------------------------------------------
+     Scroll reveal. Elements marked data-reveal start hidden (css/styles.css,
+     under html.js) and get .is-revealed the first time they come into view
+     — once; nothing hides again on the way back up. Inside a
+     [data-reveal-group] they take turns: each waits one step longer than
+     the one before it (the attribute's value in ms, or 90), capped so a
+     long list never leaves its tail waiting.
+
+     An element counts as in view once its top clears the bottom 12% of the
+     viewport, so it starts moving while there is still room to move into.
+     Without IntersectionObserver, or for reduced motion, everything just
+     shows — the stylesheet already holds those elements still.
+     ---------------------------------------------------------------------- */
+
+  var REVEAL_STEP = 90;       /* ms between siblings in a group  */
+  var REVEAL_MAX_DELAY = 720; /* ms                              */
+
+  function initReveal() {
+    var targets = document.querySelectorAll('[data-reveal]');
+    if (!targets.length) return;
+
+    function showAll() {
+      Array.prototype.forEach.call(targets, function (el) {
+        el.classList.add('is-revealed');
+      });
+    }
+
+    var reduceMotion = window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!('IntersectionObserver' in window) || reduceMotion) {
+      showAll();
+      return;
+    }
+
+    /* Groups in document order, so a group nested in another has the last
+       word on its own members' delays. */
+    var groups = document.querySelectorAll('[data-reveal-group]');
+    Array.prototype.forEach.call(groups, function (group) {
+      var step = parseInt(group.getAttribute('data-reveal-group'), 10) || REVEAL_STEP;
+      var members = group.querySelectorAll('[data-reveal]');
+      Array.prototype.forEach.call(members, function (el, i) {
+        el.style.setProperty('--reveal-delay', Math.min(i * step, REVEAL_MAX_DELAY) + 'ms');
+      });
+    });
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-revealed');
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -12% 0px' });
+
+    Array.prototype.forEach.call(targets, function (el) { observer.observe(el); });
+  }
+
   initDialogs();
   initMobileMenu();
   initAccordions();
   initMailtoForms();
   initCarousels();
   initToTop();
+  initReveal();
   initMarquees();
   whenFontsReady(initMarquees);
   /* document.fonts.ready can resolve before the Google Fonts stylesheet has

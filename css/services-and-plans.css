@@ -21,6 +21,15 @@
   /* The decorative lines are placed against the whole content surface. */
   .sp-body { position: relative; }
 
+  /* --- Secondary page hero override -----------------------------------
+     The shared .page-hero insets its title 96px from the edge. Rafael
+     wants it on the same line as the Membership exclusives photos, which
+     .sp-members__grid centres as a fixed 426 + 315 + 426 = 1167px pair.
+     The first photo's left edge is therefore at (W - 1167)/2, i.e.
+     50% - 583.5px of the shared body-content width; using the formula
+     (not a fixed px) keeps the two aligned at any desktop width. */
+  .page-hero { padding-left: calc(50% - 583.5px); }
+
   /* H2 titles in this frame are rust and centred unless noted. */
   .sp-title {
     color: var(--secondary-colour);
@@ -103,11 +112,16 @@
     width: 100%;
   }
 
+  /* Figma lets the row run the full 1440px frame (96px insets). Rafael
+     asked for it to stop at the same column as the Membership exclusives
+     below, whose photos span 426 + 315 + 426 = 1167px centred, so the
+     outer cards line up with the outer photos. The 96px insets still
+     apply once the page is too narrow for that column. */
   .sp-perks__cards {
     display: flex;
     gap: 88px;
     align-items: center;
-    max-width: 1440px;
+    max-width: calc(1167px + 2 * 96px);
     padding-inline: 96px;
     width: 100%;
   }
@@ -380,7 +394,10 @@
      MODALS — "S&P - Modal - Desktop - …" (1174:17630–17702)
      Each overlay is the pricing sheet ("modal-content", 1026px) centred
      over a 90% black backdrop. Figma opens it with Move In from the top,
-     0.3s ease-in-out; closing plays the same move in reverse.
+     0.3s ease-in-out. The site refines that into a short rise: the sheet
+     fades in while drifting up 16px and settling from 98% scale, on the
+     shared ease-out curve, so it arrives rather than drops. Closing is
+     the same move in reverse, slightly quicker, so dismissal feels light.
 
      Departure from the frames (Rafael's call): Figma sits the sheet on a
      1240px panel filled with the section's photo. The site drops that
@@ -388,6 +405,8 @@
      ========================================================================== */
 
   .plan-modal {
+    --modal-motion-out: 0.25s;
+
     width: 1026px;
     max-width: 100%;
     max-height: 100dvh;
@@ -398,29 +417,54 @@
     background-color: var(--slightly-darker-colour);
     color: var(--black);
 
-    /* Closed = parked above the viewport; open = centred. */
-    translate: 0 calc(-50vh - 50%);
+    /* Closed = faded, a touch low and small; open = settled in place.
+       These are the exit values — the entry values sit in @starting-style. */
+    opacity: 0;
+    translate: 0 16px;
+    scale: 0.98;
     transition:
-      translate 0.3s ease-in-out,
-      display 0.3s allow-discrete,
-      overlay 0.3s allow-discrete;
+      opacity var(--modal-motion-out) ease,
+      translate var(--modal-motion-out) ease-in,
+      scale var(--modal-motion-out) ease-in,
+      display var(--modal-motion-out) allow-discrete,
+      overlay var(--modal-motion-out) allow-discrete;
   }
 
-  .plan-modal[open] { translate: 0 0; }
+  .plan-modal[open] {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+    transition:
+      opacity var(--motion-panel) ease,
+      translate var(--motion-panel) var(--ease-out-soft),
+      scale var(--motion-panel) var(--ease-out-soft),
+      display var(--motion-panel) allow-discrete,
+      overlay var(--motion-panel) allow-discrete;
+  }
 
   @starting-style {
-    .plan-modal[open] { translate: 0 calc(-50vh - 50%); }
+    .plan-modal[open] {
+      opacity: 0;
+      translate: 0 16px;
+      scale: 0.98;
+    }
   }
 
   .plan-modal::backdrop {
     background-color: transparent;
     transition:
-      background-color 0.3s ease-in-out,
-      display 0.3s allow-discrete,
-      overlay 0.3s allow-discrete;
+      background-color var(--modal-motion-out) ease,
+      display var(--modal-motion-out) allow-discrete,
+      overlay var(--modal-motion-out) allow-discrete;
   }
 
-  .plan-modal[open]::backdrop { background-color: var(--modal-backdrop); }
+  .plan-modal[open]::backdrop {
+    background-color: var(--modal-backdrop);
+    transition:
+      background-color var(--motion-panel) ease,
+      display var(--motion-panel) allow-discrete,
+      overlay var(--motion-panel) allow-discrete;
+  }
 
   @starting-style {
     .plan-modal[open]::backdrop { background-color: transparent; }
@@ -428,10 +472,13 @@
 
   @media (prefers-reduced-motion: reduce) {
     .plan-modal,
-    .plan-modal::backdrop { transition-duration: 0s; }
-    .plan-modal { translate: none; }
+    .plan-modal[open],
+    .plan-modal::backdrop,
+    .plan-modal[open]::backdrop { transition-duration: 0s; }
+    .plan-modal,
+    .plan-modal[open] { translate: none; scale: none; }
     @starting-style {
-      .plan-modal[open] { translate: none; }
+      .plan-modal[open] { translate: none; scale: none; }
     }
   }
 

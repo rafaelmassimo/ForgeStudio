@@ -91,7 +91,7 @@
 
   .contact-info__block {
     border-left: 3px solid var(--secondary-colour);
-    padding-left: 53px;
+    padding-left: 20px;
     width: 100%;
   }
 
@@ -250,27 +250,39 @@
     resize: none;
   }
 
-  /* --- Map (808:9768) ----------------------------------------------------------- */
+  /* Submit spans the card's content width. */
+  .contact-form .btn { width: 100%; }
+
+  /* --- Map (808:9768) -------------------------------------------------------------
+     Google Maps embed. The iframe is stretched over the map strip; the
+     width/height attributes on it are only the pre-CSS size.
+
+     The Embed API has no dark theme, so the dark look is a CSS filter:
+     invert flips the light basemap to charcoal, hue-rotate puts the
+     colours that survive (water, parks) back the right way round, and the
+     grayscale/brightness pull it toward the neutral greys of the design. */
 
   .contact__map {
     position: relative;
-    height: 280px;
+    height: 400px;
     width: 100%;
+    overflow: hidden;
+    background-color: var(--map-surface);
   }
 
-  .contact__map img {
+  .contact__map-frame {
     position: absolute;
     inset: 0;
+    display: block;
     width: 100%;
     height: 100%;
-    max-width: none;
-    object-fit: cover;
-    pointer-events: none;
+    border: 0;
+    filter: invert(92%) hue-rotate(180deg) grayscale(35%) brightness(90%) contrast(95%);
   }
 
   /* --- FAQ prompt (808:9769) ------------------------------------------------------
-     Two rules, 5px full width and 2px × 923px, their centres 25px apart
-     (Figma: zero-height lines with the stroke centred on them). */
+     One full-width 2px rule above the panel (Figma: a zero-height line with
+     the stroke centred on it, hence the top offset). */
 
   .contact-faq {
     display: flex;
@@ -289,19 +301,10 @@
   .contact-faq__rule {
     position: absolute;
     left: 0;
-    background-color: var(--faq-rule);
-  }
-
-  .contact-faq__rule--thick {
-    top: -2.5px;
-    width: 100%;
-    height: 5px;
-  }
-
-  .contact-faq__rule--thin {
     top: 24px;
-    width: 923px;
+    width: 100%;
     height: 2px;
+    background-color: var(--faq-rule);
   }
 
   .contact-faq__panel {

@@ -4,8 +4,8 @@
    The pages are pixel-exact builds of the Figma desktop frames. Below
    767px (Rafael's breakpoint) the site switches to the 360px mobile frames
    instead. There is no tablet frame: sections fill the width fluidly the way
-   the Figma auto-layout does, while fixed-size items (the 264px hero copy,
-   the 204px button stack, the notes…) keep their Figma size, centred.
+   the Figma auto-layout does, while fixed-size items (the 204px button
+   stack, the notes…) keep their Figma size, centred.
 
    What is here so far:
      - the shared shell, navbar and footer ("mobile-home-sticky-navbar",
@@ -83,15 +83,17 @@
     .page__body { padding-bottom: 0; }
 
     /* --- Top navbar (Figma "top-navbar-mobile") ------------------------
-       54px cream bar: the hamburger on the right, the wordmark centred.
-       The frame strip and top corners come from the shared rule. */
+       Cream bar: the hamburger on the right, the wordmark centred. Figma
+       draws it 54px tall; the site runs it at 64px (8px above and below
+       the 48px button) so it reads less cramped. The frame strip and top
+       corners come from the shared rule. */
 
     .navbar {
       display: flex;
       justify-content: flex-end;
       align-items: center;
       min-width: 0;
-      padding: 3px 8px;
+      padding: 8px 8px;
     }
 
     .navbar__group { display: none; }
@@ -203,6 +205,21 @@
       height: 11px;
     }
 
+    /* --- Legal modals: the sheet fills the 360px frame edge to edge, with
+       the shell's 16px gutter inside instead of the desktop's 80px. The
+       H2 already takes the mobile size from the tokens above. */
+
+    .legal-modal {
+      max-width: calc(100% - 32px);
+      max-height: calc(100dvh - 32px);
+    }
+
+    .legal-modal__top { padding: 24px 16px 16px; }
+
+    .legal-modal__body { padding: 0 16px 24px; }
+
+    .legal-modal__body > h3 { margin-block-start: 28px; }
+
     /* --- Secondary page hero (component 1041:8897) ---------------------
        Every mobile variant is a 224px band with 48/24 padding; the title
        takes the mobile H1 from the tokens above. */
@@ -235,10 +252,14 @@
       pointer-events: none;
     }
 
+    /* Figma fixes the copy at 264px, but that reads too narrow on real
+       phones — let it fill the padded width instead, capped so it never
+       sprawls on larger handsets. */
     .hero__content {
       z-index: 1;
       flex: none;
-      width: 264px;
+      width: 100%;
+      max-width: 400px;
     }
 
     /* The desktop line break after "body" would split the mobile heading
