@@ -24,13 +24,15 @@
     width: 100%;
   }
 
-  /* The frame itself — black on all four sides of the content. */
+  /* The frame itself — black on all four sides of the content. The top edge
+     is not padded here: the sticky navbar carries it as a border, so the
+     black strip stays above the bar while the page scrolls (see .navbar). */
   .page__body {
     background-color: var(--black);
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: var(--page-frame-width);
+    padding: 0 var(--page-frame-width) var(--page-frame-width);
     width: 100%;
   }
 
@@ -682,7 +684,14 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    background-color: var(--primary-colour);
+    /* The frame's top edge travels with the bar, so the black strip is
+       always above it, even once the page has scrolled. The box itself is
+       black and square; ::before paints the cream with the shell's top
+       corners, so the content scrolling beneath never shows at the
+       corners. */
+    background-color: var(--black);
+    border-top: var(--page-frame-width) solid var(--black);
+    box-shadow: var(--navbar-shadow);
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
@@ -696,6 +705,15 @@
        before their own content would collide" — derived from the content
        itself rather than a guessed pixel value. */
     min-width: min-content;
+  }
+
+  .navbar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: var(--primary-colour);
+    border-radius: var(--corner-radius-primary) var(--corner-radius-primary) 0 0;
   }
 
   .navbar__group {
@@ -824,7 +842,7 @@
   .hero__lede {
     font-size: var(--h4-size);
     line-height: var(--h4-leading);
-    text-transform: capitalize;
+    text-transform: none;
     color: var(--on-photo-ink);
     width: 100%;
   }
@@ -934,7 +952,7 @@
     display: flex;
     gap: 24px;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
     width: 100%;
   }
 
@@ -1161,8 +1179,6 @@
     width: 100%;
   }
 
-  .stories__actions .btn { width: 778px; }
-
   /* --- Footer (808:10017) --------------------------------------------------
      Lives outside .page__body so the black runs edge to edge.            */
 
@@ -1254,6 +1270,7 @@
 
   .footer__sns {
     display: flex;
+    gap: 16px;
     height: 128px;
     align-items: center;
     padding-block: 64px;
