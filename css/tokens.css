@@ -59,6 +59,7 @@
     --form-surface: #ede5db;                       /* Contact form card    */
     --form-shadow: 4px 4px 2px rgb(0 0 0 / 0.1);   /* Its drop shadow      */
     --faq-rule: rgb(111 63 27 / 0.9);              /* #6F3F1B at 90%       */
+    --map-surface: #262626;                        /* Dark map tile base   */
 
     /* ---- One-off fills used by the our-space frame (808:9835) --------- */
     --breathe-scrim: rgb(0 0 0 / 0.6);  /* "More time to focus" photo     */

@@ -6,6 +6,11 @@
   <title>Who We Are — FORGE Strength Studio</title>
   <meta name="description" content="Meet Gabriela, founder of FORGE Strength Studio, and follow her journey through spirituality and a better lifestyle to the Fraser Valley.">
 
+  <!-- Marks the page as scripted before first paint, so content that
+       reveals on scroll starts hidden without a flash. Without JS it
+       simply shows. -->
+  <script>document.documentElement.classList.add('js');</script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet"
@@ -174,14 +179,14 @@
         </div>
 
         <!-- ================= Meet the founder (1272:9569) ================= -->
-        <section class="founder">
-          <div class="founder__picture">
+        <section class="founder" data-reveal-group>
+          <div class="founder__picture" data-reveal>
             <img src="assets/img/wwa-founder.jpg" alt="Gabriela, founder of FORGE, standing with her arms crossed in the studio"
                  width="551" height="700" loading="lazy">
           </div>
-          <div class="founder__text hover-lift-group">
+          <div class="founder__text" data-reveal>
             <h2 class="hover-lift__target">Meet The Founder</h2>
-            <div class="founder__prose hover-lift__target">
+            <div class="founder__prose">
               <p>Gabriela has been a Yoga Alliance Certified since 2020 and a teacher for many years throughout the Fraser Valley, becoming renown for her expertise, playfulness and ability to connect with her students.</p>
               <p class="mobile-only">She is very focused on building a unique approach to fitness and one that guides people into building a better life through strength.</p>
               <p class="desktop-only">She is very focused on building a unique approach to fitness and one that guides people into building not only a better body, but enjoying the journey of building a better life.</p>
@@ -200,7 +205,7 @@
           <img class="timeline__line mobile-only" src="assets/icons/wwa-timeline-line-mobile.svg" alt=""
                aria-hidden="true" width="313" height="1772">
 
-          <div class="timeline__header">
+          <div class="timeline__header" data-reveal>
             <span class="timeline__rule timeline__rule--header" aria-hidden="true"></span>
             <h2>A journey through spirituality and <br class="lb">a better lifestyle</h2>
             <span class="timeline__rule timeline__rule--header" aria-hidden="true"></span>
@@ -208,7 +213,7 @@
                  aria-hidden="true" width="388" height="354">
           </div>
 
-          <div class="timeline__step">
+          <div class="timeline__step" data-reveal-group>
             <img class="timeline__node" src="assets/icons/timeline-node.svg" alt="" aria-hidden="true" width="35" height="35">
             <div class="timeline__photo timeline__photo--walk">
               <picture>
@@ -218,7 +223,7 @@
               </picture>
             </div>
             <span class="timeline__rule timeline__rule--rail" aria-hidden="true"></span>
-            <div class="timeline__card hover-lift">
+            <div class="timeline__card hover-lift" data-reveal>
               <p>Gabriela&rsquo;s teaching career starts with a search for purpose and a better lifestyle. She previously practiced Jiu Jitsu and Yoga, which although for a very brief moment, brought her immense joy and a sense of personal satisfaction.</p>
             </div>
             <span class="timeline__branch" aria-hidden="true"></span>
@@ -230,13 +235,13 @@
             <span class="timeline__rule timeline__rule--divider"></span>
           </div>
 
-          <div class="timeline__step">
+          <div class="timeline__step" data-reveal-group>
             <img class="timeline__node" src="assets/icons/timeline-node.svg" alt="" aria-hidden="true" width="35" height="35">
-            <div class="timeline__card hover-lift">
+            <div class="timeline__card hover-lift" data-reveal>
               <p>Gabi traveled through Asia, including India and Cambodia, where she explored ancient yoga and meditation traditions and gained professional experience working at a retreat.</p>
             </div>
             <span class="timeline__rule timeline__rule--rail" aria-hidden="true"></span>
-            <div class="timeline__photo timeline__photo--offset">
+            <div class="timeline__photo timeline__photo--offset" data-reveal>
               <img src="assets/img/wwa-timeline-2.jpg" alt="Gabriela taking part in a ceremony with monks during her travels in Asia"
                    width="700" height="700" loading="lazy">
             </div>
@@ -247,7 +252,7 @@
             <span class="timeline__rule timeline__rule--divider"></span>
           </div>
 
-          <div class="timeline__step">
+          <div class="timeline__step" data-reveal-group>
             <img class="timeline__node" src="assets/icons/timeline-node.svg" alt="" aria-hidden="true" width="35" height="35">
             <div class="timeline__photo timeline__photo--bench">
               <img class="desktop-only" src="assets/img/wwa-timeline-3.jpg" alt="Gabriela holding a warrior pose on a yoga mat"
@@ -257,13 +262,13 @@
                    width="696" height="696" loading="lazy">
             </div>
             <span class="timeline__rule timeline__rule--rail" aria-hidden="true"></span>
-            <div class="timeline__card hover-lift">
+            <div class="timeline__card hover-lift" data-reveal>
               <p>She later evolved that practice into a structured routine that she could follow and eventually transformed that into discipline and action that shifted her career into a different direction.</p>
             </div>
             <span class="timeline__branch" aria-hidden="true"></span>
           </div>
 
-          <div class="timeline__header timeline__header--end">
+          <div class="timeline__header timeline__header--end" data-reveal>
             <span class="timeline__rule timeline__rule--header" aria-hidden="true"></span>
             <h2>Forging the next chapter</h2>
             <span class="timeline__rule timeline__rule--header" aria-hidden="true"></span>
@@ -292,13 +297,13 @@
         </section>
 
         <!-- ================= Next chapter, row 2 (1322:5172) ================= -->
-        <section class="chapter">
-          <div class="chapter__media">
+        <section class="chapter" data-reveal-group>
+          <div class="chapter__media" data-reveal>
             <img src="assets/img/wwa-next-chapter-2.jpg" alt="Gabriela smiling, sitting on a bench in the studio"
                  width="696" height="696" loading="lazy">
           </div>
-          <div class="chapter__text hover-lift-group">
-            <div class="chapter__copy hover-lift__target">
+          <div class="chapter__text" data-reveal>
+            <div class="chapter__copy">
               <p>Now, Gabriela&rsquo;s new chapter is building a wellness centre that starts with FORGE Studio as a pivotal point to a more ambitious dream for the Fraser Valley community.</p>
             </div>
           </div>
@@ -319,7 +324,7 @@
             <!-- Cards are rendered from data/testimonials.json by js/main.js.
                  The three below are the first page, so the section reads
                  correctly before (or without) the script. -->
-            <div class="carousel" data-carousel data-carousel-src="data/testimonials.json"
+            <div class="carousel" data-reveal data-carousel data-carousel-src="data/testimonials.json"
                  role="region" aria-roledescription="carousel" aria-label="Member testimonials">
               <div class="carousel__row">
                 <button class="carousel__arrow carousel__arrow--prev" type="button" data-carousel-prev aria-label="Previous testimonials">
@@ -342,19 +347,19 @@
             </div>
           </section>
 
-          <section class="closing-cta">
+          <section class="closing-cta" data-reveal-group>
             <div class="closing-cta__photos">
-              <div class="closing-cta__photo closing-cta__photo--1">
+              <div class="closing-cta__photo closing-cta__photo--1" data-reveal>
                 <img src="assets/img/wwa-cta-1.jpg" alt="Members hugging after a class" width="1400" height="931" loading="lazy">
               </div>
-              <div class="closing-cta__photo closing-cta__photo--2">
+              <div class="closing-cta__photo closing-cta__photo--2" data-reveal>
                 <img src="assets/img/wwa-cta-2.jpg" alt="Gabriela smiling with her teacher among tropical plants" width="1400" height="931" loading="lazy">
               </div>
-              <div class="closing-cta__photo closing-cta__photo--3">
+              <div class="closing-cta__photo closing-cta__photo--3" data-reveal>
                 <img src="assets/img/wwa-cta-3.jpg" alt="A person standing on a cliff edge above a green valley" width="1812" height="1019" loading="lazy">
               </div>
             </div>
-            <div class="closing-cta__action">
+            <div class="closing-cta__action" data-reveal>
               <h3 class="closing-cta__title">More than a workout, A Space To Belong</h3>
               <a class="btn btn--primary" href="#">Explore Our Classes</a>
             </div>
@@ -419,13 +424,233 @@
           <span class="footer__dot"></span>
         </div>
         <div class="footer__legal">
-          <a class="link" href="#">Privacy Policy</a>
-          <a class="link" href="#">Terms &amp; Conditions</a>
+          <button class="link link--button" type="button" data-dialog-open="modal-privacy">Privacy Policy</button>
+          <button class="link link--button" type="button" data-dialog-open="modal-terms">Terms &amp; Conditions</button>
           <p>&copy; 2026 Forge Strength Studio. All Rights Reserved.</p>
         </div>
       </div>
     </footer>
   </div>
+
+  <!-- ================= Legal modals =================
+       Opened by the Privacy Policy and Terms & Conditions buttons in the
+       footer. The copy is a TEMPLATE: anything in [square brackets] needs
+       the studio's real detail, and the whole text should be reviewed by a
+       lawyer before launch. The same two dialogs appear on every page —
+       keep them in sync when editing. -->
+  <dialog class="legal-modal" id="modal-privacy" closedby="any" aria-labelledby="modal-privacy-title">
+    <div class="legal-modal__top">
+      <h2 id="modal-privacy-title">privacy policy.</h2>
+      <button class="btn btn--nav" type="button" data-dialog-close>
+        <img class="btn__icon" src="assets/icons/icon-close.svg" alt="" width="24" height="24">Close
+      </button>
+    </div>
+    <div class="legal-modal__body">
+      <p class="legal-modal__meta">Effective date: [Month DD, YYYY] &middot; Last updated: [Month DD, YYYY]</p>
+      <p>Forge Strength Studio (&ldquo;Forge&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) respects your privacy. This
+        policy explains what personal information we collect when you visit our website, contact us, or train with
+        us, how we use it, and the choices you have. We handle personal information in line with British
+        Columbia&rsquo;s <em>Personal Information Protection Act</em> (PIPA) and, where it applies, Canada&rsquo;s
+        <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA).</p>
+
+      <h3>1. Information we collect</h3>
+      <p>We collect only what we need to run the studio and look after you as a member.</p>
+      <ul>
+        <li><strong>Contact details</strong> &mdash; your name, email address and phone number when you fill in our
+          contact form, book a session, or sign up for a membership.</li>
+        <li><strong>Membership and booking records</strong> &mdash; the plan you are on, sessions booked and attended,
+          and your account history.</li>
+        <li><strong>Health and fitness information</strong> &mdash; the details you share on your intake form or
+          with your coach (injuries, medical conditions, goals) so we can train you safely. We treat this as sensitive
+          and collect it only with your consent.</li>
+        <li><strong>Payment information</strong> &mdash; handled by our payment provider, [payment provider name]. We
+          do not store full card numbers on our own systems.</li>
+        <li><strong>Website usage</strong> &mdash; basic technical data such as browser type, pages visited and
+          approximate location, collected through cookies or analytics tools described below.</li>
+      </ul>
+
+      <h3>2. How we use it</h3>
+      <ul>
+        <li>To respond to your enquiries and manage your bookings and membership.</li>
+        <li>To plan and deliver safe, effective training tailored to you.</li>
+        <li>To process payments and send receipts, renewal notices and account updates.</li>
+        <li>To send studio news, schedule changes and offers &mdash; only if you have opted in, and you can
+          unsubscribe at any time.</li>
+        <li>To keep the studio secure and to meet our legal and insurance obligations.</li>
+        <li>To understand how our website is used so we can improve it.</li>
+      </ul>
+
+      <h3>3. Sharing your information</h3>
+      <p>We do not sell or rent your personal information. We share it only with:</p>
+      <ul>
+        <li><strong>Service providers</strong> who help us run the studio &mdash; for example our booking and
+          scheduling platform ([platform name]), payment processor, and email service &mdash; and who may use it only
+          to provide those services to us.</li>
+        <li><strong>Professional advisers and insurers</strong> where needed to handle a claim or meet a legal
+          requirement.</li>
+        <li><strong>Authorities</strong> where the law requires us to, or to protect the safety of our members and
+          staff.</li>
+      </ul>
+      <p>Some of our providers store data outside Canada. Where they do, your information may be subject to the laws
+        of that country.</p>
+
+      <h3>4. Cookies and analytics</h3>
+      <p>Our website uses a small number of cookies and similar technologies to make it work and to measure how it
+        is used ([e.g. Google Analytics]). You can block or delete cookies in your browser settings; the site will
+        still work, though some features may not behave as expected.</p>
+
+      <h3>5. How long we keep it</h3>
+      <p>We keep your personal information for as long as you are a member and for a reasonable period afterwards
+        &mdash; typically [X years] &mdash; to meet accounting, legal and insurance requirements. Enquiries that do
+        not lead to a membership are deleted within [X months]. When information is no longer needed we delete it or
+        anonymise it securely.</p>
+
+      <h3>6. Keeping it safe</h3>
+      <p>We use reasonable physical, technical and organisational safeguards to protect your information, including
+        password-protected systems, limited staff access, and reputable third-party providers. No method of storage
+        or transmission is completely secure, so we cannot guarantee absolute security, but we will tell you and
+        the relevant authorities promptly if a breach affects you.</p>
+
+      <h3>7. Your rights and choices</h3>
+      <p>You can ask us at any time to:</p>
+      <ul>
+        <li>see the personal information we hold about you;</li>
+        <li>correct anything that is inaccurate or out of date;</li>
+        <li>withdraw consent to marketing, or to optional uses of your information;</li>
+        <li>delete your information, subject to any records we must keep by law.</li>
+      </ul>
+      <p>To make a request, contact us using the details below. We will respond within 30 days. If you are not
+        satisfied with our response, you may contact the Office of the Information and Privacy Commissioner for
+        British Columbia.</p>
+
+      <h3>8. Children</h3>
+      <p>Our services are intended for people aged [16/18] and over. Members under that age may train with us only
+        with the written consent of a parent or guardian, who is responsible for the information provided about
+        them. We do not knowingly collect information from children through our website.</p>
+
+      <h3>9. Changes to this policy</h3>
+      <p>We may update this policy from time to time. The latest version will always be available on our website,
+        with the date it took effect shown at the top. Significant changes will be communicated to current members
+        by email.</p>
+
+      <h3>10. Contact us</h3>
+      <p>Questions about this policy or your personal information can be sent to our Privacy Officer:</p>
+      <p>Forge Strength Studio<br>
+        District 1881, Chilliwack, BC<br>
+        <a href="mailto:info@forgestrengthstudio.com">info@forgestrengthstudio.com</a><br>
+        <a href="tel:+16788888888">(678) 888-8888</a></p>
+    </div>
+  </dialog>
+
+  <dialog class="legal-modal" id="modal-terms" closedby="any" aria-labelledby="modal-terms-title">
+    <div class="legal-modal__top">
+      <h2 id="modal-terms-title">terms &amp; conditions.</h2>
+      <button class="btn btn--nav" type="button" data-dialog-close>
+        <img class="btn__icon" src="assets/icons/icon-close.svg" alt="" width="24" height="24">Close
+      </button>
+    </div>
+    <div class="legal-modal__body">
+      <p class="legal-modal__meta">Effective date: [Month DD, YYYY] &middot; Last updated: [Month DD, YYYY]</p>
+      <p>These terms and conditions (&ldquo;Terms&rdquo;) govern your use of the Forge Strength Studio website and
+        your membership, class bookings, personal training and any other services we provide (together, the
+        &ldquo;Services&rdquo;). By using the website, booking a session, or signing a membership agreement, you
+        agree to these Terms. Please read them carefully.</p>
+
+      <h3>1. Eligibility</h3>
+      <p>You must be at least [16/18] years old to become a member. Members under [18] need a parent or guardian to
+        sign the membership agreement and a health and liability waiver on their behalf.</p>
+
+      <h3>2. Memberships and plans</h3>
+      <ul>
+        <li>Memberships and session packages are personal to you and cannot be shared or transferred.</li>
+        <li>Monthly plans renew automatically on the same day each month until cancelled. Session packages expire
+          [X days/months] after purchase; unused sessions are forfeited unless we agree otherwise in writing.</li>
+        <li>You may freeze your membership for medical reasons or extended travel for up to [X weeks] per year with
+          [X days] notice.</li>
+        <li>To cancel a monthly plan, give us [30 days] written notice by email. Your final payment will be the one
+          falling within that notice period.</li>
+      </ul>
+
+      <h3>3. Bookings, cancellations and no-shows</h3>
+      <ul>
+        <li>Sessions are booked through [booking platform] or directly with your coach, and are subject to
+          availability.</li>
+        <li>Cancel or reschedule at least [24 hours] before your session to avoid losing it. Cancellations inside
+          that window, and no-shows, are charged as a session used.</li>
+        <li>Please arrive on time. Sessions end at the scheduled time regardless of when you arrive.</li>
+        <li>If we need to cancel a session, we will tell you as early as we can and offer a replacement session or a
+          credit.</li>
+      </ul>
+
+      <h3>4. Payments and refunds</h3>
+      <ul>
+        <li>All prices are in Canadian dollars and include applicable taxes unless stated otherwise.</li>
+        <li>Payment is due before your first session of each billing period. Overdue accounts may be suspended
+          until paid.</li>
+        <li>Packages and memberships are non-refundable except where required by law or agreed in writing. Refunds
+          on medical grounds may be considered with a doctor&rsquo;s note.</li>
+        <li>We may change our prices with [30 days] notice; a change takes effect from your next renewal.</li>
+      </ul>
+
+      <h3>5. Health, safety and assumption of risk</h3>
+      <p>Physical training carries an inherent risk of injury. By using our Services you confirm that:</p>
+      <ul>
+        <li>you are in good enough health to exercise, or have been cleared to do so by a medical professional;</li>
+        <li>you will complete our intake form honestly and tell your coach about any injury, condition or change in
+          your health that could affect your training;</li>
+        <li>you take part voluntarily and accept the risks involved;</li>
+        <li>you will follow your coach&rsquo;s instructions and stop if you feel unwell.</li>
+      </ul>
+      <p>You will also be asked to sign a separate waiver and release of liability before your first session; it
+        forms part of these Terms.</p>
+
+      <h3>6. Studio rules and conduct</h3>
+      <p>Forge is a small, shared space. We ask every member to treat it, and each other, with respect. We may
+        refuse entry to, or end the membership of, anyone who behaves in a way that is unsafe, abusive,
+        discriminatory or disruptive, or who damages the studio or its equipment. Please:</p>
+      <ul>
+        <li>wear clean indoor footwear and appropriate training clothing;</li>
+        <li>wipe down and put away equipment after use;</li>
+        <li>respect the privacy of other members &mdash; no photos or videos of others without their consent;</li>
+        <li>follow any additional posted rules and staff directions.</li>
+      </ul>
+      <p>Personal belongings are brought into the studio at your own risk. We are not responsible for lost or
+        stolen items.</p>
+
+      <h3>7. Use of the website</h3>
+      <p>The website and its content &mdash; text, photographs, logos and design &mdash; belong to Forge Strength
+        Studio or our licensors and are protected by copyright. You may view and print pages for your own personal
+        use but may not copy, reproduce or reuse them commercially without our written permission. You agree not to
+        misuse the website, interfere with its operation, or attempt to gain unauthorised access to it.</p>
+
+      <h3>8. Limitation of liability</h3>
+      <p>To the fullest extent permitted by law, Forge Strength Studio, its owners, coaches and staff are not liable
+        for any injury, loss or damage arising from your use of the Services, except where caused by our own
+        negligence or wilful misconduct. Nothing in these Terms limits any rights you have under applicable consumer
+        protection law.</p>
+
+      <h3>9. Termination</h3>
+      <p>We may suspend or end your membership if you breach these Terms, fail to pay, or behave in a way described
+        in section 6. Where we end a membership for reasons other than your breach, we will refund any prepaid,
+        unused portion.</p>
+
+      <h3>10. Changes to these Terms</h3>
+      <p>We may update these Terms from time to time. The current version is always available on our website, and
+        current members will be told of significant changes by email. Continuing to use the Services after a change
+        takes effect means you accept the updated Terms.</p>
+
+      <h3>11. Governing law</h3>
+      <p>These Terms are governed by the laws of the Province of British Columbia and the federal laws of Canada
+        applicable in it. Any dispute will be resolved in the courts of British Columbia.</p>
+
+      <h3>12. Contact us</h3>
+      <p>Questions about these Terms can be sent to:</p>
+      <p>Forge Strength Studio<br>
+        District 1881, Chilliwack, BC<br>
+        <a href="mailto:info@forgestrengthstudio.com">info@forgestrengthstudio.com</a><br>
+        <a href="tel:+16788888888">(678) 888-8888</a></p>
+    </div>
+  </dialog>
 
   <!-- ================= Mobile menu (Figma navbar-mobile, 1200:13840) =================
        Opened by the navbar's hamburger below 767px; slides in from the right. -->

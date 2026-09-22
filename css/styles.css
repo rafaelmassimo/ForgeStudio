@@ -87,7 +87,9 @@
     white-space: nowrap;
     word-break: break-word;
     cursor: pointer;
-    transition: background-color 0.15s ease;
+    transition:
+      background-color var(--motion-quick) ease,
+      color var(--motion-quick) ease;
   }
 
   .btn--primary { background-color: var(--highlight-colour); }
@@ -154,8 +156,11 @@
     opacity: 0;
     visibility: hidden;
     translate: 0 12px;
-    transition: opacity 0.3s ease-in-out, translate 0.3s ease-in-out,
-      visibility 0s linear 0.3s, background-color 0.15s ease;
+    transition:
+      opacity var(--motion-panel) ease,
+      translate var(--motion-panel) var(--ease-out-soft),
+      visibility 0s linear var(--motion-panel),
+      background-color var(--motion-quick) ease;
   }
 
   .to-top.is-visible {
@@ -181,8 +186,10 @@
   /* --- Mobile menu (Figma "navbar-mobile", 1200:13840) --------------------
      The hamburger in the mobile navbar opens it as a modal dialog. It is a
      300px cream panel pinned top-right, 12px below the top edge, over the
-     90% black backdrop. Figma: Move In from the right, 0.2s ease-out, and
-     the backdrop does not close it (Esc and the close button do). */
+     90% black backdrop. Figma: Move In from the right, 0.2s ease-out —
+     run a touch longer on the site's shared curve so it settles rather
+     than stops — and the backdrop does not close it (Esc and the close
+     button do). */
 
   .mobile-menu {
     position: fixed;
@@ -202,9 +209,9 @@
     /* Closed = parked off the right edge; open = in place. */
     translate: 100% 0;
     transition:
-      translate 0.2s ease-out,
-      display 0.2s allow-discrete,
-      overlay 0.2s allow-discrete;
+      translate var(--motion-panel) var(--ease-out-soft),
+      display var(--motion-panel) allow-discrete,
+      overlay var(--motion-panel) allow-discrete;
   }
 
   .mobile-menu[open] {
@@ -221,9 +228,9 @@
   .mobile-menu::backdrop {
     background-color: transparent;
     transition:
-      background-color 0.2s ease-out,
-      display 0.2s allow-discrete,
-      overlay 0.2s allow-discrete;
+      background-color var(--motion-panel) ease,
+      display var(--motion-panel) allow-discrete,
+      overlay var(--motion-panel) allow-discrete;
   }
 
   .mobile-menu[open]::backdrop { background-color: var(--modal-backdrop); }
@@ -237,11 +244,13 @@
     .mobile-menu::backdrop { transition-duration: 0s; }
   }
 
+  /* Same height as the mobile navbar, so the close button sits exactly
+     where the hamburger was. */
   .mobile-menu__header {
     position: relative;
     display: flex;
     flex-shrink: 0;
-    height: 48px;
+    height: 64px;
     align-items: center;
     justify-content: flex-end;
   }
@@ -281,7 +290,7 @@
     border: 0;
     background-color: transparent;
     cursor: pointer;
-    transition: background-color 0.15s ease-out;
+    transition: background-color var(--motion-quick) ease;
   }
 
   .mobile-menu__close img {
@@ -309,7 +318,7 @@
     color: var(--black);
     text-decoration: none;
     white-space: nowrap;
-    transition: background-color 0.15s ease-out;
+    transition: background-color var(--motion-quick) ease;
   }
 
   .mobile-menu__link[aria-current="page"] { color: var(--secondary-colour); }
@@ -327,23 +336,220 @@
     outline-offset: -2px;
   }
 
+  /* --- Legal modals (Privacy Policy, Terms & Conditions) -----------------
+     Not in Figma. The two links in the footer's legal row open these as
+     modal dialogs on every page, so the visitor reads the policy in place
+     and returns to where they were. The sheet borrows the Services & Plans
+     pricing overlay (1174:17630): the bento fill over the 90% black
+     backdrop, and the same short rise in and out. Unlike that sheet the
+     copy is long, so the header stays put and only the body scrolls.
+     Esc, the Close button and a click on the backdrop all close it. */
+
+  .legal-modal {
+    --modal-motion-out: 0.25s;
+
+    width: 900px;
+    max-width: calc(100% - 48px);
+    max-height: calc(100dvh - 48px);
+    margin: auto;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    background-color: var(--slightly-darker-colour);
+    color: var(--black);
+
+    /* Closed = faded, a touch low and small; open = settled in place.
+       These are the exit values — the entry values sit in @starting-style. */
+    opacity: 0;
+    translate: 0 16px;
+    scale: 0.98;
+    transition:
+      opacity var(--modal-motion-out) ease,
+      translate var(--modal-motion-out) ease-in,
+      scale var(--modal-motion-out) ease-in,
+      display var(--modal-motion-out) allow-discrete,
+      overlay var(--modal-motion-out) allow-discrete;
+  }
+
+  .legal-modal[open] {
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+    transition:
+      opacity var(--motion-panel) ease,
+      translate var(--motion-panel) var(--ease-out-soft),
+      scale var(--motion-panel) var(--ease-out-soft),
+      display var(--motion-panel) allow-discrete,
+      overlay var(--motion-panel) allow-discrete;
+  }
+
+  @starting-style {
+    .legal-modal[open] {
+      opacity: 0;
+      translate: 0 16px;
+      scale: 0.98;
+    }
+  }
+
+  .legal-modal::backdrop {
+    background-color: transparent;
+    transition:
+      background-color var(--modal-motion-out) ease,
+      display var(--modal-motion-out) allow-discrete,
+      overlay var(--modal-motion-out) allow-discrete;
+  }
+
+  .legal-modal[open]::backdrop {
+    background-color: var(--modal-backdrop);
+    transition:
+      background-color var(--motion-panel) ease,
+      display var(--motion-panel) allow-discrete,
+      overlay var(--motion-panel) allow-discrete;
+  }
+
+  @starting-style {
+    .legal-modal[open]::backdrop { background-color: transparent; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .legal-modal,
+    .legal-modal[open],
+    .legal-modal::backdrop,
+    .legal-modal[open]::backdrop { transition-duration: 0s; }
+    .legal-modal,
+    .legal-modal[open] { translate: none; scale: none; }
+    @starting-style {
+      .legal-modal[open] { translate: none; scale: none; }
+    }
+  }
+
+  /* Title row: heading on the left, Close on the right. Stays in view
+     while the body scrolls beneath it. */
+  .legal-modal__top {
+    display: flex;
+    flex-shrink: 0;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 50px 80px 24px;
+  }
+
+  .legal-modal__top h2 {
+    flex: 1 0 0;
+    min-width: 1px;
+    color: var(--secondary-colour);
+    word-break: break-word;
+  }
+
+  .legal-modal__body {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 0 80px 50px;
+    color: var(--chapter-ink);
+    word-break: break-word;
+  }
+
+  /* One empty line of body text between blocks; a little more before
+     each section heading so the sections read as separate. */
+  .legal-modal__body > * + * { margin-block-start: var(--body-leading); }
+  .legal-modal__body > h3 { margin-block-start: 36px; }
+
+  .legal-modal__meta {
+    font-size: var(--body-16-size);
+    line-height: var(--body-16-leading);
+    color: var(--subordinate-colour);
+  }
+
+  /* Section headings use the Services & Plans lead style (Poppins 22),
+     not the 48px H3 — this is reading copy, not a section title. */
+  .legal-modal__body h3 {
+    font-family: var(--font-ui);
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 28px;
+    text-transform: capitalize;
+    color: var(--secondary-colour);
+  }
+
+  /* The reset strips list markers site-wide; the policy needs them back. */
+  .legal-modal__body ul {
+    padding-inline-start: 1.25em;
+    list-style: disc;
+  }
+
+  .legal-modal__body li + li { margin-block-start: 6px; }
+
+  .legal-modal__body a {
+    color: var(--secondary-colour);
+    text-underline-offset: 3px;
+  }
+
+  .legal-modal :focus-visible {
+    outline: 2px solid var(--secondary-colour);
+    outline-offset: 2px;
+  }
+
+  /* --- Motion -------------------------------------------------------------
+     Not in Figma. One easing curve and a few durations shared by every
+     transition on the site, so the buttons, the hover lift, the scroll
+     reveal, the menus and the accordion all move with the same character:
+     quick to start, soft to settle. Page stylesheets use these too.      */
+
+  :root {
+    --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+    --motion-quick: 0.2s;    /* colour and state changes                 */
+    --motion-lift: 0.4s;     /* the hover lift                           */
+    --motion-panel: 0.35s;   /* menus, modals, the accordion             */
+    --motion-reveal: 0.8s;   /* the scroll reveal                        */
+    --reveal-distance: 20px; /* how far a revealed element travels up    */
+  }
+
   /* --- Hover lift ---------------------------------------------------------
-     Not in Figma (Rafael's request): the element rises on hover and eases
-     back down when the pointer leaves. Pointer devices only, and held
-     still for reduced motion.
+     Not in Figma (Rafael's request): a card rises on hover and settles
+     back when the pointer leaves. Reserved for things that read as objects
+     you could pick up — cards, notes — never for running text, which has
+     nothing to invite. Pointer devices only, and held still for reduced
+     motion.
 
-     .hover-lift          lifts itself.
-     .hover-lift-group    lifts its .hover-lift__target children instead,
-                          for full-bleed sections that must not open a gap.
-     --lift               the distance (6px unless a page sets it).       */
+     --lift   the distance (6px unless a page sets it).                   */
 
-  .hover-lift,
-  .hover-lift__target { transition: translate 0.3s ease-in-out; }
+  .hover-lift { transition: translate var(--motion-lift) var(--ease-out-soft); }
 
   @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-    .hover-lift:hover,
-    .hover-lift-group:hover .hover-lift__target {
-      translate: 0 calc(-1 * var(--lift, 6px));
+    .hover-lift:hover { translate: 0 calc(-1 * var(--lift, 6px)); }
+  }
+
+  /* --- Scroll reveal ------------------------------------------------------
+     Not in Figma: content eases up into place as it scrolls into view, once.
+     Mark an element with data-reveal; main.js adds .is-revealed the first
+     time it enters the viewport. Elements inside a [data-reveal-group] take
+     turns — main.js sets --reveal-delay on each, a step apart.
+
+     Gated on html.js so a page that never runs the script shows everything
+     as it is. `transform`, not `translate`, so the reveal composes with the
+     hover lift instead of fighting it for the same property.            */
+
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(var(--reveal-distance));
+    transition:
+      opacity var(--motion-reveal) ease var(--reveal-delay, 0s),
+      transform var(--motion-reveal) var(--ease-out-soft) var(--reveal-delay, 0s);
+  }
+
+  .js [data-reveal].is-revealed {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .js [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
     }
   }
 
@@ -353,9 +559,29 @@
     font-size: var(--body-16-size);
     line-height: var(--body-16-leading);
     color: var(--secondary-shapes-fill);
-    text-decoration: none;
+    /* The underline is always there, just invisible until hovered, so
+       it fades in rather than popping and never shifts the text. */
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 3px;
+    transition: text-decoration-color var(--motion-quick) ease;
     white-space: nowrap;
     word-break: break-word;
+  }
+
+  .link:hover,
+  .link:focus-visible { text-decoration-color: currentColor; }
+
+  /* A <button> dressed as a link, for links that open something on the
+     page (the footer's Privacy Policy and Terms) rather than navigate. */
+  .link--button {
+    appearance: none;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-family: inherit;
+    font-weight: inherit;
+    cursor: pointer;
   }
 
   /* --- Shared section pieces -------------------------------------------- */
@@ -662,8 +888,10 @@
 
   .page-hero__title {
     position: relative;
+    max-width: 100%;
+    min-width: 0;
     color: #fff;
-    white-space: nowrap;
+    white-space: normal;
     word-break: break-word;
   }
 
@@ -1146,10 +1374,6 @@
     background-color: color-mix(in srgb, var(--accent-rust) 60%, transparent);
     mix-blend-mode: multiply;
   }
-
-  /* The mobile board (1427:9899) swaps the three grades for a plain 50%
-     black scrim. */
-  .stories__tint--scrim { background-color: var(--photo-scrim); }
 
   .stories__board-text {
     position: relative;
