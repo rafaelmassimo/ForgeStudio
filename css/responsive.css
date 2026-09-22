@@ -85,8 +85,7 @@
 
     /* --- Top navbar (Figma "top-navbar-mobile") ------------------------
        54px cream bar: the hamburger on the right, the wordmark centred.
-       It carries the top corners itself, so they stay rounded while it is
-       stuck to the top of the viewport. */
+       The frame strip and top corners come from the shared rule. */
 
     .navbar {
       display: flex;
@@ -94,7 +93,6 @@
       align-items: center;
       min-width: 0;
       padding: 3px 8px;
-      border-radius: var(--corner-radius-primary) var(--corner-radius-primary) 0 0;
     }
 
     .navbar__group { display: none; }
@@ -253,7 +251,6 @@
     .hero__lede {
       font-size: var(--body-size);
       line-height: var(--body-leading);
-      text-transform: none;
     }
 
     .hero__actions {
@@ -333,8 +330,6 @@
       justify-content: flex-start;
       padding-inline: 24px;
     }
-
-    .commitment__actions .btn--grow { flex: none; }
 
     /* The 546px photo is bottom-aligned in a 300px band. The ornament sits
        beneath it in Figma's layer order, so it is covered here as well. */
