@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Our Space — FORGE Strength Studio</title>
+  <meta name="description" content="Tour FORGE Strength Studio in Chilliwack, BC: a calm, uncrowded boutique gym with professional-grade equipment and private gym space rentals.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;500;700&family=Poppins:wght@500&family=Sarabun:wght@400&display=swap">
+
+  <link rel="preload" as="image" href="assets/img/os-hero.jpg" media="(min-width: 768px)" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/img/os-hero-mobile.jpg" media="(max-width: 767px)" fetchpriority="high">
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/our-space.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <!-- The black frame: .page__body paints it, .body-content is the rounded
+       surface inside it. Same shell as every other page. -->
+  <div class="page">
+    <div class="page__body">
+      <div class="body-content">
+
+        <!-- ================= Top navbar (808:9840) ================= -->
+        <header class="navbar">
+          <nav class="navbar__group" aria-label="Primary">
+            <a class="btn btn--nav" href="index.html">Home</a>
+            <a class="btn btn--nav" href="who-we-are.html">Who We Are</a>
+            <a class="btn btn--nav" href="our-space.html" aria-current="page">Our Space</a>
+            <a class="btn btn--nav" href="services-and-plans.html">Services &amp; Plans</a>
+          </nav>
+          <div class="navbar__group navbar__group--right">
+            <a class="btn btn--nav" href="contact.html">Contact Us</a>
+            <a class="btn btn--primary btn--compact" href="#">Book Now</a>
+          </div>
+          <p class="navbar__wordmark"><a href="index.html" aria-label="Forge Strength Studio, home">Forge</a></p>
+          <!-- Below 767px the links above give way to this button and the
+               slide-in menu (Figma 1200:13840). -->
+          <button class="navbar__menu-btn" type="button" data-dialog-open="mobile-menu" aria-haspopup="dialog"
+            aria-controls="mobile-menu" aria-label="Open menu">
+            <img src="assets/icons/icon-menu.svg" alt="" width="48" height="48">
+          </button>
+        </header>
+
+        <!-- ================= Secondary page hero (870:5579) ================= -->
+        <section class="page-hero">
+          <!-- The mobile frame (1486:10689) uses its own photo, graded with
+               a light brown multiply the desktop hero doesn't have. -->
+          <picture>
+            <source media="(max-width: 767px)" srcset="assets/img/os-hero-mobile.jpg" width="336" height="289">
+            <img class="page-hero__bg" src="assets/img/os-hero.jpg" alt="" aria-hidden="true"
+                 width="1392" height="400" fetchpriority="high">
+          </picture>
+          <div class="page-hero__tint page-hero__tint--light mobile-only"></div>
+          <h1 class="page-hero__title">Our Space<span class="page-hero__dot">.</span></h1>
+        </section>
+
+        <!-- ================= Infinite horizontal scroll (808:9844) ================= -->
+        <div class="marquee marquee--fit" aria-hidden="true">
+          <div class="marquee__track" data-marquee-track>
+            <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+            <div class="marquee__group">
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Show up</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Get strong</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Stay consistent</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>No pressure</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+            </div>
+            <div class="marquee__group">
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Show up</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Get strong</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Stay consistent</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>No pressure</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+            </div>
+            <div class="marquee__group">
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Show up</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Get strong</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Stay consistent</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>No pressure</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+            </div>
+            <div class="marquee__group">
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Show up</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Get strong</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Stay consistent</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>No pressure</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+            </div>
+            <div class="marquee__group">
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Show up</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Get strong</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Stay consistent</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>No pressure</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+            </div>
+            <div class="marquee__group">
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Show up</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Get strong</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Stay consistent</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>No pressure</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= Our space to breathe (808:9860) ================= -->
+        <section class="space-band space-band--breathe">
+          <div class="space-band__col space-band__col--breathe hover-lift-group">
+            <div class="space-band__layers" aria-hidden="true">
+              <img class="space-band__photo" src="assets/img/os-breathe.png" alt="" width="1024" height="683" loading="lazy">
+              <div class="space-band__scrim"></div>
+            </div>
+            <div class="space-band__text hover-lift__target">
+              <h2>More time to<br>focus on you.</h2>
+              <div class="space-band__copy">
+                <p>Our intimate gym is designed with plenty of intentional open space. It features premium equipment
+                  thoughtfully arranged so you have the room to move safely and train at your own pace.</p>
+                <p>We built this to guarantee no crowd. Made for independent trainers requiring a professional layout
+                  for your clients, or a beginner looking for a quiet, supportive environment.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-band__col space-band__col--stack">
+            <div class="space-block space-block--ruled hover-lift-group">
+              <div class="space-block__text hover-lift__target">
+                <h2>Calm by design.</h2>
+                <p>We replaced the loud music and cluttered layouts of commercial facilities with a minimalist, cozy
+                  environment. FORGE&rsquo;s studio delivers a true personal touch to your sessions.</p>
+              </div>
+            </div>
+            <div class="space-block space-block--consistency hover-lift-group">
+              <div class="space-block__text hover-lift__target">
+                <h2>Consistency is key.</h2>
+                <p>Less distractions means more time to focus on what&rsquo;s important. Train with no pressure, build
+                  consistency, and deepen your connection with your body in our space.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= Our space equipment (881:7040) ================= -->
+        <section class="space-band space-band--equipment">
+          <div class="space-band__col hover-lift-group">
+            <div class="space-band__text hover-lift__target">
+              <h2>Essentials<br>done right.</h2>
+              <p>We removed all the clutter, focused on what&rsquo;s important. Hand selected, Professional-grade
+                equipment with all the functionality you need to keep your journey with the highest quality and safety
+                without sacrificing any important exercises.</p>
+            </div>
+          </div>
+          <div class="space-band__col space-band__col--photo">
+            <img class="space-band__photo" src="assets/img/os-equipment.jpg" alt="" width="1274" height="1416" loading="lazy">
+          </div>
+        </section>
+
+        <!-- ================= Sauna (1408:8885) =================
+             Hidden in Figma, with the note "Comment this section out in
+             HTML". Remove the comment markers to show it.
+
+        <section class="space-band">
+          <div class="space-band__col">
+            <img class="space-band__photo" src="assets/img/os-sauna.jpg" alt="" width="1367" height="912" loading="lazy">
+          </div>
+          <div class="space-band__col space-band__col--sauna-copy">
+            <div class="space-band__text">
+              <h2>Sauna.</h2>
+              <p>Revitalize yourself after a tough workout. Step into the heat to recover, reduce stress and reconnect
+                with your breathing. A quiet escape in your happy place.</p>
+            </div>
+          </div>
+        </section>
+        -->
+
+        <!-- ================= Private gym space rentals (808:9900) ================= -->
+        <section class="our-space our-space--rental">
+          <div class="our-space__bg" aria-hidden="true">
+            <img src="assets/img/our-space.jpg" alt="" width="1392" height="600" loading="lazy">
+            <div class="our-space__scrim"></div>
+          </div>
+          <div class="our-space__content">
+            <div class="our-space__text">
+              <h2>Private gym space rentals.</h2>
+              <!-- The mobile frame words the copy and the button differently. -->
+              <p class="our-space__body desktop-only">If you need a space to workout on your own terms, FORGE is also for you. Our
+                members can exclusively rent the space, enjoying full capacity of our equipments and inspiring
+                environment, with no distractions.</p>
+              <p class="our-space__body mobile-only">If you need a space to enter your zone and workout on your own terms, FORGE
+                is also for you. Our members can exclusively rent the space, enjoying full capacity of our equipment,
+                with no distractions.</p>
+            </div>
+            <div class="our-space__actions">
+              <a class="btn btn--primary desktop-only" href="#">Rent The Studio</a>
+              <a class="btn btn--primary mobile-only" href="#">Book Your Sessions</a>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- ================= Footer (870:5325) =================
+         Outside .page__body so its black meets the frame edge to edge. -->
+    <footer class="footer">
+      <div class="footer__top">
+        <div class="footer__info">
+          <address class="footer__contact">
+            <div class="footer__contact-row">
+              <img src="assets/icons/icon-location.svg" alt="" width="24" height="24" loading="lazy">
+              <a class="link" href="#">District 1881, Chilliwack, BC</a>
+            </div>
+            <div class="footer__contact-row footer__contact-row--phone">
+              <img src="assets/icons/icon-phone.svg" alt="" width="24" height="24" loading="lazy">
+              <a class="link" href="tel:+16788888888">(678) 888-8888</a>
+            </div>
+            <div class="footer__contact-row">
+              <img src="assets/icons/icon-mail.svg" alt="" width="24" height="24" loading="lazy">
+              <a class="link" href="mailto:info@forgestrengthstudio.com">info@forgestrengthstudio.com</a>
+            </div>
+            <p class="footer__hours">Open 7 days: 5:00 AM &ndash; 10:00 PM</p>
+          </address>
+
+          <ul class="footer__nav">
+            <li><a class="link" href="index.html">Home</a></li>
+            <li><a class="link" href="who-we-are.html">Who We Are</a></li>
+            <li><a class="link" href="our-space.html" aria-current="page">Our Space</a></li>
+            <li><a class="link" href="services-and-plans.html">Services &amp; Plans</a></li>
+            <li><a class="link" href="contact.html">Contact Us</a></li>
+            <li><a class="link" href="faq.html">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__socials">
+          <ul class="footer__sns">
+            <li>
+              <a href="https://www.instagram.com/forgestrengthstudio" target="_blank" rel="noopener noreferrer">
+                <img src="assets/icons/icon-instagram.svg" alt="" width="40" height="40" loading="lazy">
+                <span class="visually-hidden">Instagram</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" target="_blank" rel="noopener noreferrer">
+                <img src="assets/icons/icon-facebook.svg" alt="" width="40" height="40" loading="lazy">
+                <span class="visually-hidden">Facebook</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <div class="footer__wordmark" aria-hidden="true">
+          <p>FORGE</p>
+          <span class="footer__dot"></span>
+        </div>
+        <div class="footer__legal">
+          <a class="link" href="#">Privacy Policy</a>
+          <a class="link" href="#">Terms &amp; Conditions</a>
+          <p>&copy; 2026 Forge Strength Studio. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ================= Mobile menu (Figma navbar-mobile, 1200:13840) =================
+       Opened by the navbar's hamburger below 767px; slides in from the right. -->
+  <dialog class="mobile-menu" id="mobile-menu" aria-label="Menu">
+    <div class="mobile-menu__header">
+      <p class="mobile-menu__wordmark"><a href="index.html" aria-label="Forge Strength Studio, home">Forge</a></p>
+      <button class="mobile-menu__close" type="button" data-dialog-close aria-label="Close menu">
+        <img src="assets/icons/icon-close.svg" alt="" width="24" height="24">
+      </button>
+    </div>
+    <nav class="mobile-menu__nav" aria-label="Primary">
+      <a class="mobile-menu__link" href="index.html">Home</a>
+      <a class="mobile-menu__link" href="who-we-are.html">Who We Are</a>
+      <a class="mobile-menu__link" href="our-space.html" aria-current="page">Our Space</a>
+      <a class="mobile-menu__link" href="services-and-plans.html">Services &amp; Plans</a>
+      <a class="mobile-menu__link" href="contact.html">Contact Us</a>
+    </nav>
+  </dialog>
+
+  <button class="to-top" type="button" data-to-top aria-label="Back to top">
+    <img src="assets/icons/arrow-up.svg" alt="" width="24" height="24">
+  </button>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

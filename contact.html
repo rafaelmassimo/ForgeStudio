@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact Us — FORGE Strength Studio</title>
+  <meta name="description" content="Get in touch with FORGE Strength Studio in Chilliwack, BC. Open 7 days, 5:00 AM – 10:00 PM.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;500;700&family=Poppins:wght@500&family=Sarabun:wght@400&display=swap">
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/contact.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <!-- The black frame: .page__body paints it, .body-content is the rounded
+       surface inside it. Same shell as every other page. -->
+  <div class="page">
+    <div class="page__body">
+      <div class="body-content">
+
+        <!-- ================= Top navbar (808:9720) ================= -->
+        <header class="navbar">
+          <nav class="navbar__group" aria-label="Primary">
+            <a class="btn btn--nav" href="index.html">Home</a>
+            <a class="btn btn--nav" href="who-we-are.html">Who We Are</a>
+            <a class="btn btn--nav" href="our-space.html">Our Space</a>
+            <a class="btn btn--nav" href="services-and-plans.html">Services &amp; Plans</a>
+          </nav>
+          <div class="navbar__group navbar__group--right">
+            <a class="btn btn--nav" href="contact.html" aria-current="page">Contact Us</a>
+            <a class="btn btn--primary btn--compact" href="#">Book Now</a>
+          </div>
+          <p class="navbar__wordmark"><a href="index.html" aria-label="Forge Strength Studio, home">Forge</a></p>
+          <!-- Below 767px the links above give way to this button and the
+               slide-in menu (Figma 1200:13840). -->
+          <button class="navbar__menu-btn" type="button" data-dialog-open="mobile-menu" aria-haspopup="dialog"
+            aria-controls="mobile-menu" aria-label="Open menu">
+            <img src="assets/icons/icon-menu.svg" alt="" width="48" height="48">
+          </button>
+        </header>
+
+        <!-- ================= Contact (808:9721) ================= -->
+        <main class="contact">
+          <div class="contact__inner">
+
+            <section class="contact__intro" aria-labelledby="contact-title">
+              <h1 id="contact-title" class="contact__title">Contact us.</h1>
+
+              <div class="contact__body">
+                <p class="contact__lede">We&rsquo;d love to hear from you.  Please fill out contact form below to inquire about us.</p>
+
+                <div class="contact__content">
+                  <!-- Three blocks, each hung off a rust rule on its left. -->
+                  <div class="contact-info">
+                    <div class="contact-info__block contact-info__block--hours">
+                      <p>FORGE Strength Studio</p>
+                      <p>Open 7 Days  |  5:00 AM - 10:00 PM<br>Your happy place, at your own pace</p>
+                    </div>
+
+                    <address class="contact-info__block contact-info__block--details">
+                      <div class="contact-info__row">
+                        <img src="assets/icons/icon-location-dark.svg" alt="" width="24" height="24">
+                        <p>District 1881, Chilliwack, BC</p>
+                      </div>
+                      <div class="contact-info__row contact-info__row--phone">
+                        <img src="assets/icons/icon-phone-dark.svg" alt="" width="24" height="24">
+                        <p>(000) 000-0000</p>
+                      </div>
+                      <div class="contact-info__row contact-info__row--mail">
+                        <img src="assets/icons/icon-mail-dark.svg" alt="" width="24" height="24">
+                        <p><a href="mailto:info@forgestrengthstudio.com">info@forgestrengthstudio.com</a></p>
+                      </div>
+                    </address>
+
+                    <ul class="contact-info__block contact-info__block--socials">
+                      <li>
+                        <a class="contact-info__social" href="https://www.instagram.com/forgestrengthstudio" target="_blank" rel="noopener noreferrer">
+                          <img src="assets/icons/icon-instagram-brown.svg" alt="" width="40" height="40">
+                          <span><span class="visually-hidden">Instagram: </span>@ForgeStrengthStudio</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="contact-info__social" href="#">
+                          <img src="assets/icons/icon-facebook-brown.svg" alt="" width="40" height="40">
+                          <span><span class="visually-hidden">Facebook: </span>Forge Strength Studio</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <!-- Sent through the visitor's email app: main.js builds a
+                       mailto: link from the fields (data-mailto-form). -->
+                  <form class="contact-form" data-mailto-form="info@forgestrengthstudio.com">
+                    <div class="contact-form__fields">
+                      <div class="contact-form__row">
+                        <div class="contact-form__field">
+                          <label for="first-name">First Name</label>
+                          <input id="first-name" name="first-name" type="text" autocomplete="given-name" required>
+                        </div>
+                        <div class="contact-form__field">
+                          <label for="last-name">Last Name</label>
+                          <input id="last-name" name="last-name" type="text" autocomplete="family-name">
+                        </div>
+                      </div>
+                      <div class="contact-form__field contact-form__field--email">
+                        <label for="email">Email Address</label>
+                        <input id="email" name="email" type="email" autocomplete="email" required>
+                      </div>
+                      <div class="contact-form__field">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                      </div>
+                    </div>
+                    <button class="btn btn--primary" type="submit">Submit</button>
+                  </form>
+                </div>
+              </div>
+            </section>
+
+            <div class="contact__map">
+              <img src="assets/img/contact-map.png" alt="Map of downtown Chilliwack, BC, where the studio is located"
+                   width="1117" height="300" loading="lazy">
+            </div>
+
+            <section class="contact-faq" aria-labelledby="faq-title">
+              <div class="contact-faq__rules" aria-hidden="true">
+                <span class="contact-faq__rule contact-faq__rule--thick"></span>
+                <span class="contact-faq__rule contact-faq__rule--thin"></span>
+              </div>
+              <div class="contact-faq__panel">
+                <div class="contact-faq__text">
+                  <h2 id="faq-title">Need some help?</h2>
+                  <p>Check our FAQs.</p>
+                </div>
+                <a class="btn btn--primary" href="faq.html">Browse FAQ</a>
+              </div>
+            </section>
+
+          </div>
+        </main>
+
+      </div>
+    </div>
+
+    <!-- ================= Footer (808:9778) =================
+         Outside .page__body so its black meets the frame edge to edge. -->
+    <footer class="footer">
+      <div class="footer__top">
+        <div class="footer__info">
+          <address class="footer__contact">
+            <div class="footer__contact-row">
+              <img src="assets/icons/icon-location.svg" alt="" width="24" height="24" loading="lazy">
+              <a class="link" href="#">District 1881, Chilliwack, BC</a>
+            </div>
+            <div class="footer__contact-row footer__contact-row--phone">
+              <img src="assets/icons/icon-phone.svg" alt="" width="24" height="24" loading="lazy">
+              <a class="link" href="tel:+16788888888">(678) 888-8888</a>
+            </div>
+            <div class="footer__contact-row">
+              <img src="assets/icons/icon-mail.svg" alt="" width="24" height="24" loading="lazy">
+              <a class="link" href="mailto:info@forgestrengthstudio.com">info@forgestrengthstudio.com</a>
+            </div>
+            <p class="footer__hours">Open 7 days: 5:00 AM &ndash; 10:00 PM</p>
+          </address>
+
+          <ul class="footer__nav">
+            <li><a class="link" href="index.html">Home</a></li>
+            <li><a class="link" href="who-we-are.html">Who We Are</a></li>
+            <li><a class="link" href="our-space.html">Our Space</a></li>
+            <li><a class="link" href="services-and-plans.html">Services &amp; Plans</a></li>
+            <li><a class="link" href="contact.html">Contact Us</a></li>
+            <li><a class="link" href="faq.html">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__socials">
+          <ul class="footer__sns">
+            <li>
+              <a href="https://www.instagram.com/forgestrengthstudio" target="_blank" rel="noopener noreferrer">
+                <img src="assets/icons/icon-instagram.svg" alt="" width="40" height="40" loading="lazy">
+                <span class="visually-hidden">Instagram</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" target="_blank" rel="noopener noreferrer">
+                <img src="assets/icons/icon-facebook.svg" alt="" width="40" height="40" loading="lazy">
+                <span class="visually-hidden">Facebook</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <div class="footer__wordmark" aria-hidden="true">
+          <p>FORGE</p>
+          <span class="footer__dot"></span>
+        </div>
+        <div class="footer__legal">
+          <a class="link" href="#">Privacy Policy</a>
+          <a class="link" href="#">Terms &amp; Conditions</a>
+          <p>&copy; 2026 Forge Strength Studio. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ================= Mobile menu (Figma navbar-mobile, 1200:13840) =================
+       Opened by the navbar's hamburger below 767px; slides in from the right. -->
+  <dialog class="mobile-menu" id="mobile-menu" aria-label="Menu">
+    <div class="mobile-menu__header">
+      <p class="mobile-menu__wordmark"><a href="index.html" aria-label="Forge Strength Studio, home">Forge</a></p>
+      <button class="mobile-menu__close" type="button" data-dialog-close aria-label="Close menu">
+        <img src="assets/icons/icon-close.svg" alt="" width="24" height="24">
+      </button>
+    </div>
+    <nav class="mobile-menu__nav" aria-label="Primary">
+      <a class="mobile-menu__link" href="index.html">Home</a>
+      <a class="mobile-menu__link" href="who-we-are.html">Who We Are</a>
+      <a class="mobile-menu__link" href="our-space.html">Our Space</a>
+      <a class="mobile-menu__link" href="services-and-plans.html">Services &amp; Plans</a>
+      <a class="mobile-menu__link" href="contact.html" aria-current="page">Contact Us</a>
+    </nav>
+  </dialog>
+
+  <button class="to-top" type="button" data-to-top aria-label="Back to top">
+    <img src="assets/icons/arrow-up.svg" alt="" width="24" height="24">
+  </button>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

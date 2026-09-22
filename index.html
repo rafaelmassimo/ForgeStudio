@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>FORGE Strength Studio — A place to build your body at your own pace</title>
-  <meta name="description" content="A distraction-free, private studio to strengthen your mind, muscle and spirit. In the heart of the Fraser Valley.">
+  <meta name="description"
+    content="A distraction-free, private studio to strengthen your mind, muscle and spirit. In the heart of the Fraser Valley.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;500;700&family=Commissioner:wght@500&family=Poppins:wght@500&family=Sarabun:wght@400&display=swap">
+    href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;500;700&family=Commissioner:wght@500&family=Poppins:wght@500&family=Sarabun:wght@400&display=swap">
 
   <link rel="preload" as="image" href="assets/img/home-hero.jpg" fetchpriority="high">
 
@@ -17,6 +19,7 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/responsive.css">
 </head>
+
 <body>
   <!-- The black frame: .page__body paints it, .body-content is the rounded
        surface inside it. Every page of the site reuses this shell. -->
@@ -27,22 +30,28 @@
         <!-- ================= Top navbar (808:9912) ================= -->
         <header class="navbar">
           <nav class="navbar__group" aria-label="Primary">
-            <a class="btn btn--nav" href="#" aria-current="page">Home</a>
-            <a class="btn btn--nav" href="#">Who We Are</a>
-            <a class="btn btn--nav" href="#">Our Space</a>
-            <a class="btn btn--nav" href="#">Services &amp; Plans</a>
+            <a class="btn btn--nav" href="index.html" aria-current="page">Home</a>
+            <a class="btn btn--nav" href="who-we-are.html">Who We Are</a>
+            <a class="btn btn--nav" href="our-space.html">Our Space</a>
+            <a class="btn btn--nav" href="services-and-plans.html">Services &amp; Plans</a>
           </nav>
           <div class="navbar__group navbar__group--right">
-            <a class="btn btn--nav" href="#">Contact Us</a>
+            <a class="btn btn--nav" href="contact.html">Contact Us</a>
             <a class="btn btn--primary btn--compact" href="#">Book Now</a>
           </div>
-          <p class="navbar__wordmark">Forge</p>
+          <p class="navbar__wordmark"><a href="index.html" aria-label="Forge Strength Studio, home">Forge</a></p>
+          <!-- Below 767px the links above give way to this button and the
+               slide-in menu (Figma 1200:13840). -->
+          <button class="navbar__menu-btn" type="button" data-dialog-open="mobile-menu" aria-haspopup="dialog"
+            aria-controls="mobile-menu" aria-label="Open menu">
+            <img src="assets/icons/icon-menu.svg" alt="" width="48" height="48">
+          </button>
         </header>
 
         <!-- ================= Hero (808:9913) ================= -->
         <section class="hero">
-          <img class="hero__bg" src="assets/img/home-hero.jpg" alt="" aria-hidden="true"
-               width="1392" height="600" fetchpriority="high">
+          <img class="hero__bg" src="assets/img/home-hero.jpg" alt="" aria-hidden="true" width="1392" height="600"
+            fetchpriority="high">
           <div class="hero__content">
             <div class="hero__text">
               <h1>A place to build your body <br class="lb">at your own pace.</h1>
@@ -56,12 +65,14 @@
 
         <!-- ================= Who we are (808:9921) ================= -->
         <section class="who-we-are">
-          <div class="who-we-are__text">
-            <div class="copy">
+          <div class="who-we-are__text hover-lift-group">
+            <div class="copy hover-lift__target">
               <h2>Less intimidation, <br class="lb">more confidence.</h2>
               <div class="prose">
-                <p>At FORGE, transformation goes beyond physique. We help you build strength, confidence, and a healthier life.</p>
-                <p>Our No Pressure Space gives you the freedom to train however you like: Choose an Exclusive Session, join a Collective Session, or work with a Pro Trainer for personalized guidance in a comfortable environment designed to help you enjoy the journey.</p>
+                <!-- Copy is verbatim from Figma, double space included. -->
+                <p class="keep-spaces">At FORGE, transformation goes beyond physique. We help you build  a healthier lifestyle.</p>
+                <p>Our No Pressure Space gives you the freedom to train however you like: Choose an Personal Training,
+                  join a Semi-Private Group Training, or rent a Private Gym for an exclusive session in our space.</p>
                 <p>Your body. Your strength. Your journey.</p>
               </div>
             </div>
@@ -69,7 +80,7 @@
           <div class="who-we-are__media">
             <div class="media">
               <img src="assets/img/who-we-are.jpg" alt="Kettlebells racked on a rolling stand in the FORGE studio"
-                   width="546" height="544" loading="lazy">
+                width="546" height="544" loading="lazy">
             </div>
             <div class="deco deco--shapes" aria-hidden="true">
               <img src="assets/icons/decorative-shapes.svg" alt="" width="54" height="567">
@@ -85,19 +96,21 @@
             </div>
             <div class="media">
               <img src="assets/img/commitment.jpg" alt="Weight plates and equipment stored along the studio wall"
-                   width="546" height="546" loading="lazy">
+                width="546" height="546" loading="lazy">
             </div>
           </div>
-          <div class="commitment__text">
-            <div class="copy">
+          <div class="commitment__text hover-lift-group">
+            <div class="copy hover-lift__target">
               <h2>A 3 month commitment. <br class="lb">A Lifetime change.</h2>
               <div class="prose">
-                <p>At FORGE, we help you achieve goals that matter, like building strength and improving your quality of life. Through consistency, you can shape your body and build a stronger connection with yourself.</p>
-                <p>Our 3-month commitment gives you the time and support to build a routine, stay accountable, and create meaningful progress.</p>
+                <p>At FORGE, we help you achieve goals that matter, like building strength and improving your quality of
+                  life. Through consistency, you can shape your body and build a stronger connection with yourself.</p>
+                <p>Our 3-month commitment gives you the time and support to build a routine, stay accountable, and
+                  create meaningful progress.</p>
               </div>
             </div>
-            <div class="commitment__actions">
-              <a class="btn btn--primary btn--grow" href="#">Learn About Our Services</a>
+            <div class="commitment__actions hover-lift__target">
+              <a class="btn btn--primary" href="#">Learn About Our Services</a>
             </div>
           </div>
         </section>
@@ -226,28 +239,153 @@
           <div class="our-space__content">
             <div class="our-space__text">
               <h2>A space to call yours.</h2>
-              <p class="our-space__body">FORGE&rsquo;s studio is designed to make you feel at home, with an intimate, welcoming space in the heart of the Fraser Valley.</p>
+              <p class="our-space__body">FORGE&rsquo;s studio is designed to make you feel at home, with an intimate,
+                welcoming space in the heart of the Fraser Valley.</p>
             </div>
             <div class="our-space__actions">
-              <a class="btn btn--secondary" href="#">Discover Our Space</a>
+              <a class="btn btn--secondary" href="our-space.html">Discover Our Space</a>
               <a class="btn btn--primary" href="#">Rent The Studio</a>
             </div>
           </div>
         </section>
 
+        <!-- ================= Second horizontal scroll (mobile 1427:9885) =================
+             Only the mobile frame repeats the strip here. -->
+        <div class="marquee mobile-only" aria-hidden="true">
+          <div class="marquee__track" data-marquee-track>
+            <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+            <div class="marquee__group">
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Show up</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Get strong</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Stay consistent</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>No pressure</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+            </div>
+            <div class="marquee__group">
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Show up</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Get strong</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Stay consistent</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>No pressure</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+            </div>
+            <div class="marquee__group">
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Show up</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Get strong</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Stay consistent</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>No pressure</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+            </div>
+            <div class="marquee__group">
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Show up</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Get strong</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Stay consistent</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>No pressure</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+            </div>
+            <div class="marquee__group">
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Show up</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Get strong</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Stay consistent</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>No pressure</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+            </div>
+            <div class="marquee__group">
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Show up</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Get strong</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>Stay consistent</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span>No pressure</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- ================= Meet Gabriela (808:9956) ================= -->
         <section class="meet">
-          <div class="meet__text">
-            <div class="copy">
-              <h2>Meet the person helping forge your future.</h2>
+          <div class="meet__text hover-lift-group">
+            <div class="copy hover-lift__target">
+              <!-- The desktop and mobile frames word this heading differently;
+                   responsive.css shows the one for the current breakpoint. -->
+              <h2>
+                <span class="desktop-only">Meet the person helping forge your future.</span>
+                <span class="mobile-only">Meet the person forging <br>your future.</span>
+              </h2>
               <div class="prose">
-                <p>Gabriela has spent over a decade teaching Yoga, and in 2026 she became a Certified Personal Trainer, combined with years of gym experience and a passion for helping people feel confident in their bodies.</p>
-                <p>Her approach goes beyond building a better physique. She builds confidence, discipline, resilience, and a better quality of life through sustainable results.</p>
+                <p>Gabriela has spent over a decade teaching Yoga and now has became a Certified Personal Trainer,
+                  combined with years of gym experience and a passion for helping people feel confident in their bodies.
+                </p>
+                <p>Her approach goes beyond building a better physique. She builds confidence, discipline, resilience,
+                  and a better quality of life through sustainable results.</p>
                 <p>No miracle diets. No shortcuts. Just balanced training, consistency, and a good dose of humour.</p>
               </div>
             </div>
-            <div class="meet__actions">
-              <a class="btn btn--primary btn--grow" href="#">Get To Know Us</a>
+            <div class="meet__actions hover-lift__target">
+              <a class="btn btn--primary" href="#">Get To Know Us</a>
             </div>
           </div>
           <div class="meet__media">
@@ -255,8 +393,8 @@
               <img src="assets/icons/decorative-element.svg" alt="" width="194" height="186">
             </div>
             <div class="media">
-              <img src="assets/img/gabriela.png" alt="Gabriela, founder and strength trainer at FORGE"
-                   width="419" height="534" loading="lazy">
+              <img src="assets/img/gabriela.png" alt="Gabriela, founder and strength trainer at FORGE" width="419"
+                height="534" loading="lazy">
             </div>
           </div>
         </section>
@@ -266,10 +404,16 @@
           <div class="stories__body">
             <div class="stories__board">
               <div class="stories__board-bg" aria-hidden="true">
-                <img src="assets/img/community-board.jpg" alt="" width="1392" height="926" loading="lazy">
-                <div class="stories__tint stories__tint--lighten"></div>
-                <div class="stories__tint stories__tint--overlay"></div>
-                <div class="stories__tint stories__tint--multiply"></div>
+                <!-- The mobile frame uses its own portrait photo. -->
+                <picture>
+                  <source media="(max-width: 767px)" srcset="assets/img/community-board-mobile.jpg" width="1344"
+                    height="2028">
+                  <img src="assets/img/community-board.jpg" alt="" width="1392" height="926" loading="lazy">
+                </picture>
+                <div class="stories__tint stories__tint--lighten desktop-only"></div>
+                <div class="stories__tint stories__tint--overlay desktop-only"></div>
+                <div class="stories__tint stories__tint--multiply desktop-only"></div>
+                <div class="stories__tint stories__tint--scrim mobile-only"></div>
               </div>
               <div class="stories__board-text">
                 <h2>Community stories</h2>
@@ -278,78 +422,146 @@
             </div>
 
             <!-- Each note carries its own geometry as custom properties. -->
-            <ul class="notes">
-              <li class="note-slot" style="--bottom: 255.61px; --left: -547.81px; --size: 212.385px; --rotate: 2.41deg;">
-                <figure class="note">
+            <ul class="notes desktop-only">
+              <li class="note-slot"
+                style="--bottom: 255.61px; --left: -547.81px; --size: 212.385px; --rotate: 2.41deg;">
+                <figure class="note hover-lift">
                   <div class="note__shadow" aria-hidden="true"><img src="assets/icons/note-shadow.svg" alt=""></div>
                   <div class="note__paper" aria-hidden="true"><img src="assets/icons/note-paper-a.svg" alt=""></div>
-                  <blockquote class="note__quote">Gabi is one-of-one. A true, inspirational powerhouse and master of her craft. It is an honour to learn from someone so devout to their practice. Her expert instruction effortlessly blends precision, passion and playfulness.</blockquote>
+                  <blockquote class="note__quote">Gabi is one-of-one. A true, inspirational powerhouse and master of her
+                    craft. It is an honour to learn from someone so devout to their practice. Her expert instruction
+                    effortlessly blends precision, passion and playfulness.</blockquote>
                   <figcaption class="note__author">David Veltman-Robert</figcaption>
                 </figure>
               </li>
               <li class="note-slot" style="--bottom: 255.61px; --left: 497.19px; --size: 212.385px; --rotate: 2.41deg;">
-                <figure class="note">
+                <figure class="note hover-lift">
                   <div class="note__shadow" aria-hidden="true"><img src="assets/icons/note-shadow.svg" alt=""></div>
                   <div class="note__paper" aria-hidden="true"><img src="assets/icons/note-paper-a.svg" alt=""></div>
-                  <blockquote class="note__quote">Gabi is one-of-one. A true, inspirational powerhouse and master of her craft. It is an honour to learn from someone so devout to their practice. Her expert instruction effortlessly blends precision, passion and playfulness.</blockquote>
+                  <blockquote class="note__quote">Gabi is one-of-one. A true, inspirational powerhouse and master of her
+                    craft. It is an honour to learn from someone so devout to their practice. Her expert instruction
+                    effortlessly blends precision, passion and playfulness.</blockquote>
                   <figcaption class="note__author">David Veltman-Robert</figcaption>
                 </figure>
               </li>
-              <li class="note-slot" style="--bottom: 253.23px; --left: -279.62px; --size: 218.769px; --rotate: -4.31deg;">
-                <figure class="note">
+              <li class="note-slot"
+                style="--bottom: 253.23px; --left: -279.62px; --size: 218.769px; --rotate: -4.31deg;">
+                <figure class="note hover-lift">
                   <div class="note__paper" aria-hidden="true"><img src="assets/icons/note-paper-c.svg" alt=""></div>
-                  <blockquote class="note__quote">Gabi&rsquo;s classes are so powerful in mindfulness starting with an opening mantra which she guides you through and closing with another mantra to set you on a good way for the day.</blockquote>
+                  <blockquote class="note__quote">Gabi&rsquo;s classes are so powerful in mindfulness starting with an
+                    opening mantra which she guides you through and closing with another mantra to set you on a good way
+                    for the day.</blockquote>
                   <figcaption class="note__author">Jennifer Miller</figcaption>
                 </figure>
               </li>
               <li class="note-slot" style="--bottom: 254.31px; --left: -23.16px; --size: 213.685px; --rotate: 2.79deg;">
-                <figure class="note">
+                <figure class="note hover-lift">
                   <div class="note__paper" aria-hidden="true"><img src="assets/icons/note-paper-a.svg" alt=""></div>
-                  <blockquote class="note__quote">Gabi&rsquo;s classes are so powerful in mindfulness starting with an opening mantra which she guides you through and closing with another mantra to set you on a good way for the day.</blockquote>
+                  <blockquote class="note__quote">Gabi&rsquo;s classes are so powerful in mindfulness starting with an
+                    opening mantra which she guides you through and closing with another mantra to set you on a good way
+                    for the day.</blockquote>
                   <figcaption class="note__author">Jennifer Miller</figcaption>
                 </figure>
               </li>
-              <li class="note-slot" style="--bottom: 259.56px; --left: 244.72px; --size: 215.439px; --rotate: -3.31deg;">
-                <figure class="note">
+              <li class="note-slot"
+                style="--bottom: 259.56px; --left: 244.72px; --size: 215.439px; --rotate: -3.31deg;">
+                <figure class="note hover-lift">
                   <div class="note__paper" aria-hidden="true"><img src="assets/icons/note-paper-c.svg" alt=""></div>
-                  <blockquote class="note__quote">Gabi&rsquo;s classes are so powerful in mindfulness starting with an opening mantra which she guides you through and closing with another mantra to set you on a good way for the day.</blockquote>
+                  <blockquote class="note__quote">Gabi&rsquo;s classes are so powerful in mindfulness starting with an
+                    opening mantra which she guides you through and closing with another mantra to set you on a good way
+                    for the day.</blockquote>
                   <figcaption class="note__author">Jennifer Miller</figcaption>
                 </figure>
               </li>
               <li class="note-slot" style="--bottom: 0.48px; --left: -540.74px; --size: 230.52px; --rotate: -8.04deg;">
-                <figure class="note">
+                <figure class="note hover-lift">
                   <div class="note__shadow" aria-hidden="true"><img src="assets/icons/note-shadow.svg" alt=""></div>
                   <div class="note__paper" aria-hidden="true"><img src="assets/icons/note-paper-c.svg" alt=""></div>
-                  <blockquote class="note__quote">Gabi is one-of-one. A true, inspirational powerhouse and master of her craft. It is an honour to learn from someone so devout to their practice. Her expert instruction effortlessly blends precision, passion and playfulness.</blockquote>
+                  <blockquote class="note__quote">Gabi is one-of-one. A true, inspirational powerhouse and master of her
+                    craft. It is an honour to learn from someone so devout to their practice. Her expert instruction
+                    effortlessly blends precision, passion and playfulness.</blockquote>
                   <figcaption class="note__author">David Veltman-Robert</figcaption>
                 </figure>
               </li>
               <li class="note-slot" style="--bottom: 17.06px; --left: -239.53px; --size: 218.937px; --rotate: 4.37deg;">
-                <figure class="note">
+                <figure class="note hover-lift">
                   <div class="note__shadow" aria-hidden="true"><img src="assets/icons/note-shadow.svg" alt=""></div>
                   <div class="note__paper" aria-hidden="true"><img src="assets/icons/note-paper-a.svg" alt=""></div>
-                  <blockquote class="note__quote">Gabi is one-of-one. A true, inspirational powerhouse and master of her craft. It is an honour to learn from someone so devout to their practice. Her expert instruction effortlessly blends precision, passion and playfulness.</blockquote>
+                  <blockquote class="note__quote">Gabi is one-of-one. A true, inspirational powerhouse and master of her
+                    craft. It is an honour to learn from someone so devout to their practice. Her expert instruction
+                    effortlessly blends precision, passion and playfulness.</blockquote>
                   <figcaption class="note__author">David Veltman-Robert</figcaption>
                 </figure>
               </li>
               <li class="note-slot" style="--bottom: 26.23px; --left: 292.38px; --size: 218.769px; --rotate: -4.31deg;">
-                <figure class="note">
+                <figure class="note hover-lift">
                   <div class="note__paper" aria-hidden="true"><img src="assets/icons/note-paper-a.svg" alt=""></div>
-                  <blockquote class="note__quote">Gabi&rsquo;s classes are so powerful in mindfulness starting with an opening mantra which she guides you through and closing with another mantra to set you on a good way for the day.</blockquote>
+                  <blockquote class="note__quote">Gabi&rsquo;s classes are so powerful in mindfulness starting with an
+                    opening mantra which she guides you through and closing with another mantra to set you on a good way
+                    for the day.</blockquote>
                   <figcaption class="note__author">Jennifer Miller</figcaption>
                 </figure>
               </li>
               <li class="note-slot" style="--bottom: 25.31px; --left: 549.84px; --size: 213.685px; --rotate: 2.79deg;">
-                <figure class="note">
+                <figure class="note hover-lift">
                   <div class="note__paper" aria-hidden="true"><img src="assets/icons/note-paper-c.svg" alt=""></div>
-                  <blockquote class="note__quote">Gabi&rsquo;s classes are so powerful in mindfulness starting with an opening mantra which she guides you through and closing with another mantra to set you on a good way for the day.</blockquote>
+                  <blockquote class="note__quote">Gabi&rsquo;s classes are so powerful in mindfulness starting with an
+                    opening mantra which she guides you through and closing with another mantra to set you on a good way
+                    for the day.</blockquote>
                   <figcaption class="note__author">Jennifer Miller</figcaption>
                 </figure>
               </li>
               <li class="note-slot" style="--bottom: 20.22px; --left: 34.39px; --size: 208.782px; --rotate: 1.36deg;">
-                <figure class="note">
+                <figure class="note hover-lift">
                   <div class="note__paper" aria-hidden="true"><img src="assets/icons/note-paper-c.svg" alt=""></div>
-                  <blockquote class="note__quote">Gabi&rsquo;s classes are so powerful in mindfulness starting with an opening mantra which she guides you through and closing with another mantra to set you on a good way for the day.</blockquote>
+                  <blockquote class="note__quote">Gabi&rsquo;s classes are so powerful in mindfulness starting with an
+                    opening mantra which she guides you through and closing with another mantra to set you on a good way
+                    for the day.</blockquote>
+                  <figcaption class="note__author">Jennifer Miller</figcaption>
+                </figure>
+              </li>
+            </ul>
+
+            <!-- Mobile frame (1427:9898): four notes stacked down the board's
+                 centre line. --top is the distance from the top of the body. -->
+            <ul class="notes notes--stack mobile-only">
+              <li class="note-slot" style="--top: 237px; --size: 218.769px; --rotate: -4.31deg;">
+                <figure class="note hover-lift">
+                  <div class="note__shadow" aria-hidden="true"><img src="assets/icons/note-shadow-1.svg" alt=""></div>
+                  <div class="note__paper" aria-hidden="true"><img src="assets/icons/note-paper-a.svg" alt=""></div>
+                  <blockquote class="note__quote">Gabi&rsquo;s classes are so powerful in mindfulness starting with an
+                    opening mantra which she guides you through and closing with another mantra to set you on a good way
+                    for the day.</blockquote>
+                  <figcaption class="note__author">Jennifer Miller</figcaption>
+                </figure>
+              </li>
+              <li class="note-slot" style="--top: 455.77px; --size: 215.439px; --rotate: -3.31deg;">
+                <figure class="note hover-lift">
+                  <div class="note__shadow" aria-hidden="true"><img src="assets/icons/note-shadow-1.svg" alt=""></div>
+                  <div class="note__paper" aria-hidden="true"><img src="assets/icons/note-paper-c.svg" alt=""></div>
+                  <blockquote class="note__quote">Gabi&rsquo;s classes are so powerful in mindfulness starting with an
+                    opening mantra which she guides you through and closing with another mantra to set you on a good way
+                    for the day.</blockquote>
+                  <figcaption class="note__author">Jennifer Miller</figcaption>
+                </figure>
+              </li>
+              <li class="note-slot" style="--top: 671.21px; --size: 213.685px; --rotate: 2.79deg;">
+                <figure class="note hover-lift">
+                  <div class="note__shadow" aria-hidden="true"><img src="assets/icons/note-shadow-1.svg" alt=""></div>
+                  <div class="note__paper" aria-hidden="true"><img src="assets/icons/note-paper-a.svg" alt=""></div>
+                  <blockquote class="note__quote">Gabi&rsquo;s classes are so powerful in mindfulness starting with an
+                    opening mantra which she guides you through and closing with another mantra to set you on a good way
+                    for the day.</blockquote>
+                  <figcaption class="note__author">Jennifer Miller</figcaption>
+                </figure>
+              </li>
+              <li class="note-slot" style="--top: 884.89px; --size: 208.782px; --rotate: 1.36deg;">
+                <figure class="note hover-lift">
+                  <div class="note__shadow" aria-hidden="true"><img src="assets/icons/note-shadow-1.svg" alt=""></div>
+                  <div class="note__paper" aria-hidden="true"><img src="assets/icons/note-paper-c.svg" alt=""></div>
+                  <blockquote class="note__quote">Gabi&rsquo;s classes are so powerful in mindfulness starting with an
+                    opening mantra which she guides you through and closing with another mantra to set you on a good way
+                    for the day.</blockquote>
                   <figcaption class="note__author">Jennifer Miller</figcaption>
                 </figure>
               </li>
@@ -385,21 +597,27 @@
           </address>
 
           <ul class="footer__nav">
-            <li><a class="link" href="#">Home</a></li>
-            <li><a class="link" href="#">Who We Are</a></li>
-            <li><a class="link" href="#">Our Space</a></li>
-            <li><a class="link" href="#">Services &amp; Plans</a></li>
-            <li><a class="link" href="#">Contact Us</a></li>
-            <li><a class="link" href="#">FAQ</a></li>
+            <li><a class="link" href="index.html">Home</a></li>
+            <li><a class="link" href="who-we-are.html">Who We Are</a></li>
+            <li><a class="link" href="our-space.html">Our Space</a></li>
+            <li><a class="link" href="services-and-plans.html">Services &amp; Plans</a></li>
+            <li><a class="link" href="contact.html">Contact Us</a></li>
+            <li><a class="link" href="faq.html">FAQ</a></li>
           </ul>
         </div>
 
         <div class="footer__socials">
           <ul class="footer__sns">
             <li>
-              <a href="#">
+              <a href="https://www.instagram.com/forgestrengthstudio" target="_blank" rel="noopener noreferrer">
                 <img src="assets/icons/icon-instagram.svg" alt="" width="40" height="40" loading="lazy">
                 <span class="visually-hidden">Instagram</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" target="_blank" rel="noopener noreferrer">
+                <img src="assets/icons/icon-facebook.svg" alt="" width="40" height="40" loading="lazy">
+                <span class="visually-hidden">Facebook</span>
               </a>
             </li>
           </ul>
@@ -420,6 +638,29 @@
     </footer>
   </div>
 
+  <!-- ================= Mobile menu (Figma navbar-mobile, 1200:13840) =================
+       Opened by the navbar's hamburger below 767px; slides in from the right. -->
+  <dialog class="mobile-menu" id="mobile-menu" aria-label="Menu">
+    <div class="mobile-menu__header">
+      <p class="mobile-menu__wordmark"><a href="index.html" aria-label="Forge Strength Studio, home">Forge</a></p>
+      <button class="mobile-menu__close" type="button" data-dialog-close aria-label="Close menu">
+        <img src="assets/icons/icon-close.svg" alt="" width="24" height="24">
+      </button>
+    </div>
+    <nav class="mobile-menu__nav" aria-label="Primary">
+      <a class="mobile-menu__link" href="index.html" aria-current="page">Home</a>
+      <a class="mobile-menu__link" href="who-we-are.html">Who We Are</a>
+      <a class="mobile-menu__link" href="our-space.html">Our Space</a>
+      <a class="mobile-menu__link" href="services-and-plans.html">Services &amp; Plans</a>
+      <a class="mobile-menu__link" href="contact.html">Contact Us</a>
+    </nav>
+  </dialog>
+
+  <button class="to-top" type="button" data-to-top aria-label="Back to top">
+    <img src="assets/icons/arrow-up.svg" alt="" width="24" height="24">
+  </button>
+
   <script src="js/main.js"></script>
 </body>
+
 </html>

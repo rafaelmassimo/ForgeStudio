@@ -1,16 +1,20 @@
 /* ==========================================================================
    FORGE — responsive behaviour
 
-   Deliberately empty for now.
+   The pages are pixel-exact builds of the Figma desktop frames. Below
+   767px (Rafael's breakpoint) the site switches to the 360px mobile frames
+   instead. There is no tablet frame: sections fill the width fluidly the way
+   the Figma auto-layout does, while fixed-size items (the 264px hero copy,
+   the 204px button stack, the notes…) keep their Figma size, centred.
 
-   The home page is a pixel-exact build of the Figma frame
-   "Desktop - 1440px" (node 808:9909). The previous breakpoints were written
-   against the earlier markup and would distort this one, so they have been
-   removed rather than guessed at: the tablet and mobile Figma frames will
-   drive what goes here, so those sizes are as exact as the desktop one.
-
-   Until then the page renders at its designed width and scrolls
-   horizontally on narrower viewports.
+   What is here so far:
+     - the shared shell, navbar and footer ("mobile-home-sticky-navbar",
+       1427:9840), on every page;
+     - the home page sections (same frame);
+     - the secondary page hero, shared by every secondary page;
+     - the Our Space sections ("mobile-our-space-sticky-navbar", 1486:10685);
+     - the Who We Are sections ("mobile-who-we-are-sticky-navbar", 1486:10271).
+   The other pages keep their desktop sections until their frames are built.
 
    Rules added here land in the `responsive` layer, which is declared last in
    css/tokens.css — so they win over the shell, component and section rules
@@ -18,5 +22,1365 @@
    ========================================================================== */
 
 @layer responsive {
-  /* Add the tablet and mobile rules here once those frames are available. */
+
+  /* --- Breakpoint-only content -------------------------------------------
+     For the few places where the desktop and mobile frames differ in
+     content rather than layout (a heading's wording, the notes on the
+     community board). display: none also takes the hidden copy out of the
+     accessibility tree, so it is never read twice.                       */
+
+  @media (min-width: 768px) {
+    .mobile-only { display: none; }
+  }
+
+  @media (max-width: 767px) {
+    .desktop-only { display: none; }
+  }
+
+  /* --- Navbar between mobile and full desktop -----------------------------
+     The desktop bar needs about 1000px. From 768px up it stays, but the
+     labels, wordmark and padding step down so everything still fits.   */
+
+  @media (min-width: 768px) and (max-width: 1002px) {
+    .navbar {
+      padding-inline: 16px;
+      column-gap: 8px;
+    }
+
+    .navbar .btn--nav,
+    .navbar .btn--compact {
+      font-size: 14px;
+    }
+
+    .navbar .btn--nav { padding: 12px 8px; }
+    .navbar .btn--compact { padding: 12px 16px; }
+    .navbar__group--right { gap: 4px; }
+
+    .navbar__wordmark {
+      font-size: 26px;
+      letter-spacing: 4px;
+    }
+  }
+
+  @media (max-width: 767px) {
+
+    /* --- Tokens: the mobile type styles and the thinner frame ---------- */
+
+    :root {
+      --page-frame-width: 12px;   /* Figma --spacing-xsm                */
+      --h1-size: 48px;            /* Headers/H1 Mobile — Antonio 48/100% */
+      --h1-leading: 1;
+      --h2-size: 32px;            /* Headers/H2 Mobile — Antonio 32/100% */
+      --h3-size: 20px;            /* Headers/H3 Mobile — Poppins 20/28   */
+      --h3-leading: 28px;
+      --button-size: 16px;        /* Button Text 16pts Md — Poppins 16   */
+      --button-leading: normal;
+    }
+
+    /* =================================================================
+       SHELL — the frame is 12px on the top and sides. The footer carries
+       straight on from the content (no bottom frame), and its content
+       sits inside the same 12px.
+       ================================================================= */
+
+    .page__body { padding-bottom: 0; }
+
+    /* --- Top navbar (Figma "top-navbar-mobile") ------------------------
+       54px cream bar: the hamburger on the right, the wordmark centred.
+       The frame strip and top corners come from the shared rule. */
+
+    .navbar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      min-width: 0;
+      padding: 3px 8px;
+    }
+
+    .navbar__group { display: none; }
+
+    .navbar__wordmark {
+      position: absolute;
+      left: 50%;
+      top: calc(50% - 12px);
+      translate: -50% 0;
+      display: block;
+      height: auto;
+      font-size: 24px;
+      line-height: 24px;
+      letter-spacing: 2px;
+      color: var(--navbar-ink-mobile);
+    }
+
+    .navbar__menu-btn { display: block; }
+
+    /* --- Footer (Figma "footer-mobile") --------------------------------
+       One column: contact, Instagram, the two-column link grid, the legal
+       lines, then the wordmark. The desktop wrappers step aside
+       (display: contents) so their children can be reordered. */
+
+    .footer {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      justify-items: start;
+      row-gap: 24px;
+      overflow: hidden;
+      padding: 24px calc(var(--page-frame-width) + 24px) 0;
+    }
+
+    .footer__top,
+    .footer__info,
+    .footer__bottom { display: contents; }
+
+    .footer__contact {
+      order: 1;
+      height: auto;
+    }
+
+    /* Address, phone and email are white in the mobile frame. */
+    .footer__contact .link { color: #fff; }
+
+    .footer__socials {
+      order: 2;
+      flex: none;
+      height: auto;
+      min-width: 0;
+      align-items: flex-start;
+    }
+
+    .footer__sns {
+      height: auto;
+      padding-block: 24px;
+    }
+
+    .footer__nav {
+      order: 3;
+      height: auto;
+      gap: 16px 0;
+    }
+
+    .footer__nav li { width: 130px; }
+
+    /* 123px box, content pinned to the bottom. The three lines are taller
+       than the box allows, so, as in Figma, they run up past its top
+       padding (Privacy Policy sits 12px from the top). */
+    .footer__legal {
+      order: 4;
+      flex: none;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      gap: 16px;
+      width: 100%;
+      height: 123px;
+      padding: 24px 0;
+    }
+
+    .footer__legal p {
+      font-size: 12px;
+      line-height: normal;
+      text-align: left;
+      white-space: normal;
+    }
+
+    /* "forge-big-text": a 265 × 192 box bottom-aligned in the 123px
+       bottom half, so its top 69px are cut off. Positions below are
+       measured from the visible 123px. */
+    .footer__wordmark {
+      order: 5;
+      width: 265px;
+      height: 123px;
+      margin-top: -24px;          /* no gap after the legal box */
+    }
+
+    .footer__wordmark p {
+      top: 74.5px;                /* Figma 143.5 − 69 */
+      height: 85px;
+      width: 248px;
+      font-size: 96px;
+    }
+
+    .footer__dot {
+      left: 254px;
+      width: 11px;
+      height: 11px;
+    }
+
+    /* --- Secondary page hero (component 1041:8897) ---------------------
+       The page frames size every instance to 224px (the component itself
+       is 288px; Rafael chose the page frames' height), with 48/24 padding.
+       The title takes the mobile H1 from the tokens above. */
+
+    .page-hero {
+      height: 224px;
+      padding: 48px 24px;
+    }
+
+    /* =================================================================
+       HOME — "mobile-home-sticky-navbar" (1427:9840)
+       ================================================================= */
+
+    /* --- Hero (1427:9844): the photo plus a 20% black layer instead of
+       the desktop multiply blend. */
+
+    .hero {
+      height: 631px;
+      min-height: 300px;
+      padding: 64px 16px;
+    }
+
+    .hero__bg { mix-blend-mode: normal; }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: var(--hero-scrim-mobile);
+      pointer-events: none;
+    }
+
+    .hero__content {
+      z-index: 1;
+      flex: none;
+      width: 264px;
+    }
+
+    /* The desktop line break after "body" would split the mobile heading
+       differently from Figma, which just wraps it. */
+    .hero h1 br { display: none; }
+
+    .hero__lede {
+      font-size: var(--body-size);
+      line-height: var(--body-leading);
+    }
+
+    .hero__actions {
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* --- Who we are (1427:9852 text, 1427:9857 photo) ----------------- */
+
+    .who-we-are {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      padding: 0;
+    }
+
+    .who-we-are__text {
+      flex: none;
+      width: 100%;
+      min-width: 0;
+      max-width: none;
+      gap: 36px;
+      padding: 56px 24px;
+    }
+
+    /* Figma keeps a 640px floor on this band, so on a phone it is wider
+       than the screen and centred: the photo is cropped on both sides. */
+    .who-we-are__media {
+      flex: none;
+      width: 100%;
+      min-width: 640px;
+      max-width: none;
+      height: 300px;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .who-we-are__media .media {
+      height: 544px;
+      min-width: 546px;
+      border-radius: 0;
+    }
+
+    /* Outside the frame in Figma too, so it never shows. */
+    .deco--shapes {
+      right: -453px;
+      top: calc(50% - 29.5px);
+    }
+
+    /* --- Commitment (1427:9864): text first, then the photo band ------- */
+
+    .commitment {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      padding: 0;
+    }
+
+    .commitment__text {
+      order: -1;
+      flex: none;
+      width: 100%;
+      min-width: 0;
+      max-width: none;
+      gap: 36px;
+      padding: 56px 24px;
+    }
+
+    /* This section's body copy is the 16pt style on mobile. */
+    .commitment .prose {
+      --body-size: var(--body-16-size);
+      --body-leading: var(--body-16-leading);
+    }
+
+    .commitment__actions {
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      justify-content: flex-start;
+      padding-inline: 24px;
+    }
+
+    /* The 546px photo is bottom-aligned in a 300px band. The ornament sits
+       beneath it in Figma's layer order, so it is covered here as well. */
+    .commitment__media {
+      flex: none;
+      width: 100%;
+      min-width: 0;
+      max-width: none;
+      height: 300px;
+      padding: 0;
+      align-items: flex-end;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .commitment__media .media {
+      height: 546px;
+      border-radius: 0;
+    }
+
+    .deco--ornament { top: calc(50% + 86.5px); }
+
+    /* --- Our space (1427:9877): buttons stack, Rent The Studio on top -- */
+
+    .our-space {
+      height: 464px;
+      padding: 88px 0 64px;
+    }
+
+    .our-space__body {
+      font-size: var(--body-16-size);
+      line-height: var(--body-16-leading);
+      width: 100%;
+      max-width: 260px;
+    }
+
+    .our-space__actions {
+      flex-direction: column-reverse;
+      gap: 12px;
+      width: 204px;
+    }
+
+    .our-space__actions .btn { width: 100%; }
+
+    /* --- Meet Gabriela (1427:9886): photo first, then the copy ---------
+       The 532px photo is centred in a 522px band, so it overhangs 5px
+       above and below; the band sits over its neighbours to show that. */
+
+    .meet {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      padding: 0;
+      isolation: isolate;
+    }
+
+    .meet__media {
+      order: -1;
+      z-index: 3;
+      width: 100%;
+      height: 522px;
+      padding: 0;
+    }
+
+    .meet__media .media {
+      flex: 1 0 0;
+      width: auto;
+      min-width: 1px;
+      height: 532px;
+      border-radius: 0;
+    }
+
+    /* Figma parks this ornament ~765px outside the frame. */
+    .deco--element { display: none; }
+
+    .meet__text {
+      position: relative;
+      z-index: 1;
+      flex: none;
+      width: 100%;
+      min-width: 0;
+      max-width: none;
+      gap: 36px;
+      padding: 48px 0;
+      background-color: var(--primary-colour);
+    }
+
+    .meet__text .copy,
+    .meet__actions { padding-inline: 24px; }
+
+    /* --- Community stories (1427:9898) ---------------------------------
+       A 1221px band: the 1055px photo board, the four stacked notes, and
+       the button centred 535.5px below the band's middle. */
+
+    .stories { position: relative; }
+
+    .stories__body { height: 1221px; }
+
+    .stories__board {
+      height: 1055px;
+      padding: 48px 64px;
+    }
+
+    /* The mobile title keeps the 56px desktop H2 size. */
+    .stories__board-text h2 {
+      font-size: 56px;
+      width: 272px;
+    }
+
+    .stories__actions {
+      position: absolute;
+      left: 50%;
+      top: calc(50% + 535.5px);
+      translate: -50% -50%;
+      width: auto;
+      padding: 0;
+    }
+
+    .stories__actions .btn { width: auto; }
+
+    /* =================================================================
+       OUR SPACE — "mobile-our-space-sticky-navbar" (1486:10685)
+       ================================================================= */
+
+    /* --- Calm / focus / consistency (Figma "Frame 259", 1486:10703) ----
+       One column, 48px apart and 48px top and bottom. The right-hand
+       stack steps aside so "Calm by design" can move above the photo
+       block. */
+
+    .space-band--breathe {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: stretch;
+      gap: 48px;
+      padding-block: 48px;
+    }
+
+    .space-band--breathe .space-band__col--stack { display: contents; }
+
+    .space-block--ruled { order: -1; }
+
+    .space-block {
+      flex: none;
+      min-height: 0;
+      padding: 0 24px;
+      border: 0;
+      overflow: visible;
+    }
+
+    .space-block__text {
+      gap: 24px;
+      width: 100%;
+    }
+
+    /* Fixed-height heading boxes, as drawn. */
+    .space-block__text h2 { min-height: 0; }
+    .space-block--ruled .space-block__text h2 { height: 40px; }
+    .space-block--consistency .space-block__text h2 { height: 41px; }
+
+    /* "focus-on-you" (1486:10707): the photo straight on the page (no
+       white under it), the 60% black, then a fade to 80% at the foot. */
+    .space-band__col--breathe {
+      flex: none;
+      height: auto;
+      min-width: 0;
+      align-items: flex-start;
+      padding: 48px 24px;
+    }
+
+    .space-band__layers { background-color: transparent; }
+
+    .space-band__scrim { background-image: var(--breathe-fade-mobile); }
+
+    .space-band--breathe .space-band__text {
+      gap: 24px;
+      width: 100%;
+      max-width: none;
+    }
+
+    /* --- Essentials done right (1486:10713): the 240px photo, then the
+       copy on cream. */
+
+    .space-band--equipment {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: stretch;
+    }
+
+    .space-band--equipment .space-band__col {
+      flex: none;
+      height: auto;
+      min-width: 0;
+      align-items: flex-start;
+      padding: 48px 24px;
+      background-color: var(--primary-colour);
+    }
+
+    .space-band--equipment .space-band__col--photo {
+      order: -1;
+      height: 240px;
+      padding: 0;
+    }
+
+    .space-band--equipment .space-band__text {
+      gap: 12px;
+      width: 100%;
+      max-width: none;
+    }
+
+    .space-band--equipment .space-band__text p {
+      font-size: var(--body-16-size);
+      line-height: var(--body-16-leading);
+    }
+
+    /* --- Private gym space rentals (1486:10724) ------------------------
+       The home band's mobile layout, but the height hugs the content, the
+       scrim is 60%, the copy is 252px wide and the one button keeps its
+       own width. */
+
+    .our-space--rental { height: auto; }
+
+    .our-space--rental .our-space__scrim { background-color: var(--rental-scrim-mobile); }
+
+    .our-space--rental .our-space__body {
+      color: var(--on-photo-ink);
+      max-width: 252px;
+    }
+
+    .our-space--rental .our-space__actions { width: 100%; }
+
+    .our-space--rental .our-space__actions .btn { width: auto; }
+
+    /* =================================================================
+       WHO WE ARE — "mobile-who-we-are-sticky-navbar" (1486:10271)
+       ================================================================= */
+
+    /* All body copy on this frame is the 16pt style. */
+    .founder,
+    .timeline,
+    .chapter,
+    .community {
+      --body-size: var(--body-16-size);
+      --body-leading: var(--body-16-leading);
+      font-size: var(--body-16-size);
+      line-height: var(--body-16-leading);
+    }
+
+    /* --- Founder bio (1486:10277): heading, photo, then the copy, 24px
+       apart. The copy is 300px inside a 288px column, centred, so it
+       overhangs 6px each side as in Figma. */
+
+    .founder {
+      flex-direction: column;
+      gap: 24px;
+      padding: 48px 24px;
+    }
+
+    .founder__text { display: contents; }
+
+    .founder__text h2 {
+      order: -1;
+      text-align: center;
+    }
+
+    .founder__picture {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1111 / 1416;
+      overflow: hidden;
+      border-radius: 9.48px;
+    }
+
+    .founder__prose {
+      flex: none;
+      width: 300px;
+      text-align: center;
+    }
+
+    /* --- Timeline (1486:10282) -----------------------------------------
+       Heading, three photo-over-card rows, and the closing heading, 72px
+       apart, with one curved line behind them all. The desktop rule
+       segments, nodes, branches and ornaments are not in this frame. */
+
+    .timeline {
+      gap: 72px;
+      align-items: stretch;
+      padding: 0 24px 72px;
+      overflow: clip;              /* the line's foot, as the next band covers it in Figma */
+      background-color: var(--primary-colour);
+    }
+
+    .timeline__rule,
+    .timeline__node,
+    .timeline__branch,
+    .timeline__deco,
+    .timeline__divider { display: none; }
+
+    /* Anchored to the section's foot, where Figma has it 2.44px past the
+       bottom, so the straight end always meets the closing heading. */
+    .timeline__line {
+      position: absolute;
+      left: calc(50% + 0.72px);
+      bottom: -2.44px;
+      translate: -50% 0;
+      width: 313.458px;
+      height: 1772.04px;
+      max-width: none;
+      pointer-events: none;
+    }
+
+    /* Opaque, and above the line, which runs up behind it. The section's
+       48px top padding lives here so the line can't show above the words
+       on wider phones, where the rows are shorter. */
+    .timeline__header {
+      z-index: 2;
+      gap: 0;
+      padding: 72px 0 12px;
+      background-color: var(--primary-colour);
+    }
+
+    .timeline__header h2 {
+      width: 100%;
+      max-width: none;
+    }
+
+    .timeline__header .lb { display: none; }
+
+    /* "Forging the next chapter": a 146px cream box whose 320px heading
+       overhangs it on both sides; the box hides the line behind the words. */
+    .timeline__header--end {
+      align-self: center;
+      width: 146px;
+      padding: 12px 0;
+    }
+
+    .timeline__header--end h2 {
+      flex: none;
+      width: 320px;
+    }
+
+    .timeline__step {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      height: auto;
+      padding: 0;
+    }
+
+    /* The card overlaps the photo's last 48px. */
+    .timeline__photo {
+      order: -1;
+      flex: none;
+      width: 100%;
+      min-width: 0;
+      max-width: none;
+      height: 304px;
+      margin-bottom: -48px;
+      border-radius: 20px;
+    }
+
+    /* Row 1 (1486:10290): the wide shot, placed where Figma's crop puts
+       it — 319.2% of the frame wide, 37.66% left of it, 22px up. */
+    .timeline__photo--walk img {
+      inset: -22px auto auto -37.66%;
+      width: 319.2%;
+      height: auto;
+      object-fit: fill;
+    }
+
+    /* Row 2 (1486:10295): full width like the other rows (Rafael's call;
+       Figma fixes it at 288px). The square photo keeps its Figma crop. */
+    .timeline__photo--offset { border-radius: var(--corner-radius-primary); }
+
+    .timeline__photo--offset img {
+      inset: -0.09% auto auto -23.24%;
+      width: 123.3%;
+      height: auto;
+      aspect-ratio: 1;
+    }
+
+    /* Row 3 (1486:10299): a square photo from 10px left of the frame to
+       9px past its right edge, pinned to the top (307px at 360). Its own
+       24px corner shows at the top left. It covers the frame at any
+       width, so nothing shows behind it. */
+    .timeline__photo--bench { border-radius: 24px 20px 20px; }
+
+    .timeline__photo--bench img {
+      inset: 0 auto auto -10px;
+      width: calc(100% + 19px);
+      height: auto;
+      aspect-ratio: 1;
+    }
+
+    .timeline__card {
+      z-index: 3;
+      flex: none;
+      gap: 4px;
+      width: 100%;
+      min-width: 0;
+      max-width: none;
+      padding: 24px;
+      border-radius: var(--corner-radius-primary);
+    }
+
+    /* --- Next chapter rows (1486:10309, 1486:10313): the 336px photo,
+       then a 336px band with the copy centred in it. */
+
+    .chapter {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      background-color: var(--slightly-darker-colour);
+    }
+
+    .chapter__lines { display: none; }
+
+    .chapter__media {
+      order: -1;
+      flex: none;
+      width: 336px;
+      height: 336px;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .chapter__media--sunrise img {
+      inset: -16.44% auto auto -9.75%;
+      width: 175.03%;
+      height: 116.44%;
+    }
+
+    .chapter__text {
+      flex: none;
+      width: 100%;
+      height: 336px;
+      min-width: 0;
+      padding: 48px 24px;
+    }
+
+    .chapter__copy {
+      gap: var(--body-16-leading);
+      width: 100%;
+      max-width: none;
+    }
+
+    /* Figma's 310px box ends on an empty line, which lifts the centred
+       copy by half a line. */
+    .chapter__copy--quoted {
+      flex: none;
+      justify-content: center;
+      height: 310px;
+      padding-bottom: var(--body-16-leading);
+    }
+
+    /* --- Community stories (1486:10318) --------------------------------- */
+
+    .closing__lines { display: none; }
+
+    .community {
+      gap: 32px;
+      padding: 48px 24px;
+    }
+
+    .community__title {
+      height: auto;
+      width: 273px;
+    }
+
+    .community__lede {
+      height: auto;
+      width: 308px;
+      padding: 0;
+    }
+
+    .community__lede p {
+      font-family: var(--body-family);
+      font-weight: var(--body-weight);
+      font-size: var(--body-16-size);
+      line-height: var(--body-16-leading);
+      text-transform: none;
+      white-space: pre-wrap;       /* Figma's double spaces */
+      color: var(--primary-shapes-fill);
+    }
+
+    /* One 211px card per page between 37px chevrons. */
+    .carousel { --carousel-per-page: 1; }
+
+    .carousel__row { width: 100%; }
+
+    .carousel__arrow,
+    .carousel__arrow img {
+      width: 37px;
+      height: 37px;
+    }
+
+    .carousel__arrow img {
+      rotate: -90deg;
+      scale: 1 -1;
+    }
+
+    .carousel__arrow--prev img { rotate: 90deg; }
+
+    /* Exactly one card wide, so the next card never shows on wider
+       phones; the arrows keep to the row's ends. */
+    .carousel__viewport {
+      flex: none;
+      width: 211px;
+      height: auto;
+      touch-action: pan-y;        /* horizontal drags go to the swipe handler */
+    }
+
+    .carousel__track {
+      --carousel-page-width: 211px;
+      gap: 24px;
+    }
+
+    .story-card {
+      gap: 4px;
+      width: 211px;
+      height: auto;
+      border-radius: var(--corner-radius-primary);
+    }
+
+    .story-card blockquote { color: var(--primary-colour); }
+
+    /* No dots on mobile (Rafael's call): swipe or the chevrons. */
+    .carousel__dots { display: none; }
+
+    /* --- Photos and call to action (1486:10334, 1486:10338) ------------- */
+
+    .closing-cta {
+      gap: 0;
+      padding: 0;
+      width: 100%;
+    }
+
+    .closing-cta__photos {
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .closing-cta__photo {
+      flex: none;
+      width: 336px;
+      height: 189.1px;
+    }
+
+    .closing-cta__action {
+      gap: 24px;
+      width: 100%;
+      padding: 72px 24px;
+    }
+
+    .closing-cta__title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    /* =================================================================
+       SERVICES & PLANS — "mobile-services-and-plans-sticky-navbar"
+       (1486:10914). The single-use band (1486:10964, hidden in Figma) and
+       the hotel band (1486:10988, annotated the same way) are both live
+       here, matching the desktop build (Rafael's call both times).
+       ================================================================= */
+
+    /* --- Intro (1486:10918 hero + 1486:10920 copy) -----------------------
+       Figma combines the hero photo and this copy in one rounded card on
+       a slightly-darker background; .page-hero stays the shared component
+       every secondary page uses, and .sp-intro picks up the darker tone,
+       drops the desktop panel, and adds the CTA and the two circles that
+       bleed into the perks section below. */
+
+    .sp-intro {
+      position: relative;
+      flex-direction: column;
+      gap: 0;
+      align-items: stretch;
+      padding: 36px 0;
+      background-color: var(--slightly-darker-colour);
+      overflow: clip;
+    }
+
+    /* Title + paragraph 20px apart, the pair 24px above the button. */
+    .sp-intro__mobile {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      align-items: flex-start;
+      padding-inline: 24px;
+      width: 100%;
+    }
+
+    .sp-intro__text {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+    }
+
+    /* Headers/H2 Mobile (Antonio 32/100%) in rust. */
+    .sp-intro__text h2 {
+      color: var(--primary-shapes-fill);
+      word-break: break-word;
+    }
+
+    .sp-intro__text p {
+      color: var(--black);
+      font-size: var(--body-16-size);
+      line-height: var(--body-16-leading);
+    }
+
+    /* The button hugs its label (127px) instead of the 164px minimum. */
+    .sp-intro__mobile .btn { min-width: 0; }
+
+    /* One outlined, textured circle (1486:10930): flush right, its disc
+       running 5px past the section's bottom edge, where the perks section
+       covers it in Figma. overflow: clip on .sp-intro makes the same flat
+       cut. Figma's second copy (1486:10927) sits entirely behind the
+       perks section, so it never shows. The SVG is 121.25×113.25 with
+       a 0.75px stroke margin, offset to match Figma's inset. */
+    .sp-intro__circle {
+      position: absolute;
+      right: -0.5px;
+      bottom: -5.5px;
+      width: 121.25px;
+      height: 113.25px;
+      max-width: none;
+      pointer-events: none;
+    }
+
+    /* --- Perks (1486:10933) -----------------------------------------------
+       Stacked full-width cards instead of a row, with a vertical line
+       decoration threaded behind/between them. */
+
+    /* overflow: clip cuts the vertical lines at the section's bottom edge;
+       in Figma they run 11px further, under the marquee that covers them. */
+    .sp-perks {
+      position: relative;
+      gap: 48px;
+      padding: 48px 12px;
+      background-color: var(--primary-colour);
+      overflow: clip;
+    }
+
+    .sp-perks__cards {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 24px;
+      padding-inline: 0;
+    }
+
+    /* Desktop's roomy 48px vertical padding is sized for the 3-column row;
+       the mobile card (Figma "Cards", Black Card/Mobile) is much tighter:
+       24px all round, a 4px title-to-body gap, and the 16pt body style. */
+    .perk-card {
+      padding: 24px;
+      gap: 4px;
+    }
+
+    /* 4 of the 5 card instances on this frame (both perk and member cards)
+       use --primary-colour for their body text, not desktop's --card-ink;
+       "Build Community" is the one stray instance using --card-ink, so
+       this normalizes to the value the rest of the component agrees on. */
+    .perk-card p {
+      color: var(--primary-colour);
+      font-size: var(--body-16-size);
+      line-height: var(--body-16-leading);
+    }
+
+    /* Positioned elements paint above static ones regardless of DOM order,
+       so the absolutely-positioned lines (first child, so they sit behind
+       the cards visually) were rendering on top of the opaque cards
+       instead of behind them. Making the cards themselves positioned
+       restores DOM order (line first, cards after) for paint order too. */
+    .perk-card {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Figma positions this relative to perks-cards-mobile (y:-42, within a
+       section where that block itself starts at y:160) — 160-42=118px
+       from .sp-perks's own top, not vertically centered on the card
+       stack as the first draft approximated (off by tens of px once the
+       card sizing was corrected). right:55 is relative to .sp-perks
+       (336px, its nearest positioned ancestor) and already matches
+       Figma's 43px gap to the cards' own right edge — verified against
+       the live layout, not just recomputed. */
+    .sp-perks__lines {
+      position: absolute;
+      right: 55px;
+      top: 118px;
+      width: 44px;
+      height: 537px;
+      pointer-events: none;
+    }
+
+    /* --- Membership exclusives (1486:10946) --------------------------------
+       Two full-width photo+card pairs stacked, each card overlapping its
+       photo's bottom edge; one shared circle decoration behind both,
+       instead of desktop's per-member small/large pair. */
+
+    .sp-members {
+      position: relative;
+      padding: 48px 0;
+    }
+
+    /* Title to first photo is the section's 48px gap, not desktop's 72. */
+    .sp-members__inner { gap: 48px; }
+
+    /* Figma: 68px past the section's left edge, 528px from its top. The
+       321×307 SVG carries a 1px stroke margin around the 319×305 group. */
+    .sp-members__circle {
+      position: absolute;
+      left: -69px;
+      top: 527px;
+      width: 321px;
+      height: 307px;
+      max-width: none;
+      pointer-events: none;
+    }
+
+    .sp-members__grid {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 72px 0;
+      padding-inline: 12px;
+    }
+
+    /* Reserves the absolutely-placed button: 8px gap + 48px pill. */
+    .member {
+      width: 100%;
+      padding-bottom: 56px;
+      padding-top: 0;
+    }
+
+    .member .media {
+      width: 100%;
+      height: 302px;
+      margin-bottom: -72px;
+    }
+
+    /* The card overlaps its photo's bottom edge; an inset on the side
+       away from the frame edge staggers the two cards, as in Figma. */
+    /* Figma ("collective/personal-training-info-mobile", 312px) insets the
+       card+button 72px from one edge and 8px from the other — the card's
+       own box is 232px wide, not full-bleed-with-internal-padding as
+       first built (that made both the card AND the button-fix below the
+       wrong width). */
+    .member-card {
+      position: relative;
+      inset: auto;
+      overflow: visible;
+      width: calc(100% - 80px);
+      padding: 24px;
+      gap: 4px;
+    }
+
+    .member-card p {
+      color: var(--primary-colour);
+      font-size: var(--body-16-size);
+      line-height: var(--body-16-leading);
+    }
+
+    .member--group .member-card { margin-left: 72px; margin-right: 8px; }
+    .member--training .member-card { margin-left: 8px; margin-right: 72px; }
+
+    /* Figma sits the button as its own sibling below the rust card, not
+       inside it — an 8px gap on the cream background, not a
+       card-coloured pill glued to the bottom, and the same 232px width
+       and inset as the card above it. Desktop keeps the button inside
+       the card (unchanged), so this is done with position: absolute
+       rather than a DOM move: it escapes the card's own box
+       (overflow: visible above) instead of stretching it, and .member's
+       own padding-bottom (above) reserves the room so it doesn't
+       overlap the next element. The card is its containing block, so
+       left: 0 / width: 100% already give the card's own 232px and inset. */
+    .member-card__actions {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      margin-top: 8px;
+      align-items: stretch;
+      padding-top: 0;
+    }
+
+    .member-card__actions .btn { width: 100%; min-width: 0; }
+
+    /* --- Photo + copy bands (1486:10964 single-use, 1486:10976 rentals) ---
+       Both stack photo-then-copy on mobile; single-use's desktop order is
+       copy-then-photo, so .sp-band__col--copy is reordered after the
+       photo regardless of its position in the markup. */
+
+    /* align-items: stretch overrides desktop's center — desktop's columns
+       are explicitly 600px+ wide so center never mattered there, but at
+       mobile the photo column has no in-flow content (its img is
+       position: absolute) so "size to content, then center" collapses it
+       to 0 width. stretch makes both columns fill the full width instead,
+       which is what the Figma frame actually shows. */
+    .sp-band {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    /* Desktop's flex:1 0 0 gives every column a 0 flex-basis, which in this
+       new column-direction layout means main-axis (height) sizing — so an
+       explicit height alone is ignored (flex-basis wins over it) and the
+       photo column, with no in-flow content of its own, collapses to 0.
+       flex: none lets height/auto size each column instead. */
+    .sp-band__col {
+      flex: none;
+      height: auto;
+      width: 100%;
+      min-width: 0;
+    }
+
+    .sp-band__col:not(.sp-band__col--copy) { order: 1; height: 260px; }
+
+    .sp-band__col--copy {
+      order: 2;
+      align-items: flex-start;
+      padding: 48px 24px;
+    }
+
+    .sp-band__text {
+      width: 100%;
+      max-width: none;
+      gap: 24px;
+    }
+
+    .sp-band__lead {
+      font-family: var(--font-ui);
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 28px;
+      text-transform: capitalize;
+    }
+
+    .sp-band__prose {
+      font-size: var(--body-16-size);
+      line-height: var(--body-16-leading);
+    }
+
+    /* Figma's mobile CTAs hug their label (137px "Learn More", 127px
+       "Book Now") instead of the 164px minimum. */
+    .sp-band .btn,
+    .sp-hotel .btn { min-width: 0; }
+
+    /* --- Hotel guest (1408:8946) --------------------------------------
+       Desktop lays the copy over a full-bleed photo (cream text on the
+       image); mobile stacks a plain 398px photo above a separate cream
+       panel with rust/black text, like the bands above. Scoped to
+       .sp-hotel so the other bands' .sp-band__photo is untouched. */
+
+    .sp-hotel {
+      flex-direction: column;
+      align-items: stretch;
+      padding: 0;
+    }
+
+    /* Figma's own mobile crop (hotel-guest-image-mobile) scales the photo
+       to ~178% and pins it to the left edge, showing the "HOTEL" sign
+       rather than the plain default center-crop. */
+    .sp-hotel .sp-band__photo {
+      position: static;
+      width: 100%;
+      height: 398px;
+      object-position: left center;
+    }
+
+    .sp-hotel__content {
+      position: relative;
+      width: 100%;
+      gap: 24px;
+      align-items: flex-start;
+      padding: 48px 24px;
+      background-color: var(--primary-colour);
+      overflow: clip;
+    }
+
+    /* Anchored to the panel's bottom (Figma runs it 105px past it), since
+       the real hotel copy is shorter than the frame's placeholder text:
+       a top offset would push the curves out of the clipped panel. */
+    .sp-hotel__wavy {
+      position: absolute;
+      left: -123px;
+      bottom: -106px;
+      width: 582px;
+      height: 425px;
+      max-width: none;
+      pointer-events: none;
+    }
+
+    .sp-hotel .sp-title {
+      position: relative;
+      color: var(--secondary-colour);
+      text-align: left;
+    }
+
+    .sp-hotel__text {
+      position: relative;
+      justify-content: flex-start;
+      padding-inline: 0;
+    }
+
+    .sp-hotel__text p {
+      color: var(--black);
+      text-align: left;
+      font-size: var(--body-16-size);
+      line-height: var(--body-16-leading);
+    }
+
+    .sp-hotel .btn { position: relative; }
+
+    /* ==================================================================
+       MODALS — mobile splits each sheet into two pages: the story (page
+       1, Figma "…Modal - Mobile - Page1 - …") and the pricing (page 2,
+       "…Page2 - …"). Both pages already exist as plan-modal__copy and
+       plan-modal__pricing in the shared markup; .is-page-2 on the dialog
+       (toggled by initModalPaging in js/main.js) swaps which one shows.
+       The CTA button keeps Rafael's desktop label on both pages, as he
+       asked, and sits with the dots below whichever page is showing. ==== */
+
+    .plan-modal {
+      width: min(307px, calc(100% - 24px));
+      padding: 8px 0 18px;
+      transition-duration: 0.5s;
+    }
+
+    .plan-modal__info { gap: 18px; }
+
+    .plan-modal__top {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .plan-modal__top .btn--nav {
+      order: -1;
+      align-self: flex-end;
+      min-width: 0;
+      padding: 12px 0;
+    }
+
+    .plan-modal__top .btn__label { display: none; }
+
+    .plan-modal__top h2 { padding-inline: 20px; }
+
+    .plan-modal__copy,
+    .plan-modal__pricing { padding-inline: 20px; }
+
+    .plan-modal__copy > * + *,
+    .plan-modal__pricing > * + * { margin-block-start: var(--copy-gap, var(--body-leading)); }
+
+    /* Page 1 shows by default; .is-page-2 swaps to page 2. */
+    .plan-modal__pricing { display: none; gap: 15px; }
+    .plan-modal.is-page-2 .plan-modal__pricing { display: flex; }
+    .plan-modal.is-page-2 .plan-modal__copy { display: none; }
+
+    .plan-modal__pricing h3 { padding-inline: 0; text-align: left; }
+
+    .modal-page-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-block-start: 18px;
+      padding: 0 0 4px;
+      border: 0;
+      border-bottom: 0.8px solid #474747;
+      background: none;
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 20px;
+      color: #474747;
+      cursor: pointer;
+    }
+
+    .modal-page-link--back .modal-page-link__icon { rotate: 180deg; }
+
+    .price-cards { gap: 15px; }
+
+    /* Horizontal pill instead of the desktop 200×210 vertical card. Every
+       card wraps a single .price-card__body now (the h4 title lives inside
+       it, moved there in the markup — see the comment on price-card__body
+       below); the accent cards' body is still the plain paragraph they've
+       always had, so this column stack is what puts their title above it. */
+    .price-card {
+      flex-direction: column;
+      width: 100%;
+      height: auto;
+      padding: 12px;
+      gap: 8px;
+    }
+
+    /* The regular cards' h4 title moved inside this div in the markup (it
+       sits alongside the optional subtitle <p> and the .price <p>) so a
+       single two-column grid can place title+subtitle on the left and the
+       price on the right without them ever needing to be siblings outside
+       it. Desktop is untouched: there .price-card__body only ever held the
+       subtitle/price, unaffected by an h4 now living inside it too. */
+    .price-card__body {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      column-gap: 10px;
+      width: 100%;
+      min-width: 0;
+    }
+
+    .price-card__body > h4,
+    .price-card__body > p:not(.price) { grid-column: 1; }
+
+    .price-card__body > p.price { grid-column: 2; }
+
+    .sp-card-title {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    .sp-card-title--pad { padding-block-end: 0; }
+
+    .price { text-align: right; }
+    .price__cur  { font-size: 18px; font-weight: 700; }
+    .price__sp   { font-size: 20px; font-weight: 700; }
+    .price__num  { font-size: 24px; font-weight: 700; }
+    .price__unit { font-size: 14px; font-weight: 700; }
+
+    .btn--block { padding-inline: 20px; margin-block-start: 18px; }
+
+    /* Two small dots, right after the CTA, active one keyed off the same
+       .is-page-2 class the paging links toggle. */
+    .modal-dots {
+      display: flex;
+      gap: 8px;
+      align-self: center;
+      margin-block-start: 20px;
+    }
+
+    .modal-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #a5a5a5;
+      opacity: 0.8;
+    }
+
+    .plan-modal:not(.is-page-2) .modal-dots span:first-child,
+    .plan-modal.is-page-2 .modal-dots span:last-child {
+      background-color: var(--primary-shapes-fill);
+    }
+  }
 }

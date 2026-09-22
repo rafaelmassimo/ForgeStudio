@@ -1,0 +1,567 @@
+/* ==========================================================================
+   FORGE Strength Studio — Services & Plans
+   Transcribed from Figma "services-and-plans" (file gA1vHmz70RHrFZyswUQFT1,
+   node 1040:14544) and the five overlays its buttons open on the
+   "Responsive Prototype" page (1174:17630, 17648, 17666, 17684, 17702).
+   Shell, navbar, page hero, marquee, buttons and footer come from
+   styles.css.
+
+   Agreed departures from the frame (standing rulings):
+   - The frame is 1447px wide, so its sections are 1399px; here they fill
+     .body-content like every other page. Nothing is positioned from the
+     left edge, so the layout is unchanged.
+   - Single-use activations (1539:12025, hidden) carries the note "Comment
+     this section out in HTML", so it and its modal are commented out; the
+     styles stay. Hotel Guest (1408:8946) has the same note but is live.
+   - The modals drop Figma's photo panel; see MODALS below.
+   ========================================================================== */
+
+@layer sections {
+
+  /* The decorative lines are placed against the whole content surface. */
+  .sp-body { position: relative; }
+
+  /* H2 titles in this frame are rust and centred unless noted. */
+  .sp-title {
+    color: var(--secondary-colour);
+    text-align: center;
+    width: 100%;
+    word-break: break-word;
+  }
+
+  /* Card headings use Headers/H4 (Poppins SemiBold 24 / 28). */
+  .sp-card-title {
+    font-family: var(--font-ui);
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 28px;
+    text-transform: capitalize;
+    width: 100%;
+  }
+
+  /* --- Intro (1040:14549) --------------------------------------------------- */
+
+  .sp-intro {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    align-items: center;
+    justify-content: center;
+    padding: 96px 96px 48px;
+    width: 100%;
+  }
+
+  .sp-intro__info {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 48px;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+    padding-inline: 80px;
+    width: 100%;
+  }
+
+  .sp-intro__panel {
+    flex: 1 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    min-width: 1px;
+    overflow: hidden;
+    padding: 24px;
+    border-radius: var(--corner-radius-primary);
+    background-color: var(--primary-colour);
+  }
+
+  /* Body Text 24pts — Sarabun Medium 24 / normal. */
+  .sp-intro__copy {
+    max-width: 1200px;
+    width: 100%;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: normal;
+    text-align: center;
+    color: var(--black);
+    word-break: break-word;
+  }
+
+  /* Figma separates the paragraphs with one empty line. */
+  .sp-intro__copy p + p { margin-block-start: 1lh; }
+
+  /* --- Perks (1040:14558) --------------------------------------------------- */
+
+  .sp-perks {
+    display: flex;
+    flex-direction: column;
+    gap: 72px;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 0 96px;
+    width: 100%;
+  }
+
+  .sp-perks__cards {
+    display: flex;
+    gap: 88px;
+    align-items: center;
+    max-width: 1440px;
+    padding-inline: 96px;
+    width: 100%;
+  }
+
+  /* Equal thirds that share the tallest card's height. */
+  .sp-perks__cards > li {
+    flex: 1 0 0;
+    align-self: stretch;
+    display: flex;
+  }
+
+  /* "Cards" component, Black Card variant. */
+  .perk-card {
+    flex: 1 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    min-width: 1px;
+    overflow: hidden;
+    padding: 48px 24px;
+    border-radius: var(--corner-radius-primary);
+    background-color: var(--black);
+    word-break: break-word;
+  }
+
+  .perk-card .sp-card-title { color: #fff; }
+
+  .perk-card p {
+    color: var(--card-ink);
+    width: 100%;
+  }
+
+  /* --- Decorative lines (1040:14565) ----------------------------------------
+     A 77×405 slot, 82px from the right and 361px from the top of the
+     content. The 405×82 artwork (the Who We Are lines) is turned 90°. */
+
+  .sp-lines {
+    position: absolute;
+    top: 361px;
+    right: 82px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 77px;
+    height: 405px;
+    pointer-events: none;
+  }
+
+  .sp-lines img {
+    flex: none;
+    width: 405px;
+    height: 82px;
+    max-width: none;
+    rotate: 90deg;
+  }
+
+  /* --- Membership exclusives (1040:14571) ------------------------------------ */
+
+  .sp-members {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 96px 0 172px;
+    width: 100%;
+  }
+
+  .sp-members__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 96px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .sp-members__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px 315px;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* One photo + its rust card, staggered 160px against the other. */
+  .member {
+    position: relative;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 426px;
+  }
+
+  .member--group { padding-bottom: 160px; }
+  .member--training { padding-top: 160px; }
+
+  .member .media {
+    flex-shrink: 0;
+    height: 544px;
+    width: 426px;
+  }
+
+  /* Circle pairs behind the photos, at the exported SVG's own size
+     (box position minus the stroke overhang Figma reports). */
+  .member__circles {
+    position: absolute;
+    max-width: none;
+    pointer-events: none;
+  }
+
+  .member__circles--small {
+    left: -218.5px;
+    top: -120.5px;
+    width: 362px;
+    height: 336px;
+  }
+
+  .member__circles--large {
+    left: 177.4px;
+    top: 489.25px;
+    width: 337.094px;
+    height: 323.497px;
+  }
+
+  /* "Cards" component, rust variant with a button. */
+  .member-card {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 24px;
+    width: 282px;
+    border-radius: var(--corner-radius-primary);
+    background-color: var(--accent-rust);
+    word-break: break-word;
+  }
+
+  .member--group .member-card { left: 295px; top: 390px; }
+  .member--training .member-card { left: -180px; top: 28px; }
+
+  .member-card .sp-card-title { color: #fff; }
+
+  .member-card p {
+    color: var(--card-ink);
+    width: 100%;
+  }
+
+  .member-card__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    padding-top: 24px;
+    width: 100%;
+  }
+
+  /* --- Photo + copy bands (1040:14595 gym rentals, 1539:12025 single-use) --- */
+
+  .sp-band {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+  }
+
+  .sp-band__col {
+    position: relative;
+    flex: 1 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 696px;
+    min-width: 600px;
+  }
+
+  .sp-band__col--copy { background-color: var(--slightly-darker-colour); }
+
+  .sp-band__photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    pointer-events: none;
+  }
+
+  .sp-band__text {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    align-items: flex-start;
+    max-width: 360px;
+    width: 360px;
+    word-break: break-word;
+  }
+
+  .sp-band__text h2 {
+    color: var(--secondary-colour);
+    width: 100%;
+  }
+
+  .sp-band__prose {
+    color: var(--chapter-ink);
+    width: 100%;
+  }
+
+  /* Subtitle then paragraphs, each separated by an empty 21px line. */
+  .sp-band__prose > * + * { margin-block-start: var(--body-leading); }
+
+  .sp-band__lead {
+    font-family: var(--font-ui);
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 28px;
+    text-transform: capitalize;
+  }
+
+  .sp-band__lead--h4 { font-size: 24px; }
+
+  /* --- Hotel guest (1408:8946) — commented out in the HTML ------------------ */
+
+  .sp-hotel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 163px 229.5px;
+    width: 100%;
+  }
+
+  .sp-hotel__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .sp-hotel .sp-title { color: var(--primary-colour); }
+
+  .sp-hotel__text {
+    display: flex;
+    justify-content: center;
+    padding-inline: 160px;
+    width: 100%;
+  }
+
+  .sp-hotel__text p {
+    color: var(--primary-colour);
+    text-align: center;
+    word-break: break-word;
+  }
+
+  /* ==========================================================================
+     MODALS — "S&P - Modal - Desktop - …" (1174:17630–17702)
+     Each overlay is the pricing sheet ("modal-content", 1026px) centred
+     over a 90% black backdrop. Figma opens it with Move In from the top,
+     0.3s ease-in-out; closing plays the same move in reverse.
+
+     Departure from the frames (Rafael's call): Figma sits the sheet on a
+     1240px panel filled with the section's photo. The site drops that
+     panel, so only the backdrop darkens the page behind the sheet.
+     ========================================================================== */
+
+  .plan-modal {
+    width: 1026px;
+    max-width: 100%;
+    max-height: 100dvh;
+    margin: auto;
+    padding: 50px 80px;
+    border: 0;
+    overflow-y: auto;
+    background-color: var(--slightly-darker-colour);
+    color: var(--black);
+
+    /* Closed = parked above the viewport; open = centred. */
+    translate: 0 calc(-50vh - 50%);
+    transition:
+      translate 0.3s ease-in-out,
+      display 0.3s allow-discrete,
+      overlay 0.3s allow-discrete;
+  }
+
+  .plan-modal[open] { translate: 0 0; }
+
+  @starting-style {
+    .plan-modal[open] { translate: 0 calc(-50vh - 50%); }
+  }
+
+  .plan-modal::backdrop {
+    background-color: transparent;
+    transition:
+      background-color 0.3s ease-in-out,
+      display 0.3s allow-discrete,
+      overlay 0.3s allow-discrete;
+  }
+
+  .plan-modal[open]::backdrop { background-color: var(--modal-backdrop); }
+
+  @starting-style {
+    .plan-modal[open]::backdrop { background-color: transparent; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .plan-modal,
+    .plan-modal::backdrop { transition-duration: 0s; }
+    .plan-modal { translate: none; }
+    @starting-style {
+      .plan-modal[open] { translate: none; }
+    }
+  }
+
+  .plan-modal__info {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .plan-modal__top {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .plan-modal__top h2,
+  .plan-modal__pricing h3 {
+    flex: 1 0 0;
+    min-width: 1px;
+    color: var(--secondary-colour);
+    word-break: break-word;
+  }
+
+  .plan-modal__copy {
+    color: var(--chapter-ink);
+    width: 100%;
+    word-break: break-word;
+  }
+
+  /* Empty line between blocks: 21px of body text, or 18px when the copy
+     opens with a Poppins subtitle (its blank lines are Button Text 18). */
+  .plan-modal__copy > * + * { margin-block-start: var(--copy-gap, var(--body-leading)); }
+  .plan-modal__copy--led { --copy-gap: 18px; }
+
+  .plan-modal__lead {
+    font-family: var(--font-ui);
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 28px;
+    text-transform: capitalize;
+  }
+
+  .plan-modal__pricing {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .plan-modal__pricing h3 { width: 100%; }
+
+  /* Four cards spread edge to edge; Single-use packs three from the left. */
+  .price-cards {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 20px;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+    width: 100%;
+    word-break: break-word;
+  }
+
+  .price-cards--packed {
+    justify-content: flex-start;
+    column-gap: 22px;
+  }
+
+  .price-card {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 24px;
+    width: 200px;
+    height: 210px;
+    border-radius: var(--corner-radius-primary);
+    background-color: var(--secondary-shapes-fill);
+    box-shadow: var(--price-card-shadow);
+    color: var(--black);
+  }
+
+  .price-card .sp-card-title { color: inherit; }
+
+  /* The rust card: Headers/H3 Mobile title (Poppins Medium 20 / 28). */
+  .price-card--accent {
+    background-color: var(--primary-shapes-fill);
+    color: var(--primary-colour);
+  }
+
+  .price-card--accent .sp-card-title {
+    font-weight: 500;
+    font-size: 20px;
+  }
+
+  .price-card__body { width: 100%; }
+
+  .price-card__body--small {
+    font-size: var(--body-16-size);
+    line-height: var(--body-16-leading);
+  }
+
+  /* Empty lines Figma leaves inside a card, before the price. */
+  .price-card .gap-1 { margin-block-start: var(--body-leading); }
+  .price-card .gap-2 { margin-block-start: calc(2 * var(--body-leading)); }
+
+  /* "Group" keeps a second, empty title line. */
+  .price-card .sp-card-title--pad { padding-block-end: 28px; }
+
+  /* "$ 220/mo": each run has its own size and leading; the line takes the
+     tallest, as in Figma (the paragraph itself contributes none). */
+  .price {
+    font-family: var(--font-ui);
+    font-size: 0;
+    line-height: 0;
+    text-transform: capitalize;
+  }
+
+  .price__cur  { font-weight: 600; font-size: 22px; line-height: 28px; }
+  .price__sp   { font-weight: 700; font-size: 20px; line-height: 38.4px; }
+  .price__num  { font-weight: 600; font-size: 28px; line-height: 38.4px; }
+  .price__unit { font-weight: 500; font-size: 16px; line-height: 24px; }
+
+  .btn--block { width: 100%; }
+}

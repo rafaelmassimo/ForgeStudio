@@ -1,0 +1,173 @@
+/* ==========================================================================
+   FORGE Strength Studio — Our Space
+   Transcribed from Figma "our-space" (file gA1vHmz70RHrFZyswUQFT1,
+   node 808:9835). Shell, navbar, page hero, marquee, buttons, the rentals
+   band and footer come from styles.css.
+
+   Agreed departures from the frame (standing rulings):
+   - The frame keeps the shared 24px corners; Figma rounds the last band's
+     bottom at 20px, which .body-content's clip covers anyway.
+   - The rentals copy is Lao Sans Pro in Figma; the site uses Sarabun.
+   ========================================================================== */
+
+@layer sections {
+
+  /* --- Two-column bands (808:9860, 881:7040, 1408:8885) --------------------
+     Each band is two 696px-tall columns that stay side by side down to the
+     767px mobile breakpoint; the copy shrinks with its column.           */
+
+  .space-band {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+  }
+
+  .space-band__col {
+    position: relative;
+    flex: 1 0 0;
+    display: flex;
+    flex-direction: column;
+    height: 696px;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+  }
+
+  /* Photo that fills its column. */
+  .space-band__photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    pointer-events: none;
+  }
+
+  /* Heading + copy stack, 360px wide. */
+  .space-band__text {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    align-items: flex-start;
+    max-width: 360px;
+    width: 100%;
+    word-break: break-word;
+  }
+
+  .space-band__text h2 {
+    color: var(--secondary-colour);
+    width: 100%;
+  }
+
+  .space-band__text p {
+    color: var(--chapter-ink);
+    width: 100%;
+  }
+
+  /* --- Our space to breathe (808:9860) ------------------------------------- */
+
+  /* Left: photo on white, darkened 60%, cream copy on top. */
+  .space-band__col--breathe {
+    overflow: hidden;
+    padding-block: 24px;
+  }
+
+  .space-band__layers {
+    position: absolute;
+    inset: 0;
+    background-color: #fff;
+    pointer-events: none;
+  }
+
+  .space-band__scrim {
+    position: absolute;
+    inset: 0;
+    background-color: var(--breathe-scrim);
+  }
+
+  .space-band__col--breathe .space-band__text h2,
+  .space-band__col--breathe .space-band__text p { color: var(--primary-colour); }
+
+  .space-band__copy { width: 100%; }
+
+  /* Figma separates the paragraphs with an empty line of body text. */
+  .space-band__col--breathe .space-band__text p + p {
+    margin-block-start: var(--body-leading);
+  }
+
+  /* Right: two stacked blocks sharing the column height. The top one
+     carries 3px rules above and below. */
+  .space-band__col--stack {
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .space-block {
+    flex: 1 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 1px;
+    overflow: hidden;
+    padding: 24px;
+    width: 100%;
+  }
+
+  .space-block--ruled {
+    border-block: 3px solid var(--secondary-shapes-fill);
+  }
+
+  .space-block--consistency { min-height: 272px; }
+
+  .space-block__text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 422px;
+    word-break: break-word;
+  }
+
+  .space-block__text h2 {
+    color: var(--secondary-colour);
+    min-height: 66px;
+    width: 100%;
+  }
+
+  .space-block__text p {
+    color: var(--chapter-ink);
+    width: 100%;
+  }
+
+  /* --- Sauna (1408:8885) — hidden in Figma, commented out in the HTML ------
+     Its copy column has no 600px floor, and the copy fills the column
+     height, centred on both axes.                                        */
+
+  .space-band__col--sauna-copy { min-width: 1px; }
+
+  .space-band__col--sauna-copy .space-band__text {
+    flex: 1 0 0;
+    align-items: center;
+    justify-content: center;
+    min-height: 1px;
+    width: 100%;
+  }
+
+  /* --- Private gym space rentals (808:9900) --------------------------------
+     The home page's Our Space band with this frame's values: a lighter
+     scrim, full-width white copy and a single button.                    */
+
+  .our-space--rental .our-space__scrim { background-color: var(--rental-scrim); }
+
+  .our-space--rental .our-space__body {
+    color: #fff;
+    width: 100%;
+  }
+}

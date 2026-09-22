@@ -1,0 +1,183 @@
+/* ==========================================================================
+   FORGE Strength Studio — FAQ
+   Transcribed from Figma "faq" (file gA1vHmz70RHrFZyswUQFT1, node 808:9779)
+   and its "accordion" component (382:3642, variants Default / Expanded).
+   Shell, navbar, buttons and footer come from styles.css.
+
+   Agreed departures from the frame (Rafael's calls):
+   - The frame keeps the shared 24px corners; Figma draws this one at 20px.
+   - Every question row is identical: Figma's stray 2px indents and the
+     black / #1E1E1E mix on individual instances are not reproduced.
+   ========================================================================== */
+
+@layer sections {
+
+  /* --- Page body (808:9784) ------------------------------------------------- */
+
+  .faq {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    align-items: center;
+    justify-content: center;
+    padding: 100px;
+    width: 100%;
+  }
+
+  .faq__header {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    align-items: flex-start;
+    padding-block: 40px;
+    width: 100%;
+  }
+
+  .faq__title {
+    color: var(--secondary-colour);
+    text-align: center;
+    width: 100%;
+  }
+
+  .faq__message {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .faq__message p {
+    color: var(--prose-ink);
+    text-align: center;
+    width: 100%;
+    word-break: break-word;
+  }
+
+  .faq__lists {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    align-items: flex-start;
+    max-width: 922px;
+    width: 100%;
+  }
+
+  /* --- Category (808:9791 …) -------------------------------------------------- */
+
+  .faq-category {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .faq-category__title {
+    padding-block: 30px;
+    border-bottom: 1px solid #000;
+    color: #000;
+    width: 100%;
+    word-break: break-word;
+  }
+
+  .faq-category__items { width: 100%; }
+
+  /* --- Question (accordion component 382:3642) -----------------------------------
+     Default: an 85px row — 30 + 24 (icon) + 30, plus the 1px rule.
+     Expanded: the + spins 45° in place into a ×; the answer follows 10px
+     below with 30px under it, and the rule moves to the bottom of the
+     whole item.
+
+     One rule at the item's foot covers both states. The answer row
+     animates from 0fr to 1fr, so the height change needs no measuring. */
+
+  .faq-item {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    border-bottom: 1px solid #000;
+    width: 100%;
+    transition: grid-template-rows 0.3s ease-in;
+  }
+
+  .js .faq-item { grid-template-rows: auto 0fr; }
+  .js .faq-item.is-open { grid-template-rows: auto 1fr; }
+
+  .faq-item__heading {
+    font: inherit;
+    text-transform: none;
+  }
+
+  .faq-item__toggle {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 30px 0;
+    border: 0;
+    background: none;
+    font-family: var(--body-family);
+    font-size: var(--body-size);
+    line-height: var(--body-leading);
+    color: var(--prose-ink);
+    text-align: left;
+    cursor: pointer;
+  }
+
+  /* Closed questions stay on one line, cut with an ellipsis; open ones wrap. */
+  .faq-item__question {
+    flex: 1 0 0;
+    min-width: 1px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break: break-word;
+  }
+
+  .faq-item.is-open .faq-item__question,
+  html:not(.js) .faq-item__question {
+    overflow: visible;
+    white-space: normal;
+  }
+
+  /* The box stays 24px in both states so the icon never shifts; only the
+     glyph inside rotates. (Figma's Expanded variant grows the box to the
+     rotated icon's 33.941px bounds, which nudges it down and left —
+     Rafael asked for it to spin in place instead.) */
+  .faq-item__icon {
+    position: relative;
+    flex: none;
+    width: 24px;
+    height: 24px;
+  }
+
+  .faq-item__icon img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 24px;
+    height: 24px;
+    translate: -50% -50%;
+    transition: rotate 0.3s ease-in;
+  }
+
+  .faq-item.is-open .faq-item__icon img { rotate: 45deg; }
+
+  /* min-height: 0 lets the 0fr row collapse to nothing; the spacing lives
+     on the paragraph so it collapses with it. */
+  .faq-item__answer {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .faq-item__answer p {
+    padding: 10px 40px 30px 0;
+    color: var(--prose-ink);
+    word-break: break-word;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faq-item,
+    .faq-item__icon img { transition: none; }
+  }
+}

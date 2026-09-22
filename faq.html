@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FAQ — FORGE Strength Studio</title>
+  <meta name="description" content="Answers to common questions about FORGE Strength Studio: your first visit, booking, group classes, personal training, studio rental and hotel partners.">
+
+  <!-- Marks the page as scripted before first paint, so the accordion starts
+       closed without a flash. Without JS every answer simply stays open. -->
+  <script>document.documentElement.classList.add('js');</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;500;700&family=Poppins:wght@500&family=Sarabun:wght@400&display=swap">
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/faq.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <!-- The black frame: .page__body paints it, .body-content is the rounded
+       surface inside it. Same shell as every other page. -->
+  <div class="page">
+    <div class="page__body">
+      <div class="body-content">
+
+        <!-- ================= Top navbar (808:9783) ================= -->
+        <header class="navbar">
+          <nav class="navbar__group" aria-label="Primary">
+            <a class="btn btn--nav" href="index.html">Home</a>
+            <a class="btn btn--nav" href="who-we-are.html">Who We Are</a>
+            <a class="btn btn--nav" href="our-space.html">Our Space</a>
+            <a class="btn btn--nav" href="services-and-plans.html">Services &amp; Plans</a>
+          </nav>
+          <div class="navbar__group navbar__group--right">
+            <a class="btn btn--nav" href="contact.html">Contact Us</a>
+            <a class="btn btn--primary btn--compact" href="#">Book Now</a>
+          </div>
+          <p class="navbar__wordmark"><a href="index.html" aria-label="Forge Strength Studio, home">Forge</a></p>
+          <!-- Below 767px the links above give way to this button and the
+               slide-in menu (Figma 1200:13840). -->
+          <button class="navbar__menu-btn" type="button" data-dialog-open="mobile-menu" aria-haspopup="dialog"
+            aria-controls="mobile-menu" aria-label="Open menu">
+            <img src="assets/icons/icon-menu.svg" alt="" width="48" height="48">
+          </button>
+        </header>
+
+        <!-- ================= FAQ (808:9784) =================  -->
+        <main class="faq">
+          <div class="faq__header">
+            <h1 class="faq__title">FAQ.</h1>
+            <div class="faq__message">
+              <p>Got questions?<br>Can&rsquo;t find what you&rsquo;re looking for? Send us a message and we&rsquo;ll be happy to help.</p>
+              <a class="btn btn--primary" href="contact.html">Contact Us</a>
+            </div>
+          </div>
+
+          <!-- Each question is the Figma "accordion" component (382:3642):
+               Default ⇄ Expanded on click, 0.3s ease-in. js/main.js toggles
+               aria-expanded; css/faq.css animates the rest. -->
+          <div class="faq__lists" data-accordion>
+            <section class="faq-category" aria-labelledby="faq-first-visit">
+              <h2 id="faq-first-visit" class="faq-category__title">Your first visit</h2>
+              <div class="faq-category__items">
+                <div class="faq-item">
+                  <h3 class="faq-item__heading">
+                    <button class="faq-item__toggle" type="button" id="faq-q-1" aria-expanded="false" aria-controls="faq-a-1">
+                      <span class="faq-item__question">What exactly is Forge Strength Studio?</span>
+                      <span class="faq-item__icon" aria-hidden="true"><img src="assets/icons/icon-plus.svg" alt="" width="24" height="24"></span>
+                    </button>
+                  </h3>
+                  <div class="faq-item__answer" id="faq-a-1" role="region" aria-labelledby="faq-q-1">
+                    <p>We are a boutique strength training studio located in Chilliwack, BC. Our Boutique Wellness Center is designed to help you build strength in body, mind, and spirit. We provide an intimate gym experience focused on helping you deepen your connection with your body and feel amazing.</p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <h3 class="faq-item__heading">
+                    <button class="faq-item__toggle" type="button" id="faq-q-2" aria-expanded="false" aria-controls="faq-a-2">
+                      <span class="faq-item__question">Who can train at Forge?</span>
+                      <span class="faq-item__icon" aria-hidden="true"><img src="assets/icons/icon-plus.svg" alt="" width="24" height="24"></span>
+                    </button>
+                  </h3>
+                  <div class="faq-item__answer" id="faq-a-2" role="region" aria-labelledby="faq-q-2">
+                    <p>Our community welcomes adults ranging from 21 to 70+ years old, including busy parents, young professionals, and retirees. Whether you are a beginner or an experienced lifter, our space is designed for people who want less intimidation and a supportive environment to improve their quality of life.</p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <h3 class="faq-item__heading">
+                    <button class="faq-item__toggle" type="button" id="faq-q-3" aria-expanded="false" aria-controls="faq-a-3">
+                      <span class="faq-item__question">Will it be crowded like a commercial gym?</span>
+                      <span class="faq-item__icon" aria-hidden="true"><img src="assets/icons/icon-plus.svg" alt="" width="24" height="24"></span>
+                    </button>
+                  </h3>
+                  <div class="faq-item__answer" id="faq-a-3" role="region" aria-labelledby="faq-q-3">
+                    <p>We are a boutique strength training studio located in Chilliwack, BC. Our Boutique Wellness Center is designed to help you build strength in body, mind, and spirit. We provide an intimate gym experience focused on helping you deepen your connection with your body and feel amazing.</p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <h3 class="faq-item__heading">
+                    <button class="faq-item__toggle" type="button" id="faq-q-4" aria-expanded="false" aria-controls="faq-a-4">
+                      <span class="faq-item__question">What types of training do you offer?</span>
+                      <span class="faq-item__icon" aria-hidden="true"><img src="assets/icons/icon-plus.svg" alt="" width="24" height="24"></span>
+                    </button>
+                  </h3>
+                  <div class="faq-item__answer" id="faq-a-4" role="region" aria-labelledby="faq-q-4">
+                    <p>We specialize in 1-on-1 personal training, small-group strength classes, and independent training. Our small group classes are intentionally limited to just four people to ensure a high level of guidance and a true personal touch.</p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <h3 class="faq-item__heading">
+                    <button class="faq-item__toggle" type="button" id="faq-q-5" aria-expanded="false" aria-controls="faq-a-5">
+                      <span class="faq-item__question">I&rsquo;m new to lifting weights. Will I be supported here?</span>
+                      <span class="faq-item__icon" aria-hidden="true"><img src="assets/icons/icon-plus.svg" alt="" width="24" height="24"></span>
+                    </button>
+                  </h3>
+                  <div class="faq-item__answer" id="faq-a-5" role="region" aria-labelledby="faq-q-5">
+                    <p>Absolutely. Our mission is to help you become confident in yourself. We create tailored training programs to meet you exactly where you are. We provide the professional guidance and accountability; you do your part.</p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <h3 class="faq-item__heading">
+                    <button class="faq-item__toggle" type="button" id="faq-q-6" aria-expanded="false" aria-controls="faq-a-6">
+                      <span class="faq-item__question">What is the next step to get started?</span>
+                      <span class="faq-item__icon" aria-hidden="true"><img src="assets/icons/icon-plus.svg" alt="" width="24" height="24"></span>
+                    </button>
+                  </h3>
+                  <div class="faq-item__answer" id="faq-a-6" role="region" aria-labelledby="faq-q-6">
+                    <p>Getting started is simple and stress-free. You can explore our services online, purchase a monthly membership or training package, and book your first time slot. We are here to support your journey so you can build consistency and feel amazing.</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="faq-category" aria-labelledby="faq-booking">
+              <h2 id="faq-booking" class="faq-category__title">Booking</h2>
+              <div class="faq-category__items">
+                <div class="faq-item">
+                  <h3 class="faq-item__heading">
+                    <button class="faq-item__toggle" type="button" id="faq-q-7" aria-expanded="false" aria-controls="faq-a-7">
+                      <span class="faq-item__question">How does the booking system work?</span>
+                      <span class="faq-item__icon" aria-hidden="true"><img src="assets/icons/icon-plus.svg" alt="" width="24" height="24"></span>
+                    </button>
+                  </h3>
+                  <div class="faq-item__answer" id="faq-a-7" role="region" aria-labelledby="faq-q-7">
+                    <p>You can manage everything through our seamless online booking calendar. New clients can purchase a package, sign our liability agreements, and select their time slots entirely online. Existing clients simply log in, use their class credits, and secure their spot.</p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <h3 class="faq-item__heading">
+                    <button class="faq-item__toggle" type="button" id="faq-q-8" aria-expanded="false" aria-controls="faq-a-8">
+                      <span class="faq-item__question">How do I cancel or reschedule my booking?</span>
+                      <span class="faq-item__icon" aria-hidden="true"><img src="assets/icons/icon-plus.svg" alt="" width="24" height="24"></span>
+                    </button>
+                  </h3>
+                  <div class="faq-item__answer" id="faq-a-8" role="region" aria-labelledby="faq-q-8">
+                    <p>You can cancel or reschedule your booking through our online booking system. Please make any changes within the cancellation window to avoid a late cancellation fee.</p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <h3 class="faq-item__heading">
+                    <button class="faq-item__toggle" type="button" id="faq-q-9" aria-expanded="false" aria-controls="faq-a-9">
+                      <span class="faq-item__question">How far in advance can I book?</span>
+                      <span class="faq-item__icon" aria-hidden="true"><img src="assets/icons/icon-plus.svg" alt="" width="24" height="24"></span>
+                    </button>
+                  </h3>
+                  <div class="faq-item__answer" id="faq-a-9" role="region" aria-labelledby="faq-q-9">
+                    <p>Classes can be booked up to X days in advance. We recommend booking early, as popular time slots can fill up quickly.</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="faq-category" aria-labelledby="faq-group-class">
+              <h2 id="faq-group-class" class="faq-category__title">Group class</h2>
+              <div class="faq-category__items">
+                <div class="faq-item">
+                  <h3 class="faq-item__heading">
+                    <button class="faq-item__toggle" type="button" id="faq-q-10" aria-expanded="false" aria-controls="faq-a-10">
+                      <span class="faq-item__question">How big are your classes?</span>
+                      <span class="faq-item__icon" aria-hidden="true"><img src="assets/icons/icon-plus.svg" alt="" width="24" height="24"></span>
+                    </button>
+                  </h3>
+                  <div class="faq-item__answer" id="faq-a-10" role="region" aria-labelledby="faq-q-10">
+                    <p>Our group class are limited to a maximum of 4 people, creating a more personal and supportive training experience.</p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <h3 class="faq-item__heading">
+                    <button class="faq-item__toggle" type="button" id="faq-q-11" aria-expanded="false" aria-controls="faq-a-11">
+                      <span class="faq-item__question">Are your group classes suitable for beginners?</span>
+                      <span class="faq-item__icon" aria-hidden="true"><img src="assets/icons/icon-plus.svg" alt="" width="24" height="24"></span>
+                    </button>
+                  </h3>
+                  <div class="faq-item__answer" id="faq-a-11" role="region" aria-labelledby="faq-q-11">
+                    <p>Absolutely. Our group classes are suitable for all fitness levels, including beginners. We will guide you through each exercise and offer modifications when needed, so you can train safely and comfortably.</p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <h3 class="faq-item__heading">
+                    <button class="faq-item__toggle" type="button" id="faq-q-12" aria-expanded="false" aria-controls="faq-a-12">
+                      <span class="faq-item__question">Can I attend classes with my family, friend or partner?</span>
+                      <span class="faq-item__icon" aria-hidden="true"><img src="assets/icons/icon-plus.svg" alt="" width="24" height="24"></span>
+                    </button>
+                  </h3>
+                  <div class="faq-item__answer" id="faq-a-12" role="region" aria-labelledby="faq-q-12">
+                    <p>Yes. You&rsquo;re welcome to join a class with your family, friend or partner, as long as spots are available. Each person will need to reserve their own spot.</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="faq-category" aria-labelledby="faq-personal-training">
+              <h2 id="faq-personal-training" class="faq-category__title">Personal training</h2>
+              <div class="faq-category__items">
+                <div class="faq-item">
+                  <h3 class="faq-item__heading">
+                    <button class="faq-item__toggle" type="button" id="faq-q-13" aria-expanded="false" aria-controls="faq-a-13">
+                      <span class="faq-item__question">How often should I book personal training sessions?</span>
+                      <span class="faq-item__icon" aria-hidden="true"><img src="assets/icons/icon-plus.svg" alt="" width="24" height="24"></span>
+                    </button>
+                  </h3>
+                  <div class="faq-item__answer" id="faq-a-13" role="region" aria-labelledby="faq-q-13">
+                    <p>Most clients train 1-3 times per week, depending on their goals, schedule, and budget.</p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <h3 class="faq-item__heading">
+                    <button class="faq-item__toggle" type="button" id="faq-q-14" aria-expanded="false" aria-controls="faq-a-14">
+                      <span class="faq-item__question">Can I train with a partner or in a small group?</span>
+                      <span class="faq-item__icon" aria-hidden="true"><img src="assets/icons/icon-plus.svg" alt="" width="24" height="24"></span>
+                    </button>
+                  </h3>
+                  <div class="faq-item__answer" id="faq-a-14" role="region" aria-labelledby="faq-q-14">
+                    <p>Yes. Training can be done one-on-one or in small groups of up to 4 people, depending your goals and preferences.</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="faq-category" aria-labelledby="faq-rental-space">
+              <h2 id="faq-rental-space" class="faq-category__title">Rental space</h2>
+              <div class="faq-category__items">
+                <div class="faq-item">
+                  <h3 class="faq-item__heading">
+                    <button class="faq-item__toggle" type="button" id="faq-q-15" aria-expanded="false" aria-controls="faq-a-15">
+                      <span class="faq-item__question">I am an independent personal trainer. Can I bring my clients to Forge?</span>
+                      <span class="faq-item__icon" aria-hidden="true"><img src="assets/icons/icon-plus.svg" alt="" width="24" height="24"></span>
+                    </button>
+                  </h3>
+                  <div class="faq-item__answer" id="faq-a-15" role="region" aria-labelledby="faq-q-15">
+                    <p>We are a boutique strength training studio located in Chilliwack, BC. Our Boutique Wellness Center is designed to help you build strength in body, mind, and spirit. We provide an intimate gym experience focused on helping you deepen your connection with your body and feel amazing.</p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <h3 class="faq-item__heading">
+                    <button class="faq-item__toggle" type="button" id="faq-q-16" aria-expanded="false" aria-controls="faq-a-16">
+                      <span class="faq-item__question">As a personal trainer renting the studio to train my clients, what is the cancellation policy?</span>
+                      <span class="faq-item__icon" aria-hidden="true"><img src="assets/icons/icon-plus.svg" alt="" width="24" height="24"></span>
+                    </button>
+                  </h3>
+                  <div class="faq-item__answer" id="faq-a-16" role="region" aria-labelledby="faq-q-16">
+                    <p>We support independent trainers by making the process simple and transparent. Our booking system includes flexible rescheduling and cancellation options so you can adapt to your clients' changing schedules and maintain your own quality of life.</p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <h3 class="faq-item__heading">
+                    <button class="faq-item__toggle" type="button" id="faq-q-17" aria-expanded="false" aria-controls="faq-a-17">
+                      <span class="faq-item__question">How much does a personal trainer cost in Chilliwack?</span>
+                      <span class="faq-item__icon" aria-hidden="true"><img src="assets/icons/icon-plus.svg" alt="" width="24" height="24"></span>
+                    </button>
+                  </h3>
+                  <div class="faq-item__answer" id="faq-a-17" role="region" aria-labelledby="faq-q-17">
+                    <p>Personal training in Chilliwack typically ranges from $60-$100 per session, depending on the trainer, session length, and package.</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="faq-category" aria-labelledby="faq-partners">
+              <h2 id="faq-partners" class="faq-category__title">Partners &amp; hotel guests</h2>
+              <div class="faq-category__items">
+                <div class="faq-item">
+                  <h3 class="faq-item__heading">
+                    <button class="faq-item__toggle" type="button" id="faq-q-18" aria-expanded="false" aria-controls="faq-a-18">
+                      <span class="faq-item__question">I&rsquo;m staying at a partnered hotel. Can I use the studio?</span>
+                      <span class="faq-item__icon" aria-hidden="true"><img src="assets/icons/icon-plus.svg" alt="" width="24" height="24"></span>
+                    </button>
+                  </h3>
+                  <div class="faq-item__answer" id="faq-a-18" role="region" aria-labelledby="faq-q-18">
+                    <p>Yes. Hotels can easily book time slots to make our studio available for their guests. It is a great way to revitalize yourself and stay pain-free while travelling away from home.</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </main>
+
+      </div>
+    </div>
+
+    <!-- ================= Footer (808:9832) =================
+         Outside .page__body so its black meets the frame edge to edge. -->
+    <footer class="footer">
+      <div class="footer__top">
+        <div class="footer__info">
+          <address class="footer__contact">
+            <div class="footer__contact-row">
+              <img src="assets/icons/icon-location.svg" alt="" width="24" height="24" loading="lazy">
+              <a class="link" href="#">District 1881, Chilliwack, BC</a>
+            </div>
+            <div class="footer__contact-row footer__contact-row--phone">
+              <img src="assets/icons/icon-phone.svg" alt="" width="24" height="24" loading="lazy">
+              <a class="link" href="tel:+16788888888">(678) 888-8888</a>
+            </div>
+            <div class="footer__contact-row">
+              <img src="assets/icons/icon-mail.svg" alt="" width="24" height="24" loading="lazy">
+              <a class="link" href="mailto:info@forgestrengthstudio.com">info@forgestrengthstudio.com</a>
+            </div>
+            <p class="footer__hours">Open 7 days: 5:00 AM &ndash; 10:00 PM</p>
+          </address>
+
+          <ul class="footer__nav">
+            <li><a class="link" href="index.html">Home</a></li>
+            <li><a class="link" href="who-we-are.html">Who We Are</a></li>
+            <li><a class="link" href="our-space.html">Our Space</a></li>
+            <li><a class="link" href="services-and-plans.html">Services &amp; Plans</a></li>
+            <li><a class="link" href="contact.html">Contact Us</a></li>
+            <li><a class="link" href="faq.html" aria-current="page">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__socials">
+          <ul class="footer__sns">
+            <li>
+              <a href="https://www.instagram.com/forgestrengthstudio" target="_blank" rel="noopener noreferrer">
+                <img src="assets/icons/icon-instagram.svg" alt="" width="40" height="40" loading="lazy">
+                <span class="visually-hidden">Instagram</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" target="_blank" rel="noopener noreferrer">
+                <img src="assets/icons/icon-facebook.svg" alt="" width="40" height="40" loading="lazy">
+                <span class="visually-hidden">Facebook</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <div class="footer__wordmark" aria-hidden="true">
+          <p>FORGE</p>
+          <span class="footer__dot"></span>
+        </div>
+        <div class="footer__legal">
+          <a class="link" href="#">Privacy Policy</a>
+          <a class="link" href="#">Terms &amp; Conditions</a>
+          <p>&copy; 2026 Forge Strength Studio. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ================= Mobile menu (Figma navbar-mobile, 1200:13840) =================
+       Opened by the navbar's hamburger below 767px; slides in from the right. -->
+  <dialog class="mobile-menu" id="mobile-menu" aria-label="Menu">
+    <div class="mobile-menu__header">
+      <p class="mobile-menu__wordmark"><a href="index.html" aria-label="Forge Strength Studio, home">Forge</a></p>
+      <button class="mobile-menu__close" type="button" data-dialog-close aria-label="Close menu">
+        <img src="assets/icons/icon-close.svg" alt="" width="24" height="24">
+      </button>
+    </div>
+    <nav class="mobile-menu__nav" aria-label="Primary">
+      <a class="mobile-menu__link" href="index.html">Home</a>
+      <a class="mobile-menu__link" href="who-we-are.html">Who We Are</a>
+      <a class="mobile-menu__link" href="our-space.html">Our Space</a>
+      <a class="mobile-menu__link" href="services-and-plans.html">Services &amp; Plans</a>
+      <a class="mobile-menu__link" href="contact.html">Contact Us</a>
+    </nav>
+  </dialog>
+
+  <button class="to-top" type="button" data-to-top aria-label="Back to top">
+    <img src="assets/icons/arrow-up.svg" alt="" width="24" height="24">
+  </button>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
