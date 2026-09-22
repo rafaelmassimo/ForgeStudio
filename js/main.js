@@ -290,7 +290,12 @@
     Array.prototype.forEach.call(openers, function (opener) {
       var dialog = document.getElementById(opener.getAttribute('data-dialog-open'));
       if (!dialog || typeof dialog.showModal !== 'function') return;
-      opener.addEventListener('click', function () { dialog.showModal(); });
+      opener.addEventListener('click', function () {
+        /* Paged plan modals always open on page 1 (the story), never
+           wherever they were left after a previous visit. */
+        dialog.classList.remove('is-page-2');
+        dialog.showModal();
+      });
     });
 
     var dialogs = document.querySelectorAll('dialog');
@@ -311,6 +316,35 @@
         var inside = rect.top <= event.clientY && event.clientY <= rect.bottom &&
           rect.left <= event.clientX && event.clientX <= rect.right;
         if (!inside) dialog.close();
+      });
+    });
+  }
+
+  /* ------------------------------------------------------------------------
+     Modal paging (Services & Plans, mobile Figma "…Modal - Mobile -
+     Page1/Page2 - …"). Below 767px each plan-modal splits into two pages
+     — the story (.plan-modal__copy) and the pricing (.plan-modal__pricing)
+     — shown one at a time via .is-page-2 on the dialog; css/responsive.css
+     does the actual show/hide. Above 767px these links are hidden by the
+     .mobile-only utility and never fire.
+     ---------------------------------------------------------------------- */
+
+  function initModalPaging() {
+    var modals = document.querySelectorAll('.plan-modal--paged');
+    Array.prototype.forEach.call(modals, function (modal) {
+      var next = modal.querySelectorAll('[data-modal-next]');
+      var prev = modal.querySelectorAll('[data-modal-prev]');
+      Array.prototype.forEach.call(next, function (button) {
+        button.addEventListener('click', function () {
+          modal.classList.add('is-page-2');
+          modal.scrollTop = 0;
+        });
+      });
+      Array.prototype.forEach.call(prev, function (button) {
+        button.addEventListener('click', function () {
+          modal.classList.remove('is-page-2');
+          modal.scrollTop = 0;
+        });
       });
     });
   }
@@ -372,6 +406,7 @@
   }
 
   initDialogs();
+  initModalPaging();
   initMobileMenu();
   initAccordions();
   initMailtoForms();

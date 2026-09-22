@@ -13,7 +13,8 @@
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;500;700&family=Poppins:wght@500;600;700&family=Sarabun:wght@400;500&display=swap">
 
-  <link rel="preload" as="image" href="assets/img/sp-hero.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/img/sp-hero.jpg" media="(min-width: 768px)" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/img/sp-hero-mobile.jpg" media="(max-width: 767px)" fetchpriority="high">
 
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/styles.css">
@@ -49,18 +50,27 @@
           </button>
         </header>
 
-        <!-- ================= Secondary page hero (1040:14548) ================= -->
+        <!-- ================= Secondary page hero (1040:14548) =================
+             Mobile frame (1486:10918) uses its own crop; the shared
+             .page-hero rule in responsive.css sets the 224px mobile height. -->
         <section class="page-hero">
-          <img class="page-hero__bg" src="assets/img/sp-hero.jpg" alt="" aria-hidden="true" width="1392" height="400"
-            fetchpriority="high">
-          <div class="page-hero__tint" aria-hidden="true"></div>
+          <picture>
+            <source media="(max-width: 767px)" srcset="assets/img/sp-hero-mobile.jpg" width="336" height="288">
+            <img class="page-hero__bg" src="assets/img/sp-hero.jpg" alt="" aria-hidden="true" width="1392" height="400"
+              fetchpriority="high">
+          </picture>
+          <div class="page-hero__tint desktop-only" aria-hidden="true"></div>
           <h1 class="page-hero__title">Services &amp;<br>Plans<span class="page-hero__dot">.</span></h1>
         </section>
 
-        <!-- ================= Intro (1040:14549) ================= -->
+        <!-- ================= Intro (1040:14549 desktop / 1486:10918 mobile) =================
+             Desktop centres the copy in a cream panel; the mobile frame drops
+             the panel, left-aligns the copy on the section's own background
+             and adds a "Book Now" CTA plus an outlined textured circle
+             cut off by the section's bottom edge. -->
         <section class="sp-intro">
-          <h2 class="sp-title">Built for all your needs.</h2>
-          <div class="sp-intro__info">
+          <h2 class="sp-title desktop-only">Built for all your needs.</h2>
+          <div class="sp-intro__info desktop-only">
             <div class="sp-intro__panel">
               <div class="sp-intro__copy">
                 <p>We designed this intimate space to deliver a true personal touch that directly improves your quality
@@ -71,22 +81,44 @@
               </div>
             </div>
           </div>
+
+          <div class="sp-intro__mobile mobile-only">
+            <div class="sp-intro__text">
+              <h2>Built for all your needs.</h2>
+              <p>Designed as an intimate, pressure-free sanctuary to improve your quality of life, this versatile space
+                caters to first-timers, busy parents squeezing in a fast workout, independent trainers seeking a premium
+                crowd-free facility, and individuals wanting complete privacy.</p>
+            </div>
+            <a class="btn btn--primary" href="#">Book Now</a>
+          </div>
+          <img class="sp-intro__circle mobile-only" src="assets/icons/sp-circles-small-mobile.svg"
+            alt="" aria-hidden="true" width="121" height="113" loading="lazy">
         </section>
 
-        <!-- ================= Perks (1040:14558) ================= -->
+        <!-- ================= Perks (1040:14558 desktop / 1486:10933 mobile) =================
+             Mobile stacks the three cards full-width instead of a row, with
+             a vertical line decoration running behind/between them. The
+             mobile frame breaks the title after "Strength" and words two
+             card bodies differently, hence the desktop-only/mobile-only pairs. -->
         <section class="sp-perks">
-          <h2 class="sp-title">Forge Strength Studio Perks.</h2>
+          <h2 class="sp-title">Forge Strength <br class="mobile-only">Studio Perks.</h2>
           <ul class="sp-perks__cards">
+            <img class="sp-perks__lines mobile-only" src="assets/icons/sp-vertical-lines-mobile.svg" alt=""
+              aria-hidden="true" width="44" height="537" loading="lazy">
             <li>
               <article class="perk-card hover-lift">
                 <h3 class="sp-card-title">A gym for you</h3>
-                <p>Have the space for yourself and never have to wait for equipment during your workout.</p>
+                <p class="desktop-only">Have the space for yourself and never have to wait for equipment during your
+                  workout.</p>
+                <p class="mobile-only">Have the space to yourself and never have to wait for equipment during your
+                  workout.</p>
               </article>
             </li>
             <li>
               <article class="perk-card hover-lift">
                 <h3 class="sp-card-title">A Personal Touch</h3>
-                <p>We have coaches and trainers who actually know your name and your goals.</p>
+                <p class="desktop-only">We have coaches and trainers who actually know your name and your goals.</p>
+                <p class="mobile-only">Coaches and trainers who actually know your name and your goals.</p>
               </article>
             </li>
             <li>
@@ -98,8 +130,11 @@
           </ul>
         </section>
 
-        <!-- Decorative lines (1040:14565), laid over the hero and intro. -->
-        <div class="sp-lines" aria-hidden="true">
+        <!-- Decorative lines (1040:14565), laid over the hero and intro.
+             Desktop only — the mobile frame has no equivalent here (its own
+             hero/intro/perks decorations are the circles and vertical lines
+             above). -->
+        <div class="sp-lines desktop-only" aria-hidden="true">
           <img src="assets/icons/wwa-lines.svg" alt="" width="405" height="82">
         </div>
 
@@ -218,15 +253,21 @@
           </div>
         </div>
 
-        <!-- ================= Membership exclusives (1040:14571) ================= -->
+        <!-- ================= Membership exclusives (1040:14571 desktop / 1486:10946 mobile) =================
+             Desktop staggers two 426px photo+card pairs side by side, each
+             with its own circle decoration. Mobile stacks them full-width,
+             the rust card overlapping the photo's bottom edge, sharing a
+             single large circle behind both (1486:10947). -->
         <section class="sp-members">
           <div class="sp-members__inner">
             <h2 class="sp-title">forge membership exclusives.</h2>
+            <img class="sp-members__circle mobile-only" src="assets/icons/sp-circles-large-mobile.svg" alt=""
+              aria-hidden="true" width="321" height="307" loading="lazy">
             <div class="sp-members__grid">
 
               <div class="member member--group">
-                <img class="member__circles member__circles--small" src="assets/icons/sp-circles-small.svg" alt=""
-                  aria-hidden="true" width="362" height="336" loading="lazy">
+                <img class="member__circles member__circles--small desktop-only" src="assets/icons/sp-circles-small.svg"
+                  alt="" aria-hidden="true" width="362" height="336" loading="lazy">
                 <div class="media">
                   <img src="assets/img/sp-group-sessions.png" alt="" width="426" height="544" loading="lazy">
                 </div>
@@ -242,8 +283,8 @@
               </div>
 
               <div class="member member--training">
-                <img class="member__circles member__circles--large" src="assets/icons/sp-circles-large.svg" alt=""
-                  aria-hidden="true" width="337" height="323" loading="lazy">
+                <img class="member__circles member__circles--large desktop-only" src="assets/icons/sp-circles-large.svg"
+                  alt="" aria-hidden="true" width="337" height="323" loading="lazy">
                 <div class="media">
                   <img src="assets/img/sp-personal-training.png" alt="" width="431" height="544" loading="lazy">
                 </div>
@@ -262,15 +303,20 @@
           </div>
         </section>
 
-        <!-- Membership modals (Responsive Prototype 1174:17630, 1174:17648),
-             opened by the two "Learn More" buttons above. Hidden until
-             opened; Close, Esc or a click outside closes them. -->
-        <dialog class="plan-modal" id="modal-group" closedby="any" aria-labelledby="modal-group-title">
+        <!-- Membership modals (Responsive Prototype 1174:17630, 1174:17648).
+             Desktop: one scrolling sheet, story then pricing. Mobile frames
+             (1202:17377/17175 etc.) split the same content into two pages —
+             "See Packages & Price" slides to the pricing page, "Back" slides
+             back — via .is-page-2 on the dialog (js/main.js initModalPaging);
+             CSS in responsive.css shows/hides plan-modal__copy vs
+             plan-modal__pricing accordingly. The CTA button and its label
+             stay Rafael's desktop copy on both mobile pages (his call). -->
+        <dialog class="plan-modal plan-modal--paged" id="modal-group" closedby="any" aria-labelledby="modal-group-title">
           <div class="plan-modal__info">
             <div class="plan-modal__top">
               <h2 id="modal-group-title">our group classes.</h2>
               <button class="btn btn--nav" type="button" data-dialog-close>
-                <img class="btn__icon" src="assets/icons/icon-close.svg" alt="" width="24" height="24">Close
+                <img class="btn__icon" src="assets/icons/icon-close.svg" alt="" width="24" height="24"><span class="btn__label">Close</span>
               </button>
             </div>
             <div class="plan-modal__copy plan-modal__copy--led">
@@ -279,29 +325,35 @@
               <p>Book the same session with a partner, family member, or friend to exercise safely in our welcoming,
                 intimate space. We adapt the exercises based on ur current lifestyle, to make sure you stay maintain your
                 quality of life and get strong while doing it.</p>
+              <button class="modal-page-link mobile-only" type="button" data-modal-next>See Packages &amp; Price
+                <img class="modal-page-link__icon" src="assets/icons/arrow-right.svg" alt="" width="18" height="18">
+              </button>
             </div>
             <section class="plan-modal__pricing">
+              <button class="modal-page-link modal-page-link--back mobile-only" type="button" data-modal-prev>
+                <img class="modal-page-link__icon" src="assets/icons/arrow-right.svg" alt="" width="18" height="18">
+                Back to Class Details</button>
               <h3 class="h2">packages.</h3>
               <ul class="price-cards">
                 <li class="price-card">
-                  <h4 class="sp-card-title">8 Sessions</h4>
                   <div class="price-card__body">
+                    <h4 class="sp-card-title">8 Sessions</h4>
                     <p>2 times per week</p>
                     <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
                         class="price__num">220</span><span class="price__unit">/mO</span></p>
                   </div>
                 </li>
                 <li class="price-card">
-                  <h4 class="sp-card-title">12 Sessions</h4>
                   <div class="price-card__body">
+                    <h4 class="sp-card-title">12 Sessions</h4>
                     <p>3 times per week</p>
                     <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
                         class="price__num">300</span><span class="price__unit">/mO</span></p>
                   </div>
                 </li>
                 <li class="price-card">
-                  <h4 class="sp-card-title">16 Sessions</h4>
                   <div class="price-card__body">
+                    <h4 class="sp-card-title">16 Sessions</h4>
                     <p>4 times per week</p>
                     <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
                         class="price__num">380</span><span class="price__unit">/mO</span></p>
@@ -314,15 +366,16 @@
               </ul>
             </section>
             <a class="btn btn--tertiary btn--block" href="#">Schedule Your group class</a>
+            <div class="modal-dots mobile-only" aria-hidden="true"><span></span><span></span></div>
           </div>
         </dialog>
 
-        <dialog class="plan-modal" id="modal-training" closedby="any" aria-labelledby="modal-training-title">
+        <dialog class="plan-modal plan-modal--paged" id="modal-training" closedby="any" aria-labelledby="modal-training-title">
           <div class="plan-modal__info">
             <div class="plan-modal__top">
               <h2 id="modal-training-title">personal training programs.</h2>
               <button class="btn btn--nav" type="button" data-dialog-close>
-                <img class="btn__icon" src="assets/icons/icon-close.svg" alt="" width="24" height="24">Close
+                <img class="btn__icon" src="assets/icons/icon-close.svg" alt="" width="24" height="24"><span class="btn__label">Close</span>
               </button>
             </div>
             <div class="plan-modal__copy">
@@ -332,13 +385,19 @@
                 journey.</p>
               <p>This is continuous coaching, not just 36 individual workouts. It's ongoing support, accountability, and
                 someone in your corner the whole way through — so progress doesn't stop when you leave the studio.</p>
+              <button class="modal-page-link mobile-only" type="button" data-modal-next>See Packages &amp; Price
+                <img class="modal-page-link__icon" src="assets/icons/arrow-right.svg" alt="" width="18" height="18">
+              </button>
             </div>
             <section class="plan-modal__pricing">
+              <button class="modal-page-link modal-page-link--back mobile-only" type="button" data-modal-prev>
+                <img class="modal-page-link__icon" src="assets/icons/arrow-right.svg" alt="" width="18" height="18">
+                Back to Program Details</button>
               <h3 class="h2">packages.</h3>
               <ul class="price-cards">
                 <li class="price-card">
-                  <h4 class="sp-card-title">Private Session</h4>
                   <div class="price-card__body">
+                    <h4 class="sp-card-title">Private Session</h4>
                     <p class="price"><span class="price__cur">$</span><span class="price__sp"> </span><span
                         class="price__num">130~</span></p>
                     <p class="price"><span class="price__cur">$</span><span class="price__sp"> </span><span
@@ -346,15 +405,15 @@
                   </div>
                 </li>
                 <li class="price-card">
-                  <h4 class="sp-card-title">Duo Training</h4>
                   <div class="price-card__body">
+                    <h4 class="sp-card-title">Duo Training</h4>
                     <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
                         class="price__num">85</span><span class="price__unit">/Person</span></p>
                   </div>
                 </li>
                 <li class="price-card">
-                  <h4 class="sp-card-title">Trio<br>training</h4>
                   <div class="price-card__body">
+                    <h4 class="sp-card-title">Trio<br>training</h4>
                     <p class="price"><span class="price__cur">$</span><span class="price__sp"> </span><span
                         class="price__num">65~</span></p>
                     <p class="price"><span class="price__cur">$</span><span class="price__sp"> </span><span
@@ -368,6 +427,7 @@
               </ul>
             </section>
             <a class="btn btn--tertiary btn--block" href="#">book your personal training program</a>
+            <div class="modal-dots mobile-only" aria-hidden="true"><span></span><span></span></div>
           </div>
         </dialog>
 
@@ -398,12 +458,12 @@
           </div>
         </section>
 
-        <dialog class="plan-modal" id="modal-single-use" closedby="any" aria-labelledby="modal-single-use-title">
+        <dialog class="plan-modal plan-modal--paged" id="modal-single-use" closedby="any" aria-labelledby="modal-single-use-title">
           <div class="plan-modal__info">
             <div class="plan-modal__top">
               <h2 id="modal-single-use-title">single-use space activations.</h2>
               <button class="btn btn--nav" type="button" data-dialog-close>
-                <img class="btn__icon" src="assets/icons/icon-close.svg" alt="" width="24" height="24">Close
+                <img class="btn__icon" src="assets/icons/icon-close.svg" alt="" width="24" height="24"><span class="btn__label">Close</span>
               </button>
             </div>
             <div class="plan-modal__copy plan-modal__copy--led">
@@ -411,20 +471,26 @@
               <p>Our studio also offers a drop-in exclusive space rental for you to use at your own pace. Enjoy a quiet,
                 focused environment with no crowd and no waiting time for equipment.</p>
               <p>*Drop-in class availability varies based on studio availability.</p>
+              <button class="modal-page-link mobile-only" type="button" data-modal-next>See Packages &amp; Price
+                <img class="modal-page-link__icon" src="assets/icons/arrow-right.svg" alt="" width="18" height="18">
+              </button>
             </div>
             <section class="plan-modal__pricing">
+              <button class="modal-page-link modal-page-link--back mobile-only" type="button" data-modal-prev>
+                <img class="modal-page-link__icon" src="assets/icons/arrow-right.svg" alt="" width="18" height="18">
+                Back to Session Details</button>
               <h3 class="h2">packages.</h3>
               <ul class="price-cards price-cards--packed">
                 <li class="price-card">
-                  <h4 class="sp-card-title">Single Person</h4>
                   <div class="price-card__body">
+                    <h4 class="sp-card-title">Single Person</h4>
                     <p class="price gap-2"><span class="price__cur">$</span><span class="price__sp"> </span><span
                         class="price__num">50</span><span class="price__unit">/HR</span></p>
                   </div>
                 </li>
                 <li class="price-card">
-                  <h4 class="sp-card-title sp-card-title--pad">Group</h4>
                   <div class="price-card__body">
+                    <h4 class="sp-card-title sp-card-title--pad">Group</h4>
                     <p>2 to 4 people</p>
                     <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
                         class="price__num">150</span><span class="price__unit">/HR</span></p>
@@ -437,6 +503,7 @@
               </ul>
             </section>
             <a class="btn btn--tertiary btn--block" href="#">claim your drop-in slot</a>
+            <div class="modal-dots mobile-only" aria-hidden="true"><span></span><span></span></div>
           </div>
         </dialog>
         <!-- ▲▲▲ SINGLE-USE — END commenting here ▲▲▲ -->
@@ -467,12 +534,12 @@
         </section>
 
         <!-- Rentals modal (1174:17684), opened by "Learn More" above. -->
-        <dialog class="plan-modal" id="modal-rentals" closedby="any" aria-labelledby="modal-rentals-title">
+        <dialog class="plan-modal plan-modal--paged" id="modal-rentals" closedby="any" aria-labelledby="modal-rentals-title">
           <div class="plan-modal__info">
             <div class="plan-modal__top">
               <h2 id="modal-rentals-title">private gym space rentals.</h2>
               <button class="btn btn--nav" type="button" data-dialog-close>
-                <img class="btn__icon" src="assets/icons/icon-close.svg" alt="" width="24" height="24">Close
+                <img class="btn__icon" src="assets/icons/icon-close.svg" alt="" width="24" height="24"><span class="btn__label">Close</span>
               </button>
             </div>
             <div class="plan-modal__copy">
@@ -483,34 +550,40 @@
                 the heavy overhead. We offer a simple booking flow with flexible rescheduling and cancellation options,
                 plus clear equipment lists and usage rules upfront. This is a premium environment with absolutely no
                 crowd.</p>
+              <button class="modal-page-link mobile-only" type="button" data-modal-next>See Packages &amp; Price
+                <img class="modal-page-link__icon" src="assets/icons/arrow-right.svg" alt="" width="18" height="18">
+              </button>
             </div>
             <section class="plan-modal__pricing">
+              <button class="modal-page-link modal-page-link--back mobile-only" type="button" data-modal-prev>
+                <img class="modal-page-link__icon" src="assets/icons/arrow-right.svg" alt="" width="18" height="18">
+                Back to Session Details</button>
               <h3 class="h2">packages.</h3>
               <ul class="price-cards">
                 <li class="price-card">
-                  <h4 class="sp-card-title">Hourly rental</h4>
                   <div class="price-card__body">
+                    <h4 class="sp-card-title">Hourly rental</h4>
                     <p class="price gap-2"><span class="price__cur">$</span><span class="price__sp"> </span><span
                         class="price__num">50</span><span class="price__unit">/HR</span></p>
                   </div>
                 </li>
                 <li class="price-card">
-                  <h4 class="sp-card-title">10 hours rental</h4>
                   <div class="price-card__body">
+                    <h4 class="sp-card-title">10 hours rental</h4>
                     <p class="price gap-2"><span class="price__cur">$</span><span class="price__sp"> </span><span
                         class="price__num">400</span><span class="price__unit">/mO</span></p>
                   </div>
                 </li>
                 <li class="price-card">
-                  <h4 class="sp-card-title">20 hours rental</h4>
                   <div class="price-card__body">
+                    <h4 class="sp-card-title">20 hours rental</h4>
                     <p class="price gap-2"><span class="price__cur">$</span><span class="price__sp"> </span><span
                         class="price__num">750</span><span class="price__unit">/mO</span></p>
                   </div>
                 </li>
                 <li class="price-card">
-                  <h4 class="sp-card-title">up to 40 hours</h4>
                   <div class="price-card__body">
+                    <h4 class="sp-card-title">up to 40 hours</h4>
                     <p class="price gap-2"><span class="price__cur">$</span><span class="price__sp"> </span><span
                         class="price__num">1300</span><span class="price__unit">/mO</span></p>
                   </div>
@@ -518,6 +591,7 @@
               </ul>
             </section>
             <a class="btn btn--tertiary btn--block" href="#">Rent your gym space</a>
+            <div class="modal-dots mobile-only" aria-hidden="true"><span></span><span></span></div>
           </div>
         </dialog>
 
@@ -532,6 +606,8 @@
           <img class="sp-band__photo" src="assets/img/sp-hotel-guest.jpg" alt="" width="2499" height="1666"
             loading="lazy">
           <div class="sp-hotel__content">
+            <img class="sp-hotel__wavy mobile-only" src="assets/icons/sp-wavy-lines-mobile.svg" alt="" aria-hidden="true"
+              width="582" height="425" loading="lazy">
             <h2 class="sp-title">Hotel Guest Exclusive Spots &amp; Discounts.</h2>
             <div class="sp-hotel__text">
               <p>Guest from the Holiday Inn and local nearby hotels get a 10% off discount at FORGE Studios. We believe
@@ -543,41 +619,47 @@
           </div>
         </section>
 
-        <dialog class="plan-modal" id="modal-hotel" closedby="any" aria-labelledby="modal-hotel-title">
+        <dialog class="plan-modal plan-modal--paged" id="modal-hotel" closedby="any" aria-labelledby="modal-hotel-title">
           <div class="plan-modal__info">
             <div class="plan-modal__top">
               <h2 id="modal-hotel-title">Hotel Guest<br>Exclusive Spots &amp; Discounts.</h2>
               <button class="btn btn--nav" type="button" data-dialog-close>
-                <img class="btn__icon" src="assets/icons/icon-close.svg" alt="" width="24" height="24">Close
+                <img class="btn__icon" src="assets/icons/icon-close.svg" alt="" width="24" height="24"><span class="btn__label">Close</span>
               </button>
             </div>
             <div class="plan-modal__copy">
               <p>Guests from the Holiday Inn and nearby hotels get a 10% discount at FORGE Studios. We believe your short
                 stay does not need to be full of dealing with crowded and under-equipped gyms, so we have a space ready for
                 you.</p>
+              <button class="modal-page-link mobile-only" type="button" data-modal-next>See Packages &amp; Price
+                <img class="modal-page-link__icon" src="assets/icons/arrow-right.svg" alt="" width="18" height="18">
+              </button>
             </div>
             <section class="plan-modal__pricing">
+              <button class="modal-page-link modal-page-link--back mobile-only" type="button" data-modal-prev>
+                <img class="modal-page-link__icon" src="assets/icons/arrow-right.svg" alt="" width="18" height="18">
+                Back to Session Details</button>
               <h3 class="h2">Exclusive guest rates.</h3>
               <ul class="price-cards">
                 <li class="price-card">
-                  <h4 class="sp-card-title">single<br>drop-in</h4>
                   <div class="price-card__body">
+                    <h4 class="sp-card-title">single<br>drop-in</h4>
                     <p>20% off<br>Regularly $50/hr.</p>
                     <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
                         class="price__num">40</span><span class="price__unit">/Visit</span></p>
                   </div>
                 </li>
                 <li class="price-card">
-                  <h4 class="sp-card-title">traveler’s pass</h4>
                   <div class="price-card__body">
+                    <h4 class="sp-card-title">traveler’s pass</h4>
                     <p>15% off<br>Valid for 3 visits during your stay.</p>
                     <p class="price"><span class="price__cur">$</span><span class="price__sp"> </span><span
                         class="price__num">85</span><span class="price__unit">/3 Visits</span></p>
                   </div>
                 </li>
                 <li class="price-card">
-                  <h4 class="sp-card-title">small group drop-in</h4>
                   <div class="price-card__body">
+                    <h4 class="sp-card-title">small group drop-in</h4>
                     <p>For up to 4 guests sharing a session.</p>
                     <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
                         class="price__num">380</span><span class="price__unit">/mO</span></p>
@@ -592,6 +674,7 @@
               </ul>
             </section>
             <a class="btn btn--tertiary btn--block" href="#">book your exclusive spot</a>
+            <div class="modal-dots mobile-only" aria-hidden="true"><span></span><span></span></div>
           </div>
         </dialog>
         <!-- ▲▲▲ HOTEL GUEST — END commenting here ▲▲▲ -->

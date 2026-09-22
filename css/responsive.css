@@ -71,6 +71,8 @@
       --h1-size: 48px;            /* Headers/H1 Mobile — Antonio 48/100% */
       --h1-leading: 1;
       --h2-size: 32px;            /* Headers/H2 Mobile — Antonio 32/100% */
+      --h3-size: 20px;            /* Headers/H3 Mobile — Poppins 20/28   */
+      --h3-leading: 28px;
       --button-size: 16px;        /* Button Text 16pts Md — Poppins 16   */
       --button-leading: normal;
     }
@@ -205,13 +207,12 @@
     }
 
     /* --- Secondary page hero (component 1041:8897) ---------------------
-       Every mobile variant is a 288px band with 48/24 padding (the
-       component's height; the page frames squeeze their instances to
-       224px, but Rafael chose the component). The title takes the mobile
-       H1 from the tokens above. */
+       The page frames size every instance to 224px (the component itself
+       is 288px; Rafael chose the page frames' height), with 48/24 padding.
+       The title takes the mobile H1 from the tokens above. */
 
     .page-hero {
-      height: 288px;
+      height: 224px;
       padding: 48px 24px;
     }
 
@@ -887,6 +888,499 @@
       font-size: 24px;
       line-height: 1;
       text-transform: uppercase;
+    }
+
+    /* =================================================================
+       SERVICES & PLANS — "mobile-services-and-plans-sticky-navbar"
+       (1486:10914). The single-use band (1486:10964, hidden in Figma) and
+       the hotel band (1486:10988, annotated the same way) are both live
+       here, matching the desktop build (Rafael's call both times).
+       ================================================================= */
+
+    /* --- Intro (1486:10918 hero + 1486:10920 copy) -----------------------
+       Figma combines the hero photo and this copy in one rounded card on
+       a slightly-darker background; .page-hero stays the shared component
+       every secondary page uses, and .sp-intro picks up the darker tone,
+       drops the desktop panel, and adds the CTA and the two circles that
+       bleed into the perks section below. */
+
+    .sp-intro {
+      position: relative;
+      flex-direction: column;
+      gap: 0;
+      align-items: stretch;
+      padding: 36px 0;
+      background-color: var(--slightly-darker-colour);
+      overflow: clip;
+    }
+
+    /* Title + paragraph 20px apart, the pair 24px above the button. */
+    .sp-intro__mobile {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      align-items: flex-start;
+      padding-inline: 24px;
+      width: 100%;
+    }
+
+    .sp-intro__text {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+    }
+
+    /* Headers/H2 Mobile (Antonio 32/100%) in rust. */
+    .sp-intro__text h2 {
+      color: var(--primary-shapes-fill);
+      word-break: break-word;
+    }
+
+    .sp-intro__text p {
+      color: var(--black);
+      font-size: var(--body-16-size);
+      line-height: var(--body-16-leading);
+    }
+
+    /* The button hugs its label (127px) instead of the 164px minimum. */
+    .sp-intro__mobile .btn { min-width: 0; }
+
+    /* One outlined, textured circle (1486:10930): flush right, its disc
+       running 5px past the section's bottom edge, where the perks section
+       covers it in Figma. overflow: clip on .sp-intro makes the same flat
+       cut. Figma's second copy (1486:10927) sits entirely behind the
+       perks section, so it never shows. The SVG is 121.25×113.25 with
+       a 0.75px stroke margin, offset to match Figma's inset. */
+    .sp-intro__circle {
+      position: absolute;
+      right: -0.5px;
+      bottom: -5.5px;
+      width: 121.25px;
+      height: 113.25px;
+      max-width: none;
+      pointer-events: none;
+    }
+
+    /* --- Perks (1486:10933) -----------------------------------------------
+       Stacked full-width cards instead of a row, with a vertical line
+       decoration threaded behind/between them. */
+
+    /* overflow: clip cuts the vertical lines at the section's bottom edge;
+       in Figma they run 11px further, under the marquee that covers them. */
+    .sp-perks {
+      position: relative;
+      gap: 48px;
+      padding: 48px 12px;
+      background-color: var(--primary-colour);
+      overflow: clip;
+    }
+
+    .sp-perks__cards {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 24px;
+      padding-inline: 0;
+    }
+
+    /* Desktop's roomy 48px vertical padding is sized for the 3-column row;
+       the mobile card (Figma "Cards", Black Card/Mobile) is much tighter:
+       24px all round, a 4px title-to-body gap, and the 16pt body style. */
+    .perk-card {
+      padding: 24px;
+      gap: 4px;
+    }
+
+    /* 4 of the 5 card instances on this frame (both perk and member cards)
+       use --primary-colour for their body text, not desktop's --card-ink;
+       "Build Community" is the one stray instance using --card-ink, so
+       this normalizes to the value the rest of the component agrees on. */
+    .perk-card p {
+      color: var(--primary-colour);
+      font-size: var(--body-16-size);
+      line-height: var(--body-16-leading);
+    }
+
+    /* Positioned elements paint above static ones regardless of DOM order,
+       so the absolutely-positioned lines (first child, so they sit behind
+       the cards visually) were rendering on top of the opaque cards
+       instead of behind them. Making the cards themselves positioned
+       restores DOM order (line first, cards after) for paint order too. */
+    .perk-card {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Figma positions this relative to perks-cards-mobile (y:-42, within a
+       section where that block itself starts at y:160) — 160-42=118px
+       from .sp-perks's own top, not vertically centered on the card
+       stack as the first draft approximated (off by tens of px once the
+       card sizing was corrected). right:55 is relative to .sp-perks
+       (336px, its nearest positioned ancestor) and already matches
+       Figma's 43px gap to the cards' own right edge — verified against
+       the live layout, not just recomputed. */
+    .sp-perks__lines {
+      position: absolute;
+      right: 55px;
+      top: 118px;
+      width: 44px;
+      height: 537px;
+      pointer-events: none;
+    }
+
+    /* --- Membership exclusives (1486:10946) --------------------------------
+       Two full-width photo+card pairs stacked, each card overlapping its
+       photo's bottom edge; one shared circle decoration behind both,
+       instead of desktop's per-member small/large pair. */
+
+    .sp-members {
+      position: relative;
+      padding: 48px 0;
+    }
+
+    /* Title to first photo is the section's 48px gap, not desktop's 72. */
+    .sp-members__inner { gap: 48px; }
+
+    /* Figma: 68px past the section's left edge, 528px from its top. The
+       321×307 SVG carries a 1px stroke margin around the 319×305 group. */
+    .sp-members__circle {
+      position: absolute;
+      left: -69px;
+      top: 527px;
+      width: 321px;
+      height: 307px;
+      max-width: none;
+      pointer-events: none;
+    }
+
+    .sp-members__grid {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 72px 0;
+      padding-inline: 12px;
+    }
+
+    /* Reserves the absolutely-placed button: 8px gap + 48px pill. */
+    .member {
+      width: 100%;
+      padding-bottom: 56px;
+      padding-top: 0;
+    }
+
+    .member .media {
+      width: 100%;
+      height: 302px;
+      margin-bottom: -72px;
+    }
+
+    /* The card overlaps its photo's bottom edge; an inset on the side
+       away from the frame edge staggers the two cards, as in Figma. */
+    /* Figma ("collective/personal-training-info-mobile", 312px) insets the
+       card+button 72px from one edge and 8px from the other — the card's
+       own box is 232px wide, not full-bleed-with-internal-padding as
+       first built (that made both the card AND the button-fix below the
+       wrong width). */
+    .member-card {
+      position: relative;
+      inset: auto;
+      overflow: visible;
+      width: calc(100% - 80px);
+      padding: 24px;
+      gap: 4px;
+    }
+
+    .member-card p {
+      color: var(--primary-colour);
+      font-size: var(--body-16-size);
+      line-height: var(--body-16-leading);
+    }
+
+    .member--group .member-card { margin-left: 72px; margin-right: 8px; }
+    .member--training .member-card { margin-left: 8px; margin-right: 72px; }
+
+    /* Figma sits the button as its own sibling below the rust card, not
+       inside it — an 8px gap on the cream background, not a
+       card-coloured pill glued to the bottom, and the same 232px width
+       and inset as the card above it. Desktop keeps the button inside
+       the card (unchanged), so this is done with position: absolute
+       rather than a DOM move: it escapes the card's own box
+       (overflow: visible above) instead of stretching it, and .member's
+       own padding-bottom (above) reserves the room so it doesn't
+       overlap the next element. The card is its containing block, so
+       left: 0 / width: 100% already give the card's own 232px and inset. */
+    .member-card__actions {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      margin-top: 8px;
+      align-items: stretch;
+      padding-top: 0;
+    }
+
+    .member-card__actions .btn { width: 100%; min-width: 0; }
+
+    /* --- Photo + copy bands (1486:10964 single-use, 1486:10976 rentals) ---
+       Both stack photo-then-copy on mobile; single-use's desktop order is
+       copy-then-photo, so .sp-band__col--copy is reordered after the
+       photo regardless of its position in the markup. */
+
+    /* align-items: stretch overrides desktop's center — desktop's columns
+       are explicitly 600px+ wide so center never mattered there, but at
+       mobile the photo column has no in-flow content (its img is
+       position: absolute) so "size to content, then center" collapses it
+       to 0 width. stretch makes both columns fill the full width instead,
+       which is what the Figma frame actually shows. */
+    .sp-band {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    /* Desktop's flex:1 0 0 gives every column a 0 flex-basis, which in this
+       new column-direction layout means main-axis (height) sizing — so an
+       explicit height alone is ignored (flex-basis wins over it) and the
+       photo column, with no in-flow content of its own, collapses to 0.
+       flex: none lets height/auto size each column instead. */
+    .sp-band__col {
+      flex: none;
+      height: auto;
+      width: 100%;
+      min-width: 0;
+    }
+
+    .sp-band__col:not(.sp-band__col--copy) { order: 1; height: 260px; }
+
+    .sp-band__col--copy {
+      order: 2;
+      align-items: flex-start;
+      padding: 48px 24px;
+    }
+
+    .sp-band__text {
+      width: 100%;
+      max-width: none;
+      gap: 24px;
+    }
+
+    .sp-band__lead {
+      font-family: var(--font-ui);
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 28px;
+      text-transform: capitalize;
+    }
+
+    .sp-band__prose {
+      font-size: var(--body-16-size);
+      line-height: var(--body-16-leading);
+    }
+
+    /* Figma's mobile CTAs hug their label (137px "Learn More", 127px
+       "Book Now") instead of the 164px minimum. */
+    .sp-band .btn,
+    .sp-hotel .btn { min-width: 0; }
+
+    /* --- Hotel guest (1408:8946) --------------------------------------
+       Desktop lays the copy over a full-bleed photo (cream text on the
+       image); mobile stacks a plain 398px photo above a separate cream
+       panel with rust/black text, like the bands above. Scoped to
+       .sp-hotel so the other bands' .sp-band__photo is untouched. */
+
+    .sp-hotel {
+      flex-direction: column;
+      align-items: stretch;
+      padding: 0;
+    }
+
+    /* Figma's own mobile crop (hotel-guest-image-mobile) scales the photo
+       to ~178% and pins it to the left edge, showing the "HOTEL" sign
+       rather than the plain default center-crop. */
+    .sp-hotel .sp-band__photo {
+      position: static;
+      width: 100%;
+      height: 398px;
+      object-position: left center;
+    }
+
+    .sp-hotel__content {
+      position: relative;
+      width: 100%;
+      gap: 24px;
+      align-items: flex-start;
+      padding: 48px 24px;
+      background-color: var(--primary-colour);
+      overflow: clip;
+    }
+
+    /* Anchored to the panel's bottom (Figma runs it 105px past it), since
+       the real hotel copy is shorter than the frame's placeholder text:
+       a top offset would push the curves out of the clipped panel. */
+    .sp-hotel__wavy {
+      position: absolute;
+      left: -123px;
+      bottom: -106px;
+      width: 582px;
+      height: 425px;
+      max-width: none;
+      pointer-events: none;
+    }
+
+    .sp-hotel .sp-title {
+      position: relative;
+      color: var(--secondary-colour);
+      text-align: left;
+    }
+
+    .sp-hotel__text {
+      position: relative;
+      justify-content: flex-start;
+      padding-inline: 0;
+    }
+
+    .sp-hotel__text p {
+      color: var(--black);
+      text-align: left;
+      font-size: var(--body-16-size);
+      line-height: var(--body-16-leading);
+    }
+
+    .sp-hotel .btn { position: relative; }
+
+    /* ==================================================================
+       MODALS — mobile splits each sheet into two pages: the story (page
+       1, Figma "…Modal - Mobile - Page1 - …") and the pricing (page 2,
+       "…Page2 - …"). Both pages already exist as plan-modal__copy and
+       plan-modal__pricing in the shared markup; .is-page-2 on the dialog
+       (toggled by initModalPaging in js/main.js) swaps which one shows.
+       The CTA button keeps Rafael's desktop label on both pages, as he
+       asked, and sits with the dots below whichever page is showing. ==== */
+
+    .plan-modal {
+      width: min(307px, calc(100% - 24px));
+      padding: 8px 0 18px;
+      transition-duration: 0.5s;
+    }
+
+    .plan-modal__info { gap: 18px; }
+
+    .plan-modal__top {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .plan-modal__top .btn--nav {
+      order: -1;
+      align-self: flex-end;
+      min-width: 0;
+      padding: 12px 0;
+    }
+
+    .plan-modal__top .btn__label { display: none; }
+
+    .plan-modal__top h2 { padding-inline: 20px; }
+
+    .plan-modal__copy,
+    .plan-modal__pricing { padding-inline: 20px; }
+
+    .plan-modal__copy > * + *,
+    .plan-modal__pricing > * + * { margin-block-start: var(--copy-gap, var(--body-leading)); }
+
+    /* Page 1 shows by default; .is-page-2 swaps to page 2. */
+    .plan-modal__pricing { display: none; gap: 15px; }
+    .plan-modal.is-page-2 .plan-modal__pricing { display: flex; }
+    .plan-modal.is-page-2 .plan-modal__copy { display: none; }
+
+    .plan-modal__pricing h3 { padding-inline: 0; text-align: left; }
+
+    .modal-page-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-block-start: 18px;
+      padding: 0 0 4px;
+      border: 0;
+      border-bottom: 0.8px solid #474747;
+      background: none;
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 20px;
+      color: #474747;
+      cursor: pointer;
+    }
+
+    .modal-page-link--back .modal-page-link__icon { rotate: 180deg; }
+
+    .price-cards { gap: 15px; }
+
+    /* Horizontal pill instead of the desktop 200×210 vertical card. Every
+       card wraps a single .price-card__body now (the h4 title lives inside
+       it, moved there in the markup — see the comment on price-card__body
+       below); the accent cards' body is still the plain paragraph they've
+       always had, so this column stack is what puts their title above it. */
+    .price-card {
+      flex-direction: column;
+      width: 100%;
+      height: auto;
+      padding: 12px;
+      gap: 8px;
+    }
+
+    /* The regular cards' h4 title moved inside this div in the markup (it
+       sits alongside the optional subtitle <p> and the .price <p>) so a
+       single two-column grid can place title+subtitle on the left and the
+       price on the right without them ever needing to be siblings outside
+       it. Desktop is untouched: there .price-card__body only ever held the
+       subtitle/price, unaffected by an h4 now living inside it too. */
+    .price-card__body {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      column-gap: 10px;
+      width: 100%;
+      min-width: 0;
+    }
+
+    .price-card__body > h4,
+    .price-card__body > p:not(.price) { grid-column: 1; }
+
+    .price-card__body > p.price { grid-column: 2; }
+
+    .sp-card-title {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    .sp-card-title--pad { padding-block-end: 0; }
+
+    .price { text-align: right; }
+    .price__cur  { font-size: 18px; font-weight: 700; }
+    .price__sp   { font-size: 20px; font-weight: 700; }
+    .price__num  { font-size: 24px; font-weight: 700; }
+    .price__unit { font-size: 14px; font-weight: 700; }
+
+    .btn--block { padding-inline: 20px; margin-block-start: 18px; }
+
+    /* Two small dots, right after the CTA, active one keyed off the same
+       .is-page-2 class the paging links toggle. */
+    .modal-dots {
+      display: flex;
+      gap: 8px;
+      align-self: center;
+      margin-block-start: 20px;
+    }
+
+    .modal-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #a5a5a5;
+      opacity: 0.8;
+    }
+
+    .plan-modal:not(.is-page-2) .modal-dots span:first-child,
+    .plan-modal.is-page-2 .modal-dots span:last-child {
+      background-color: var(--primary-shapes-fill);
     }
   }
 }
