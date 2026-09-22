@@ -12,7 +12,8 @@
        1427:9840), on every page;
      - the home page sections (same frame);
      - the secondary page hero, shared by every secondary page;
-     - the Our Space sections ("mobile-our-space-sticky-navbar", 1486:10685).
+     - the Our Space sections ("mobile-our-space-sticky-navbar", 1486:10685);
+     - the Who We Are sections ("mobile-who-we-are-sticky-navbar", 1486:10271).
    The other pages keep their desktop sections until their frames are built.
 
    Rules added here land in the `responsive` layer, which is declared last in
@@ -206,11 +207,13 @@
     }
 
     /* --- Secondary page hero (component 1041:8897) ---------------------
-       Every mobile variant is a 224px band with 48/24 padding; the title
-       takes the mobile H1 from the tokens above. */
+       Every mobile variant is a 288px band with 48/24 padding (the
+       component's height; the page frames squeeze their instances to
+       224px, but Rafael chose the component). The title takes the mobile
+       H1 from the tokens above. */
 
     .page-hero {
-      height: 224px;
+      height: 288px;
       padding: 48px 24px;
     }
 
@@ -562,5 +565,333 @@
     .our-space--rental .our-space__actions { width: 100%; }
 
     .our-space--rental .our-space__actions .btn { width: auto; }
+
+    /* =================================================================
+       WHO WE ARE — "mobile-who-we-are-sticky-navbar" (1486:10271)
+       ================================================================= */
+
+    /* All body copy on this frame is the 16pt style. */
+    .founder,
+    .timeline,
+    .chapter,
+    .community {
+      --body-size: var(--body-16-size);
+      --body-leading: var(--body-16-leading);
+      font-size: var(--body-16-size);
+      line-height: var(--body-16-leading);
+    }
+
+    /* --- Founder bio (1486:10277): heading, photo, then the copy, 24px
+       apart. The copy is 300px inside a 288px column, centred, so it
+       overhangs 6px each side as in Figma. */
+
+    .founder {
+      flex-direction: column;
+      gap: 24px;
+      padding: 48px 24px;
+    }
+
+    .founder__text { display: contents; }
+
+    .founder__text h2 {
+      order: -1;
+      text-align: center;
+    }
+
+    .founder__picture {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1111 / 1416;
+      overflow: hidden;
+      border-radius: 9.48px;
+    }
+
+    .founder__prose {
+      flex: none;
+      width: 300px;
+      text-align: center;
+    }
+
+    /* --- Timeline (1486:10282) -----------------------------------------
+       Heading, three photo-over-card rows, and the closing heading, 72px
+       apart, with one curved line behind them all. The desktop rule
+       segments, nodes, branches and ornaments are not in this frame. */
+
+    .timeline {
+      gap: 72px;
+      align-items: stretch;
+      padding: 0 24px 72px;
+      overflow: clip;              /* the line's foot, as the next band covers it in Figma */
+      background-color: var(--primary-colour);
+    }
+
+    .timeline__rule,
+    .timeline__node,
+    .timeline__branch,
+    .timeline__deco,
+    .timeline__divider { display: none; }
+
+    /* Anchored to the section's foot, where Figma has it 2.44px past the
+       bottom, so the straight end always meets the closing heading. */
+    .timeline__line {
+      position: absolute;
+      left: calc(50% + 0.72px);
+      bottom: -2.44px;
+      translate: -50% 0;
+      width: 313.458px;
+      height: 1772.04px;
+      max-width: none;
+      pointer-events: none;
+    }
+
+    /* Opaque, and above the line, which runs up behind it. The section's
+       48px top padding lives here so the line can't show above the words
+       on wider phones, where the rows are shorter. */
+    .timeline__header {
+      z-index: 2;
+      gap: 0;
+      padding: 72px 0 12px;
+      background-color: var(--primary-colour);
+    }
+
+    .timeline__header h2 {
+      width: 100%;
+      max-width: none;
+    }
+
+    .timeline__header .lb { display: none; }
+
+    /* "Forging the next chapter": a 146px cream box whose 320px heading
+       overhangs it on both sides; the box hides the line behind the words. */
+    .timeline__header--end {
+      align-self: center;
+      width: 146px;
+      padding: 12px 0;
+    }
+
+    .timeline__header--end h2 {
+      flex: none;
+      width: 320px;
+    }
+
+    .timeline__step {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      height: auto;
+      padding: 0;
+    }
+
+    /* The card overlaps the photo's last 48px. */
+    .timeline__photo {
+      order: -1;
+      flex: none;
+      width: 100%;
+      min-width: 0;
+      max-width: none;
+      height: 304px;
+      margin-bottom: -48px;
+      border-radius: 20px;
+    }
+
+    /* Row 1 (1486:10290): the wide shot, placed where Figma's crop puts
+       it — 319.2% of the frame wide, 37.66% left of it, 22px up. */
+    .timeline__photo--walk img {
+      inset: -22px auto auto -37.66%;
+      width: 319.2%;
+      height: auto;
+      object-fit: fill;
+    }
+
+    /* Row 2 (1486:10295): full width like the other rows (Rafael's call;
+       Figma fixes it at 288px). The square photo keeps its Figma crop. */
+    .timeline__photo--offset { border-radius: var(--corner-radius-primary); }
+
+    .timeline__photo--offset img {
+      inset: -0.09% auto auto -23.24%;
+      width: 123.3%;
+      height: auto;
+      aspect-ratio: 1;
+    }
+
+    /* Row 3 (1486:10299): a square photo from 10px left of the frame to
+       9px past its right edge, pinned to the top (307px at 360). Its own
+       24px corner shows at the top left. It covers the frame at any
+       width, so nothing shows behind it. */
+    .timeline__photo--bench { border-radius: 24px 20px 20px; }
+
+    .timeline__photo--bench img {
+      inset: 0 auto auto -10px;
+      width: calc(100% + 19px);
+      height: auto;
+      aspect-ratio: 1;
+    }
+
+    .timeline__card {
+      z-index: 3;
+      flex: none;
+      gap: 4px;
+      width: 100%;
+      min-width: 0;
+      max-width: none;
+      padding: 24px;
+      border-radius: var(--corner-radius-primary);
+    }
+
+    /* --- Next chapter rows (1486:10309, 1486:10313): the 336px photo,
+       then a 336px band with the copy centred in it. */
+
+    .chapter {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      background-color: var(--slightly-darker-colour);
+    }
+
+    .chapter__lines { display: none; }
+
+    .chapter__media {
+      order: -1;
+      flex: none;
+      width: 336px;
+      height: 336px;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .chapter__media--sunrise img {
+      inset: -16.44% auto auto -9.75%;
+      width: 175.03%;
+      height: 116.44%;
+    }
+
+    .chapter__text {
+      flex: none;
+      width: 100%;
+      height: 336px;
+      min-width: 0;
+      padding: 48px 24px;
+    }
+
+    .chapter__copy {
+      gap: var(--body-16-leading);
+      width: 100%;
+      max-width: none;
+    }
+
+    /* Figma's 310px box ends on an empty line, which lifts the centred
+       copy by half a line. */
+    .chapter__copy--quoted {
+      flex: none;
+      justify-content: center;
+      height: 310px;
+      padding-bottom: var(--body-16-leading);
+    }
+
+    /* --- Community stories (1486:10318) --------------------------------- */
+
+    .closing__lines { display: none; }
+
+    .community {
+      gap: 32px;
+      padding: 48px 24px;
+    }
+
+    .community__title {
+      height: auto;
+      width: 273px;
+    }
+
+    .community__lede {
+      height: auto;
+      width: 308px;
+      padding: 0;
+    }
+
+    .community__lede p {
+      font-family: var(--body-family);
+      font-weight: var(--body-weight);
+      font-size: var(--body-16-size);
+      line-height: var(--body-16-leading);
+      text-transform: none;
+      white-space: pre-wrap;       /* Figma's double spaces */
+      color: var(--primary-shapes-fill);
+    }
+
+    /* One 211px card per page between 37px chevrons. */
+    .carousel { --carousel-per-page: 1; }
+
+    .carousel__row { width: 100%; }
+
+    .carousel__arrow,
+    .carousel__arrow img {
+      width: 37px;
+      height: 37px;
+    }
+
+    .carousel__arrow img {
+      rotate: -90deg;
+      scale: 1 -1;
+    }
+
+    .carousel__arrow--prev img { rotate: 90deg; }
+
+    /* Exactly one card wide, so the next card never shows on wider
+       phones; the arrows keep to the row's ends. */
+    .carousel__viewport {
+      flex: none;
+      width: 211px;
+      height: auto;
+      touch-action: pan-y;        /* horizontal drags go to the swipe handler */
+    }
+
+    .carousel__track {
+      --carousel-page-width: 211px;
+      gap: 24px;
+    }
+
+    .story-card {
+      gap: 4px;
+      width: 211px;
+      height: auto;
+      border-radius: var(--corner-radius-primary);
+    }
+
+    .story-card blockquote { color: var(--primary-colour); }
+
+    /* No dots on mobile (Rafael's call): swipe or the chevrons. */
+    .carousel__dots { display: none; }
+
+    /* --- Photos and call to action (1486:10334, 1486:10338) ------------- */
+
+    .closing-cta {
+      gap: 0;
+      padding: 0;
+      width: 100%;
+    }
+
+    .closing-cta__photos {
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .closing-cta__photo {
+      flex: none;
+      width: 336px;
+      height: 189.1px;
+    }
+
+    .closing-cta__action {
+      gap: 24px;
+      width: 100%;
+      padding: 72px 24px;
+    }
+
+    .closing-cta__title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 1;
+      text-transform: uppercase;
+    }
   }
 }

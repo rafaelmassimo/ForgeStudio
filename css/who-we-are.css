@@ -390,6 +390,7 @@
      data/testimonials.json and slides it one page per arrow press. */
 
   .carousel {
+    --carousel-per-page: 3;       /* read by main.js */
     display: flex;
     flex-direction: column;
     gap: 24px;
