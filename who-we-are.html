@@ -16,7 +16,8 @@
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;500;700&family=Poppins:wght@500;600&family=Sarabun:wght@400&display=swap">
 
-  <link rel="preload" as="image" href="assets/img/wwa-hero.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/img/wwa-hero.jpg" media="(min-width: 768px)" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/img/wwa-hero-mobile.jpg" media="(max-width: 767px)" fetchpriority="high">
 
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/styles.css">
@@ -53,9 +54,13 @@
 
         <!-- ================= Secondary page hero (1272:9567) ================= -->
         <section class="page-hero">
-          <img class="page-hero__bg" src="assets/img/wwa-hero.jpg" alt="" aria-hidden="true"
-               width="1392" height="400" fetchpriority="high">
-          <h1 class="page-hero__title" data-reveal>Who We Are<span class="page-hero__dot">.</span></h1>
+          <!-- The mobile frame (1486:10275) uses its own, darker crop. -->
+          <picture>
+            <source media="(max-width: 767px)" srcset="assets/img/wwa-hero-mobile.jpg" width="336" height="289">
+            <img class="page-hero__bg" src="assets/img/wwa-hero.jpg" alt="" aria-hidden="true"
+                 width="1392" height="400" fetchpriority="high">
+          </picture>
+          <h1 class="page-hero__title">Who We Are<span class="page-hero__dot">.</span></h1>
         </section>
 
         <!-- ================= Infinite horizontal scroll (1272:9568) ================= -->
@@ -183,8 +188,9 @@
             <h2 class="hover-lift__target">Meet The Founder</h2>
             <div class="founder__prose">
               <p>Gabriela has been a Yoga Alliance Certified since 2020 and a teacher for many years throughout the Fraser Valley, becoming renown for her expertise, playfulness and ability to connect with her students.</p>
-              <p>She is very focused on building a unique approach to fitness and one that guides people into building not only a better body, but enjoying the journey of building a better life.</p>
-              <p>No Miracle diets. No Shortcuts. Gabi believes in a well balanced, disciplined routine that makes you live life on your own terms. All of that with a good dose of humor!</p>
+              <p class="mobile-only">She is very focused on building a unique approach to fitness and one that guides people into building a better life through strength.</p>
+              <p class="desktop-only">She is very focused on building a unique approach to fitness and one that guides people into building not only a better body, but enjoying the journey of building a better life.</p>
+              <p class="desktop-only">No Miracle diets. No Shortcuts. Gabi believes in a well balanced, disciplined routine that makes you live life on your own terms. All of that with a good dose of humor!</p>
             </div>
           </div>
         </section>
@@ -194,6 +200,10 @@
              lines, a rail in every step, the dividers). Every segment is the
              same 3px column at x = 693–696, so they meet without a seam. -->
         <section class="timeline">
+          <!-- Mobile only: one curved line (1486:10287) replaces the rule
+               segments, nodes and branches. -->
+          <img class="timeline__line mobile-only" src="assets/icons/wwa-timeline-line-mobile.svg" alt=""
+               aria-hidden="true" width="313" height="1772">
 
           <div class="timeline__header" data-reveal>
             <span class="timeline__rule timeline__rule--header" aria-hidden="true"></span>
@@ -205,9 +215,12 @@
 
           <div class="timeline__step" data-reveal-group>
             <img class="timeline__node" src="assets/icons/timeline-node.svg" alt="" aria-hidden="true" width="35" height="35">
-            <div class="timeline__photo" data-reveal>
-              <img src="assets/img/wwa-timeline-1.jpg" alt="Gabriela walking through the studio with a yoga mat and towel"
-                   width="550" height="700" loading="lazy">
+            <div class="timeline__photo timeline__photo--walk">
+              <picture>
+                <source media="(max-width: 767px)" srcset="assets/img/wwa-timeline-1-mobile.jpg" width="1672" height="941">
+                <img src="assets/img/wwa-timeline-1.jpg" alt="Gabriela walking through the studio with a yoga mat and towel"
+                     width="550" height="700" loading="lazy">
+              </picture>
             </div>
             <span class="timeline__rule timeline__rule--rail" aria-hidden="true"></span>
             <div class="timeline__card hover-lift" data-reveal>
@@ -241,9 +254,12 @@
 
           <div class="timeline__step" data-reveal-group>
             <img class="timeline__node" src="assets/icons/timeline-node.svg" alt="" aria-hidden="true" width="35" height="35">
-            <div class="timeline__photo" data-reveal>
-              <img src="assets/img/wwa-timeline-3.jpg" alt="Gabriela holding a warrior pose on a yoga mat"
+            <div class="timeline__photo timeline__photo--bench">
+              <img class="desktop-only" src="assets/img/wwa-timeline-3.jpg" alt="Gabriela holding a warrior pose on a yoga mat"
                    width="550" height="700" loading="lazy">
+              <!-- The mobile frame shows the bench portrait here instead. -->
+              <img class="mobile-only" src="assets/img/wwa-next-chapter-2.jpg" alt="Gabriela smiling, sitting on a bench in the studio"
+                   width="696" height="696" loading="lazy">
             </div>
             <span class="timeline__rule timeline__rule--rail" aria-hidden="true"></span>
             <div class="timeline__card hover-lift" data-reveal>
@@ -262,16 +278,20 @@
         </section>
 
         <!-- ================= Next chapter, row 1 (1322:5159) ================= -->
-        <section class="chapter" data-reveal-group>
-          <div class="chapter__text" data-reveal>
-            <div class="chapter__copy">
-              <p>That teaching eventually bloomed into resilience, diligence and a work ethic. Now, Gabriela applies those same values into her classes to provide her students with a mindset of constant growth and knowledge.</p>
+        <section class="chapter">
+          <div class="chapter__text hover-lift-group">
+            <div class="chapter__copy chapter__copy--quoted hover-lift__target">
+              <p class="desktop-only">That teaching eventually bloomed into resilience, diligence and a work ethic. Now, Gabriela applies those same values into her classes to provide her students with a mindset of constant growth and knowledge.</p>
+              <p class="mobile-only">That teaching eventually bloomed into resilience and diligence. Now, Gabriela applies those same values into her classes, providing her students with a mindset of constant growth and knowledge.</p>
               <p class="chapter__quote">&ldquo;More than just strength training, I&rsquo;ll share my knowledge and passion so you can build a high-energy journey with a caring community.&rdquo;</p>
             </div>
           </div>
-          <div class="chapter__media" data-reveal>
-            <img src="assets/img/wwa-next-chapter-1.jpg" alt="Gabriela talking with a group sitting on the grass outdoors"
+          <div class="chapter__media chapter__media--sunrise">
+            <img class="desktop-only" src="assets/img/wwa-next-chapter-1.jpg" alt="Gabriela talking with a group sitting on the grass outdoors"
                  width="696" height="696" loading="lazy">
+            <!-- Mobile frame (1486:10310) uses a different group photo. -->
+            <img class="mobile-only" src="assets/img/wwa-next-chapter-1-mobile.jpg" alt="Gabriela standing and talking with a group outdoors under the trees"
+                 width="1800" height="1198" loading="lazy">
           </div>
           <img class="chapter__lines" src="assets/icons/wwa-lines.svg" alt="" aria-hidden="true" width="405" height="82">
         </section>
@@ -294,10 +314,11 @@
           <img class="closing__lines" src="assets/icons/wwa-stories-lines.svg" alt="" aria-hidden="true"
                width="2073" height="1482">
 
-          <section class="community" aria-labelledby="community-title" data-reveal-group>
-            <h2 id="community-title" class="community__title" data-reveal>Community Stories</h2>
-            <div class="community__lede" data-reveal>
-              <p>See how our members live life on their own terms and experience the lasting benefits of training at <br class="lb">Forge Strength Studio.</p>
+          <section class="community" aria-labelledby="community-title">
+            <h2 id="community-title" class="community__title">Community Stories</h2>
+            <div class="community__lede">
+              <p class="desktop-only">See how our members live life on their own terms and experience the lasting benefits of training at <br class="lb">Forge Strength Studio.</p>
+              <p class="mobile-only keep-spaces">See how our members  experience the lasting benefits of training at  Forge Strength Studio.</p>
             </div>
 
             <!-- Cards are rendered from data/testimonials.json by js/main.js.
@@ -307,7 +328,8 @@
                  role="region" aria-roledescription="carousel" aria-label="Member testimonials">
               <div class="carousel__row">
                 <button class="carousel__arrow carousel__arrow--prev" type="button" data-carousel-prev aria-label="Previous testimonials">
-                  <img src="assets/icons/arrow-right.svg" alt="" width="96" height="96">
+                  <img class="desktop-only" src="assets/icons/arrow-right.svg" alt="" width="96" height="96">
+                  <img class="mobile-only" src="assets/icons/chevron-up.png" alt="" width="37" height="37">
                 </button>
                 <div class="carousel__viewport" aria-live="polite">
                   <ul class="carousel__track" data-carousel-track>
@@ -317,7 +339,8 @@
                   </ul>
                 </div>
                 <button class="carousel__arrow" type="button" data-carousel-next aria-label="Next testimonials">
-                  <img src="assets/icons/arrow-right.svg" alt="" width="96" height="96">
+                  <img class="desktop-only" src="assets/icons/arrow-right.svg" alt="" width="96" height="96">
+                  <img class="mobile-only" src="assets/icons/chevron-up.png" alt="" width="37" height="37">
                 </button>
               </div>
               <div class="carousel__dots" data-carousel-dots></div>

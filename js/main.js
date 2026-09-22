@@ -79,11 +79,17 @@
      cards in its HTML, so it reads correctly if the fetch fails — in that
      case the arrows and dots simply stay inert.
 
-     Figma shows three cards per page; one dot per page. The arrows wrap
-     round from the last page to the first and back.
+     Cards per page come from the stylesheet (--carousel-per-page: three on
+     desktop, one on mobile); one dot per page, seven at most on screen.
+     The arrows wrap round from the last page to the first and back.
      ---------------------------------------------------------------------- */
 
-  var CARDS_PER_PAGE = 3;
+  var MAX_DOTS = 7;
+
+  function cardsPerPage(root) {
+    var n = parseInt(getComputedStyle(root).getPropertyValue('--carousel-per-page'), 10);
+    return n > 0 ? n : 3;
+  }
 
   function renderCards(track, testimonials) {
     var fragment = document.createDocumentFragment();
@@ -108,24 +114,40 @@
     renderCards(track, testimonials);
 
     var cards = track.children;
-    var pageCount = Math.ceil(cards.length / CARDS_PER_PAGE);
+    var perPage = 0;
+    var pageCount = 0;
     var page = 0;
     var dots = [];
 
-    dotsBox.replaceChildren();
-    for (var i = 0; i < pageCount; i++) {
-      var dot = document.createElement('button');
-      dot.type = 'button';
-      dot.className = 'carousel__dot';
-      dot.setAttribute('aria-label', 'Show testimonials page ' + (i + 1) + ' of ' + pageCount);
-      dot.addEventListener('click', goTo.bind(null, i));
-      dotsBox.appendChild(dot);
-      dots.push(dot);
+    function buildDots() {
+      dots = [];
+      dotsBox.replaceChildren();
+      for (var i = 0; i < pageCount; i++) {
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'carousel__dot';
+        dot.setAttribute('aria-label', 'Show testimonials page ' + (i + 1) + ' of ' + pageCount);
+        dot.addEventListener('click', goTo.bind(null, i));
+        dotsBox.appendChild(dot);
+        dots.push(dot);
+      }
+    }
+
+    /* Re-paginates when the breakpoint changes the page size, keeping the
+       first card that was showing in view. */
+    function paginate() {
+      var next = cardsPerPage(root);
+      if (next === perPage) return;
+      var firstShown = page * perPage;
+      perPage = next;
+      pageCount = Math.ceil(cards.length / perPage);
+      buildDots();
+      goTo(Math.floor(firstShown / perPage));
     }
 
     function goTo(index) {
       page = (index + pageCount) % pageCount;
-      var first = page * CARDS_PER_PAGE;
+      var first = page * perPage;
 
       /* Measured, not computed, so the shift always matches the card
          width + gap the stylesheet actually produced. */
@@ -133,19 +155,42 @@
       track.style.setProperty('--carousel-shift', shift + 'px');
 
       Array.prototype.forEach.call(cards, function (card, n) {
-        var visible = n >= first && n < first + CARDS_PER_PAGE;
+        var visible = n >= first && n < first + perPage;
         card.inert = !visible;
         card.setAttribute('aria-hidden', String(!visible));
       });
+      /* At most MAX_DOTS show; the window slides to keep the current dot
+         in the middle where it can. */
+      var start = Math.min(Math.max(page - Math.floor(MAX_DOTS / 2), 0), Math.max(pageCount - MAX_DOTS, 0));
       dots.forEach(function (d, n) {
         if (n === page) d.setAttribute('aria-current', 'true');
         else d.removeAttribute('aria-current');
+        d.hidden = n < start || n >= start + MAX_DOTS;
       });
     }
 
     prev.addEventListener('click', function () { goTo(page - 1); });
     next.addEventListener('click', function () { goTo(page + 1); });
-    goTo(0);
+
+    /* Swipe: a mostly horizontal drag of 40px or more turns the page. */
+    var viewport = track.parentElement;
+    var startX = null;
+    var startY = 0;
+    viewport.addEventListener('touchstart', function (e) {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }, { passive: true });
+    viewport.addEventListener('touchend', function (e) {
+      if (startX === null) return;
+      var dx = e.changedTouches[0].clientX - startX;
+      var dy = e.changedTouches[0].clientY - startY;
+      startX = null;
+      if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+      goTo(dx < 0 ? page + 1 : page - 1);
+    });
+
+    paginate();
+    window.addEventListener('resize', debounce(paginate, 150));
   }
 
   function initCarousels() {
@@ -250,7 +295,12 @@
     Array.prototype.forEach.call(openers, function (opener) {
       var dialog = document.getElementById(opener.getAttribute('data-dialog-open'));
       if (!dialog || typeof dialog.showModal !== 'function') return;
-      opener.addEventListener('click', function () { dialog.showModal(); });
+      opener.addEventListener('click', function () {
+        /* Paged plan modals always open on page 1 (the story), never
+           wherever they were left after a previous visit. */
+        dialog.classList.remove('is-page-2');
+        dialog.showModal();
+      });
     });
 
     var dialogs = document.querySelectorAll('dialog');
@@ -271,6 +321,35 @@
         var inside = rect.top <= event.clientY && event.clientY <= rect.bottom &&
           rect.left <= event.clientX && event.clientX <= rect.right;
         if (!inside) dialog.close();
+      });
+    });
+  }
+
+  /* ------------------------------------------------------------------------
+     Modal paging (Services & Plans, mobile Figma "…Modal - Mobile -
+     Page1/Page2 - …"). Below 767px each plan-modal splits into two pages
+     — the story (.plan-modal__copy) and the pricing (.plan-modal__pricing)
+     — shown one at a time via .is-page-2 on the dialog; css/responsive.css
+     does the actual show/hide. Above 767px these links are hidden by the
+     .mobile-only utility and never fire.
+     ---------------------------------------------------------------------- */
+
+  function initModalPaging() {
+    var modals = document.querySelectorAll('.plan-modal--paged');
+    Array.prototype.forEach.call(modals, function (modal) {
+      var next = modal.querySelectorAll('[data-modal-next]');
+      var prev = modal.querySelectorAll('[data-modal-prev]');
+      Array.prototype.forEach.call(next, function (button) {
+        button.addEventListener('click', function () {
+          modal.classList.add('is-page-2');
+          modal.scrollTop = 0;
+        });
+      });
+      Array.prototype.forEach.call(prev, function (button) {
+        button.addEventListener('click', function () {
+          modal.classList.remove('is-page-2');
+          modal.scrollTop = 0;
+        });
       });
     });
   }
@@ -388,6 +467,7 @@
   }
 
   initDialogs();
+  initModalPaging();
   initMobileMenu();
   initAccordions();
   initMailtoForms();
