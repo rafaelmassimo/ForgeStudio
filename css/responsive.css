@@ -3,9 +3,13 @@
 
    The pages are pixel-exact builds of the Figma desktop frames. Below
    767px (Rafael's breakpoint) the site switches to the 360px mobile frames
-   instead. There is no tablet frame: sections fill the width fluidly the way
-   the Figma auto-layout does, while fixed-size items (the 204px button
-   stack, the notes…) keep their Figma size, centred.
+   instead. There is no tablet frame, so 768–1023px is not a transcription
+   of anything: sections fill the width fluidly the way the Figma auto-layout
+   does, while fixed-size items (the 204px button stack, the notes…) keep
+   their Figma size, centred. What that left broken at tablet widths is
+   corrected in the 768–1023px block, which steps the type ramp down one
+   notch and reins in the desktop gutters; it is marked as such, and should
+   be replaced if a tablet frame ever lands.
 
    What is here so far:
      - the shared shell, navbar and footer ("mobile-home-sticky-navbar",
@@ -19,7 +23,8 @@
      - Contact and FAQ — the only two without a Figma mobile frame. Those
        two sections are built to the same spacing language as the rest
        rather than transcribed, and are marked as such; replace them when
-       the frames land.
+       the frames land;
+     - the 768–1023px tablet tier, covering every page.
 
    Rules added here land in the `responsive` layer, which is declared last in
    css/tokens.css — so they win over the shell, component and section rules
@@ -81,6 +86,306 @@
     .sp-band__col { min-height: 0; }
     .sp-band__col--copy { padding-block: 72px; }
     .sp-band__col:not(.sp-band__col--copy) { height: 420px; }
+  }
+
+  /* ========================================================================
+     TABLET — 768px to 1023px
+
+     There is no tablet frame in Figma, so between the 1440px desktop frames
+     and the 360px mobile ones the desktop build renders as drawn: a 1440px
+     type ramp and 1440px gutters on a screen roughly half that wide. Three
+     things follow from that, and this block addresses only those three.
+
+       - Type set for a 1440px measure (96px H1, 56px H2) runs three and
+         four lines deep in a 720px column.
+
+       - Desktop gutters — 80 to 229px a side — leave a 250 to 550px column
+         of content, and twice collapse it far enough to break the copy
+         outright: the hotel band's paragraph came out 16px wide and 3024px
+         tall, and a timeline card's 112px, two or three characters a line.
+
+       - Rows whose columns no longer fit side by side either overflow the
+         page (the founder photo hung 207px off the left edge, the community
+         lede 336px off both) or wrap into boxes that still hold the fixed
+         height drawn for a half-width column, leaving half the box empty.
+
+     Everything below is scoped to this range: at 1024px and up the desktop
+     build is untouched, and below 768px the mobile frames are untouched.
+     ======================================================================== */
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+
+    /* --- Type: one step between the two ramps ---------------------------
+       Desktop is 96/56/48, mobile 48/32/20. Roughly halfway keeps the
+       headings in proportion to the narrower measure without reaching for
+       the phone sizes, which read as undersized on a 10-inch screen. */
+
+    :root {
+      --h1-size: 64px;
+      --h2-size: 40px;
+      --h3-size: 32px;
+      --h3-leading: 40px;
+    }
+
+    /* =================================================================
+       SHELL — shared by every page
+       ================================================================= */
+
+    /* 96px of inset either side of a 720px band is a third of the width.
+       The shorthand also replaces the two per-page padding-left overrides
+       (Our Space's calc(25% - 180px), Services & Plans's
+       calc(50% - 583.5px)), both of which compute to 0 well before this
+       range and left the title flush against the frame. */
+    .page-hero {
+      height: 320px;
+      padding: 40px 48px;
+    }
+
+    /* =================================================================
+       HOME
+       ================================================================= */
+
+    /* The photo/copy bands stop fitting side by side here and stack, so
+       each one's Figma gutter is now measured against the full width
+       rather than half of it. */
+    .who-we-are__text,
+    .who-we-are__media,
+    .commitment__text,
+    .commitment__media,
+    .meet__text,
+    .meet__media { padding-inline: 48px; }
+
+    .stories__board { padding: 56px 48px; }
+
+    /* =================================================================
+       WHO WE ARE
+       ================================================================= */
+
+    /* 551px photo + 170px gap + 462px copy is 1183px in a 720px row, and
+       .founder never wraps, so it overhung the page by 230px each side.
+       Stacked, both take the full column. */
+    .founder {
+      flex-wrap: wrap;
+      gap: 48px;
+      padding: 64px 48px;
+    }
+
+    /* A 551 x 700 portrait crop becomes a full-width landscape one, so the
+       frame keeps enough height, and the crop sits high enough, to hold
+       the founder's head — centred, it cut her off at the forehead. */
+    .founder__picture {
+      width: 100%;
+      height: 520px;
+    }
+
+    .founder__picture img { object-position: center 22%; }
+
+    .founder__text { width: 100%; }
+
+    /* --- Timeline ------------------------------------------------------
+       The step keeps its two columns either side of the rail; what does
+       not survive the narrower row is the padding. The step's 96px insets
+       plus the card's own 124px left 112px of text. The rail is the step's
+       own segment of the continuous vertical rule and has to come down
+       with it, or it would overhang the step and cross the dividers. */
+
+    .timeline__header { padding-inline: 48px; }
+
+    .timeline__header h2 {
+      width: 100%;
+      max-width: none;
+    }
+
+    .timeline__step {
+      height: 560px;
+      padding-inline: 24px;
+    }
+
+    .timeline__rule--rail { height: 560px; }
+
+    /* Both columns are flex-basis 0 either side of the zero-width rail, so
+       dropping the 360px floor alone let them meet on the centre line and
+       bury the node. Half the row less half a 56px channel keeps them
+       even and leaves the node and its branch stubs showing, the way the
+       gap between the 550px desktop columns does. */
+    .timeline__photo,
+    .timeline__card {
+      min-width: 0;
+      max-width: calc(50% - 28px);
+    }
+
+    .timeline__photo { height: 560px; }
+
+    .timeline__card { padding: 32px 28px; }
+
+    /* --- Next chapter rows --------------------------------------------
+       Both columns carry a 600px floor, so they stack here, and the copy
+       panel keeps the 696px height drawn for a half-width column around a
+       fixed 360px box of text — a third of it copy, the rest cream. */
+
+    .chapter__text {
+      height: auto;
+      padding: 64px 48px;
+    }
+
+    .chapter__copy {
+      width: 100%;
+      max-width: 560px;
+    }
+
+    .chapter__media { height: 360px; }
+
+    /* --- Community ------------------------------------------------------
+       Figma draws the lede on a 1440px box that overhangs its column by
+       24px each side; at this width that is 336px each side, and the line
+       inside it is nowrap. */
+
+    .community__lede {
+      width: 100%;
+      height: auto;
+    }
+
+    .community__lede p { white-space: normal; }
+
+    /* Three 318px cards and their 58px gaps are 1070px against a 624px
+       window, so the third card was never reachable. Two smaller cards a
+       page fit, and main.js re-paginates off --carousel-per-page. */
+    .carousel { --carousel-per-page: 2; }
+
+    .carousel__track {
+      --carousel-page-width: 584px;
+      gap: 24px;
+    }
+
+    .story-card { width: 280px; }
+
+    /* =================================================================
+       OUR SPACE
+       ================================================================= */
+
+    /* Each column is exactly .space-band__text's 360px maximum at the
+       bottom of this range, so the copy ran edge to edge — against the
+       page frame on one side and the next column on the other. The photos
+       are absolutely positioned and ignore the padding. */
+    .space-band__col { padding-inline: 32px; }
+
+    /* Its blocks carry their own. */
+    .space-band__col--stack { padding-inline: 0; }
+
+    .space-block { padding-inline: 32px; }
+
+    /* =================================================================
+       SERVICES & PLANS
+       ================================================================= */
+
+    .sp-intro { padding: 56px 48px 40px; }
+
+    .sp-intro__info {
+      column-gap: 24px;
+      padding-inline: 0;
+    }
+
+    .sp-intro__copy { font-size: 20px; }
+
+    /* Three fixed thirds of a 528px row left each card 160px, minus its
+       own padding — "A Personal Touch" set over five lines. A track that
+       fits as many 232px columns as there is room for gives three across
+       at the top of the range and two at the bottom, both readable. */
+    .sp-perks { padding-block: 40px 64px; }
+
+    .sp-perks__cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(232px, 1fr));
+      gap: 24px;
+      padding-inline: 32px;
+    }
+
+    .perk-card { padding: 32px 24px; }
+
+    /* --- Membership exclusives ------------------------------------------
+       The cards are placed against a 426px photo at offsets drawn for the
+       1440px frame, where the row is two photos wide. Stacked in a 720px
+       column those offsets put one card 9px off the left edge of the page
+       and the other 4px past the right, where .body-content clips them.
+       Tucked against their own photo instead, both stay on the page and
+       keep the overlap the desktop composition has. The 160px stagger
+       only reads as a stagger while the two sit side by side. */
+
+    .sp-members { padding-block: 64px 96px; }
+
+    /* Only the row gap changes: the 315px column gap is what keeps the two
+       426px members from fitting on one row at any width in this range, so
+       they stay stacked and the offsets below stay valid. */
+    .sp-members__grid { gap: 72px 315px; }
+
+    .member--group { padding-bottom: 120px; }
+    .member--training { padding-top: 0; }
+
+    .member--group .member-card {
+      left: auto;
+      right: -32px;
+    }
+
+    .member--training .member-card { left: -32px; }
+
+    /* --- Hotel guest ----------------------------------------------------
+       229.5px of section padding and another 160px inside .sp-hotel__text
+       is 779px of gutter in a 720px band. The paragraph was left 16px
+       wide — one character a line, 3024px tall. */
+
+    .sp-hotel { padding: 72px 48px; }
+
+    .sp-hotel__content { gap: 40px; }
+
+    .sp-hotel__text { padding-inline: 0; }
+
+    /* =================================================================
+       CONTACT
+       ================================================================= */
+
+    /* 138px each side left a 444px column holding a 568px form card, so
+       the card overhung its own gutter. Stacked full-width, the info and
+       the form each take the column. */
+
+    .contact { padding-block: 64px; }
+
+    .contact__inner {
+      gap: 72px;
+      padding-inline: 48px;
+    }
+
+    .contact__intro { gap: 48px; }
+
+    /* One nowrap line at 96px; at 64px it is free to wrap if it needs to. */
+    .contact__title { white-space: normal; }
+
+    .contact__content { row-gap: 48px; }
+
+    .contact-info,
+    .contact-form {
+      width: 100%;
+      max-width: none;
+    }
+
+    .contact-faq__panel { padding: 48px; }
+
+    .contact-faq__text {
+      width: 100%;
+      padding-inline: 0;
+    }
+
+    /* =================================================================
+       FAQ
+       ================================================================= */
+
+    /* 100px each side left a 520px column, and the questions are one
+       nowrap line cut with an ellipsis until they are opened. Widening
+       the column is what this range needs — the ellipsis is the desktop
+       affordance and still leaves enough of a question to recognise it. */
+
+    .faq { padding: 56px 48px; }
+
+    .faq__header { padding-block: 24px; }
   }
 
   @media (max-width: 767px) {
