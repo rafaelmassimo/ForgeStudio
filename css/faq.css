@@ -91,8 +91,14 @@
      One rule at the item's foot covers both states. The answer row
      animates from 0fr to 1fr, so the height change needs no measuring. */
 
+  /* minmax(0, 1fr), not the implicit `auto` column: a grid item's automatic
+     minimum size is its min-content width, and a closed question is
+     `nowrap`, so the column sized itself to the full question text and the
+     row grew past the page instead of the ellipsis ever kicking in. Below
+     ~1000px that overflow was clipped by .body-content and unreachable. */
   .faq-item {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     grid-template-rows: auto 1fr;
     border-bottom: 1px solid #000;
     width: 100%;
@@ -175,6 +181,18 @@
     color: var(--prose-ink);
     word-break: break-word;
   }
+
+  /* Underlined as well as tinted, so the link does not rely on colour
+     alone. --primary-shapes-fill clears 4.5:1 on the cream; the rust used
+     for headings elsewhere does not at this size. */
+  .faq-item__answer a {
+    color: var(--primary-shapes-fill);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .faq-item__answer a:hover,
+  .faq-item__answer a:focus-visible { text-decoration-thickness: 2px; }
 
   @media (prefers-reduced-motion: reduce) {
     .faq-item,

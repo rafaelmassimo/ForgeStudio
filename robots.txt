@@ -1,0 +1,33 @@
+# FORGE Strength Studio — robots.txt
+#
+# ---------------------------------------------------------------------------
+# PRE-LAUNCH: indexing is currently switched OFF.
+#
+# The site still contains placeholder content (the phone number, the "X days"
+# booking window, the legal modal), so search engines are kept out until that
+# is resolved. See docs/ux-audit.md §3.
+#
+# TO GO LIVE, two steps:
+#   1. In the "User-agent: *" block below ONLY, delete "Disallow: /" and
+#      uncomment "Allow: /". Leave the GPTBot and CCBot blocks as they are.
+#   2. Remove the <meta name="robots" content="noindex, nofollow"> tag from all
+#      six .html pages. Both steps are required: robots.txt alone only stops a
+#      page being crawled, it does not remove one from the index, and a page
+#      that cannot be crawled can never be re-read to discover the noindex.
+# ---------------------------------------------------------------------------
+
+User-agent: *
+Disallow: /
+# Allow: /
+
+# Block the AI training crawlers that honour robots.txt, while leaving the
+# search crawlers above free to index once the site launches.
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+# The sitemap is advertised regardless of the crawl rules above, so this line
+# needs no change at launch.
+Sitemap: https://www.forgestrengthstudio.com/sitemap.xml

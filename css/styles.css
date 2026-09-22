@@ -38,6 +38,14 @@
 
   .body-content {
     background-color: var(--primary-colour);
+    /* The strip the navbar's black border paints sits inside this rounded
+       clip, so the corner's antialiased pixels blended that black with the
+       cream underneath and traced a hairline arc over the frame. Painting
+       the same strip black here leaves both layers agreeing at the edge. */
+    background-image: linear-gradient(
+      var(--black) max(var(--page-frame-width), var(--corner-radius-primary)),
+      transparent 0
+    );
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -126,6 +134,9 @@
   .btn--nav:hover { background-color: var(--navbar-hover-fill); }
 
   .btn--nav[aria-current="page"] { color: var(--secondary-colour); }
+
+  /* Modal close buttons: tighten the icon-to-label gap set by .btn. */
+  .btn--nav[data-dialog-close] { gap: 4px; }
 
   /* "Book Now" in the navbar keeps the pill but not the 164px floor. */
   .btn--compact { min-width: 0; }
@@ -712,38 +723,45 @@
   .note {
     position: relative;
     flex: none;
-    width: 204px;
-    height: 204px;
+    width: var(--size, 204px);
+    height: var(--size, 204px);
     rotate: var(--rotate);
   }
 
-  .note__shadow { position: absolute; inset: 9.95px 96.32% 7.38px -12.75%; }
-  .note__shadow > img {
-    position: absolute;
-    inset: -8.04% -29.85% -8.04% -44.78%;
-    width: auto;
-    height: auto;
-    max-width: none;
-  }
+  /* Both SVGs are preserveAspectRatio="none", so they are meant to be
+     stretched to their box. An absolutely positioned replaced element with
+     width/height: auto takes its INTRINSIC size (200x200 paper, 58.5x216.67
+     shadow) and ignores the insets, which pinned every note to 204px and left
+     the paper short of the text once --size grew. Filling the box instead
+     keeps Figma's proportions at any --size. The insets below are Figma's
+     nested offsets already folded into a single note-relative percentage. */
 
-  .note__paper { position: absolute; inset: 1.7% 2.21% 2.71% 2.21%; }
+  .note__shadow { position: absolute; inset: -2.4795% 91.4157% -3.7394% -20.1073%; }
+  .note__paper { position: absolute; inset: 1.7% 1.226% 0.263% 0.738%; }
+
+  .note__shadow > img,
   .note__paper > img {
     position: absolute;
-    inset: 0 -1.03% -2.56% -1.54%;
-    width: auto;
-    height: auto;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     max-width: none;
   }
 
+  /* The paper is square, so the Figma insets and type sizes are kept as
+     fractions of --size: a bigger note stays the same note, just larger. */
   .note__author {
     position: absolute;
-    inset: 17px 14px 172px 15px;
+    /* Figma's band is 7.36% tall — a hair under the line box it has to hold,
+       so the name clipped by a pixel. Opened symmetrically about the same
+       centre line, which keeps it sitting on the paper's glue strip. */
+    inset: 7.9% 6.86% 83.7% 7.35%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: 15px;
+    font-size: calc(var(--size, 204px) * 0.0735);
     line-height: 1;
     text-align: right;
     color: var(--ink-black);
@@ -752,7 +770,7 @@
 
   .note__quote {
     position: absolute;
-    inset: 42px 14px 18px 15px;
+    inset: 20.59% 6.86% 8.82% 7.35%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -760,8 +778,10 @@
     font-weight: 500;
     font-style: italic;
     font-variation-settings: "FLAR" 0, "VOLM" 0;
-    font-size: 12px;
-    line-height: 1;
+    font-size: calc(var(--size, 204px) * 0.0588);
+    /* The real reviews run several lines; the script needs room for its
+       ascenders and descenders, so this opens up from Figma's 1. */
+    line-height: 1.25;
     color: var(--ink-black);
     word-break: break-word;
   }

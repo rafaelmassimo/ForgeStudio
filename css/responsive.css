@@ -13,8 +13,13 @@
      - the home page sections (same frame);
      - the secondary page hero, shared by every secondary page;
      - the Our Space sections ("mobile-our-space-sticky-navbar", 1486:10685);
-     - the Who We Are sections ("mobile-who-we-are-sticky-navbar", 1486:10271).
-   The other pages keep their desktop sections until their frames are built.
+     - the Who We Are sections ("mobile-who-we-are-sticky-navbar", 1486:10271);
+     - the Services & Plans sections and plan modals
+       ("mobile-services-and-plans-sticky-navbar");
+     - Contact and FAQ — the only two without a Figma mobile frame. Those
+       two sections are built to the same spacing language as the rest
+       rather than transcribed, and are marked as such; replace them when
+       the frames land.
 
    Rules added here land in the `responsive` layer, which is declared last in
    css/tokens.css — so they win over the shell, component and section rules
@@ -60,6 +65,22 @@
       font-size: 26px;
       letter-spacing: 4px;
     }
+  }
+
+  /* --- Photo + copy bands, stacked but not yet mobile ---------------------
+     .sp-band__col is 488px wide at minimum, so the two columns stop fitting
+     side by side once .body-content drops under 976px — a 1024px viewport,
+     given the 24px page frame. Below that the band wraps into two
+     full-width rows, and the 696px height the desktop frame gives a
+     half-width column becomes dead space: a 560px block of copy floating in
+     a 696px panel, above a photo of the same height. Stacked, the panel
+     hugs its copy and the photo runs as a banner. Under 767px the mobile
+     frame takes over with its own values. */
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .sp-band__col { min-height: 0; }
+    .sp-band__col--copy { padding-block: 72px; }
+    .sp-band__col:not(.sp-band__col--copy) { height: 420px; }
   }
 
   @media (max-width: 767px) {
@@ -834,15 +855,15 @@
       color: var(--primary-shapes-fill);
     }
 
-    /* One 211px card per page between 37px chevrons. */
+    /* One 211px card per page between 28px chevrons. */
     .carousel { --carousel-per-page: 1; }
 
     .carousel__row { width: 100%; }
 
     .carousel__arrow,
     .carousel__arrow img {
-      width: 37px;
-      height: 37px;
+      width: 28px;
+      height: 28px;
     }
 
     .carousel__arrow img {
@@ -886,16 +907,15 @@
       width: 100%;
     }
 
-    .closing-cta__photos {
-      flex-direction: column;
-      gap: 8px;
+    /* The strip stays horizontal on phones — stacking it would undo the
+       marquee. Smaller photos mean a shorter lap, so the duration comes
+       down with them to hold roughly the same on-screen pace. */
+    .photo-marquee__item {
+      width: 252px;
+      height: 141.8px;
     }
 
-    .closing-cta__photo {
-      flex: none;
-      width: 336px;
-      height: 189.1px;
-    }
+    .photo-marquee__track { animation-duration: 64s; }
 
     .closing-cta__action {
       gap: 24px;
@@ -1167,6 +1187,7 @@
       height: auto;
       width: 100%;
       min-width: 0;
+      min-height: 0;   /* desktop's 696px floor is a desktop frame only */
     }
 
     .sp-band__col:not(.sp-band__col--copy) { order: 1; height: 260px; }
@@ -1403,5 +1424,162 @@
     .plan-modal.is-page-2 .modal-dots span:last-child {
       background-color: var(--primary-shapes-fill);
     }
+
+    /* =================================================================
+       CONTACT — no Figma mobile frame exists for this page yet.
+
+       The desktop rules kept a 138px inline padding and a fixed 568px
+       form card, which together need ~868px. Inside the 366px mobile
+       shell the card ran 328px past the edge, and because .body-content
+       is `overflow: clip` there was no scroll to reach it — the Last Name
+       field and the Submit label were simply gone.
+
+       So this is built to the same spacing language as the other mobile
+       sections (24px gutter, stacked single column) rather than
+       transcribed from a frame. Swap it for the real frame when it
+       lands.
+       ================================================================= */
+
+    .contact { padding-block: 48px; }
+
+    .contact__inner {
+      gap: 56px;
+      padding-inline: 24px;
+    }
+
+    .contact__intro { gap: 40px; }
+
+    /* The desktop title is one nowrap line; at 48px mobile H1 it needs to
+       be free to wrap on narrow handsets. */
+    .contact__title { white-space: normal; }
+
+    .contact__body { gap: 32px; }
+
+    /* Info above the form, both full width. */
+    .contact__content {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: stretch;
+      row-gap: 40px;
+    }
+
+    /* The 598px height matched the form card side by side; stacked, both
+       size to their content. */
+    .contact-info {
+      gap: 40px;
+      height: auto;
+      width: 100%;
+      min-width: 0;
+      max-width: none;
+      padding-block: 0;
+    }
+
+    .contact-info__block--hours {
+      flex: none;
+      padding-right: 0;
+    }
+
+    .contact-info__block--socials {
+      flex: none;
+      gap: 16px;
+    }
+
+    .contact-info__block--socials li { flex: none; }
+
+    /* Rows grow with their text instead of sitting on a 24px line, so a
+       long address or email wraps under itself rather than being cut. */
+    .contact-info__row {
+      height: auto;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .contact-info__row p {
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+
+    /* 179px was the desktop column; let the handle use what is left. */
+    .contact-info__social > span {
+      width: auto;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .contact-form {
+      gap: 32px;
+      height: auto;
+      width: 100%;
+      max-width: none;
+      padding: 32px 20px;
+    }
+
+    /* First and Last name stack — side by side they were 250px+ each,
+       which is what pushed Last Name off the screen. */
+    .contact-form__row {
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .contact__map { height: 280px; }
+
+    .contact-faq { gap: 24px; }
+
+    .contact-faq__panel { padding: 40px 0; }
+
+    .contact-faq__text {
+      width: 100%;
+      padding-inline: 0;
+    }
+
+    /* =================================================================
+       FAQ — no Figma mobile frame exists for this page yet either.
+
+       `.faq` kept its 100px desktop padding, leaving a 166px column
+       inside the 366px shell. The question rows are `white-space: nowrap`
+       by design (desktop truncates them with an ellipsis), so instead of
+       truncating they stretched to their full text width — up to 854px —
+       and the page clipped them. 14 of 18 questions were unreadable.
+
+       On a phone a one-line question would ellipsis away to nothing, so
+       closed questions wrap here instead, the way open ones already do.
+       ================================================================= */
+
+    .faq {
+      gap: 40px;
+      padding: 48px 24px;
+    }
+
+    .faq__header {
+      gap: 32px;
+      padding-block: 24px;
+    }
+
+    .faq__message { gap: 24px; }
+
+    .faq__lists { gap: 48px; }
+
+    .faq-category__title { padding-block: 20px; }
+
+    /* Top-aligned so the + stays level with the first line of a question
+       that now runs to two or three. */
+    .faq-item__toggle {
+      gap: 12px;
+      align-items: flex-start;
+      padding: 20px 0;
+    }
+
+    .faq-item__question {
+      overflow: visible;
+      text-overflow: clip;
+      white-space: normal;
+    }
+
+    /* The icon is 24px tall in a 20px line box; nudge it onto the first
+       line's centre. */
+    .faq-item__icon { margin-top: -2px; }
+
+    /* 40px of right padding on a 318px column is a whole word per line. */
+    .faq-item__answer p { padding: 10px 0 24px; }
   }
 }

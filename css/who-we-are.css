@@ -32,13 +32,15 @@
     background-color: var(--slightly-darker-colour);
   }
 
-  /* Square corners here, unlike the timeline photos. The white fill is the
-     frame's own background in Figma, showing only if the photo fails. */
+  /* Rounded to match the timeline photos. The white fill is the frame's own
+     background in Figma, showing only if the photo fails. */
   .founder__picture {
     position: relative;
     flex: none;
     width: 551px;
     height: 700px;
+    overflow: hidden;
+    border-radius: var(--corner-radius-primary);
     background-color: #fff;
   }
 
@@ -412,17 +414,23 @@
     width: 100%;
   }
 
+  /* Figma's row is a flat 1282px. Below roughly 1330px of viewport that is
+     wider than the page, and since .body-content clips, the ends of the row
+     — the arrows — were pushed off the page edge and stopped taking clicks.
+     Capping at the available width keeps them reachable at every size. */
   .carousel__row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 1282px;
+    width: min(1282px, 100%);
   }
 
+  /* Figma draws these 96px; that reads as heavy next to the cards, so the
+     chevrons are scaled down and the row keeps its overall width. */
   .carousel__arrow {
     flex: none;
-    width: 96px;
-    height: 96px;
+    width: 48px;
+    height: 48px;
     padding: 0;
     border: 0;
     background: none;
@@ -430,8 +438,8 @@
   }
 
   .carousel__arrow img {
-    width: 96px;
-    height: 96px;
+    width: 48px;
+    height: 48px;
   }
 
   .carousel__arrow--prev img { rotate: 180deg; }
@@ -458,7 +466,7 @@
     gap: 58px;
     height: 100%;
     align-items: center;
-    padding-inline: calc((100% - var(--carousel-page-width)) / 2);
+    padding-inline: max(0px, calc((100% - var(--carousel-page-width)) / 2));
     translate: calc(-1 * var(--carousel-shift, 0px)) 0;
     transition: translate 0.6s var(--ease-out-soft);
   }
@@ -515,6 +523,9 @@
 
   /* --- Closing CTA (1272:9664) -------------------------------------------------- */
 
+  /* Figma pins this at 1388px, but the photo marquee has to run the full
+     width of the page, so the section fills it and .closing-cta__action
+     keeps its own 1259px measure. */
   .closing-cta {
     position: relative;
     display: flex;
@@ -522,40 +533,75 @@
     gap: 71px;
     align-items: center;
     padding-block: 96px;
-    width: 1388px;
-  }
-
-  .closing-cta__photos {
-    display: flex;
-    gap: 4px;
-    align-items: center;
     width: 100%;
   }
 
-  /* Figma draws these 455 / 453 / 453px, left-aligned, leaving 19px spare
-     on the right. Rafael asked for equal widths filling the row instead, so
-     each is a third of it (minus the 4px gaps) and both edges line up. */
-  .closing-cta__photo {
-    position: relative;
-    flex: 1 0 0;
-    min-width: 0;
+  /* --- Photo marquee ---------------------------------------------------
+     Figma draws three fixed photos here; this scrolls a longer strip of
+     them instead. The track holds the group twice and travels exactly
+     -50% — one group's width — so the loop lands back on an identical
+     frame and the seam never shows. No JS measuring needed.
+
+     Pace: 12 photos x (455 + 4)px = 5508px a lap, over 110s, so roughly
+     50px/s — slow enough to read each photo as it passes. */
+  .photo-marquee {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  /* No gap here: the track must be exactly two group widths for -50% to
+     land on the identical frame, so each group carries its own trailing
+     4px separator instead. */
+  .photo-marquee__track {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+    animation: photo-marquee-scroll 110s linear infinite;
+  }
+
+  @keyframes photo-marquee-scroll {
+    from { translate: 0 0; }
+    to   { translate: -50% 0; }
+  }
+
+  /* Let a reader stop the strip on a photo they want to look at. */
+  .photo-marquee:hover .photo-marquee__track,
+  .photo-marquee:focus-within .photo-marquee__track {
+    animation-play-state: paused;
+  }
+
+  /* Decorative and endless — hold it still when asked. */
+  @media (prefers-reduced-motion: reduce) {
+    .photo-marquee__track { animation: none; }
+  }
+
+  .photo-marquee__group {
+    display: flex;
+    flex-shrink: 0;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    padding-inline-end: 4px;   /* the gap to the next group */
+    list-style: none;
+  }
+
+  .photo-marquee__item {
+    flex: none;
+    width: 455px;
     height: 255px;
     overflow: hidden;
   }
 
-  /* Height follows the photo's own aspect ratio, so the wider box scales
-     the image rather than stretching it. */
-  .closing-cta__photo img {
-    position: absolute;
-    max-width: none;
-    height: auto;
+  /* The photos have mixed aspect ratios, so each fills its box from the
+     centre rather than carrying its own crop. */
+  .photo-marquee__item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
     pointer-events: none;
   }
-
-  /* Each crop is the one Figma sets on the photo inside its frame. */
-  .closing-cta__photo--1 img { left: -0.01%; top: -1.82%; width: 100%; }
-  .closing-cta__photo--2 img { left: -0.14%; top: 0;      width: 100.1%; }
-  .closing-cta__photo--3 img { left: -40.4%; top: -9.31%; width: 200.07%; }
 
   .closing-cta__action {
     display: flex;
@@ -563,7 +609,7 @@
     gap: 18px;
     align-items: center;
     justify-content: center;
-    width: 1259px;
+    width: min(1259px, 100%);
   }
 
   /* Figma "Headers/H3" on this frame: Poppins SemiBold 28 / 38.4px. */

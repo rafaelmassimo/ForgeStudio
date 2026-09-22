@@ -250,6 +250,14 @@
     resize: none;
   }
 
+  /* The browser default focus ring is blue, which is the one colour that
+     appears nowhere else on the page. Match the field's own underline. */
+  .contact-form input:focus-visible,
+  .contact-form textarea:focus-visible {
+    outline: 2px solid var(--black);
+    outline-offset: 2px;
+  }
+
   /* Submit spans the card's content width. */
   .contact-form .btn { width: 100%; }
 

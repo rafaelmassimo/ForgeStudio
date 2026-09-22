@@ -1,0 +1,14 @@
+{
+  "name": "FORGE Strength Studio",
+  "short_name": "FORGE",
+  "description": "A boutique strength training studio in Chilliwack, BC.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#e1d3c3",
+  "theme_color": "#e1d3c3",
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

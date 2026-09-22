@@ -289,10 +289,14 @@
 
   /* --- Photo + copy bands (1040:14595 gym rentals, 1539:12025 single-use) --- */
 
+  /* stretch, not center, so the two columns always share one height: the
+     copy column is now free to outgrow 696px (long copy, a large text
+     setting) and the photo beside it grows with it instead of floating in
+     a gap. 696px stays as the floor Figma draws. */
   .sp-band {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: stretch;
     align-content: center;
     width: 100%;
   }
@@ -304,11 +308,22 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 696px;
-    min-width: 600px;
+    min-height: 696px;
+    /* 488px keeps the photo and the copy side by side — each exactly half
+       the width — down to a 1024px viewport (2 x 488 inside .body-content's
+       24px frame). At 600px they broke apart at 1248px, which left common
+       laptop widths stacked. */
+    min-width: 488px;
   }
 
-  .sp-band__col--copy { background-color: var(--slightly-darker-colour); }
+  /* Only block padding here: the columns are flex-basis 0, so inline padding
+     would be added on top of each column's equal share and the copy panel
+     would come out wider than the photo beside it. The copy's own gutters
+     live on .sp-band__text instead, which keeps the two columns 50/50. */
+  .sp-band__col--copy {
+    background-color: var(--slightly-darker-colour);
+    padding-block: 64px;
+  }
 
   .sp-band__photo {
     position: absolute;
@@ -320,13 +335,18 @@
     pointer-events: none;
   }
 
+  /* This was a fixed 360px block centred in a column at least 600px wide —
+     about 40 characters a line, so the long rentals copy ran to nine-line
+     paragraphs with ~170px of empty cream each side, and once the columns
+     wrapped (below 1200px) that same sliver sat in a full-width panel.
+     It now grows with the column, keeping a 48px gutter, up to a readable
+     ~62-character measure. */
   .sp-band__text {
     display: flex;
     flex-direction: column;
     gap: 32px;
     align-items: flex-start;
-    max-width: 360px;
-    width: 360px;
+    width: min(100% - 96px, 560px);
     word-break: break-word;
   }
 
