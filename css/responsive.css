@@ -912,26 +912,41 @@
       pointer-events: none;
     }
 
-    /* Bigger than the carousel's mobile chevron, and pulled in close to
-       the stack: the widest note is 208px, so half that plus the arrow
-       plus a 6px gap, measured in from centre, keeps them right beside
-       the notes at any phone width instead of stranded at the frame
-       edge. Clamped so they never go negative on the narrowest phones. */
+    /* Bigger than the carousel's mobile chevron, with a soft cream disc
+       behind it — the board photo is dark and busy enough that a bare
+       dark icon disappeared into it outside the hover/press states
+       (which don't exist on touch anyway). The disc scales down between
+       34px and 52px with viewport width (clamp, not a fixed size) so it
+       can shrink out of the way on the narrowest phones instead of
+       fighting the notes for space; the icon stays proportional to it.
+       Translucent rather than solid cream so it reads as a soft glow,
+       not a hard punched-out circle.
+
+       Positioned in from centre: the widest note is 208px, so half that
+       plus the disc plus a 32px gap (generous enough that the notes'
+       own rotation — a rotated square's corners reach a bit past its
+       unrotated box — doesn't quietly eat the visible gap down to
+       nothing) keeps a proportionate break from the stack. Clamped so
+       it never goes negative on the narrowest phones. */
     .stories__arrow {
       position: absolute;
       top: 50%;
       translate: 0 -50%;
       pointer-events: auto;
+      --arrow-size: clamp(34px, calc(16vw - 17px), 52px);
+      width: var(--arrow-size);
+      height: var(--arrow-size);
+      background-color: color-mix(in srgb, var(--primary-colour) 82%, transparent);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.22);
     }
 
-    .stories__arrow,
     .stories__arrow img {
-      width: 40px;
-      height: 40px;
+      width: calc(var(--arrow-size) * 0.75);
+      height: calc(var(--arrow-size) * 0.75);
     }
 
-    .stories__arrow--prev { left: max(4px, calc(50% - 160px)); }
-    .stories__arrow--next { right: max(4px, calc(50% - 160px)); }
+    .stories__arrow--prev { left: max(4px, calc(50% - 104px - var(--arrow-size) - 32px)); }
+    .stories__arrow--next { right: max(4px, calc(50% - 104px - var(--arrow-size) - 32px)); }
 
     .stories__arrow img {
       rotate: -90deg;
