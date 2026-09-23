@@ -2,14 +2,20 @@
    FORGE — responsive behaviour
 
    The pages are pixel-exact builds of the Figma desktop frames. Below
-   767px (Rafael's breakpoint) the site switches to the 360px mobile frames
-   instead. There is no tablet frame, so 768–1023px is not a transcription
-   of anything: sections fill the width fluidly the way the Figma auto-layout
-   does, while fixed-size items (the 204px button stack, the notes…) keep
-   their Figma size, centred. What that left broken at tablet widths is
-   corrected in the 768–1023px block, which steps the type ramp down one
-   notch and reins in the desktop gutters; it is marked as such, and should
-   be replaced if a tablet frame ever lands.
+   1000px the site switches to the 360px mobile frames instead — moved down
+   from the original 767px cutover so the tablet tier gets more room before
+   the mobile frames take over; the header's own 768–1002px squeeze (below)
+   is untouched and still fires inside that range, it just now overlaps the
+   top of the mobile block, which wins on shared properties since it is
+   declared later. There is no tablet frame, so 768–1023px is not a
+   transcription of anything: sections fill the width fluidly the way the
+   Figma auto-layout does, while fixed-size items (the 204px button stack,
+   the notes…) keep their Figma size, centred. What that left broken at
+   tablet widths is corrected in the 768–1023px block, which steps the type
+   ramp down one notch and reins in the desktop gutters; it is marked as
+   such, and should be replaced if a tablet frame ever lands. In practice
+   that block's rules only have sole effect from 1001–1023px now, since the
+   mobile block outranks it below 1000px.
 
    What is here so far:
      - the shared shell, navbar and footer ("mobile-home-sticky-navbar",
@@ -39,11 +45,11 @@
      community board). display: none also takes the hidden copy out of the
      accessibility tree, so it is never read twice.                       */
 
-  @media (min-width: 768px) {
+  @media (min-width: 1001px) {
     .mobile-only { display: none; }
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 1000px) {
     .desktop-only { display: none; }
   }
 
@@ -110,7 +116,10 @@
          height drawn for a half-width column, leaving half the box empty.
 
      Everything below is scoped to this range: at 1024px and up the desktop
-     build is untouched, and below 768px the mobile frames are untouched.
+     build is untouched. Below 768px it now runs into the mobile switch
+     (moved to 1000px, see the top of the file), which wins on anything the
+     two blocks share, so in effect this tier only has sole effect from
+     1001–1023px.
      ======================================================================== */
 
   @media (min-width: 768px) and (max-width: 1023px) {
@@ -388,7 +397,113 @@
     .faq__header { padding-block: 24px; }
   }
 
-  @media (max-width: 767px) {
+  /* ========================================================================
+     SQUEEZE — 1001px to 1256px
+     The gap between the tablet tier above and the mobile switch below.
+     Nothing here transcribes a Figma frame; it just keeps two fixed-size
+     desktop elements from colliding with their neighbours as the viewport
+     narrows past the point the tablet tier was built for.
+     ======================================================================== */
+
+  /* --- Footer wordmark: room for the legal links --------------------------
+     .footer__bottom is a flex row: the 540×192 wordmark (flex-shrink: 0)
+     and .footer__legal (flex: 1, its box always shrinking to whatever is
+     left). Below ~1256px there isn't enough left for .footer__legal's
+     content — three nowrap items, ~630px combined — without running into
+     the wordmark, so the wordmark itself steps down 20% — every value
+     below is the desktop one × 0.8 — freeing up 108px for the legal
+     column. That alone isn't enough near the bottom of this range, since
+     .footer__legal's own box keeps shrinking with the viewport regardless
+     of the wordmark's size; letting it wrap to a second line (still
+     right-aligned, still bottom-anchored in the 192px-tall bottom bar)
+     is what actually stops the overflow. Holds until 1000px, where the
+     mobile footer (its own from-scratch layout, above) takes over
+     entirely. Footer markup is duplicated on every page, but this rule is
+     shared, so it applies everywhere. */
+
+  @media (min-width: 1001px) and (max-width: 1256px) {
+    .footer__wordmark {
+      width: 432px;   /* 540 * 0.8 */
+      height: 153.6px; /* 192 * 0.8 */
+    }
+
+    .footer__wordmark p {
+      top: 72px;              /* 90 * 0.8 */
+      width: 388px;            /* 485 * 0.8 */
+      font-size: 160px;        /* 200 * 0.8 */
+      line-height: 19.2px;     /* 24 * 0.8 */
+      letter-spacing: 6.4px;   /* 8 * 0.8 */
+    }
+
+    .footer__dot {
+      left: 396px;   /* 495 * 0.8 */
+      width: 18.4px;  /* 23 * 0.8 */
+      height: 18.4px;
+    }
+
+    .footer__legal {
+      flex-wrap: wrap;
+      align-content: flex-end;
+      row-gap: 8px;
+    }
+  }
+
+  /* --- Community notes: gain a row instead of shrinking -------------------
+     Figma (808:9969/9974, "post-it-notes") has one layout: 8 notes with
+     --bottom/--left offsets up to ±488px from centre, sized for the
+     1392px board. There's no tablet frame for this, so past ~1270px the
+     outer notes start running past the board's edges.
+
+     First attempt scaled the whole cluster down as one unit (transform:
+     scale, same relative positions as Figma, just smaller) — Rafael
+     rejected it after seeing it live: shrinking every note to keep the
+     2-row-of-4 arrangement made them small enough to read as "dislocated"
+     rather than just smaller, especially near 1001px. His call: keep
+     each note at its Figma size and let a third row absorb the width
+     that's lost, rather than shrinking anything. So instead the cluster
+     drops out of the absolute overlay into a centred, wrapping flex row:
+     each note keeps its Figma size and rotation, and flex-wrap decides
+     how many fit per row at the current width — naturally 3 across
+     instead of 4 once it's narrow enough, wrapping to a 3rd row (3+3+2)
+     rather than cramming 4 shrunk notes across 2 rows.
+
+     Second attempt (this one) left it at position: static with no offset,
+     which put the whole cluster in normal flow straight after the photo
+     — correct in that nothing clips, but wrong because none of it
+     overlapped the photo any more, unlike Figma's board (where the top
+     row sits over the photo's lower third) and unlike the untouched
+     >1270px layout right next to this range. A negative margin-top pulls
+     the in-flow block back up over the photo, raised twice more after
+     that (-260px → -340px → -420px, each "move it up a bit more") until
+     both wrapped rows sit over the photo rather than just the top one —
+     .stories__board's height went from 528px to 620px alongside this so
+     the photo has room to hold both rows under the title without
+     crowding it. Still in flow throughout, so .stories__body stays
+     height: auto and grows to fit the 3rd row with nothing clipped. Runs
+     until 1000px, where .desktop-only hides the board for the mobile
+     four-note stack (its own --top layout, above). */
+
+  @media (min-width: 1001px) and (max-width: 1270px) {
+    .stories__body { height: auto; }
+    .stories__board { height: 620px; }
+
+    .notes.desktop-only {
+      position: static;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+      margin-top: -420px;
+      padding: 0 24px 48px;
+    }
+
+    .notes.desktop-only .note-slot {
+      position: static;
+      translate: none;
+    }
+  }
+
+  @media (max-width: 1000px) {
 
     /* --- Tokens: the mobile type styles and the thinner frame ---------- */
 
