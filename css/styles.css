@@ -270,22 +270,21 @@
   .mobile-menu__wordmark {
     position: absolute;
     left: 50%;
-    top: calc(50% - 12px);
-    translate: -50% 0;
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 24px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-align: center;
-    color: var(--navbar-ink-mobile);
-    white-space: nowrap;
+    top: 50%;
+    translate: -50% -50%;
   }
 
   .mobile-menu__wordmark a {
+    display: block;
     color: inherit;
     text-decoration: none;
+  }
+
+  /* Same size as the mobile navbar logo, so it doesn't shift on open. */
+  .mobile-menu__wordmark img {
+    display: block;
+    height: 48px;
+    width: auto;
   }
 
   /* Close = the mobile Navbar button with the close icon; pressing it (and
