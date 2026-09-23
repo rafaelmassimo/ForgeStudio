@@ -892,9 +892,13 @@
       overflow: visible;
     }
 
+    /* No 422px cap: at tablet widths it left these blocks centred while
+       the breathe and equipment copy (max-width: none) run full width
+       from the 24px gutter. */
     .space-block__text {
       gap: 24px;
       width: 100%;
+      max-width: none;
     }
 
     /* Fixed-height heading boxes, as drawn. */
@@ -1352,7 +1356,7 @@
        asked, and sits with the dots below whichever page is showing. ==== */
 
     .plan-modal {
-      width: min(307px, calc(100% - 24px));
+      width: min(400px, calc(100% - 16px));
       padding: 8px 0 18px;
       transition-duration: 0.5s;
     }
@@ -1383,6 +1387,8 @@
       align-self: flex-end;
       min-width: 0;
       padding: 12px 0;
+      /* The sheet has no inline padding; keep the X off its edge. */
+      margin-inline-end: 16px;
     }
 
     .plan-modal__top .btn__label { display: none; }
@@ -1433,6 +1439,9 @@
       color: #474747;
       cursor: pointer;
     }
+
+    /* .plan-modal__pricing centres its children; the back link sits left. */
+    .modal-page-link--back { align-self: flex-start; }
 
     .modal-page-link--back .modal-page-link__icon { rotate: 180deg; }
 
@@ -1709,6 +1718,14 @@
 
     /* 40px of right padding on a 318px column is a whole word per line. */
     .faq-item__answer p { padding: 10px 0 24px; }
+  }
+
+  /* OUR SPACE at tablet widths: the rental band's 252px mobile copy
+     column wraps to a narrow ribbon once the band is 768px+ wide, out of
+     step with the full-width copy in the bands above. Give it the
+     desktop's 600px measure instead. */
+  @media (min-width: 768px) and (max-width: 1000px) {
+    .our-space--rental .our-space__body { max-width: 600px; }
   }
 
   /* ==========================================================================
