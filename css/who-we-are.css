@@ -171,15 +171,19 @@
     max-width: none;
   }
 
-  /* Runs the full 1178px under both the photo and the card, so only the
-     50px stubs between them and the node show. Rows 349–352 of the step. */
+  /* Runs the full width under both the photo and the card, so only the
+     stub between them and the node show — anchored to the step's own
+     96px insets (its padding-inline) rather than a fixed px width, so it
+     always ends exactly at the photo's left edge and the card's right
+     edge. A fixed 1178px (the 1440px frame's own span) used to be wider
+     than that span once the photo and card had shrunk past ~1380px,
+     poking the rule out past both. */
   .timeline__branch {
     position: absolute;
     z-index: 1;
-    left: 50%;
+    left: 96px;
+    right: 96px;
     top: calc(50% - 1px);
-    translate: -50% 0;
-    width: 1178px;
     height: var(--timeline-rule);
     background-color: var(--secondary-colour);
   }
@@ -401,7 +405,8 @@
 
   /* --- Testimonial carousel (1272:9648) ---------------------------------------
      Three 318px cards, 58px apart, per page. main.js fills the track from
-     data/testimonials.json and slides it one page per arrow press. */
+     data/community-stories.json (the same pool the home page's note board
+     reads) and slides it one page per arrow press. */
 
   .carousel {
     --carousel-per-page: 3;       /* read by main.js */
@@ -452,7 +457,7 @@
   .carousel__viewport {
     flex: 1 0 0;
     min-width: 1px;
-    height: calc(223px + 6px);
+    height: calc(260px + 6px);
     margin-top: -6px;
     padding-top: 6px;
     overflow: hidden;
@@ -468,13 +473,21 @@
     align-items: center;
     padding-inline: max(0px, calc((100% - var(--carousel-page-width)) / 2));
     translate: calc(-1 * var(--carousel-shift, 0px)) 0;
-    transition: translate 0.6s var(--ease-out-soft);
+    transition: translate 0.6s var(--ease-out-soft), opacity 0.25s var(--ease-out-soft);
   }
+
+  /* main.js adds this for the middle of the slide, so the page change
+     reads as a soft crossfade instead of the cards hitting a wall at
+     each end of the translate. */
+  .carousel__track.is-sliding { opacity: 0.35; }
 
   @media (prefers-reduced-motion: reduce) {
     .carousel__track { transition: none; }
   }
 
+  /* 223px was sized for a quote alone; the @handle byline below it needs
+     about a line more, so the card and the viewport clipping it (below)
+     both grew by the same amount. */
   .story-card {
     flex: none;
     display: flex;
@@ -483,7 +496,7 @@
     align-items: flex-start;
     justify-content: center;
     width: 318px;
-    height: 223px;
+    height: 260px;
     padding: 24px;
     border-radius: 20px;
     background-color: var(--black);
@@ -495,12 +508,33 @@
     word-break: break-word;
   }
 
+  .story-card__author {
+    width: 100%;
+    font-family: var(--body-family);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    color: var(--card-ink);
+    opacity: 0.65;
+  }
+
   .carousel__dots {
     display: flex;
     height: 32px;
     align-items: center;
     justify-content: center;
     width: 100%;
+  }
+
+  .carousel__counter {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    font-family: var(--body-family);
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    color: var(--primary-shapes-fill);
   }
 
   .carousel__dot {

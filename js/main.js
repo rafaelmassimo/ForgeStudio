@@ -74,14 +74,19 @@
   /* ------------------------------------------------------------------------
      Testimonial carousel (Who We Are, Figma 1272:9648).
 
-     The track's cards come from the JSON file named in data-carousel-src:
-     an array of { id, quote } objects. The page ships the first page of
-     cards in its HTML, so it reads correctly if the fetch fails — in that
-     case the arrows and dots simply stay inert.
+     The track's cards come from the JSON file named in data-carousel-src —
+     data/community-stories.json, the same { name, message } pool the home
+     page's note board reads, so both pages draw on the same members. The
+     page ships the first page of cards in its HTML, so it reads correctly
+     if the fetch fails — in that case the arrows and dots simply stay
+     inert.
 
      Cards per page come from the stylesheet (--carousel-per-page: three on
-     desktop, one on mobile); one dot per page, seven at most on screen.
-     The arrows wrap round from the last page to the first and back.
+     desktop, one on mobile); one dot per page, seven at most on screen. A
+     "page / count" counter below the dots gives mobile a position readout
+     of its own, since dots are hidden there (swipe or the chevrons
+     instead). The arrows wrap round from the last page to the first and
+     back.
      ---------------------------------------------------------------------- */
 
   var MAX_DOTS = 7;
@@ -96,9 +101,13 @@
     testimonials.forEach(function (item) {
       var card = document.createElement('li');
       var quote = document.createElement('blockquote');
+      var author = document.createElement('cite');
       card.className = 'story-card hover-lift';
-      quote.textContent = '“' + item.quote + '”';
+      quote.textContent = '“' + item.message + '”';
+      author.className = 'story-card__author';
+      author.textContent = item.name;
       card.appendChild(quote);
+      card.appendChild(author);
       fragment.appendChild(card);
     });
     track.replaceChildren(fragment);
@@ -107,6 +116,7 @@
   function setUpCarousel(root, testimonials) {
     var track = root.querySelector('[data-carousel-track]');
     var dotsBox = root.querySelector('[data-carousel-dots]');
+    var counter = root.querySelector('[data-carousel-counter]');
     var prev = root.querySelector('[data-carousel-prev]');
     var next = root.querySelector('[data-carousel-next]');
     if (!track || !testimonials.length) return;
@@ -118,6 +128,9 @@
     var pageCount = 0;
     var page = 0;
     var dots = [];
+    var fadeTimer = null;
+    var reduceMotion = window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     function buildDots() {
       dots = [];
@@ -150,9 +163,24 @@
       var first = page * perPage;
 
       /* Measured, not computed, so the shift always matches the card
-         width + gap the stylesheet actually produced. */
+         width + gap the stylesheet actually produced. A card sliding at
+         full opacity the whole way reads as hitting a wall once the
+         translate stops dead at the new page, so it dips through a soft
+         crossfade instead — down as the slide starts, back up before it
+         ends. Skipped under reduced motion: with no translate transition
+         either (the CSS turns it off), the class would just flash. */
       var shift = cards[first].offsetLeft - cards[0].offsetLeft;
       track.style.setProperty('--carousel-shift', shift + 'px');
+
+      if (counter) counter.textContent = (page + 1) + ' / ' + pageCount;
+
+      if (!reduceMotion) {
+        window.clearTimeout(fadeTimer);
+        track.classList.add('is-sliding');
+        fadeTimer = window.setTimeout(function () {
+          track.classList.remove('is-sliding');
+        }, 350);
+      }
 
       Array.prototype.forEach.call(cards, function (card, n) {
         var visible = n >= first && n < first + perPage;

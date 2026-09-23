@@ -294,8 +294,15 @@
           <div class="timeline__step" data-reveal-group>
             <img class="timeline__node" src="assets/icons/timeline-node.svg" alt="" aria-hidden="true" width="35" height="35">
             <div class="timeline__photo timeline__photo--walk">
+              <!-- The mobile crop below (.timeline__photo--walk img) is
+                   tuned for this wide shot, not the desktop portrait crop,
+                   and this page's mobile frame now runs up to 1380px, not
+                   the site's usual 767px — the source has to switch at the
+                   same width or the desktop image loads under mobile crop
+                   math and shows the back of Gabriela's head instead of
+                   her face. -->
               <picture>
-                <source media="(max-width: 767px)" srcset="assets/img/wwa-timeline-1-mobile.jpg" width="1672" height="941">
+                <source media="(max-width: 1380px)" srcset="assets/img/wwa-timeline-1-mobile.jpg" width="1672" height="941">
                 <img src="assets/img/wwa-timeline-1.jpg" alt="Gabriela walking through the studio with a yoga mat and towel"
                      width="550" height="700" loading="lazy">
               </picture>
@@ -399,10 +406,12 @@
               <p class="mobile-only keep-spaces">See how our members  experience the lasting benefits of training at  Forge Strength Studio.</p>
             </div>
 
-            <!-- Cards are rendered from data/testimonials.json by js/main.js.
-                 The three below are the first page, so the section reads
-                 correctly before (or without) the script. -->
-            <div class="carousel" data-reveal data-carousel data-carousel-src="data/testimonials.json"
+            <!-- Cards are rendered from data/community-stories.json by
+                 js/main.js — the same pool the home page's note board
+                 reads, so both pages quote the same members. The three
+                 below are the first page, so the section reads correctly
+                 before (or without) the script. -->
+            <div class="carousel" data-reveal data-carousel data-carousel-src="data/community-stories.json"
                  role="region" aria-roledescription="carousel" aria-label="Member testimonials">
               <div class="carousel__row">
                 <button class="carousel__arrow carousel__arrow--prev" type="button" data-carousel-prev aria-label="Previous testimonials">
@@ -411,9 +420,18 @@
                 </button>
                 <div class="carousel__viewport" aria-live="polite">
                   <ul class="carousel__track" data-carousel-track>
-                    <li class="story-card hover-lift"><blockquote>&ldquo;Love the energy, fast pace and intensity. I love a mix of cardio and strength for a good sweat!&rdquo;</blockquote></li>
-                    <li class="story-card hover-lift"><blockquote>&ldquo;Anyone can tell us what exercises to do, but you have a special ability to make us enjoy the whole experience even when it is hard. You also have the ability to make every single person in the room feel seen and celebrated.&rdquo;</blockquote></li>
-                    <li class="story-card hover-lift"><blockquote>&ldquo;Your unique teaching style with so much soul and love poured in each class.&rdquo;</blockquote></li>
+                    <li class="story-card hover-lift">
+                      <blockquote>&ldquo;Love the energy, fast pace and intensity. I love a mix of cardio and strength for a good sweat!&rdquo;</blockquote>
+                      <cite class="story-card__author">@weezjoyce</cite>
+                    </li>
+                    <li class="story-card hover-lift">
+                      <blockquote>&ldquo;Because of how you lead the classes, sharing your knowledge and encouraging us&rdquo;</blockquote>
+                      <cite class="story-card__author">@zizverde</cite>
+                    </li>
+                    <li class="story-card hover-lift">
+                      <blockquote>&ldquo;I love that your workouts are challenging and high energy. So fun&rdquo;</blockquote>
+                      <cite class="story-card__author">@tinychickenlegs</cite>
+                    </li>
                   </ul>
                 </div>
                 <button class="carousel__arrow" type="button" data-carousel-next aria-label="Next testimonials">
@@ -422,6 +440,7 @@
                 </button>
               </div>
               <div class="carousel__dots" data-carousel-dots></div>
+              <p class="carousel__counter" data-carousel-counter aria-hidden="true">1 / 16</p>
             </div>
           </section>
 

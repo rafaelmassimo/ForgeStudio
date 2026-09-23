@@ -23,14 +23,16 @@
      - the home page sections (same frame);
      - the secondary page hero, shared by every secondary page;
      - the Our Space sections ("mobile-our-space-sticky-navbar", 1486:10685);
-     - the Who We Are sections ("mobile-who-we-are-sticky-navbar", 1486:10271);
+     - the Who We Are sections ("mobile-who-we-are-sticky-navbar", 1486:10271)
+       — its own block, near the end of the file, since this page alone
+       switches to its mobile frame at 1380px rather than 1000px;
      - the Services & Plans sections and plan modals
        ("mobile-services-and-plans-sticky-navbar");
      - Contact and FAQ — the only two without a Figma mobile frame. Those
        two sections are built to the same spacing language as the rest
        rather than transcribed, and are marked as such; replace them when
        the frames land;
-     - the 768–1023px tablet tier, covering every page.
+     - the 768–1023px tablet tier, covering every page except Who We Are.
 
    Rules added here land in the `responsive` layer, which is declared last in
    css/tokens.css — so they win over the shell, component and section rules
@@ -166,107 +168,8 @@
 
     .stories__board { padding: 56px 48px; }
 
-    /* =================================================================
-       WHO WE ARE
-       ================================================================= */
-
-    /* 551px photo + 170px gap + 462px copy is 1183px in a 720px row, and
-       .founder never wraps, so it overhung the page by 230px each side.
-       Stacked, both take the full column. */
-    .founder {
-      flex-wrap: wrap;
-      gap: 48px;
-      padding: 64px 48px;
-    }
-
-    /* A 551 x 700 portrait crop becomes a full-width landscape one, so the
-       frame keeps enough height, and the crop sits high enough, to hold
-       the founder's head — centred, it cut her off at the forehead. */
-    .founder__picture {
-      width: 100%;
-      height: 520px;
-    }
-
-    .founder__picture img { object-position: center 22%; }
-
-    .founder__text { width: 100%; }
-
-    /* --- Timeline ------------------------------------------------------
-       The step keeps its two columns either side of the rail; what does
-       not survive the narrower row is the padding. The step's 96px insets
-       plus the card's own 124px left 112px of text. The rail is the step's
-       own segment of the continuous vertical rule and has to come down
-       with it, or it would overhang the step and cross the dividers. */
-
-    .timeline__header { padding-inline: 48px; }
-
-    .timeline__header h2 {
-      width: 100%;
-      max-width: none;
-    }
-
-    .timeline__step {
-      height: 560px;
-      padding-inline: 24px;
-    }
-
-    .timeline__rule--rail { height: 560px; }
-
-    /* Both columns are flex-basis 0 either side of the zero-width rail, so
-       dropping the 360px floor alone let them meet on the centre line and
-       bury the node. Half the row less half a 56px channel keeps them
-       even and leaves the node and its branch stubs showing, the way the
-       gap between the 550px desktop columns does. */
-    .timeline__photo,
-    .timeline__card {
-      min-width: 0;
-      max-width: calc(50% - 28px);
-    }
-
-    .timeline__photo { height: 560px; }
-
-    .timeline__card { padding: 32px 28px; }
-
-    /* --- Next chapter rows --------------------------------------------
-       Both columns carry a 600px floor, so they stack here, and the copy
-       panel keeps the 696px height drawn for a half-width column around a
-       fixed 360px box of text — a third of it copy, the rest cream. */
-
-    .chapter__text {
-      height: auto;
-      padding: 64px 48px;
-    }
-
-    .chapter__copy {
-      width: 100%;
-      max-width: 560px;
-    }
-
-    .chapter__media { height: 360px; }
-
-    /* --- Community ------------------------------------------------------
-       Figma draws the lede on a 1440px box that overhangs its column by
-       24px each side; at this width that is 336px each side, and the line
-       inside it is nowrap. */
-
-    .community__lede {
-      width: 100%;
-      height: auto;
-    }
-
-    .community__lede p { white-space: normal; }
-
-    /* Three 318px cards and their 58px gaps are 1070px against a 624px
-       window, so the third card was never reachable. Two smaller cards a
-       page fit, and main.js re-paginates off --carousel-per-page. */
-    .carousel { --carousel-per-page: 2; }
-
-    .carousel__track {
-      --carousel-page-width: 584px;
-      gap: 24px;
-    }
-
-    .story-card { width: 280px; }
+    /* WHO WE ARE's tablet overrides moved into its own 1380px breakpoint
+       near the end of the file — this page no longer uses this tier. */
 
     /* =================================================================
        OUR SPACE
@@ -1078,332 +981,9 @@
 
     .our-space--rental .our-space__actions .btn { width: auto; }
 
-    /* =================================================================
-       WHO WE ARE — "mobile-who-we-are-sticky-navbar" (1486:10271)
-       ================================================================= */
-
-    /* All body copy on this frame is the 16pt style. */
-    .founder,
-    .timeline,
-    .chapter,
-    .community {
-      --body-size: var(--body-16-size);
-      --body-leading: var(--body-16-leading);
-      font-size: var(--body-16-size);
-      line-height: var(--body-16-leading);
-    }
-
-    /* --- Founder bio (1486:10277): heading, photo, then the copy, 24px
-       apart. The copy is 300px inside a 288px column, centred, so it
-       overhangs 6px each side as in Figma. */
-
-    .founder {
-      flex-direction: column;
-      gap: 24px;
-      padding: 48px 24px;
-    }
-
-    .founder__text { display: contents; }
-
-    .founder__text h2 {
-      order: -1;
-      text-align: center;
-    }
-
-    .founder__picture {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 1111 / 1416;
-      overflow: hidden;
-      border-radius: 9.48px;
-    }
-
-    .founder__prose {
-      flex: none;
-      width: 300px;
-      text-align: center;
-    }
-
-    /* --- Timeline (1486:10282) -----------------------------------------
-       Heading, three photo-over-card rows, and the closing heading, 72px
-       apart, with one curved line behind them all. The desktop rule
-       segments, nodes, branches and ornaments are not in this frame. */
-
-    .timeline {
-      gap: 72px;
-      align-items: stretch;
-      padding: 0 24px 72px;
-      overflow: clip;              /* the line's foot, as the next band covers it in Figma */
-      background-color: var(--primary-colour);
-    }
-
-    .timeline__rule,
-    .timeline__node,
-    .timeline__branch,
-    .timeline__deco,
-    .timeline__divider { display: none; }
-
-    /* Anchored to the section's foot, where Figma has it 2.44px past the
-       bottom, so the straight end always meets the closing heading. */
-    .timeline__line {
-      position: absolute;
-      left: calc(50% + 0.72px);
-      bottom: -2.44px;
-      translate: -50% 0;
-      width: 313.458px;
-      height: 1772.04px;
-      max-width: none;
-      pointer-events: none;
-    }
-
-    /* Opaque, and above the line, which runs up behind it. The section's
-       48px top padding lives here so the line can't show above the words
-       on wider phones, where the rows are shorter. */
-    .timeline__header {
-      z-index: 2;
-      gap: 0;
-      padding: 72px 0 12px;
-      background-color: var(--primary-colour);
-    }
-
-    .timeline__header h2 {
-      width: 100%;
-      max-width: none;
-    }
-
-    .timeline__header .lb { display: none; }
-
-    /* "Forging the next chapter": a 146px cream box whose 320px heading
-       overhangs it on both sides; the box hides the line behind the words. */
-    .timeline__header--end {
-      align-self: center;
-      width: 146px;
-      padding: 12px 0;
-    }
-
-    .timeline__header--end h2 {
-      flex: none;
-      width: 320px;
-    }
-
-    .timeline__step {
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      height: auto;
-      padding: 0;
-    }
-
-    /* The card overlaps the photo's last 48px. */
-    .timeline__photo {
-      order: -1;
-      flex: none;
-      width: 100%;
-      min-width: 0;
-      max-width: none;
-      height: 304px;
-      margin-bottom: -48px;
-      border-radius: 20px;
-    }
-
-    /* Row 1 (1486:10290): the wide shot, placed where Figma's crop puts
-       it — 319.2% of the frame wide, 37.66% left of it, 22px up. */
-    .timeline__photo--walk img {
-      inset: -22px auto auto -37.66%;
-      width: 319.2%;
-      height: auto;
-      object-fit: fill;
-    }
-
-    /* Row 2 (1486:10295): full width like the other rows (Rafael's call;
-       Figma fixes it at 288px). The square photo keeps its Figma crop. */
-    .timeline__photo--offset { border-radius: var(--corner-radius-primary); }
-
-    .timeline__photo--offset img {
-      inset: -0.09% auto auto -23.24%;
-      width: 123.3%;
-      height: auto;
-      aspect-ratio: 1;
-    }
-
-    /* Row 3 (1486:10299): a square photo from 10px left of the frame to
-       9px past its right edge, pinned to the top (307px at 360). Its own
-       24px corner shows at the top left. It covers the frame at any
-       width, so nothing shows behind it. */
-    .timeline__photo--bench { border-radius: 24px 20px 20px; }
-
-    .timeline__photo--bench img {
-      inset: 0 auto auto -10px;
-      width: calc(100% + 19px);
-      height: auto;
-      aspect-ratio: 1;
-    }
-
-    .timeline__card {
-      z-index: 3;
-      flex: none;
-      gap: 4px;
-      width: 100%;
-      min-width: 0;
-      max-width: none;
-      padding: 24px;
-      border-radius: var(--corner-radius-primary);
-    }
-
-    /* --- Next chapter rows (1486:10309, 1486:10313): the 336px photo,
-       then a 336px band with the copy centred in it. */
-
-    .chapter {
-      flex-direction: column;
-      flex-wrap: nowrap;
-      background-color: var(--slightly-darker-colour);
-    }
-
-    .chapter__lines { display: none; }
-
-    .chapter__media {
-      order: -1;
-      flex: none;
-      width: 336px;
-      height: 336px;
-      min-width: 0;
-      overflow: hidden;
-    }
-
-    .chapter__media--sunrise img {
-      inset: -16.44% auto auto -9.75%;
-      width: 175.03%;
-      height: 116.44%;
-    }
-
-    .chapter__text {
-      flex: none;
-      width: 100%;
-      height: 336px;
-      min-width: 0;
-      padding: 48px 24px;
-    }
-
-    .chapter__copy {
-      gap: var(--body-16-leading);
-      width: 100%;
-      max-width: none;
-    }
-
-    /* Figma's 310px box ends on an empty line, which lifts the centred
-       copy by half a line. */
-    .chapter__copy--quoted {
-      flex: none;
-      justify-content: center;
-      height: 310px;
-      padding-bottom: var(--body-16-leading);
-    }
-
-    /* --- Community stories (1486:10318) --------------------------------- */
-
-    .closing__lines { display: none; }
-
-    .community {
-      gap: 32px;
-      padding: 48px 24px;
-    }
-
-    .community__title {
-      height: auto;
-      width: 273px;
-    }
-
-    .community__lede {
-      height: auto;
-      width: 308px;
-      padding: 0;
-    }
-
-    .community__lede p {
-      font-family: var(--body-family);
-      font-weight: var(--body-weight);
-      font-size: var(--body-16-size);
-      line-height: var(--body-16-leading);
-      text-transform: none;
-      white-space: pre-wrap;       /* Figma's double spaces */
-      color: var(--primary-shapes-fill);
-    }
-
-    /* One 211px card per page between 28px chevrons. */
-    .carousel { --carousel-per-page: 1; }
-
-    .carousel__row { width: 100%; }
-
-    .carousel__arrow,
-    .carousel__arrow img {
-      width: 28px;
-      height: 28px;
-    }
-
-    .carousel__arrow img {
-      rotate: -90deg;
-      scale: 1 -1;
-    }
-
-    .carousel__arrow--prev img { rotate: 90deg; }
-
-    /* Exactly one card wide, so the next card never shows on wider
-       phones; the arrows keep to the row's ends. */
-    .carousel__viewport {
-      flex: none;
-      width: 211px;
-      height: auto;
-      touch-action: pan-y;        /* horizontal drags go to the swipe handler */
-    }
-
-    .carousel__track {
-      --carousel-page-width: 211px;
-      gap: 24px;
-    }
-
-    .story-card {
-      gap: 4px;
-      width: 211px;
-      height: auto;
-      border-radius: var(--corner-radius-primary);
-    }
-
-    .story-card blockquote { color: var(--primary-colour); }
-
-    /* No dots on mobile (Rafael's call): swipe or the chevrons. */
-    .carousel__dots { display: none; }
-
-    /* --- Photos and call to action (1486:10334, 1486:10338) ------------- */
-
-    .closing-cta {
-      gap: 0;
-      padding: 0;
-      width: 100%;
-    }
-
-    /* The strip stays horizontal on phones — stacking it would undo the
-       marquee. Smaller photos mean a shorter lap, so the duration comes
-       down with them to hold roughly the same on-screen pace. */
-    .photo-marquee__item {
-      width: 252px;
-      height: 141.8px;
-    }
-
-    .photo-marquee__track { animation-duration: 64s; }
-
-    .closing-cta__action {
-      gap: 24px;
-      width: 100%;
-      padding: 72px 24px;
-    }
-
-    .closing-cta__title {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 24px;
-      line-height: 1;
-      text-transform: uppercase;
-    }
+    /* WHO WE ARE — this page switches to its mobile frame at 1380px
+       instead of the site's usual 1000px; see the page-scoped block after
+       this media query closes, near the end of the file. */
 
     /* =================================================================
        SERVICES & PLANS — "mobile-services-and-plans-sticky-navbar"
@@ -2055,5 +1635,431 @@
 
     /* 40px of right padding on a 318px column is a whole word per line. */
     .faq-item__answer p { padding: 10px 0 24px; }
+  }
+
+  /* ==========================================================================
+     WHO WE ARE — its own breakpoint, 1380px
+
+     Every other page switches to its 360px mobile frame at 1000px (top of
+     file). This page's timeline rows can't wait that long: .timeline__branch
+     is a fixed-width bar centred under each photo/card pair, sized for the
+     1440px frame, and once the row narrows past roughly 1380px the photo and
+     card shrink faster than the bar does, so its ends poke out past both —
+     Rafael saw the line crossing over the card and past the photo at
+     1380px. Rather than chase that math for an in-between width nothing
+     else needs, this page drops to its mobile frame
+     ("mobile-who-we-are-sticky-navbar", 1486:10271) here instead. Scoped to
+     this page only, since every selector below (.founder, .timeline,
+     .chapter, .community, .carousel, .story-card, .closing-cta) is unique
+     to who-we-are.html — it can't reach another page. The shared shell
+     (navbar, footer) and .page-hero still switch at the site's usual
+     1000px, same as every other page.
+     ========================================================================== */
+
+  @media (max-width: 1380px) {
+
+    /* =================================================================
+       WHO WE ARE — "mobile-who-we-are-sticky-navbar" (1486:10271)
+       ================================================================= */
+
+    /* All body copy on this frame is the 16pt style, and headings use the
+       site's mobile type ramp (48/32/20 — the same tokens the sitewide
+       max-width:1000px switch sets on :root) rather than the desktop
+       96/56/48 ramp these sections would otherwise still be inheriting
+       above 1000px. Left at the desktop sizes, "A journey through
+       spirituality…" and "Meet The Founder" rendered nearly twice the
+       mobile card and photo widths below them. Scoped to these four
+       containers rather than :root so it can't reach another page. */
+    .founder,
+    .timeline,
+    .chapter,
+    .community {
+      --h1-size: 48px;
+      --h1-leading: 1;
+      --h2-size: 32px;
+      --h3-size: 20px;
+      --h3-leading: 28px;
+      --body-size: var(--body-16-size);
+      --body-leading: var(--body-16-leading);
+      font-size: var(--body-16-size);
+      line-height: var(--body-16-leading);
+    }
+
+    /* --- Founder bio (1486:10277): heading, photo, then the copy, 24px
+       apart. The copy is 300px inside a 288px column, centred, so it
+       overhangs 6px each side as in Figma. */
+
+    .founder {
+      flex-direction: column;
+      gap: 24px;
+      padding: 48px 24px;
+    }
+
+    .founder__text { display: contents; }
+
+    .founder__text h2 {
+      order: -1;
+      text-align: center;
+    }
+
+    /* width:100% alone is what this frame's 360px phone means: full width
+       minus the section's own padding — stretched across 1380px instead
+       that read as "way too big". Capped well short of full width, but
+       wider than the 300px copy column below it (Rafael's call — a hero
+       photo reading larger than the caption underneath is normal, and the
+       card/photo pair below get the same room to grow). Centred the same
+       way — align-items: center on .founder (its own rule, untouched
+       here) already does that once the item has a width narrower than
+       the row. */
+    .founder__picture {
+      width: 100%;
+      max-width: 480px;
+      height: auto;
+      aspect-ratio: 1111 / 1416;
+      overflow: hidden;
+      border-radius: 9.48px;
+    }
+
+    .founder__prose {
+      flex: none;
+      width: 300px;
+      text-align: center;
+    }
+
+    /* --- Timeline (1486:10282) -----------------------------------------
+       Heading, three photo-over-card rows, and the closing heading, 72px
+       apart, with one curved line behind them all. The desktop rule
+       segments, nodes, branches and ornaments are not in this frame. */
+
+    .timeline {
+      gap: 72px;
+      align-items: stretch;
+      padding: 0 24px 72px;
+      overflow: clip;              /* the line's foot, as the next band covers it in Figma */
+      background-color: var(--primary-colour);
+    }
+
+    .timeline__rule,
+    .timeline__node,
+    .timeline__branch,
+    .timeline__deco,
+    .timeline__divider { display: none; }
+
+    /* Anchored to the section's foot, where Figma has it 2.44px past the
+       bottom, so the straight end always meets the closing heading. */
+    .timeline__line {
+      position: absolute;
+      left: calc(50% + 0.72px);
+      bottom: -2.44px;
+      translate: -50% 0;
+      width: 313.458px;
+      height: 1772.04px;
+      max-width: none;
+      pointer-events: none;
+    }
+
+    /* Opaque, and above the line, which runs up behind it. The section's
+       48px top padding lives here so the line can't show above the words
+       on wider phones, where the rows are shorter. */
+    .timeline__header {
+      z-index: 2;
+      gap: 0;
+      padding: 72px 0 12px;
+      background-color: var(--primary-colour);
+    }
+
+    .timeline__header h2 {
+      width: 100%;
+      max-width: 312px;
+    }
+
+    .timeline__header .lb { display: none; }
+
+    /* "Forging the next chapter": a 146px cream box whose 320px heading
+       overhangs it on both sides; the box hides the line behind the words. */
+    .timeline__header--end {
+      align-self: center;
+      width: 146px;
+      padding: 12px 0;
+    }
+
+    .timeline__header--end h2 {
+      flex: none;
+      width: 320px;
+    }
+
+    .timeline__step {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      height: auto;
+      padding: 0;
+    }
+
+    /* The card overlaps the photo's last 48px. Both cap at the same 480px
+       the founder photo now gets, instead of the 100%-wide, 304px-tall
+       banner this stretched into past 1000px — a strip nearly 4x wider
+       than tall. Height scales up by the same factor as the width
+       (304px x 480/312) so the crop keeps the same framing, just bigger,
+       rather than going wider and flatter. */
+    .timeline__photo {
+      order: -1;
+      flex: none;
+      width: 100%;
+      min-width: 0;
+      max-width: 480px;
+      height: 468px;
+      margin-bottom: -48px;
+      border-radius: 20px;
+    }
+
+    /* Row 1 (1486:10290): the wide shot, placed where Figma's crop puts
+       it — 319.2% of the frame wide, 37.66% left of it, 22px up. */
+    .timeline__photo--walk img {
+      inset: -22px auto auto -37.66%;
+      width: 319.2%;
+      height: auto;
+      object-fit: fill;
+    }
+
+    /* Row 2 (1486:10295): full width like the other rows (Rafael's call;
+       Figma fixes it at 288px). The square photo keeps its Figma crop. */
+    .timeline__photo--offset { border-radius: var(--corner-radius-primary); }
+
+    .timeline__photo--offset img {
+      inset: -0.09% auto auto -23.24%;
+      width: 123.3%;
+      height: auto;
+      aspect-ratio: 1;
+    }
+
+    /* Row 3 (1486:10299): a square photo from 10px left of the frame to
+       9px past its right edge, pinned to the top (307px at 360). Its own
+       24px corner shows at the top left. It covers the frame at any
+       width, so nothing shows behind it. */
+    .timeline__photo--bench { border-radius: 24px 20px 20px; }
+
+    .timeline__photo--bench img {
+      inset: 0 auto auto -10px;
+      width: calc(100% + 19px);
+      height: auto;
+      aspect-ratio: 1;
+    }
+
+    /* 24px all round was sized for the 312px card; kept as-is once the
+       card grew to 480px, one short paragraph read as a thin strip of
+       text pinned to the edges rather than a card. More padding gives it
+       room to breathe, the way the 96x124px desktop card has relative to
+       its own 550px width. */
+    .timeline__card {
+      z-index: 3;
+      flex: none;
+      gap: 4px;
+      width: 100%;
+      min-width: 0;
+      max-width: 480px;
+      padding: 48px 40px;
+      border-radius: var(--corner-radius-primary);
+    }
+
+    /* --- Next chapter rows (1486:10309, 1486:10313): the 480px photo,
+       then a 480px band with the copy centred in it. Figma's frame draws
+       these at 336px, sized for a 360px phone; left at that size once the
+       founder photo and timeline rows above grew to 480px (Rafael's
+       call), the gap between two 336px squares and an 1100+px-wide row
+       read as far too much empty side margin. Grown to match instead —
+       the crop rules right below are percentages of the box, so they
+       keep the same framing at the new size. */
+
+    .chapter {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      background-color: var(--slightly-darker-colour);
+    }
+
+    .chapter__lines { display: none; }
+
+    .chapter__media {
+      order: -1;
+      flex: none;
+      width: 480px;
+      height: 480px;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .chapter__media--sunrise img {
+      inset: -16.44% auto auto -9.75%;
+      width: 175.03%;
+      height: 116.44%;
+    }
+
+    .chapter__text {
+      flex: none;
+      width: 100%;
+      height: 480px;
+      min-width: 0;
+      padding: 48px 24px;
+    }
+
+    .chapter__copy {
+      gap: var(--body-16-leading);
+      width: 100%;
+      max-width: 312px;
+    }
+
+    /* Figma's 310px box ends on an empty line, which lifts the centred
+       copy by half a line. */
+    .chapter__copy--quoted {
+      flex: none;
+      justify-content: center;
+      height: 310px;
+      padding-bottom: var(--body-16-leading);
+    }
+
+    /* --- Community stories (1486:10318) --------------------------------- */
+
+    .closing__lines { display: none; }
+
+    .community {
+      gap: 32px;
+      padding: 48px 24px;
+    }
+
+    .community__title {
+      height: auto;
+      width: 273px;
+    }
+
+    .community__lede {
+      height: auto;
+      width: 308px;
+      padding: 0;
+    }
+
+    .community__lede p {
+      font-family: var(--body-family);
+      font-weight: var(--body-weight);
+      font-size: var(--body-16-size);
+      line-height: var(--body-16-leading);
+      text-transform: none;
+      white-space: pre-wrap;       /* Figma's double spaces */
+      color: var(--primary-shapes-fill);
+    }
+
+    /* One card per page between the chevrons. The 211px card and 28px
+       arrows were this frame's own 360px-phone sizing, kept as-is when
+       the row's cap only grew to 312px — next to a 480px timeline photo
+       and card just above, that read as small on its own and still
+       "squished" once the @handle byline needed a line of its own.
+       Grown to the same ~420px a card can comfortably reach, with the
+       row's cap widened to give the (now 36px) arrows room either side. */
+    .carousel { --carousel-per-page: 1; }
+
+    .carousel__row {
+      width: 100%;
+      max-width: 560px;
+    }
+
+    .carousel__arrow,
+    .carousel__arrow img {
+      width: 36px;
+      height: 36px;
+    }
+
+    .carousel__arrow img {
+      rotate: -90deg;
+      scale: 1 -1;
+    }
+
+    .carousel__arrow--prev img { rotate: 90deg; }
+
+    /* Exactly one card wide, so the next card never shows; the arrows
+       keep to the row's ends. */
+    .carousel__viewport {
+      flex: none;
+      width: 420px;
+      height: auto;
+      touch-action: pan-y;        /* horizontal drags go to the swipe handler */
+    }
+
+    .carousel__track {
+      --carousel-page-width: 420px;
+      gap: 24px;
+    }
+
+    .story-card {
+      gap: 10px;
+      width: 420px;
+      height: auto;
+      padding: 32px 28px;
+      border-radius: var(--corner-radius-primary);
+    }
+
+    .story-card blockquote { color: var(--primary-colour); }
+
+    .story-card__author { font-size: 15px; }
+
+    /* No dots on mobile (Rafael's call): swipe or the chevrons — the
+       counter below (site-wide markup, styled once in who-we-are.css)
+       is this range's own position readout instead. */
+    .carousel__dots { display: none; }
+
+    /* --- Photos and call to action (1486:10334, 1486:10338) ------------- */
+
+    .closing-cta {
+      gap: 0;
+      padding: 0;
+      width: 100%;
+    }
+
+    /* The strip stays horizontal on phones — stacking it would undo the
+       marquee. Smaller photos mean a shorter lap, so the duration comes
+       down with them to hold roughly the same on-screen pace. */
+    .photo-marquee__item {
+      width: 252px;
+      height: 141.8px;
+    }
+
+    .photo-marquee__track { animation-duration: 64s; }
+
+    .closing-cta__action {
+      gap: 24px;
+      width: 100%;
+      padding: 72px 24px;
+    }
+
+    .closing-cta__title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+  }
+
+  /* The .mobile-only / .desktop-only content toggle (top of file) is shared
+     sitewide and still flips at the site's 1000px/1001px cutover. Between
+     1001px and 1380px this page now shows the mobile layout above but that
+     toggle would still be showing desktop copy and desktop-only images
+     (wrong crop, wrong words) inside it, so it's re-pointed here too, using
+     the same page-unique containers, for that one range. `revert` undoes
+     just the `display: none` from the toggle rule and nothing else, since
+     no other rule sets `display` on these paragraphs/images. */
+
+  @media (min-width: 1001px) and (max-width: 1380px) {
+    .founder .desktop-only,
+    .timeline .desktop-only,
+    .chapter .desktop-only,
+    .community .desktop-only {
+      display: none;
+    }
+
+    .founder .mobile-only,
+    .timeline .mobile-only,
+    .chapter .mobile-only,
+    .community .mobile-only {
+      display: revert;
+    }
   }
 }
