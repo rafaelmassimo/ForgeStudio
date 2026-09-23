@@ -1007,9 +1007,17 @@
   /* The wordmark links home. The <p> stays zero-height, but the link inside
      is a real 47px box, so it is a proper click target and focus ring. */
   .navbar__wordmark a {
+    display: block;
     color: inherit;
     text-decoration: none;
     border-radius: 8px;
+  }
+
+  /* Logo image. Its height sets the size; the width follows the artwork. */
+  .navbar__wordmark img {
+    display: block;
+    height: 66px;
+    width: auto;
   }
 
   .navbar__wordmark a:focus-visible {

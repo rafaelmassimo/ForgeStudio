@@ -74,10 +74,7 @@
     .navbar .btn--compact { padding: 12px 16px; }
     .navbar__group--right { gap: 4px; }
 
-    .navbar__wordmark {
-      font-size: 26px;
-      letter-spacing: 4px;
-    }
+    .navbar__wordmark img { height: 56px; }
   }
 
   /* --- Photo + copy bands, stacked but not yet mobile ---------------------
@@ -447,15 +444,13 @@
     .navbar__wordmark {
       position: absolute;
       left: 50%;
-      top: calc(50% - 12px);
-      translate: -50% 0;
+      top: 50%;
+      translate: -50% -50%;
       display: block;
       height: auto;
-      font-size: 24px;
-      line-height: 24px;
-      letter-spacing: 2px;
-      color: var(--navbar-ink-mobile);
     }
+
+    .navbar__wordmark img { height: 48px; }
 
     .navbar__menu-btn { display: block; }
 
