@@ -871,14 +871,17 @@
   /* --- Secondary page hero (Figma component "Secondary Pages Hero
      Sections", 749:9257) ------------------------------------------------
      A 400px photo band with the page title sitting bottom-left and a rust
-     full stop. Every secondary page reuses it with its own photo.      */
+     full stop. Every secondary page reuses it with its own photo.
+     The title's left inset is Our Space's: calc(25% - 180px) lines it up
+     with .space-band__text there (a 360px box centred in a 50% column),
+     and every secondary page shares that position.                    */
 
   .page-hero {
     position: relative;
     display: flex;
     height: 400px;
     align-items: flex-end;
-    padding: 48px 96px;
+    padding: 48px 96px 48px calc(25% - 180px);
     width: 100%;
   }
 

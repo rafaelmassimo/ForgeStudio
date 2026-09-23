@@ -143,10 +143,9 @@
        ================================================================= */
 
     /* 96px of inset either side of a 720px band is a third of the width.
-       The shorthand also replaces the two per-page padding-left overrides
-       (Our Space's calc(25% - 180px), Services & Plans's
-       calc(50% - 583.5px)), both of which compute to 0 well before this
-       range and left the title flush against the frame. */
+       The shorthand also replaces the shared calc(25% - 180px) left
+       inset, which computes to ~0 in this range and would leave the
+       title flush against the frame. */
     .page-hero {
       height: 320px;
       padding: 40px 48px;

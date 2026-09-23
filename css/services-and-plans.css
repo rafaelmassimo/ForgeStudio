@@ -23,15 +23,6 @@
   /* The decorative lines are placed against the whole content surface. */
   .sp-body { position: relative; }
 
-  /* --- Secondary page hero override -----------------------------------
-     The shared .page-hero insets its title 96px from the edge. Rafael
-     wants it on the same line as the Membership exclusives photos, which
-     .sp-members__grid centres as a fixed 426 + 315 + 426 = 1167px pair.
-     The first photo's left edge is therefore at (W - 1167)/2, i.e.
-     50% - 583.5px of the shared body-content width; using the formula
-     (not a fixed px) keeps the two aligned at any desktop width. */
-  .page-hero { padding-left: calc(50% - 583.5px); }
-
   /* H2 titles in this frame are rust and centred unless noted. */
   .sp-title {
     position: relative;

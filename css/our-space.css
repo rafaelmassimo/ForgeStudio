@@ -12,16 +12,6 @@
 
 @layer sections {
 
-  /* --- Secondary page hero override -----------------------------------
-     The shared .page-hero insets its title 96px from the edge. On this
-     page that reads as misaligned against .space-band__text below, which
-     centres its fixed 360px box inside a 50%-wide column — landing its
-     left edge at colWidth/2 - 180, i.e. 25% of the shared body-content
-     width minus 180px. Matching that formula here (instead of a fixed px
-     value) keeps the two aligned at any desktop width, since both
-     sections are full-width siblings of the same container. */
-  .page-hero { padding-left: calc(25% - 180px); }
-
   /* --- Two-column bands (808:9860, 881:7040, 1408:8885) --------------------
      Each band is two 696px-tall columns that stay side by side down to the
      767px mobile breakpoint; the copy shrinks with its column.           */

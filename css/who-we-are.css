@@ -10,16 +10,6 @@
 
 @layer sections {
 
-  /* --- Secondary page hero override -----------------------------------
-     The shared .page-hero insets its title 96px from the edge. Rafael
-     wants it on the same line as the timeline photos below, and .timeline
-     is a 1440px-max column centred in the page with its steps inset 96px,
-     so a photo's left edge sits at max(96px, (W - 1440)/2 + 96). Written
-     as 50% - 624px, that is the same thing at any desktop width; the
-     max() keeps the 96px inset once the page is narrower than the column.
-     (Rafael's earlier ask to line it up with .founder__text is superseded.) */
-  .page-hero { padding-left: max(96px, calc(50% - 624px)); }
-
   /* --- Meet the founder (1272:9569) --------------------------------------- */
 
   .founder {
