@@ -598,6 +598,15 @@
 
   .price-card .sp-card-title { color: inherit; }
 
+  /* Same lift as .hover-lift elsewhere on the site (Rafael's request): the
+     price cards rise a touch on hover. Pointer devices only, and held still
+     for reduced motion. */
+  .price-card { transition: translate var(--motion-lift) var(--ease-out-soft); }
+
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .price-card:hover { translate: 0 -6px; }
+  }
+
   /* The rust card: Headers/H3 Mobile title (Poppins Medium 20 / 28). */
   .price-card--accent {
     background-color: var(--primary-shapes-fill);
