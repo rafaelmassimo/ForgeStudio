@@ -32,6 +32,13 @@
 
   /* H2 titles in this frame are rust and centred unless noted. */
   .sp-title {
+    position: relative;
+    /* Positioned elements (the member circles below, position: absolute)
+       paint above static ones regardless of DOM order. Between 1001px and
+       ~1214px .sp-members__grid wraps to one column and a circle's -120.5px
+       top offset climbs back into the title's row, covering it — z-index
+       puts the title back on top. */
+    z-index: 1;
     color: var(--secondary-colour);
     text-align: center;
     width: 100%;

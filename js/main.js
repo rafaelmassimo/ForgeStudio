@@ -147,7 +147,8 @@
     }
 
     /* Re-paginates when the breakpoint changes the page size, keeping the
-       first card that was showing in view. */
+       first card that was showing in view. Instant: a layout change, not
+       a page turn, so it shouldn't animate like one. */
     function paginate() {
       var next = cardsPerPage(root);
       if (next === perPage) return;
@@ -155,26 +156,48 @@
       perPage = next;
       pageCount = Math.ceil(cards.length / perPage);
       buildDots();
-      goTo(Math.floor(firstShown / perPage));
+      goTo(Math.floor(firstShown / perPage), true);
     }
 
-    function goTo(index) {
+    function goTo(index, instant) {
       page = (index + pageCount) % pageCount;
       var first = page * perPage;
 
       /* Measured, not computed, so the shift always matches the card
-         width + gap the stylesheet actually produced. A card sliding at
-         full opacity the whole way reads as hitting a wall once the
-         translate stops dead at the new page, so it dips through a soft
-         crossfade instead — down as the slide starts, back up before it
-         ends. Skipped under reduced motion: with no translate transition
-         either (the CSS turns it off), the class would just flash. */
+         width + gap the stylesheet actually produced. */
       var shift = cards[first].offsetLeft - cards[0].offsetLeft;
-      track.style.setProperty('--carousel-shift', shift + 'px');
+
+      function applyShift() {
+        track.style.setProperty('--carousel-shift', shift + 'px');
+        Array.prototype.forEach.call(cards, function (card, n) {
+          var visible = n >= first && n < first + perPage;
+          card.inert = !visible;
+          card.setAttribute('aria-hidden', String(!visible));
+        });
+      }
 
       if (counter) counter.textContent = (page + 1) + ' / ' + pageCount;
 
-      if (!reduceMotion) {
+      /* One card per page (mobile) is a plain crossfade, not a slide: the
+         card fades all the way out, the track jumps to the new one while
+         invisible, then it fades back in — the CSS drops the translate
+         transition for this case, so the jump itself is never seen
+         moving. Several cards per page (desktop) keeps the slide: it
+         dips through a soft partial fade instead of full opacity hitting
+         a wall when the translate stops. Both skipped under reduced
+         motion (which just swaps in place) and on the instant, first/
+         resize pagination above. */
+      if (reduceMotion || instant) {
+        applyShift();
+      } else if (perPage === 1) {
+        window.clearTimeout(fadeTimer);
+        track.classList.add('is-sliding');
+        fadeTimer = window.setTimeout(function () {
+          applyShift();
+          track.classList.remove('is-sliding');
+        }, 250);
+      } else {
+        applyShift();
         window.clearTimeout(fadeTimer);
         track.classList.add('is-sliding');
         fadeTimer = window.setTimeout(function () {
@@ -182,11 +205,6 @@
         }, 350);
       }
 
-      Array.prototype.forEach.call(cards, function (card, n) {
-        var visible = n >= first && n < first + perPage;
-        card.inert = !visible;
-        card.setAttribute('aria-hidden', String(!visible));
-      });
       /* At most MAX_DOTS show; the window slides to keep the current dot
          in the middle where it can. */
       var start = Math.min(Math.max(page - Math.floor(MAX_DOTS / 2), 0), Math.max(pageCount - MAX_DOTS, 0));

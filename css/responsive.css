@@ -4,7 +4,7 @@
    The pages are pixel-exact builds of the Figma desktop frames. Below
    1000px the site switches to the 360px mobile frames instead — moved down
    from the original 767px cutover so the tablet tier gets more room before
-   the mobile frames take over; the header's own 768–1002px squeeze (below)
+   the mobile frames take over; the header's own 768–1200px squeeze (below)
    is untouched and still fires inside that range, it just now overlaps the
    top of the mobile block, which wins on shared properties since it is
    declared later. There is no tablet frame, so 768–1023px is not a
@@ -59,7 +59,7 @@
      The desktop bar needs about 1000px. From 768px up it stays, but the
      labels, wordmark and padding step down so everything still fits.   */
 
-  @media (min-width: 768px) and (max-width: 1002px) {
+  @media (min-width: 768px) and (max-width: 1200px) {
     .navbar {
       padding-inline: 16px;
       column-gap: 8px;
@@ -1152,7 +1152,11 @@
       flex-direction: column;
       align-items: stretch;
       gap: 72px 0;
-      padding-inline: 12px;
+      /* 32px — up from the 12px this shipped with, and a bit past the
+         sitewide 24px gutter, since the photos here are the full width of
+         the grid (no in-flow text softening the edge, unlike a card or a
+         paragraph) and read as glued to the frame at anything thinner. */
+      padding-inline: 32px;
     }
 
     /* Reserves the absolutely-placed button: 8px gap + 48px pill. */
@@ -1975,22 +1979,40 @@
     .carousel__arrow--prev img { rotate: 90deg; }
 
     /* Exactly one card wide, so the next card never shows; the arrows
-       keep to the row's ends. */
+       keep to the row's ends. 420px is a ceiling, not a fixed size: below
+       that the card shrinks with its container instead of overflowing
+       past the frame, which a flat 420px did on any phone narrower than
+       that (it ran off the right edge). */
     .carousel__viewport {
-      flex: none;
-      width: 420px;
+      /* grow/shrink from a 0 basis, same as desktop, so it always takes
+         exactly "row width minus the two fixed-size arrows" — the width
+         a flat 420px ignored, running the card off the edge on any phone
+         narrower than 420 + the arrows + their gaps (an iPhone SE's
+         320px included). max-width keeps 420px as the ceiling once
+         there's room for it. */
+      flex: 1 1 0;
+      min-width: 0;
+      max-width: 420px;
       height: auto;
       touch-action: pan-y;        /* horizontal drags go to the swipe handler */
     }
 
     .carousel__track {
-      --carousel-page-width: 420px;
+      --carousel-page-width: min(420px, 100%);
       gap: 24px;
+      /* One card per page reads better as a plain crossfade than a slide
+         (main.js swaps to this timing whenever --carousel-per-page is 1):
+         the old card fades all the way out, the track jumps to the new
+         card while invisible, then it fades back in. No translate in the
+         transition, so that jump is never seen moving. */
+      transition: opacity 0.25s var(--ease-out-soft);
     }
+
+    .carousel__track.is-sliding { opacity: 0; }
 
     .story-card {
       gap: 10px;
-      width: 420px;
+      width: min(420px, 100%);
       height: auto;
       padding: 32px 28px;
       border-radius: var(--corner-radius-primary);
