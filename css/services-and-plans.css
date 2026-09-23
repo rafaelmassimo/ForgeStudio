@@ -1,18 +1,20 @@
 /* ==========================================================================
    FORGE Strength Studio — Services & Plans
    Transcribed from Figma "services-and-plans" (file gA1vHmz70RHrFZyswUQFT1,
-   node 1040:14544) and the five overlays its buttons open on the
-   "Responsive Prototype" page (1174:17630, 17648, 17666, 17684, 17702).
-   Shell, navbar, page hero, marquee, buttons and footer come from
-   styles.css.
+   node 1729:3770 — superseded the earlier 1040:14544 frame, 2026-09-23) and
+   its six "S&P - Modal - Desktop - …" overlays (Group Training 1729:4471,
+   Personal Training 1729:4489, Private Rental 1729:4507, Personal Trainers
+   1729:4524, Workout Programs 1748:6909, Hotel Guest 1729:4542). Shell,
+   navbar, page hero, marquee, buttons and footer come from styles.css.
 
    Agreed departures from the frame (standing rulings):
    - The frame is 1447px wide, so its sections are 1399px; here they fill
      .body-content like every other page. Nothing is positioned from the
      left edge, so the layout is unchanged.
-   - Single-use activations (1539:12025, hidden) carries the note "Comment
-     this section out in HTML", so it and its modal are commented out; the
-     styles stay. Hotel Guest (1408:8946) has the same note but is live.
+   - Private Gym Rental, Studio Rental for Personal Trainers and Custom
+     Workout Programs are ordinary, always-on sections on this frame (no
+     "Comment this section out" annotation). Hotel Guest (1408:8946) is the
+     only section still carrying that note; it stays live, per Rafael.
    - The modals drop Figma's photo panel; see MODALS below.
    ========================================================================== */
 
@@ -543,6 +545,13 @@
   .plan-modal__copy > * + * { margin-block-start: var(--copy-gap, var(--body-leading)); }
   .plan-modal__copy--led { --copy-gap: 18px; }
 
+  /* Workout Programs' two options (Custom workout programs modal, 1748:6909)
+     are Figma's only plan-modal copy with a bulleted list. */
+  .plan-modal__copy ul {
+    padding-inline-start: 27px;
+    list-style: disc;
+  }
+
   .plan-modal__lead {
     font-family: var(--font-ui);
     font-weight: 600;
@@ -616,12 +625,14 @@
     line-height: var(--body-16-leading);
   }
 
+  /* "Program + Consultation" (Workout Programs modal, 1748:6923) is the one
+     card title Figma sets at Headers/H5 (22px) instead of H4 (24px), so the
+     longer label fits its 200px card without breaking mid-word. */
+  .sp-card-title--sm { font-size: 22px; }
+
   /* Empty lines Figma leaves inside a card, before the price. */
   .price-card .gap-1 { margin-block-start: var(--body-leading); }
   .price-card .gap-2 { margin-block-start: calc(2 * var(--body-leading)); }
-
-  /* "Group" keeps a second, empty title line. */
-  .price-card .sp-card-title--pad { padding-block-end: 28px; }
 
   /* "$ 220/mo": each run has its own size and leading; the line takes the
      tallest, as in Figma (the paragraph itself contributes none). */

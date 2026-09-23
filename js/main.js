@@ -492,6 +492,7 @@
     Array.prototype.forEach.call(modals, function (modal) {
       var next = modal.querySelectorAll('[data-modal-next]');
       var prev = modal.querySelectorAll('[data-modal-prev]');
+      var dots = modal.querySelectorAll('[data-modal-page]');
       Array.prototype.forEach.call(next, function (button) {
         button.addEventListener('click', function () {
           modal.classList.add('is-page-2');
@@ -501,6 +502,14 @@
       Array.prototype.forEach.call(prev, function (button) {
         button.addEventListener('click', function () {
           modal.classList.remove('is-page-2');
+          modal.scrollTop = 0;
+        });
+      });
+      /* The two dots below the CTA (Figma "page"/modal-dots) double as
+         direct page jumps, not just a progress indicator. */
+      Array.prototype.forEach.call(dots, function (dot) {
+        dot.addEventListener('click', function () {
+          modal.classList.toggle('is-page-2', dot.getAttribute('data-modal-page') === '2');
           modal.scrollTop = 0;
         });
       });

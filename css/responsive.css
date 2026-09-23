@@ -1041,16 +1041,18 @@
     /* The button hugs its label (127px) instead of the 164px minimum. */
     .sp-intro__mobile .btn { min-width: 0; }
 
-    /* One outlined, textured circle (1486:10930): flush right, its disc
-       running 5px past the section's bottom edge, where the perks section
+    /* One outlined, textured circle (1729:3693): flush right, its disc
+       running well past the section's bottom edge, where the perks section
        covers it in Figma. overflow: clip on .sp-intro makes the same flat
-       cut. Figma's second copy (1486:10927) sits entirely behind the
-       perks section, so it never shows. The SVG is 121.25×113.25 with
-       a 0.75px stroke margin, offset to match Figma's inset. */
+       cut. Figma box is right:-14px bottom:-28px 120×112 on a 336×632
+       section; the SVG's own 121.25×113.25 stroke margin adds the extra
+       ~0.5px on each edge. The intro grew taller with the new copy (2026-
+       09-23), which pushed this bleed from -5.5px to -28.5px — re-derive
+       from the section's own metadata rather than assume it's unchanged. */
     .sp-intro__circle {
       position: absolute;
-      right: -0.5px;
-      bottom: -5.5px;
+      right: -14.5px;
+      bottom: -28.5px;
       width: 121.25px;
       height: 113.25px;
       max-width: none;
@@ -1361,7 +1363,21 @@
       transition-duration: 0.5s;
     }
 
-    .plan-modal__info { gap: 18px; }
+    /* Grid, not flex: .plan-modal__copy and .plan-modal__pricing both sit
+       in row 2 (stacked, not side by side — see below), so that row's
+       height is always the taller of the two pages. That keeps the sheet
+       the same height on both pages instead of resizing/jumping when
+       initModalPaging toggles .is-page-2 — visibility (not display) is
+       what makes the inactive page still count toward that row's height
+       while staying invisible and unclickable. */
+    .plan-modal__info {
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: start;
+      gap: 18px;
+    }
+
+    .plan-modal__info > .plan-modal__top { grid-row: 1; }
 
     .plan-modal__top {
       flex-direction: column;
@@ -1379,16 +1395,32 @@
 
     .plan-modal__top h2 { padding-inline: 20px; }
 
+    /* Mobile modal leads are Headers/H3 Mobile (Poppins Medium 20/28),
+       not desktop's 22/24px SemiBold — every "…Modal - Mobile - Page1"
+       frame uses this size regardless of which desktop size it replaces. */
+    .plan-modal__lead {
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 28px;
+    }
+
     .plan-modal__copy,
-    .plan-modal__pricing { padding-inline: 20px; }
+    .plan-modal__pricing {
+      grid-row: 2;
+      grid-column: 1;
+      width: 100%;
+      padding-inline: 20px;
+    }
 
     .plan-modal__copy > * + *,
     .plan-modal__pricing > * + * { margin-block-start: var(--copy-gap, var(--body-leading)); }
 
-    /* Page 1 shows by default; .is-page-2 swaps to page 2. */
-    .plan-modal__pricing { display: none; gap: 15px; }
-    .plan-modal.is-page-2 .plan-modal__pricing { display: flex; }
-    .plan-modal.is-page-2 .plan-modal__copy { display: none; }
+    /* Page 1 shows by default; .is-page-2 swaps to page 2. Both stay
+       display: flex (laid out, occupying row 2 above) so the row sizes to
+       whichever is taller; visibility is what actually shows/hides. */
+    .plan-modal__pricing { display: flex; flex-direction: column; gap: 15px; }
+    .plan-modal:not(.is-page-2) .plan-modal__pricing { visibility: hidden; }
+    .plan-modal.is-page-2 .plan-modal__copy { visibility: hidden; }
 
     .plan-modal__pricing h3 { padding-inline: 0; text-align: left; }
 
@@ -1443,7 +1475,17 @@
     .price-card__body > h4,
     .price-card__body > p:not(.price) { grid-column: 1; }
 
-    .price-card__body > p.price { grid-column: 2; }
+    /* Spans every row col 1 uses (title, and title+subtitle when there is
+       one) so it centers against their full stacked height, not just the
+       title's row. Desktop's blank-line spacer margin (.gap-1/.gap-2,
+       written for its single-column vertical stack) would otherwise still
+       apply here too, inflating row 1's height and blowing the title-to-
+       subtitle gap out to ~35px instead of the design's tight 4px. */
+    .price-card__body > p.price {
+      grid-column: 2;
+      grid-row: 1 / -1;
+      margin-block-start: 0;
+    }
 
     .sp-card-title {
       font-weight: 500;
@@ -1451,35 +1493,69 @@
       line-height: 24px;
     }
 
-    .sp-card-title--pad { padding-block-end: 0; }
-
     .price { text-align: right; }
     .price__cur  { font-size: 18px; font-weight: 700; }
     .price__sp   { font-size: 20px; font-weight: 700; }
     .price__num  { font-size: 24px; font-weight: 700; }
     .price__unit { font-size: 14px; font-weight: 700; }
 
-    .btn--block { padding-inline: 20px; margin-block-start: 18px; }
+    /* Figma wraps the CTA (and the dots below it) in a "modal-bottom"
+       container with its own 20px side padding, matching the inset every
+       other element here gets from .plan-modal__copy/.plan-modal__pricing.
+       padding-inline here previously only padded the button's own text,
+       leaving the pill itself flush against the modal's border — width
+       + margin-inline is what actually pulls it in from the edge. */
+    .plan-modal__info > .btn--block {
+      grid-row: 3;
+      width: calc(100% - 40px);
+      margin-inline: 20px;
+      margin-block-start: 18px;
+    }
 
     /* Two small dots, right after the CTA, active one keyed off the same
-       .is-page-2 class the paging links toggle. */
+       .is-page-2 class the paging links toggle. Clickable (initModalPaging
+       in js/main.js), so each is a real <button>: padding + a negative
+       margin gives it a bigger tap target without growing the visual 8px
+       dot, since background-clip: content-box confines the fill colour to
+       the original content box, not the padding around it. Horizontally
+       the two dots only have the 8px flex gap to split (4px each) before
+       their tap targets would overlap and start stealing each other's
+       clicks — vertically there's no such neighbour, so that padding can
+       be generous. */
     .modal-dots {
+      grid-row: 4;
       display: flex;
       gap: 8px;
-      align-self: center;
+      /* align-self centered it back when .plan-modal__info was a column
+         flex container (its cross/horizontal axis); now that the parent
+         is a grid, align-self governs the row axis instead, and the
+         inline/horizontal one is justify-self — without it the item
+         defaults to justify-self: stretch and its two dots end up
+         flush left instead of centered. */
+      justify-self: center;
       margin-block-start: 20px;
     }
 
-    .modal-dots span {
+    .modal-dots button {
+      /* The sitewide reset sets border-box; with that, padding would eat
+         into the 8px width itself (net-negative) instead of adding a tap
+         area around it, so this needs its own content-box. */
+      box-sizing: content-box;
       width: 8px;
       height: 8px;
+      padding: 10px 4px;
+      margin: -10px -4px;
+      border: 0;
       border-radius: 50%;
       background-color: #a5a5a5;
+      background-clip: content-box;
       opacity: 0.8;
+      -webkit-tap-highlight-color: transparent;
+      cursor: pointer;
     }
 
-    .plan-modal:not(.is-page-2) .modal-dots span:first-child,
-    .plan-modal.is-page-2 .modal-dots span:last-child {
+    .plan-modal:not(.is-page-2) .modal-dots button:first-child,
+    .plan-modal.is-page-2 .modal-dots button:last-child {
       background-color: var(--primary-shapes-fill);
     }
 
