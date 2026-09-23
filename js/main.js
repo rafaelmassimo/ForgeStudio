@@ -212,6 +212,113 @@
   }
 
   /* ------------------------------------------------------------------------
+     Community stories notes (home page, Figma 808:9968 / 1427:9898).
+
+     The board's geometry is fixed in the HTML/CSS — each note-slot keeps
+     its own position, size and rotation. What main.js swaps is the text:
+     it fetches data/community-stories.json (an array of { name, message }),
+     and on each arrow press slides a window of 8 (desktop) / 4 (mobile)
+     over the pool, wrapping around so there's always a full set to show.
+     Both note lists share one cursor, so a resize between breakpoints
+     never shows a jarring, unrelated set.
+     ---------------------------------------------------------------------- */
+
+  function setUpStoryNotes(root, stories) {
+    var prev = root.querySelector('[data-notes-prev]');
+    var next = root.querySelector('[data-notes-next]');
+    var tracks = root.querySelectorAll('[data-notes-track]');
+    if (!prev || !next || !tracks.length || !stories.length) return;
+
+    var start = 0;
+    var reduceMotion = window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function fill() {
+      Array.prototype.forEach.call(tracks, function (track) {
+        var slots = track.querySelectorAll('.note-slot');
+        Array.prototype.forEach.call(slots, function (slot, i) {
+          var story = stories[(start + i) % stories.length];
+          var quote = slot.querySelector('.note__quote');
+          var author = slot.querySelector('.note__author');
+          if (quote) quote.textContent = story.message;
+          if (author) author.textContent = story.name;
+        });
+      });
+    }
+
+    /* The window always advances by a full desktop page (8), whichever
+       track is on screen, so the two breakpoints' clusters stay in step.
+
+       The new set slides in from the right: every note jumps out of
+       place to the right and turns invisible (no transition, so the jump
+       itself is never seen), the text swaps while it's hidden there,
+       then on the next frame the inline overrides are lifted and the
+       note eases back to its own Figma position — left, into view, each
+       one a beat after the last. Skipped under reduced motion, which
+       just swaps the text in place. */
+    function shift(delta) {
+      start = (start + delta + stories.length) % stories.length;
+
+      if (reduceMotion) { fill(); return; }
+
+      var notes = [];
+      Array.prototype.forEach.call(tracks, function (track) {
+        Array.prototype.forEach.call(track.querySelectorAll('.note'), function (note) {
+          notes.push(note);
+        });
+      });
+
+      notes.forEach(function (note) {
+        note.style.transition = 'none';
+        note.style.translate = '48px 0';
+        note.style.opacity = '0';
+      });
+
+      /* Forces layout so the jump above lands before fill() changes the
+         text, instead of the browser coalescing straight to the end
+         state and skipping the hidden jump entirely. */
+      void notes[0].offsetWidth;
+
+      fill();
+
+      requestAnimationFrame(function () {
+        notes.forEach(function (note, i) {
+          var delay = Math.min(i * 30, 210) + 'ms';
+          note.style.transition =
+            'translate var(--motion-lift) var(--ease-out-soft) ' + delay +
+            ', opacity var(--motion-lift) var(--ease-out-soft) ' + delay;
+          note.style.translate = '';
+          note.style.opacity = '';
+        });
+        window.setTimeout(function () {
+          notes.forEach(function (note) { note.style.transition = ''; });
+        }, 650);
+      });
+    }
+
+    prev.addEventListener('click', function () { shift(-8); });
+    next.addEventListener('click', function () { shift(8); });
+  }
+
+  function initStoryNotes() {
+    var roots = document.querySelectorAll('[data-notes]');
+    Array.prototype.forEach.call(roots, function (root) {
+      var src = root.getAttribute('data-notes-src');
+      if (!src || !window.fetch) return;
+      fetch(src)
+        .then(function (response) {
+          if (!response.ok) throw new Error(response.status + ' ' + src);
+          return response.json();
+        })
+        .then(function (stories) { setUpStoryNotes(root, stories); })
+        .catch(function (error) {
+          /* Keep the static first set from the HTML. */
+          console.warn('Community stories could not be loaded:', error);
+        });
+    });
+  }
+
+  /* ------------------------------------------------------------------------
      Contact form (Contact, Figma 1319:5236).
 
      The site has no backend, so the form hands off to the visitor's email
@@ -472,6 +579,7 @@
   initAccordions();
   initMailtoForms();
   initCarousels();
+  initStoryNotes();
   initToTop();
   initReveal();
   initMarquees();

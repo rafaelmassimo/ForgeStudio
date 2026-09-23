@@ -901,6 +901,45 @@
       width: 272px;
     }
 
+    /* Below 1001px the notes go back to flanking, like the carousel, since
+       there's only ever one column and plenty of clear space either side
+       of it. .stories__nav overlays the full notes band instead of
+       taking its own row (mirrors .stories__actions below), so each
+       arrow can be positioned by its own centre. */
+    .stories__nav {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    /* Bigger than the carousel's mobile chevron, and pulled in close to
+       the stack: the widest note is 208px, so half that plus the arrow
+       plus a 6px gap, measured in from centre, keeps them right beside
+       the notes at any phone width instead of stranded at the frame
+       edge. Clamped so they never go negative on the narrowest phones. */
+    .stories__arrow {
+      position: absolute;
+      top: 50%;
+      translate: 0 -50%;
+      pointer-events: auto;
+    }
+
+    .stories__arrow,
+    .stories__arrow img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .stories__arrow--prev { left: max(4px, calc(50% - 160px)); }
+    .stories__arrow--next { right: max(4px, calc(50% - 160px)); }
+
+    .stories__arrow img {
+      rotate: -90deg;
+      scale: 1 -1;
+    }
+
+    .stories__arrow--prev img { rotate: 90deg; }
+
     .stories__actions {
       position: absolute;
       left: 50%;

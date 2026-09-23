@@ -1415,6 +1415,73 @@
     width: 100%;
   }
 
+  /* Prev/next for the notes cluster above: not in the Figma board itself,
+     added so a pool bigger than eight testimonials stays reachable. The
+     notes' own geometry (desktop's fixed offsets, tablet's wrapped rows)
+     already uses the full width of .stories__body with no reliable gap
+     to flank, so the pair sits underneath instead, in normal flow between
+     the notes and the CTA. Reuses the carousel's arrow icons for visual
+     consistency. Mobile flanks the stack instead — see responsive.css. */
+  .stories__nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    width: 100%;
+    /* The rotated notes' own bounding boxes overhang their unrotated
+       --bottom/--size box by up to ~18px (a rotated square is taller
+       than its side), so a plain 0-gap boundary still clipped into the
+       lowest note's corner. This clears that overhang with room over. */
+    margin-top: 32px;
+  }
+
+  /* A soft filled circle grows in on hover/press — the same highlight
+     green as the CTA button just below, so the pair reads as part of
+     one control. The circle is bigger than the icon (64px button, 48px
+     icon) so there's a visible ring of padding for it to fill. The icon
+     itself stays put throughout; only the circle and the press scale
+     move. */
+  .stories__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background-color: transparent;
+    cursor: pointer;
+    scale: 1;
+    transition:
+      background-color var(--motion-quick) var(--ease-out-soft),
+      scale var(--motion-quick) var(--ease-out-soft);
+  }
+
+  .stories__arrow img {
+    width: 48px;
+    height: 48px;
+    pointer-events: none;
+  }
+
+  .stories__arrow--prev img { rotate: 180deg; }
+
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .stories__arrow:hover {
+      background-color: color-mix(in srgb, var(--highlight-colour) 16%, transparent);
+    }
+  }
+
+  .stories__arrow:active {
+    scale: 0.86;
+    background-color: color-mix(in srgb, var(--highlight-colour) 26%, transparent);
+  }
+
+  .stories__arrow:focus-visible {
+    outline: 2px solid var(--highlight-colour);
+    outline-offset: 2px;
+  }
+
   .stories__actions {
     display: flex;
     align-items: center;

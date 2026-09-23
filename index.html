@@ -451,7 +451,7 @@
         </section>
 
         <!-- ================= Community stories (808:9968) ================= -->
-        <section class="stories">
+        <section class="stories" data-notes data-notes-src="data/community-stories.json">
           <div class="stories__body">
             <div class="stories__board">
               <div class="stories__board-bg" aria-hidden="true">
@@ -467,109 +467,128 @@
             </div>
 
             <!-- Each note carries its own geometry as custom properties.
-                 Eight notes, two rows of four, quoting the studio's four
-                 Google reviews (two excerpts each). -->
-            <div class="notes desktop-only" data-reveal-group="60">
+                 Eight notes, two rows of four. main.js fills them from
+                 data/community-stories.json and swaps in the next eight
+                 each time an arrow is pressed; these are the first page,
+                 shipped here so the section reads before (or without) the
+                 script. -->
+            <div class="notes desktop-only" data-reveal-group="60" data-notes-track>
               <div class="note-slot" data-reveal style="--bottom: 250px; --left: -483.6px; --size: 228px; --rotate: 2.41deg;">
                 <figure class="note hover-lift">
                   <div class="note__shadow" aria-hidden="true"><img src="assets/icons/note-shadow.svg" alt=""></div>
                   <div class="note__paper" aria-hidden="true"><img src="assets/icons/note-paper-a.svg" alt=""></div>
-                  <blockquote class="note__quote">Gabi is one-of-one. A true, inspirational powerhouse and master of her craft. It is an honour to learn from someone so devout to their practice.</blockquote>
-                  <figcaption class="note__author">David Veltman-Robert</figcaption>
+                  <blockquote class="note__quote">Love the energy, fast pace and intensity. I love a mix of cardio and strength for a good sweat!</blockquote>
+                  <figcaption class="note__author">@weezjoyce</figcaption>
                 </figure>
               </div>
               <div class="note-slot" data-reveal style="--bottom: 248px; --left: -158.2px; --size: 224px; --rotate: -4.31deg;">
                 <figure class="note hover-lift">
                   <div class="note__paper" aria-hidden="true"><img src="assets/icons/note-paper-c.svg" alt=""></div>
-                  <blockquote class="note__quote">Gabi is honestly the best and I can&rsquo;t recommend her classes enough! You can truly feel how much of her heart and soul she pours into every session.</blockquote>
-                  <figcaption class="note__author">Mariana Machado</figcaption>
+                  <blockquote class="note__quote">Because of how you lead the classes, sharing your knowledge and encouraging us</blockquote>
+                  <figcaption class="note__author">@zizverde</figcaption>
                 </figure>
               </div>
               <div class="note-slot" data-reveal style="--bottom: 247px; --left: 163.4px; --size: 230px; --rotate: 2.79deg;">
                 <figure class="note hover-lift">
                   <div class="note__paper" aria-hidden="true"><img src="assets/icons/note-paper-a.svg" alt=""></div>
-                  <blockquote class="note__quote">Gabi&rsquo;s classes are so powerful in mindfulness, starting with an opening mantra and closing with another to set you on a good way for the day.</blockquote>
-                  <figcaption class="note__author">Jennifer Miller</figcaption>
+                  <blockquote class="note__quote">I love that your workouts are challenging and high energy. So fun</blockquote>
+                  <figcaption class="note__author">@tinychickenlegs</figcaption>
                 </figure>
               </div>
               <div class="note-slot" data-reveal style="--bottom: 250px; --left: 481.2px; --size: 226px; --rotate: -3.31deg;">
                 <figure class="note hover-lift">
                   <div class="note__shadow" aria-hidden="true"><img src="assets/icons/note-shadow.svg" alt=""></div>
                   <div class="note__paper" aria-hidden="true"><img src="assets/icons/note-paper-c.svg" alt=""></div>
-                  <blockquote class="note__quote">Gabi is such a beautiful example of a practitioner that lives and embodies their yoga &mdash; not just the asanas but the 8 limbs, in the studio and outside of it.</blockquote>
-                  <figcaption class="note__author">Nicole Enns</figcaption>
+                  <blockquote class="note__quote">Your raw real energy. Your pure joy &amp; excitement in teaching &amp; seeing ppl push themselves....</blockquote>
+                  <figcaption class="note__author">@rad.katie86</figcaption>
                 </figure>
               </div>
               <div class="note-slot" data-reveal style="--bottom: 4px; --left: -474.9px; --size: 226px; --rotate: -8.04deg;">
                 <figure class="note hover-lift">
                   <div class="note__shadow" aria-hidden="true"><img src="assets/icons/note-shadow.svg" alt=""></div>
                   <div class="note__paper" aria-hidden="true"><img src="assets/icons/note-paper-c.svg" alt=""></div>
-                  <blockquote class="note__quote">She explains the positions really well, guiding you into the right posture and detailing how to move your pelvis, hips and shoulders.</blockquote>
-                  <figcaption class="note__author">Jennifer Miller</figcaption>
+                  <blockquote class="note__quote">Your energy! And you push the hardest (in the best way) and I see the most results! 💪</blockquote>
+                  <figcaption class="note__author">@jdotgleason</figcaption>
                 </figure>
               </div>
               <div class="note-slot" data-reveal style="--bottom: 6px; --left: -165.7px; --size: 232px; --rotate: 4.37deg;">
                 <figure class="note hover-lift">
                   <div class="note__shadow" aria-hidden="true"><img src="assets/icons/note-shadow.svg" alt=""></div>
                   <div class="note__paper" aria-hidden="true"><img src="assets/icons/note-paper-a.svg" alt=""></div>
-                  <blockquote class="note__quote">Her passion, dedication and knowledge of the Yoga lineage are felt and appreciated, not appropriated. She also leads a very challenging and fun strength class.</blockquote>
-                  <figcaption class="note__author">Nicole Enns</figcaption>
+                  <blockquote class="note__quote">I love how you incorporate yoga philosophy instead of just the physical cues!</blockquote>
+                  <figcaption class="note__author">@suzanna.louise_</figcaption>
                 </figure>
               </div>
               <div class="note-slot" data-reveal style="--bottom: 10px; --left: 156.8px; --size: 228px; --rotate: -4.31deg;">
                 <figure class="note hover-lift">
                   <div class="note__paper" aria-hidden="true"><img src="assets/icons/note-paper-a.svg" alt=""></div>
-                  <blockquote class="note__quote">Her expert instruction effortlessly blends precision, passion and playfulness. Her classes cultivate an ethereal experience that transcends the physical.</blockquote>
-                  <figcaption class="note__author">David Veltman-Robert</figcaption>
+                  <blockquote class="note__quote">Your passion, enthusiasm, holding non-judgemental space and leading by example</blockquote>
+                  <figcaption class="note__author">@ashhhmun</figcaption>
                 </figure>
               </div>
               <div class="note-slot" data-reveal style="--bottom: 8px; --left: 487.5px; --size: 230px; --rotate: 1.36deg;">
                 <figure class="note hover-lift">
                   <div class="note__paper" aria-hidden="true"><img src="assets/icons/note-paper-c.svg" alt=""></div>
-                  <blockquote class="note__quote">From the very beginning I get chills, and by the end I always leave feeling refreshed and grounded. I&rsquo;m so grateful every time I join one of her sessions.</blockquote>
-                  <figcaption class="note__author">Mariana Machado</figcaption>
+                  <blockquote class="note__quote">Your unique teaching style with so much soul and love poured in each class ❤️❤️</blockquote>
+                  <figcaption class="note__author">@m_prado</figcaption>
                 </figure>
               </div>
             </div>
 
             <!-- Mobile frame (1427:9898): four notes stacked down the board's
-                 centre line, one per reviewer. --top is the distance from the
-                 top of the body. -->
-            <ul class="notes notes--stack mobile-only">
+                 centre line. --top is the distance from the top of the body. -->
+            <ul class="notes notes--stack mobile-only" data-notes-track>
               <li class="note-slot" data-reveal style="--top: 237px; --size: 208px; --rotate: -4.31deg;">
                 <figure class="note hover-lift">
                   <div class="note__shadow" aria-hidden="true"><img src="assets/icons/note-shadow-1.svg" alt=""></div>
                   <div class="note__paper" aria-hidden="true"><img src="assets/icons/note-paper-a.svg" alt=""></div>
-                  <blockquote class="note__quote">Gabi is one-of-one. A true, inspirational powerhouse and master of her craft. Her instruction blends precision, passion and playfulness.</blockquote>
-                  <figcaption class="note__author">David Veltman-Robert</figcaption>
+                  <blockquote class="note__quote">Love the energy, fast pace and intensity. I love a mix of cardio and strength for a good sweat!</blockquote>
+                  <figcaption class="note__author">@weezjoyce</figcaption>
                 </figure>
               </li>
               <li class="note-slot" data-reveal style="--top: 462px; --size: 206px; --rotate: -3.31deg;">
                 <figure class="note hover-lift">
                   <div class="note__shadow" aria-hidden="true"><img src="assets/icons/note-shadow-1.svg" alt=""></div>
                   <div class="note__paper" aria-hidden="true"><img src="assets/icons/note-paper-c.svg" alt=""></div>
-                  <blockquote class="note__quote">Gabi&rsquo;s classes are so powerful in mindfulness, starting with an opening mantra and closing with another to set you on a good way for the day.</blockquote>
-                  <figcaption class="note__author">Jennifer Miller</figcaption>
+                  <blockquote class="note__quote">Because of how you lead the classes, sharing your knowledge and encouraging us</blockquote>
+                  <figcaption class="note__author">@zizverde</figcaption>
                 </figure>
               </li>
               <li class="note-slot" data-reveal style="--top: 681px; --size: 204px; --rotate: 2.79deg;">
                 <figure class="note hover-lift">
                   <div class="note__shadow" aria-hidden="true"><img src="assets/icons/note-shadow-1.svg" alt=""></div>
                   <div class="note__paper" aria-hidden="true"><img src="assets/icons/note-paper-a.svg" alt=""></div>
-                  <blockquote class="note__quote">You can truly feel how much of her heart and soul she pours into every session. I always leave feeling refreshed and grounded.</blockquote>
-                  <figcaption class="note__author">Mariana Machado</figcaption>
+                  <blockquote class="note__quote">I love that your workouts are challenging and high energy. So fun</blockquote>
+                  <figcaption class="note__author">@tinychickenlegs</figcaption>
                 </figure>
               </li>
               <li class="note-slot" data-reveal style="--top: 896px; --size: 202px; --rotate: 1.36deg;">
                 <figure class="note hover-lift">
                   <div class="note__shadow" aria-hidden="true"><img src="assets/icons/note-shadow-1.svg" alt=""></div>
                   <div class="note__paper" aria-hidden="true"><img src="assets/icons/note-paper-c.svg" alt=""></div>
-                  <blockquote class="note__quote">Her passion, dedication and knowledge of the Yoga lineage are felt and appreciated. She also leads a very challenging and fun strength class.</blockquote>
-                  <figcaption class="note__author">Nicole Enns</figcaption>
+                  <blockquote class="note__quote">Your raw real energy. Your pure joy &amp; excitement in teaching &amp; seeing ppl push themselves....</blockquote>
+                  <figcaption class="note__author">@rad.katie86</figcaption>
                 </figure>
               </li>
             </ul>
           </div>
+
+          <!-- Prev/next for the notes above: not in the Figma board itself,
+               added so a pool bigger than eight testimonials stays
+               reachable. Sits below the cluster on tablet/desktop; on
+               mobile responsive.css pulls it back over the stack instead,
+               flanking the notes left and right. -->
+          <div class="stories__nav">
+            <button class="stories__arrow stories__arrow--prev" type="button" data-notes-prev aria-label="Show other community stories">
+              <img class="desktop-only" src="assets/icons/arrow-right.svg" alt="" width="48" height="48">
+              <img class="mobile-only" src="assets/icons/chevron-up.png" alt="" width="28" height="28">
+            </button>
+            <button class="stories__arrow stories__arrow--next" type="button" data-notes-next aria-label="Show more community stories">
+              <img class="desktop-only" src="assets/icons/arrow-right.svg" alt="" width="48" height="48">
+              <img class="mobile-only" src="assets/icons/chevron-up.png" alt="" width="28" height="28">
+            </button>
+          </div>
+
           <div class="stories__actions">
             <a class="btn btn--primary" href="#">Be A Part Of The Community</a>
           </div>
