@@ -182,6 +182,10 @@
     word-break: break-word;
   }
 
+  /* Two paragraphs read as one answer with a blank line (21px) between. */
+  .faq-item__answer p:has(+ p) { padding-bottom: 21px; }
+  .faq-item__answer p + p { padding-top: 0; }
+
   /* Underlined as well as tinted, so the link does not rely on colour
      alone. --primary-shapes-fill clears 4.5:1 on the cream; the rust used
      for headings elsewhere does not at this size. */
