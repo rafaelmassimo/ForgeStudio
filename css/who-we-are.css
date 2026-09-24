@@ -341,13 +341,14 @@
   }
 
   /* The four faint curves behind both sections, wider than the page and
-     clipped by .body-content. Nudged 95px lower than Figma (top was -35px)
-     so the curves' ends (the artwork stops 72px above the image's bottom
-     edge) land on the footer's top border. */
+     clipped by .body-content. Lowered 235px from Figma (top was -35px) so
+     the two lighter inner curves, which stop 133-141px above the darker
+     outer pair in the artwork, reach the footer's top border; the outer
+     pair runs a little further and is cut off by the clip. */
   .closing__lines {
     position: absolute;
     left: calc(50% - 0.5px);
-    top: 60px;
+    top: 200px;
     translate: -50% 0;
     width: 2073.308px;
     height: 1482px;
