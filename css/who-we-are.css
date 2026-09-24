@@ -102,7 +102,10 @@
   }
 
   .timeline__rule--header  { height: 194px; }
-  .timeline__rule--rail    { height: 700px; z-index: 2; }
+  /* The rail is anchored to the step's centre like the node, rather than
+     left wherever the flex row puts it: at a fractional width the two
+     would round to different pixels and the ring drifts off the line. */
+  .timeline__rule--rail    { position: absolute; left: 50%; top: 0; height: 700px; z-index: 2; }
   .timeline__rule--divider { height: 116px; }
 
   /* Header: rule / heading / rule, 66px apart (1272:9575, 1272:9613). */
@@ -148,12 +151,13 @@
     width: 100%;
   }
 
-  /* Figma centres the node half a pixel off the step centre, so its ring
-     lands at x 678–713 while the rail runs 693–696. Kept as drawn. */
+  /* Figma drew the ring a pixel off the rail (ring centre 719.5, rail
+     717–720 -> centre 718.5), which shows as a visible wobble. Centred on
+     the rail's 3px stroke instead. */
   .timeline__node {
     position: absolute;
     z-index: 3;
-    left: calc(50% - 0.5px);
+    left: calc(50% - 1.5px);
     top: calc(50% + 0.5px);
     translate: -50% -50%;
     width: 35px;
@@ -337,11 +341,13 @@
   }
 
   /* The four faint curves behind both sections, wider than the page and
-     clipped by .body-content. */
+     clipped by .body-content. Nudged 95px lower than Figma (top was -35px)
+     so the curves' ends (the artwork stops 72px above the image's bottom
+     edge) land on the footer's top border. */
   .closing__lines {
     position: absolute;
     left: calc(50% - 0.5px);
-    top: -35px;
+    top: 60px;
     translate: -50% 0;
     width: 2073.308px;
     height: 1482px;
@@ -647,5 +653,40 @@
     text-align: center;
     width: 100%;
     word-break: break-word;
+  }
+}
+
+
+/* --- Timeline lines follow their card -------------------------------------
+   Not in Figma: the rails, branches, nodes and dividers stay hidden until
+   the card of their row has been revealed, then fade in just after it —
+   otherwise the page opens on bare lines with nothing at the end of them.
+   Gated on html.js, and held visible for reduced motion. */
+
+.js .timeline__node,
+.js .timeline__branch,
+.js .timeline__rule--rail,
+.js .timeline__divider,
+.js .timeline__line {
+  opacity: 0;
+  transition: opacity 0.6s ease 0.45s;
+}
+
+.js .timeline__step:has(.timeline__card.is-revealed) .timeline__node,
+.js .timeline__step:has(.timeline__card.is-revealed) .timeline__branch,
+.js .timeline__step:has(.timeline__card.is-revealed) .timeline__rule--rail,
+.js .timeline__step:has(.timeline__card.is-revealed) + .timeline__divider,
+.js .timeline:has(.timeline__card.is-revealed) .timeline__line {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .timeline__node,
+  .js .timeline__branch,
+  .js .timeline__rule--rail,
+  .js .timeline__divider,
+  .js .timeline__line {
+    opacity: 1;
+    transition: none;
   }
 }

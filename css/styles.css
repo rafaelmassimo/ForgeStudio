@@ -526,10 +526,15 @@
 
      --lift   the distance (6px unless a page sets it).                   */
 
-  .hover-lift { transition: translate var(--motion-lift) var(--ease-out-soft); }
+  .hover-lift,
+  .hover-lift__target { transition: translate var(--motion-lift) var(--ease-out-soft); }
 
+  /* .hover-lift-group lifts its .hover-lift__target children instead of
+     itself — for text blocks, so the pointer's hover area stays put while
+     the words rise and never flickers at the edge. */
   @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-    .hover-lift:hover { translate: 0 calc(-1 * var(--lift, 6px)); }
+    .hover-lift:hover,
+    .hover-lift-group:hover .hover-lift__target { translate: 0 calc(-1 * var(--lift, 6px)); }
   }
 
   /* --- Scroll reveal ------------------------------------------------------
@@ -553,6 +558,17 @@
   .js [data-reveal].is-revealed {
     opacity: 1;
     transform: none;
+  }
+
+  /* A revealed card must keep its hover lift: the rule above replaces
+     .hover-lift's transition, which would make the lift snap instead of
+     ease. Once it has arrived, the lift's own transition takes over. */
+  .js [data-reveal].hover-lift,
+  .js [data-reveal].hover-lift__target {
+    transition:
+      opacity var(--motion-reveal) ease var(--reveal-delay, 0s),
+      transform var(--motion-reveal) var(--ease-out-soft) var(--reveal-delay, 0s),
+      translate var(--motion-lift) var(--ease-out-soft);
   }
 
   @media (prefers-reduced-motion: reduce) {
