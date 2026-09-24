@@ -1904,15 +1904,6 @@
       border-radius: 20px;
     }
 
-    /* Row 1 (1486:10290): the wide shot, placed where Figma's crop puts
-       it — 319.2% of the frame wide, 37.66% left of it, 22px up. */
-    .timeline__photo--walk img {
-      inset: -22px auto auto -37.66%;
-      width: 319.2%;
-      height: auto;
-      object-fit: fill;
-    }
-
     /* Row 2 (1486:10295): full width like the other rows (Rafael's call;
        Figma fixes it at 288px). The square photo keeps its Figma crop. */
     .timeline__photo--offset { border-radius: var(--corner-radius-primary); }
@@ -1929,13 +1920,6 @@
        24px corner shows at the top left. It covers the frame at any
        width, so nothing shows behind it. */
     .timeline__photo--bench { border-radius: 24px 20px 20px; }
-
-    .timeline__photo--bench img {
-      inset: 0 auto auto -10px;
-      width: calc(100% + 19px);
-      height: auto;
-      aspect-ratio: 1;
-    }
 
     /* 24px all round was sized for the 312px card; kept as-is once the
        card grew to 480px, one short paragraph read as a thin strip of
