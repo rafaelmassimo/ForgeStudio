@@ -529,12 +529,24 @@
   .hover-lift,
   .hover-lift__target { transition: translate var(--motion-lift) var(--ease-out-soft); }
 
-  /* .hover-lift-group lifts its .hover-lift__target children instead of
-     itself — for text blocks, so the pointer's hover area stays put while
-     the words rise and never flickers at the edge. */
+  /* .hover-lift__target lifts when the pointer is on the text block itself,
+     not on the wider column or section around it (an earlier version keyed
+     the lift to the parent, so hovering empty space or a neighbouring
+     photo moved the words). Its ::after extends the hover area down by
+     the lift distance, so the block that has just risen still sits under
+     a pointer resting on its lower edge instead of flickering. */
+  :where(.hover-lift__target) { position: relative; }
+
+  .hover-lift__target::after {
+    content: "";
+    position: absolute;
+    inset: 100% 0 auto 0;
+    height: var(--lift, 6px);
+  }
+
   @media (hover: hover) and (prefers-reduced-motion: no-preference) {
     .hover-lift:hover,
-    .hover-lift-group:hover .hover-lift__target { translate: 0 calc(-1 * var(--lift, 6px)); }
+    .hover-lift__target:hover { translate: 0 calc(-1 * var(--lift, 6px)); }
   }
 
   /* --- Scroll reveal ------------------------------------------------------
