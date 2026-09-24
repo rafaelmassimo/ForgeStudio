@@ -342,6 +342,10 @@
       });
     }
 
+    /* The JSON is the source of truth: paint it now, so the first view
+       never shows the HTML fallback copy. */
+    fill();
+
     prev.addEventListener('click', function () { shift(-8); });
     next.addEventListener('click', function () { shift(8); });
   }
