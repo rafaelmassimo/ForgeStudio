@@ -71,6 +71,13 @@
     };
   }
 
+  /* data/community-stories.json is { "stories": [...] } so the CMS can
+     edit it (Decap needs an object at the top level). A bare array is
+     still accepted. */
+  function storyList(data) {
+    return Array.isArray(data) ? data : (data && data.stories) || [];
+  }
+
   /* ------------------------------------------------------------------------
      Testimonial carousel (Who We Are, Figma 1272:9648).
 
@@ -249,7 +256,7 @@
           if (!response.ok) throw new Error(response.status + ' ' + src);
           return response.json();
         })
-        .then(function (testimonials) { setUpCarousel(root, testimonials); })
+        .then(function (data) { setUpCarousel(root, storyList(data)); })
         .catch(function (error) {
           /* Keep the static first page from the HTML. */
           console.warn('Testimonials could not be loaded:', error);
@@ -360,7 +367,7 @@
           if (!response.ok) throw new Error(response.status + ' ' + src);
           return response.json();
         })
-        .then(function (stories) { setUpStoryNotes(root, stories); })
+        .then(function (data) { setUpStoryNotes(root, storyList(data)); })
         .catch(function (error) {
           /* Keep the static first set from the HTML. */
           console.warn('Community stories could not be loaded:', error);

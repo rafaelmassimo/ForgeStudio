@@ -171,7 +171,7 @@
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;500;700&family=Commissioner:wght@500&family=Poppins:wght@500&family=Sarabun:wght@400&display=swap">
 
-  <link rel="preload" as="image" href="assets/img/home-hero.jpg" fetchpriority="high">
+  <link data-cms-img="hero.photo" rel="preload" as="image" href="assets/img/home-hero.jpg" fetchpriority="high">
 
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/styles.css">
@@ -208,25 +208,25 @@
 
         <!-- ================= Hero (808:9913) ================= -->
         <section class="hero">
-          <img class="hero__bg" src="assets/img/home-hero.jpg" alt="" aria-hidden="true" width="1392" height="600"
+          <img data-cms-img="hero.photo" class="hero__bg" src="assets/img/home-hero.jpg" alt="" aria-hidden="true" width="1392" height="600"
             fetchpriority="high">
           <div class="hero__content" data-reveal-group="120">
             <div class="hero__text" data-reveal>
-              <h1>A place to build your body <br class="lb">at your own pace.</h1>
-              <p class="hero__lede">A distraction-free, private studio to strengthen your mind, muscle and spirit</p>
+              <h1 data-cms="hero.heading">A place to build your body <br class="lb">at your own pace.</h1>
+              <p data-cms="hero.text" class="hero__lede">A distraction-free, private studio to strengthen your mind, muscle and spirit</p>
             </div>
             <div class="hero__actions" data-reveal>
-              <a class="btn btn--primary" href="services-and-plans.html">Book Your Sessions</a>
+              <a data-cms="hero.button_text" data-cms-href="hero.button_link" class="btn btn--primary" href="services-and-plans.html">Book Your Sessions</a>
             </div>
           </div>
         </section>
 
         <!-- ================= Who we are (808:9921) ================= -->
-        <section class="who-we-are" data-reveal-group>
+        <section data-cms-section="who_we_are" class="who-we-are" data-reveal-group>
           <div class="who-we-are__text hover-lift-group" data-reveal>
             <div class="copy hover-lift__target">
-              <h2>Less intimidation, <br class="lb">more confidence.</h2>
-              <div class="prose">
+              <h2 data-cms="who_we_are.heading">Less intimidation, <br class="lb">more confidence.</h2>
+              <div data-cms-html="who_we_are.text" class="prose">
                 <!-- Copy is verbatim from Figma, double space included. -->
                 <p class="keep-spaces">At FORGE, transformation goes beyond physique. We help you build  a healthier lifestyle.</p>
                 <p>Our No Pressure Space gives you the freedom to train however you like: Choose an Personal Training,
@@ -237,7 +237,7 @@
           </div>
           <div class="who-we-are__media" data-reveal>
             <div class="media">
-              <img src="assets/img/who-we-are.jpg" alt="Kettlebells racked on a rolling stand in the FORGE studio"
+              <img data-cms-img="who_we_are.photo" src="assets/img/who-we-are.jpg" alt="Kettlebells racked on a rolling stand in the FORGE studio"
                 width="546" height="544" loading="lazy">
             </div>
             <div class="deco deco--shapes" aria-hidden="true">
@@ -247,20 +247,20 @@
         </section>
 
         <!-- ================= Commitment (808:9935) ================= -->
-        <section class="commitment" data-reveal-group>
+        <section data-cms-section="commitment" class="commitment" data-reveal-group>
           <div class="commitment__media" data-reveal>
             <div class="deco deco--ornament" aria-hidden="true">
               <img src="assets/icons/decorative-ornament.svg" alt="" width="198" height="199">
             </div>
             <div class="media">
-              <img src="assets/img/commitment.jpg" alt="Weight plates and equipment stored along the studio wall"
+              <img data-cms-img="commitment.photo" src="assets/img/commitment.jpg" alt="Weight plates and equipment stored along the studio wall"
                 width="546" height="546" loading="lazy">
             </div>
           </div>
           <div class="commitment__text hover-lift-group" data-reveal>
             <div class="copy hover-lift__target">
-              <h2>A 3 month commitment. <br class="lb">A Lifetime change.</h2>
-              <div class="prose">
+              <h2 data-cms="commitment.heading">A 3 month commitment. <br class="lb">A Lifetime change.</h2>
+              <div data-cms-html="commitment.text" class="prose">
                 <p>At FORGE, we help you achieve goals that matter, like building strength and improving your quality of
                   life. Through consistency, you can shape your body and build a stronger connection with yourself.</p>
                 <p>Our 3-month commitment gives you the time and support to build a routine, stay accountable, and
@@ -268,7 +268,7 @@
               </div>
             </div>
             <div class="commitment__actions hover-lift__target">
-              <a class="btn btn--primary" href="services-and-plans.html">Learn About Our Services</a>
+              <a data-cms="commitment.button_text" data-cms-href="commitment.button_link" class="btn btn--primary" href="services-and-plans.html">Learn About Our Services</a>
             </div>
           </div>
         </section>
@@ -279,109 +279,109 @@
             <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
             <div class="marquee__group">
               <div class="marquee__item">
-                <div class="marquee__label"><span>Show up</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_1">Show up</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
               <div class="marquee__item">
-                <div class="marquee__label"><span>Get strong</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_2">Get strong</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
               <div class="marquee__item">
-                <div class="marquee__label"><span>Stay consistent</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_3">Stay consistent</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
               <div class="marquee__item">
-                <div class="marquee__label"><span>No pressure</span></div>
-                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
-              </div>
-            </div>
-            <div class="marquee__group">
-              <div class="marquee__item">
-                <div class="marquee__label"><span>Show up</span></div>
-                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
-              </div>
-              <div class="marquee__item">
-                <div class="marquee__label"><span>Get strong</span></div>
-                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
-              </div>
-              <div class="marquee__item">
-                <div class="marquee__label"><span>Stay consistent</span></div>
-                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
-              </div>
-              <div class="marquee__item">
-                <div class="marquee__label"><span>No pressure</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_4">No pressure</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
             </div>
             <div class="marquee__group">
               <div class="marquee__item">
-                <div class="marquee__label"><span>Show up</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_1">Show up</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
               <div class="marquee__item">
-                <div class="marquee__label"><span>Get strong</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_2">Get strong</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
               <div class="marquee__item">
-                <div class="marquee__label"><span>Stay consistent</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_3">Stay consistent</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
               <div class="marquee__item">
-                <div class="marquee__label"><span>No pressure</span></div>
-                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
-              </div>
-            </div>
-            <div class="marquee__group">
-              <div class="marquee__item">
-                <div class="marquee__label"><span>Show up</span></div>
-                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
-              </div>
-              <div class="marquee__item">
-                <div class="marquee__label"><span>Get strong</span></div>
-                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
-              </div>
-              <div class="marquee__item">
-                <div class="marquee__label"><span>Stay consistent</span></div>
-                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
-              </div>
-              <div class="marquee__item">
-                <div class="marquee__label"><span>No pressure</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_4">No pressure</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
             </div>
             <div class="marquee__group">
               <div class="marquee__item">
-                <div class="marquee__label"><span>Show up</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_1">Show up</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
               <div class="marquee__item">
-                <div class="marquee__label"><span>Get strong</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_2">Get strong</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
               <div class="marquee__item">
-                <div class="marquee__label"><span>Stay consistent</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_3">Stay consistent</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
               <div class="marquee__item">
-                <div class="marquee__label"><span>No pressure</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_4">No pressure</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
             </div>
             <div class="marquee__group">
               <div class="marquee__item">
-                <div class="marquee__label"><span>Show up</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_1">Show up</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
               <div class="marquee__item">
-                <div class="marquee__label"><span>Get strong</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_2">Get strong</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
               <div class="marquee__item">
-                <div class="marquee__label"><span>Stay consistent</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_3">Stay consistent</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
               <div class="marquee__item">
-                <div class="marquee__label"><span>No pressure</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_4">No pressure</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+            </div>
+            <div class="marquee__group">
+              <div class="marquee__item">
+                <div class="marquee__label"><span data-cms="global.marquee.word_1">Show up</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span data-cms="global.marquee.word_2">Get strong</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span data-cms="global.marquee.word_3">Stay consistent</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span data-cms="global.marquee.word_4">No pressure</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+            </div>
+            <div class="marquee__group">
+              <div class="marquee__item">
+                <div class="marquee__label"><span data-cms="global.marquee.word_1">Show up</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span data-cms="global.marquee.word_2">Get strong</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span data-cms="global.marquee.word_3">Stay consistent</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span data-cms="global.marquee.word_4">No pressure</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
             </div>
@@ -389,35 +389,35 @@
         </div>
 
         <!-- ================= Our space (808:9949) ================= -->
-        <section class="our-space">
+        <section data-cms-section="our_space" class="our-space">
           <div class="our-space__bg" aria-hidden="true">
-            <img src="assets/img/our-space.jpg" alt="" width="1392" height="600" loading="lazy">
+            <img data-cms-img="our_space.photo" src="assets/img/our-space.jpg" alt="" width="1392" height="600" loading="lazy">
             <div class="our-space__scrim"></div>
           </div>
           <div class="our-space__content" data-reveal>
             <div class="our-space__text">
-              <h2>A space to call yours.</h2>
-              <p class="our-space__body">FORGE&rsquo;s studio is designed to make you feel at home, with an intimate,
+              <h2 data-cms="our_space.heading">A space to call yours.</h2>
+              <p data-cms="our_space.text" class="our-space__body">FORGE&rsquo;s studio is designed to make you feel at home, with an intimate,
                 welcoming space in the heart of the Fraser Valley.</p>
             </div>
             <div class="our-space__actions">
-              <a class="btn btn--secondary" href="our-space.html">Discover Our Space</a>
-              <a class="btn btn--primary" href="services-and-plans.html">Rent The Studio</a>
+              <a data-cms="our_space.button_1_text" data-cms-href="our_space.button_1_link" class="btn btn--secondary" href="our-space.html">Discover Our Space</a>
+              <a data-cms="our_space.button_2_text" data-cms-href="our_space.button_2_link" class="btn btn--primary" href="services-and-plans.html">Rent The Studio</a>
             </div>
           </div>
         </section>
 
         <!-- ================= Meet Gabriela (808:9956) ================= -->
-        <section class="meet" data-reveal-group>
+        <section data-cms-section="meet" class="meet" data-reveal-group>
           <div class="meet__text hover-lift-group" data-reveal>
             <div class="copy hover-lift__target">
               <!-- The desktop and mobile frames word this heading differently;
                    responsive.css shows the one for the current breakpoint. -->
               <h2>
-                <span class="desktop-only">Meet the person helping forge your future.</span>
-                <span class="mobile-only">Meet the person forging <br>your future.</span>
+                <span data-cms="meet.heading" class="desktop-only">Meet the person helping forge your future.</span>
+                <span data-cms="meet.heading_mobile" class="mobile-only">Meet the person forging <br>your future.</span>
               </h2>
-              <div class="prose">
+              <div data-cms-html="meet.text" class="prose">
                 <p>Gabriela has spent over a decade teaching Yoga and now has became a Certified Personal Trainer,
                   combined with years of gym experience and a passion for helping people feel confident in their bodies.
                 </p>
@@ -427,7 +427,7 @@
               </div>
             </div>
             <div class="meet__actions hover-lift__target">
-              <a class="btn btn--primary" href="who-we-are.html">Get To Know Us</a>
+              <a data-cms="meet.button_text" data-cms-href="meet.button_link" class="btn btn--primary" href="who-we-are.html">Get To Know Us</a>
             </div>
           </div>
           <div class="meet__media" data-reveal>
@@ -435,25 +435,25 @@
               <img src="assets/icons/decorative-element.svg" alt="" width="194" height="186">
             </div>
             <div class="media">
-              <img src="assets/img/GabrielaUptaded.png" alt="Gabriela, founder and strength trainer at FORGE" width="419"
+              <img data-cms-img="meet.photo" src="assets/img/GabrielaUptaded.png" alt="Gabriela, founder and strength trainer at FORGE" width="419"
                 height="534" loading="lazy">
             </div>
           </div>
         </section>
 
         <!-- ================= Community stories (808:9968) ================= -->
-        <section class="stories" data-notes data-notes-src="data/community-stories.json">
+        <section data-cms-section="stories" class="stories" data-notes data-notes-src="data/community-stories.json">
           <div class="stories__body">
             <div class="stories__board">
               <div class="stories__board-bg" aria-hidden="true">
-                <img src="assets/img/community-board.jpg" alt="" width="1392" height="926" loading="lazy">
+                <img data-cms-img="stories.background_photo" src="assets/img/community-board.jpg" alt="" width="1392" height="926" loading="lazy">
                 <div class="stories__tint stories__tint--lighten"></div>
                 <div class="stories__tint stories__tint--overlay"></div>
                 <div class="stories__tint stories__tint--multiply"></div>
               </div>
               <div class="stories__board-text" data-reveal>
-                <h2>Community stories</h2>
-                <p>What previous mentees have to say</p>
+                <h2 data-cms="stories.heading">Community stories</h2>
+                <p data-cms="stories.text">What previous mentees have to say</p>
               </div>
             </div>
 
@@ -581,7 +581,7 @@
           </div>
 
           <div class="stories__actions">
-            <a class="btn btn--primary" href="services-and-plans.html">Be A Part Of The Community</a>
+            <a data-cms="stories.button_text" data-cms-href="stories.button_link" class="btn btn--primary" href="services-and-plans.html">Be A Part Of The Community</a>
           </div>
         </section>
 
@@ -596,17 +596,17 @@
           <address class="footer__contact">
             <div class="footer__contact-row">
               <img src="assets/icons/icon-location.svg" alt="" width="24" height="24" loading="lazy">
-              <a class="link" href="https://www.google.com/maps/search/?api=1&query=District+1881+Chilliwack+BC" target="_blank" rel="noopener noreferrer">District 1881, Chilliwack, BC</a>
+              <a data-cms="global.contact.address" data-cms-attr="href=https://www.google.com/maps/search/?api=1&amp;query={global.contact.address|url}" class="link" href="https://www.google.com/maps/search/?api=1&query=District+1881+Chilliwack+BC" target="_blank" rel="noopener noreferrer">District 1881, Chilliwack, BC</a>
             </div>
             <div class="footer__contact-row footer__contact-row--phone">
               <img src="assets/icons/icon-phone.svg" alt="" width="24" height="24" loading="lazy">
-              <a class="link" href="tel:+10000000000">(000) 000-0000</a>
+              <a data-cms="global.contact.phone" data-cms-attr="href=tel:{global.contact.phone|tel}" class="link" href="tel:+10000000000">(000) 000-0000</a>
             </div>
             <div class="footer__contact-row">
               <img src="assets/icons/icon-mail.svg" alt="" width="24" height="24" loading="lazy">
-              <a class="link" href="mailto:info@forgestrengthstudio.com">info@forgestrengthstudio.com</a>
+              <a data-cms="global.contact.email" data-cms-attr="href=mailto:{global.contact.email}" class="link" href="mailto:info@forgestrengthstudio.com">info@forgestrengthstudio.com</a>
             </div>
-            <p class="footer__hours">Open 7 days: 5:00 AM &ndash; 10:00 PM</p>
+            <p data-cms="global.contact.hours" class="footer__hours">Open 7 days: 5:00 AM &ndash; 10:00 PM</p>
           </address>
 
           <ul class="footer__nav">
@@ -622,13 +622,13 @@
         <div class="footer__socials">
           <ul class="footer__sns">
             <li>
-              <a href="https://www.instagram.com/forgestrengthstudio" target="_blank" rel="noopener noreferrer">
+              <a data-cms-href="global.social.instagram_link" href="https://www.instagram.com/forgestrengthstudio" target="_blank" rel="noopener noreferrer">
                 <img src="assets/icons/icon-instagram.svg" alt="" width="40" height="40" loading="lazy">
                 <span class="visually-hidden">Instagram</span>
               </a>
             </li>
             <li>
-              <a href="#" target="_blank" rel="noopener noreferrer">
+              <a data-cms-href="global.social.facebook_link" href="#" target="_blank" rel="noopener noreferrer">
                 <img src="assets/icons/icon-facebook.svg" alt="" width="40" height="40" loading="lazy">
                 <span class="visually-hidden">Facebook</span>
               </a>
@@ -645,7 +645,7 @@
         <div class="footer__legal">
           <button class="link link--button" type="button" data-dialog-open="modal-privacy">Privacy Policy</button>
           <button class="link link--button" type="button" data-dialog-open="modal-terms">Terms &amp; Conditions</button>
-          <p>&copy; 2026 Forge Strength Studio. All Rights Reserved.</p>
+          <p data-cms="global.footer.copyright">&copy; 2026 Forge Strength Studio. All Rights Reserved.</p>
         </div>
       </div>
     </footer>

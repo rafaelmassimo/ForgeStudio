@@ -1,0 +1,16 @@
+{
+  "intro": {
+    "heading": "Contact us.",
+    "text": "We’d love to hear from you.  Please fill out contact form below to inquire about us."
+  },
+  "info": {
+    "studio_name": "FORGE Strength Studio",
+    "hours": "Open 7 Days  |  5:00 AM - 10:00 PM\nYour happy place, at your own pace"
+  },
+  "help": {
+    "heading": "Need some help?",
+    "text": "Check our FAQs.",
+    "button_text": "Browse FAQ",
+    "button_link": "faq.html"
+  }
+}

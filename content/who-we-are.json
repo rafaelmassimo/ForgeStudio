@@ -1,0 +1,85 @@
+{
+  "hero": {
+    "photo_mobile": "/assets/img/wwa-hero-mobile.jpg",
+    "photo": "/assets/img/wwa-hero.jpg",
+    "heading": "Who We Are"
+  },
+  "founder": {
+    "show": true,
+    "photo": "/assets/img/wwa-founder.jpg",
+    "photo_alt": "Gabriela, founder of FORGE, standing with her hands on her hips in the studio",
+    "heading": "Meet The Founder",
+    "paragraph_1": "Gabriela has been a Yoga Alliance Certified since 2020 and a teacher for many years throughout the Fraser Valley, becoming renown for her expertise, playfulness and ability to connect with her students.",
+    "paragraph_2_mobile": "She is very focused on building a unique approach to fitness and one that guides people into building a better life through strength.",
+    "paragraph_2": "She is very focused on building a unique approach to fitness and one that guides people into building not only a better body, but enjoying the journey of building a better life.",
+    "paragraph_3": "No Miracle diets. No Shortcuts. Gabi believes in a well balanced, disciplined routine that makes you live life on your own terms. All of that with a good dose of humor!"
+  },
+  "timeline": {
+    "show": true,
+    "heading": "A journey through spirituality and\na better lifestyle",
+    "photo_1": "/assets/img/wwa-timeline-1.jpg",
+    "photo_1_alt": "Gabriela in a yoga pose on a wooden block by the studio window",
+    "text_1": "Gabriela’s teaching career starts with a search for purpose and a better lifestyle. She previously practiced Jiu Jitsu and Yoga, which although for a very brief moment, brought her immense joy and a sense of personal satisfaction.",
+    "text_2": "Gabi traveled through Asia, including India and Cambodia, where she explored ancient yoga and meditation traditions and gained professional experience working at a retreat.",
+    "photo_2": "/assets/img/wwa-timeline-2.jpg",
+    "photo_2_alt": "Gabriela taking part in a ceremony with monks during her travels in Asia",
+    "photo_3": "/assets/img/wwa-timeline-3.jpg",
+    "photo_3_alt": "Members hugging after a class",
+    "text_3": "She later evolved that practice into a structured routine that she could follow and eventually transformed that into discipline and action that shifted her career into a different direction.",
+    "closing_heading": "Forging the next chapter"
+  },
+  "next_chapter": {
+    "show": true,
+    "text": "That teaching eventually bloomed into resilience, diligence and a work ethic. Now, Gabriela applies those same values into her classes to provide her students with a mindset of constant growth and knowledge.",
+    "text_mobile": "That teaching eventually bloomed into resilience and diligence. Now, Gabriela applies those same values into her classes, providing her students with a mindset of constant growth and knowledge.",
+    "quote": "“More than just strength training, I’ll share my knowledge and passion so you can build a high-energy journey with a caring community.”",
+    "photo": "/assets/img/wwa-next-chapter-1.jpg",
+    "photo_alt": "Gabriela talking with a group sitting on the grass outdoors",
+    "photo_mobile": "/assets/img/wwa-next-chapter-1-mobile.jpg",
+    "photo_mobile_alt": "Gabriela standing and talking with a group outdoors under the trees"
+  },
+  "next_chapter_2": {
+    "show": true,
+    "photo": "/assets/img/wwa-next-chapter-2.jpg",
+    "photo_alt": "Gabriela with tattooed arms raised, tying a ribbon among red prayer flags",
+    "text": "Now, Gabriela’s new chapter is building a wellness centre that starts with FORGE Studio as a pivotal point to a more ambitious dream for the Fraser Valley community."
+  },
+  "community": {
+    "show": true,
+    "heading": "Community Stories",
+    "text": "See how our members live life on their own terms and experience the lasting benefits of training at\nForge Strength Studio.",
+    "text_mobile": "See how our members  experience the lasting benefits of training at  Forge Strength Studio."
+  },
+  "closing": {
+    "show": true,
+    "heading": "More than a workout, A Space To Belong",
+    "button_text": "Explore Our Classes",
+    "button_link": "services-and-plans.html"
+  },
+  "gallery": {
+    "photo_1": "/assets/img/wwa-cta-1.jpg",
+    "photo_1_alt": "Members hugging after a class",
+    "photo_2": "/assets/img/wwa-cta-2.jpg",
+    "photo_2_alt": "Gabriela smiling with her teacher among tropical plants",
+    "photo_3": "/assets/img/wwa-cta-3.jpg",
+    "photo_3_alt": "A person standing on a cliff edge above a green valley",
+    "photo_4": "/assets/img/wwa-timeline-1.jpg",
+    "photo_4_alt": "Gabriela in a yoga pose on a wooden block by the studio window",
+    "photo_5": "/assets/img/wwa-next-chapter-1.jpg",
+    "photo_5_alt": "Gabriela talking with a group sitting on the grass outdoors",
+    "photo_6": "/assets/img/wwa-timeline-2.jpg",
+    "photo_6_alt": "Gabriela taking part in a ceremony with monks during her travels in Asia",
+    "photo_7": "/assets/img/wwa-next-chapter-2.jpg",
+    "photo_7_alt": "Gabriela with tattooed arms raised, tying a ribbon among red prayer flags",
+    "photo_8": "/assets/img/wwa-timeline-3.jpg",
+    "photo_8_alt": "Members hugging after a class",
+    "photo_9": "/assets/img/commitment.jpg",
+    "photo_9_alt": "Weight plates and equipment stored along the studio wall",
+    "photo_10": "/assets/img/community-board.jpg",
+    "photo_10_alt": "A large group of members and staff together by the pool after a retreat",
+    "photo_11": "/assets/img/our-space.jpg",
+    "photo_11_alt": "The training floor with dumbbell racks, mats and exercise balls",
+    "photo_12": "/assets/img/wwa-founder.jpg",
+    "photo_12_alt": "Gabriela, founder of FORGE, standing with her hands on her hips in the studio"
+  }
+}

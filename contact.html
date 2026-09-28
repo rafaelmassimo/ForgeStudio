@@ -131,43 +131,43 @@
           <div class="contact__inner">
 
             <section class="contact__intro" aria-labelledby="contact-title" data-reveal-group>
-              <h1 id="contact-title" class="contact__title" data-reveal>Contact us.</h1>
+              <h1 data-cms="intro.heading" id="contact-title" class="contact__title" data-reveal>Contact us.</h1>
 
               <div class="contact__body">
-                <p class="contact__lede">We&rsquo;d love to hear from you.  Please fill out contact form below to inquire about us.</p>
+                <p data-cms="intro.text" class="contact__lede">We&rsquo;d love to hear from you.  Please fill out contact form below to inquire about us.</p>
 
                 <div class="contact__content">
                   <!-- Three blocks, each hung off a rust rule on its left. -->
                   <div class="contact-info" data-reveal>
                     <div class="contact-info__block contact-info__block--hours">
-                      <p>FORGE Strength Studio</p>
-                      <p>Open 7 Days  |  5:00 AM - 10:00 PM<br>Your happy place, at your own pace</p>
+                      <p data-cms="info.studio_name">FORGE Strength Studio</p>
+                      <p data-cms="info.hours">Open 7 Days  |  5:00 AM - 10:00 PM<br>Your happy place, at your own pace</p>
                     </div>
 
                     <address class="contact-info__block contact-info__block--details">
                       <div class="contact-info__row">
                         <img src="assets/icons/icon-location-dark.svg" alt="" width="24" height="24">
-                        <p>District 1881, Chilliwack, BC</p>
+                        <p data-cms="global.contact.address">District 1881, Chilliwack, BC</p>
                       </div>
                       <div class="contact-info__row contact-info__row--phone">
                         <img src="assets/icons/icon-phone-dark.svg" alt="" width="24" height="24">
-                        <p><a href="tel:+10000000000">(000) 000-0000</a></p>
+                        <p><a data-cms="global.contact.phone" data-cms-attr="href=tel:{global.contact.phone|tel}" href="tel:+10000000000">(000) 000-0000</a></p>
                       </div>
                       <div class="contact-info__row contact-info__row--mail">
                         <img src="assets/icons/icon-mail-dark.svg" alt="" width="24" height="24">
-                        <p><a href="mailto:info@forgestrengthstudio.com">info@forgestrengthstudio.com</a></p>
+                        <p><a data-cms="global.contact.email" data-cms-attr="href=mailto:{global.contact.email}" href="mailto:info@forgestrengthstudio.com">info@forgestrengthstudio.com</a></p>
                       </div>
                     </address>
 
                     <ul class="contact-info__block contact-info__block--socials">
                       <li>
-                        <a class="contact-info__social" href="https://www.instagram.com/forgestrengthstudio" target="_blank" rel="noopener noreferrer">
+                        <a data-cms-href="global.social.instagram_link" class="contact-info__social" href="https://www.instagram.com/forgestrengthstudio" target="_blank" rel="noopener noreferrer">
                           <img src="assets/icons/icon-instagram-brown.svg" alt="" width="40" height="40">
                           <span><span class="visually-hidden">Instagram: </span>@ForgeStrengthStudio</span>
                         </a>
                       </li>
                       <li>
-                        <a class="contact-info__social" href="#">
+                        <a data-cms-href="global.social.facebook_link" class="contact-info__social" href="#">
                           <img src="assets/icons/icon-facebook-brown.svg" alt="" width="40" height="40">
                           <span><span class="visually-hidden">Facebook: </span>Forge Strength Studio</span>
                         </a>
@@ -177,7 +177,7 @@
 
                   <!-- Sent through the visitor's email app: main.js builds a
                        mailto: link from the fields (data-mailto-form). -->
-                  <form class="contact-form" data-reveal data-mailto-form="info@forgestrengthstudio.com">
+                  <form data-cms-attr="data-mailto-form={global.contact.email}" class="contact-form" data-reveal data-mailto-form="info@forgestrengthstudio.com">
                     <div class="contact-form__fields">
                       <div class="contact-form__row">
                         <div class="contact-form__field">
@@ -219,10 +219,10 @@
               </div>
               <div class="contact-faq__panel" data-reveal>
                 <div class="contact-faq__text">
-                  <h2 id="faq-title">Need some help?</h2>
-                  <p>Check our FAQs.</p>
+                  <h2 data-cms="help.heading" id="faq-title">Need some help?</h2>
+                  <p data-cms="help.text">Check our FAQs.</p>
                 </div>
-                <a class="btn btn--primary" href="faq.html">Browse FAQ</a>
+                <a data-cms="help.button_text" data-cms-href="help.button_link" class="btn btn--primary" href="faq.html">Browse FAQ</a>
               </div>
             </section>
 
@@ -240,17 +240,17 @@
           <address class="footer__contact">
             <div class="footer__contact-row">
               <img src="assets/icons/icon-location.svg" alt="" width="24" height="24" loading="lazy">
-              <a class="link" href="https://www.google.com/maps/search/?api=1&query=District+1881+Chilliwack+BC" target="_blank" rel="noopener noreferrer">District 1881, Chilliwack, BC</a>
+              <a data-cms="global.contact.address" data-cms-attr="href=https://www.google.com/maps/search/?api=1&amp;query={global.contact.address|url}" class="link" href="https://www.google.com/maps/search/?api=1&query=District+1881+Chilliwack+BC" target="_blank" rel="noopener noreferrer">District 1881, Chilliwack, BC</a>
             </div>
             <div class="footer__contact-row footer__contact-row--phone">
               <img src="assets/icons/icon-phone.svg" alt="" width="24" height="24" loading="lazy">
-              <a class="link" href="tel:+10000000000">(000) 000-0000</a>
+              <a data-cms="global.contact.phone" data-cms-attr="href=tel:{global.contact.phone|tel}" class="link" href="tel:+10000000000">(000) 000-0000</a>
             </div>
             <div class="footer__contact-row">
               <img src="assets/icons/icon-mail.svg" alt="" width="24" height="24" loading="lazy">
-              <a class="link" href="mailto:info@forgestrengthstudio.com">info@forgestrengthstudio.com</a>
+              <a data-cms="global.contact.email" data-cms-attr="href=mailto:{global.contact.email}" class="link" href="mailto:info@forgestrengthstudio.com">info@forgestrengthstudio.com</a>
             </div>
-            <p class="footer__hours">Open 7 days: 5:00 AM &ndash; 10:00 PM</p>
+            <p data-cms="global.contact.hours" class="footer__hours">Open 7 days: 5:00 AM &ndash; 10:00 PM</p>
           </address>
 
           <ul class="footer__nav">
@@ -266,13 +266,13 @@
         <div class="footer__socials">
           <ul class="footer__sns">
             <li>
-              <a href="https://www.instagram.com/forgestrengthstudio" target="_blank" rel="noopener noreferrer">
+              <a data-cms-href="global.social.instagram_link" href="https://www.instagram.com/forgestrengthstudio" target="_blank" rel="noopener noreferrer">
                 <img src="assets/icons/icon-instagram.svg" alt="" width="40" height="40" loading="lazy">
                 <span class="visually-hidden">Instagram</span>
               </a>
             </li>
             <li>
-              <a href="#" target="_blank" rel="noopener noreferrer">
+              <a data-cms-href="global.social.facebook_link" href="#" target="_blank" rel="noopener noreferrer">
                 <img src="assets/icons/icon-facebook.svg" alt="" width="40" height="40" loading="lazy">
                 <span class="visually-hidden">Facebook</span>
               </a>
@@ -289,7 +289,7 @@
         <div class="footer__legal">
           <button class="link link--button" type="button" data-dialog-open="modal-privacy">Privacy Policy</button>
           <button class="link link--button" type="button" data-dialog-open="modal-terms">Terms &amp; Conditions</button>
-          <p>&copy; 2026 Forge Strength Studio. All Rights Reserved.</p>
+          <p data-cms="global.footer.copyright">&copy; 2026 Forge Strength Studio. All Rights Reserved.</p>
         </div>
       </div>
     </footer>

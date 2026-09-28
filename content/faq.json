@@ -1,0 +1,68 @@
+{
+  "header": {
+    "heading": "FAQ.",
+    "text": "Got questions?\nCan’t find what you’re looking for? Send us a message and we’ll be happy to help.",
+    "button_text": "Contact Us",
+    "button_link": "contact.html"
+  },
+  "first_visit": {
+    "show": true,
+    "title": "Your first visit",
+    "question_1": "What exactly is Forge Strength Studio?",
+    "answer_1": "We are a boutique strength training studio located in Chilliwack, BC. Our Boutique Wellness Center is designed to help you build strength in body, mind, and spirit. We provide an intimate gym experience focused on helping you deepen your connection with your body and feel amazing.",
+    "question_2": "Who can train at Forge?",
+    "answer_2": "Our community welcomes adults ranging from 21 to 70+ years old, including busy parents, young professionals, and retirees. Whether you are a beginner or an experienced lifter, our space is designed for people who want less intimidation and a supportive environment to improve their quality of life.",
+    "question_3": "Will it be crowded like a commercial gym?",
+    "answer_3": "No. FORGE is a boutique, strength-building studio, not a large commercial gym. That means that our space is more compact and intimate, perfect for those who are seeking a quiet and peaceful training environment.\n\nAdditionally, FORGE deliberately limits the number of people that can use the studio at a time, ensuring that the studio will always be a safe, intimate place for you and your peers to train peacefully.",
+    "question_4": "What types of training do you offer?",
+    "answer_4": "We specialize in 1-on-1 personal training, small-group strength classes, and independent training. Our small group classes are intentionally limited to just four people to ensure a high level of guidance and a true personal touch.",
+    "question_5": "I’m new to lifting weights. Will I be supported here?",
+    "answer_5": "Absolutely. Our mission is to help you become confident in yourself. We create tailored training programs to meet you exactly where you are. We provide the professional guidance and accountability; you do your part.",
+    "question_6": "What is the next step to get started?",
+    "answer_6": "Getting started is simple and stress-free. You can explore our services online, purchase a monthly membership or training package, and book your first time slot. We are here to support your journey so you can build consistency and feel amazing."
+  },
+  "booking": {
+    "show": true,
+    "title": "Booking",
+    "question_1": "How does the booking system work?",
+    "answer_1": "You can manage everything through our seamless online booking calendar. New clients can purchase a package, sign our liability agreements, and select their time slots entirely online. Existing clients simply log in, use their class credits, and secure their spot.",
+    "question_2": "How do I cancel or reschedule my booking?",
+    "answer_2": "You can cancel or reschedule your booking through our online booking system. Please make any changes within the cancellation window to avoid a late cancellation fee.",
+    "question_3": "How far in advance can I book?",
+    "answer_3": "Classes can be booked up to X days in advance. We recommend booking early, as popular time slots can fill up quickly."
+  },
+  "group_class": {
+    "show": true,
+    "title": "Group class",
+    "question_1": "How big are your classes?",
+    "answer_1": "Our group class are limited to a maximum of 4 people, creating a more personal and supportive training experience.",
+    "question_2": "Are your group classes suitable for beginners?",
+    "answer_2": "Absolutely. Our group classes are suitable for all fitness levels, including beginners. We will guide you through each exercise and offer modifications when needed, so you can train safely and comfortably.",
+    "question_3": "Can I attend classes with my family, friend or partner?",
+    "answer_3": "Yes. You’re welcome to join a class with your family, friend or partner, as long as spots are available. Each person will need to reserve their own spot."
+  },
+  "personal_training": {
+    "show": true,
+    "title": "Personal training",
+    "question_1": "How often should I book personal training sessions?",
+    "answer_1": "Most clients train 1-3 times per week, depending on their goals, schedule, and budget.",
+    "question_2": "Can I train with a partner or in a small group?",
+    "answer_2": "Yes. Training can be done one-on-one or in small groups of up to 4 people, depending your goals and preferences."
+  },
+  "rental_space": {
+    "show": true,
+    "title": "Rental space",
+    "question_1": "I am an independent personal trainer. Can I bring my clients to Forge?",
+    "answer_1": "Yes! Any external personal trainer can bring their clients to train at FORGE. If you’re planning to do so, you must book and pay for the studio rental as well as sign the waiver forms in our platform.",
+    "question_2": "As a personal trainer renting the studio to train my clients, what is the cancellation policy?",
+    "answer_2": "We support independent trainers by making the process simple and transparent. Our booking system includes flexible rescheduling and cancellation options so you can adapt to your clients' changing schedules and maintain your own quality of life.",
+    "question_3": "How much does a personal trainer cost in Chilliwack?",
+    "answer_3": "At FORGE, one-on-one personal training is $150 a session ($130 for founding members), duo training is $85 per person, and trio training is $75 per person ($65 for founding members). Every program runs over three months and includes direct access to your coach between sessions, not just the 45–60 minutes in the studio. If you would rather train in a group, our classes cap at four people and start at $220 a month. See [Services & Plans](services-and-plans.html) for the full packages."
+  },
+  "partners": {
+    "show": false,
+    "title": "Partners & hotel guests",
+    "question_1": "I’m staying at a partnered hotel. Can I use the studio?",
+    "answer_1": "Yes. Hotels can easily book time slots to make our studio available for their guests. It is a great way to revitalize yourself and stay pain-free while travelling away from home."
+  }
+}

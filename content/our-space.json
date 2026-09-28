@@ -1,0 +1,44 @@
+{
+  "hero": {
+    "photo_mobile": "/assets/img/os-hero-mobile.jpg",
+    "photo": "/assets/img/os-hero.jpg",
+    "heading": "Our Space"
+  },
+  "breathe": {
+    "show": true,
+    "photo": "/assets/img/os-breathe.png",
+    "heading": "More time to\nfocus on you.",
+    "text": "Our intimate gym is designed with plenty of intentional open space. It features premium equipment thoughtfully arranged so you have the room to move safely and train at your own pace.\n\nWe built this to guarantee no crowd. Made for independent trainers requiring a professional layout for your clients, or a beginner looking for a quiet, supportive environment."
+  },
+  "calm": {
+    "heading": "Calm by design.",
+    "text": "We replaced the loud music and cluttered layouts of commercial facilities with a minimalist, cozy environment. FORGE’s studio delivers a true personal touch to your sessions."
+  },
+  "consistency": {
+    "heading": "Consistency is key.",
+    "text": "Less distractions means more time to focus on what’s important. Train with no pressure, build consistency, and deepen your connection with your body in our space."
+  },
+  "equipment": {
+    "show": true,
+    "heading": "Essentials\ndone right.",
+    "text": "We removed all the clutter, focused on what’s important. Hand selected, Professional-grade equipment with all the functionality you need to keep your journey with the highest quality and safety without sacrificing any important exercises.",
+    "photo": "/assets/img/os-equipment.jpg"
+  },
+  "sauna": {
+    "show": false,
+    "photo": "/assets/img/os-sauna.jpg",
+    "heading": "Sauna.",
+    "text": "Revitalize yourself after a tough workout. Step into the heat to recover, reduce stress and reconnect with your breathing. A quiet escape in your happy place."
+  },
+  "rental": {
+    "show": true,
+    "photo": "/assets/img/our-space.jpg",
+    "heading": "Private gym space rentals.",
+    "text": "If you need a space to workout on your own terms, FORGE is also for you. Our members can exclusively rent the space, enjoying full capacity of our equipments and inspiring environment, with no distractions.",
+    "text_mobile": "If you need a space to enter your zone and workout on your own terms, FORGE is also for you. Our members can exclusively rent the space, enjoying full capacity of our equipment, with no distractions.",
+    "button_text": "Rent The Studio",
+    "button_link": "services-and-plans.html",
+    "mobile_button_text": "Book Your Sessions",
+    "mobile_button_link": "services-and-plans.html"
+  }
+}

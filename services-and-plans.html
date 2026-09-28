@@ -137,12 +137,12 @@
              .page-hero rule in responsive.css sets the 224px mobile height. -->
         <section class="page-hero">
           <picture>
-            <source media="(max-width: 767px)" srcset="assets/img/sp-hero-mobile.jpg" width="336" height="288">
-            <img class="page-hero__bg" src="assets/img/sp-hero.jpg" alt="" aria-hidden="true" width="1392" height="400"
+            <source data-cms-img="hero.photo_mobile" media="(max-width: 767px)" srcset="assets/img/sp-hero-mobile.jpg" width="336" height="288">
+            <img data-cms-img="hero.photo" class="page-hero__bg" src="assets/img/sp-hero.jpg" alt="" aria-hidden="true" width="1392" height="400"
               fetchpriority="high">
           </picture>
           <div class="page-hero__tint desktop-only" aria-hidden="true"></div>
-          <h1 class="page-hero__title">Services &amp;<br>Plans<span class="page-hero__dot">.</span></h1>
+          <h1 data-cms="hero.heading" class="page-hero__title">Services &amp;<br>Plans<span class="page-hero__dot">.</span></h1>
         </section>
 
         <!-- ================= Intro (1040:14549 desktop / 1486:10918 mobile) =================
@@ -150,11 +150,11 @@
              the panel, left-aligns the copy on the section's own background
              and adds a "Book Now" CTA plus an outlined textured circle
              cut off by the section's bottom edge. -->
-        <section class="sp-intro">
-          <h2 class="sp-title desktop-only">One Plan For All Your Needs.</h2>
+        <section data-cms-section="intro" class="sp-intro">
+          <h2 data-cms="intro.heading" class="sp-title desktop-only">One Plan For All Your Needs.</h2>
           <div class="sp-intro__info desktop-only">
             <div class="sp-intro__panel">
-              <div class="sp-intro__copy">
+              <div data-cms-html="intro.text" class="sp-intro__copy">
                 <p>Forge was designed with the purpose of being an accessible strength space for all, no matter your
                   level of knowledge exercising on a gym.</p>
                 <p>If you are experienced, just starting, or want a way of building community and connections while
@@ -164,14 +164,14 @@
           </div>
 
           <div class="sp-intro__mobile mobile-only">
-            <div class="sp-intro__text">
-              <h2>One Plan For<br>All Your Needs.</h2>
+            <div data-cms-html="intro.text" class="sp-intro__text">
+              <h2 data-cms="intro.heading_mobile">One Plan For<br>All Your Needs.</h2>
               <p>Forge was designed with the purpose of being an accessible strength space for all, no matter your
                 level of knowledge exercising on a gym.</p>
               <p>If you are experienced, just starting, or want a way of building community and connections while
                 you build a stronger body, we have an option for you.</p>
             </div>
-            <a class="btn btn--primary" href="#plans">Book Now</a>
+            <a data-cms="intro.mobile_button_text" data-cms-href="intro.mobile_button_link" class="btn btn--primary" href="#plans">Book Now</a>
           </div>
           <img class="sp-intro__circle mobile-only" src="assets/icons/sp-circles-small-mobile.svg"
             alt="" aria-hidden="true" width="121" height="113" loading="lazy">
@@ -182,28 +182,28 @@
              a vertical line decoration running behind/between them. The
              mobile frame breaks the title after "Strength" and words two
              card bodies differently, hence the desktop-only/mobile-only pairs. -->
-        <section class="sp-perks">
-          <h2 class="sp-title">The Perks.</h2>
+        <section data-cms-section="perks" class="sp-perks">
+          <h2 data-cms="perks.heading" class="sp-title">The Perks.</h2>
           <ul class="sp-perks__cards">
             <img class="sp-perks__lines mobile-only" src="assets/icons/sp-vertical-lines-mobile.svg" alt=""
               aria-hidden="true" width="44" height="537" loading="lazy">
             <li>
               <article class="perk-card hover-lift" data-reveal>
-                <h3 class="sp-card-title">Just For You</h3>
-                <p>FORGE space is reserved for a small or individual groups only. No waiting for equipment during your
+                <h3 data-cms="perks.card_1_title" class="sp-card-title">Just For You</h3>
+                <p data-cms="perks.card_1_text">FORGE space is reserved for a small or individual groups only. No waiting for equipment during your
                   workout.</p>
               </article>
             </li>
             <li>
               <article class="perk-card hover-lift" data-reveal>
-                <h3 class="sp-card-title">A Personal Touch</h3>
-                <p>We have coaches and trainers who know your name and help you achieve your goals.</p>
+                <h3 data-cms="perks.card_2_title" class="sp-card-title">A Personal Touch</h3>
+                <p data-cms="perks.card_2_text">We have coaches and trainers who know your name and help you achieve your goals.</p>
               </article>
             </li>
             <li>
               <article class="perk-card hover-lift" data-reveal>
-                <h3 class="sp-card-title">Build Community</h3>
-                <p>Our group classes are designed to support each other and build connections while building
+                <h3 data-cms="perks.card_3_title" class="sp-card-title">Build Community</h3>
+                <p data-cms="perks.card_3_text">Our group classes are designed to support each other and build connections while building
                   strength.</p>
               </article>
             </li>
@@ -224,109 +224,109 @@
             <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
             <div class="marquee__group">
               <div class="marquee__item">
-                <div class="marquee__label"><span>Show up</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_1">Show up</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
               <div class="marquee__item">
-                <div class="marquee__label"><span>Get strong</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_2">Get strong</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
               <div class="marquee__item">
-                <div class="marquee__label"><span>Stay consistent</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_3">Stay consistent</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
               <div class="marquee__item">
-                <div class="marquee__label"><span>No pressure</span></div>
-                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
-              </div>
-            </div>
-            <div class="marquee__group">
-              <div class="marquee__item">
-                <div class="marquee__label"><span>Show up</span></div>
-                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
-              </div>
-              <div class="marquee__item">
-                <div class="marquee__label"><span>Get strong</span></div>
-                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
-              </div>
-              <div class="marquee__item">
-                <div class="marquee__label"><span>Stay consistent</span></div>
-                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
-              </div>
-              <div class="marquee__item">
-                <div class="marquee__label"><span>No pressure</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_4">No pressure</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
             </div>
             <div class="marquee__group">
               <div class="marquee__item">
-                <div class="marquee__label"><span>Show up</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_1">Show up</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
               <div class="marquee__item">
-                <div class="marquee__label"><span>Get strong</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_2">Get strong</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
               <div class="marquee__item">
-                <div class="marquee__label"><span>Stay consistent</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_3">Stay consistent</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
               <div class="marquee__item">
-                <div class="marquee__label"><span>No pressure</span></div>
-                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
-              </div>
-            </div>
-            <div class="marquee__group">
-              <div class="marquee__item">
-                <div class="marquee__label"><span>Show up</span></div>
-                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
-              </div>
-              <div class="marquee__item">
-                <div class="marquee__label"><span>Get strong</span></div>
-                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
-              </div>
-              <div class="marquee__item">
-                <div class="marquee__label"><span>Stay consistent</span></div>
-                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
-              </div>
-              <div class="marquee__item">
-                <div class="marquee__label"><span>No pressure</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_4">No pressure</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
             </div>
             <div class="marquee__group">
               <div class="marquee__item">
-                <div class="marquee__label"><span>Show up</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_1">Show up</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
               <div class="marquee__item">
-                <div class="marquee__label"><span>Get strong</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_2">Get strong</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
               <div class="marquee__item">
-                <div class="marquee__label"><span>Stay consistent</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_3">Stay consistent</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
               <div class="marquee__item">
-                <div class="marquee__label"><span>No pressure</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_4">No pressure</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
             </div>
             <div class="marquee__group">
               <div class="marquee__item">
-                <div class="marquee__label"><span>Show up</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_1">Show up</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
               <div class="marquee__item">
-                <div class="marquee__label"><span>Get strong</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_2">Get strong</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
               <div class="marquee__item">
-                <div class="marquee__label"><span>Stay consistent</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_3">Stay consistent</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
               <div class="marquee__item">
-                <div class="marquee__label"><span>No pressure</span></div>
+                <div class="marquee__label"><span data-cms="global.marquee.word_4">No pressure</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+            </div>
+            <div class="marquee__group">
+              <div class="marquee__item">
+                <div class="marquee__label"><span data-cms="global.marquee.word_1">Show up</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span data-cms="global.marquee.word_2">Get strong</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span data-cms="global.marquee.word_3">Stay consistent</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span data-cms="global.marquee.word_4">No pressure</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+            </div>
+            <div class="marquee__group">
+              <div class="marquee__item">
+                <div class="marquee__label"><span data-cms="global.marquee.word_1">Show up</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span data-cms="global.marquee.word_2">Get strong</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span data-cms="global.marquee.word_3">Stay consistent</span></div>
+                <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
+              </div>
+              <div class="marquee__item">
+                <div class="marquee__label"><span data-cms="global.marquee.word_4">No pressure</span></div>
                 <img class="marquee__dot" src="assets/icons/marquee-diamond.svg" alt="" width="12" height="12">
               </div>
             </div>
@@ -338,9 +338,9 @@
              with its own circle decoration. Mobile stacks them full-width,
              the rust card overlapping the photo's bottom edge, sharing a
              single large circle behind both (1486:10947). -->
-        <section class="sp-members" id="plans">
+        <section data-cms-section="memberships" class="sp-members" id="plans">
           <div class="sp-members__inner">
-            <h2 class="sp-title">forge membership exclusives.</h2>
+            <h2 data-cms="memberships.heading" class="sp-title">forge membership exclusives.</h2>
             <img class="sp-members__circle mobile-only" src="assets/icons/sp-circles-large-mobile.svg" alt=""
               aria-hidden="true" width="321" height="307" loading="lazy">
             <div class="sp-members__grid">
@@ -349,11 +349,11 @@
                 <img class="member__circles member__circles--small desktop-only" src="assets/icons/sp-circles-small.svg"
                   alt="" aria-hidden="true" width="362" height="336" loading="lazy">
                 <div class="media">
-                  <img src="assets/img/sp-group-sessions.png" alt="" width="426" height="544" loading="lazy">
+                  <img data-cms-img="memberships.group_photo" src="assets/img/sp-group-sessions.png" alt="" width="426" height="544" loading="lazy">
                 </div>
                 <article class="member-card hover-lift">
-                  <h3 class="sp-card-title">Semi-Private Group Training (Coached)</h3>
-                  <p>Small-group strength training with personalized coaching, structured workouts, and individual
+                  <h3 data-cms="memberships.group_title" class="sp-card-title">Semi-Private Group Training (Coached)</h3>
+                  <p data-cms="memberships.group_text">Small-group strength training with personalized coaching, structured workouts, and individual
                     attention to proper technique.</p>
                   <div class="member-card__actions">
                     <button class="btn btn--tertiary" type="button" data-dialog-open="modal-group"
@@ -366,11 +366,11 @@
                 <img class="member__circles member__circles--large desktop-only" src="assets/icons/sp-circles-large.svg"
                   alt="" aria-hidden="true" width="337" height="323" loading="lazy">
                 <div class="media">
-                  <img src="assets/img/sp-personal-training.png" alt="" width="431" height="544" loading="lazy">
+                  <img data-cms-img="memberships.training_photo" src="assets/img/sp-personal-training.png" alt="" width="431" height="544" loading="lazy">
                 </div>
                 <article class="member-card hover-lift">
-                  <h3 class="sp-card-title">Personal Training (1 : 1)</h3>
-                  <p>One-on-one strength training tailored to each client's goals, experience, and needs.</p>
+                  <h3 data-cms="memberships.training_title" class="sp-card-title">Personal Training (1 : 1)</h3>
+                  <p data-cms="memberships.training_text">One-on-one strength training tailored to each client's goals, experience, and needs.</p>
                   <div class="member-card__actions">
                     <button class="btn btn--tertiary" type="button" data-dialog-open="modal-training"
                       aria-haspopup="dialog">Learn More</button>
@@ -390,16 +390,16 @@
              CSS in responsive.css shows/hides plan-modal__copy vs
              plan-modal__pricing accordingly. The CTA button and its label
              stay Rafael's desktop copy on both mobile pages (his call). -->
-        <dialog class="plan-modal plan-modal--paged" id="modal-group" closedby="any" aria-labelledby="modal-group-title">
+        <dialog data-cms-section="memberships" class="plan-modal plan-modal--paged" id="modal-group" closedby="any" aria-labelledby="modal-group-title">
           <div class="plan-modal__info">
             <div class="plan-modal__top">
-              <h2 id="modal-group-title"><span class="desktop-only">Semi-Private Group Training.<br>(Coached).</span><span class="mobile-only">Semi-Private Group Training (Coached).</span></h2>
+              <h2 id="modal-group-title"><span data-cms="group_popup.heading" class="desktop-only">Semi-Private Group Training.<br>(Coached).</span><span data-cms="group_popup.heading_mobile" class="mobile-only">Semi-Private Group Training (Coached).</span></h2>
               <button class="btn btn--nav" type="button" data-dialog-close>
                 <img class="btn__icon" src="assets/icons/icon-close.svg" alt="" width="24" height="24"><span class="btn__label">Close</span>
               </button>
             </div>
-            <div class="plan-modal__copy plan-modal__copy--led">
-              <p class="plan-modal__lead">Groups of up to 4 people.</p>
+            <div data-cms-html="group_popup.text" class="plan-modal__copy plan-modal__copy--led">
+              <p data-cms="group_popup.lead" class="plan-modal__lead">Groups of up to 4 people.</p>
               <p>Small-group strength training with personalized coaching, structured workouts, and individual
                 attention to proper technique.</p>
               <button class="modal-page-link mobile-only" type="button" data-modal-next>See Packages &amp; Price
@@ -410,35 +410,35 @@
               <button class="modal-page-link modal-page-link--back mobile-only" type="button" data-modal-prev>
                 <img class="modal-page-link__icon" src="assets/icons/arrow-right.svg" alt="" width="18" height="18">
                 Back to Class Details</button>
-              <h3 class="h2">monthly memberships.</h3>
+              <h3 data-cms="group_popup.pricing_heading" class="h2">monthly memberships.</h3>
               <ul class="price-cards price-cards--packed">
                 <li class="price-card">
                   <div class="price-card__body">
-                    <h4 class="sp-card-title">8 Sessions</h4>
-                    <p>2 times per week</p>
-                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                        class="price__num">220</span><span class="price__unit">/mO</span></p>
+                    <h4 data-cms="group_popup.price_1_title" class="sp-card-title">8 Sessions</h4>
+                    <p data-cms="group_popup.price_1_note">2 times per week</p>
+                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span data-cms="group_popup.price_1_amount"
+                        class="price__num">220</span><span data-cms="group_popup.price_1_unit" class="price__unit">/mO</span></p>
                   </div>
                 </li>
                 <li class="price-card">
                   <div class="price-card__body">
-                    <h4 class="sp-card-title">12 Sessions</h4>
-                    <p>3 times per week</p>
-                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                        class="price__num">300</span><span class="price__unit">/mO</span></p>
+                    <h4 data-cms="group_popup.price_2_title" class="sp-card-title">12 Sessions</h4>
+                    <p data-cms="group_popup.price_2_note">3 times per week</p>
+                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span data-cms="group_popup.price_2_amount"
+                        class="price__num">300</span><span data-cms="group_popup.price_2_unit" class="price__unit">/mO</span></p>
                   </div>
                 </li>
                 <li class="price-card">
                   <div class="price-card__body">
-                    <h4 class="sp-card-title">16 Sessions</h4>
-                    <p>4 times per week</p>
-                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                        class="price__num">380</span><span class="price__unit">/mO</span></p>
+                    <h4 data-cms="group_popup.price_3_title" class="sp-card-title">16 Sessions</h4>
+                    <p data-cms="group_popup.price_3_note">4 times per week</p>
+                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span data-cms="group_popup.price_3_amount"
+                        class="price__num">380</span><span data-cms="group_popup.price_3_unit" class="price__unit">/mO</span></p>
                   </div>
                 </li>
               </ul>
             </section>
-            <a class="btn btn--tertiary btn--block" href="contact.html"><span class="desktop-only">Schedule Your group training session</span><span class="mobile-only">Schedule Your Session</span></a>
+            <a data-cms-href="group_popup.button_link" class="btn btn--tertiary btn--block" href="contact.html"><span data-cms="group_popup.button_text" class="desktop-only">Schedule Your group training session</span><span data-cms="group_popup.button_text_mobile" class="mobile-only">Schedule Your Session</span></a>
             <div class="modal-dots mobile-only">
               <button type="button" data-modal-page="1" aria-label="Show details"></button>
               <button type="button" data-modal-page="2" aria-label="Show pricing"></button>
@@ -446,15 +446,15 @@
           </div>
         </dialog>
 
-        <dialog class="plan-modal plan-modal--paged" id="modal-training" closedby="any" aria-labelledby="modal-training-title">
+        <dialog data-cms-section="memberships" class="plan-modal plan-modal--paged" id="modal-training" closedby="any" aria-labelledby="modal-training-title">
           <div class="plan-modal__info">
             <div class="plan-modal__top">
-              <h2 id="modal-training-title"><span class="desktop-only">personal training (1 : 1).</span><span class="mobile-only">Personal Training<br>(1 : 1).</span></h2>
+              <h2 id="modal-training-title"><span data-cms="training_popup.heading" class="desktop-only">personal training (1 : 1).</span><span data-cms="training_popup.heading_mobile" class="mobile-only">Personal Training<br>(1 : 1).</span></h2>
               <button class="btn btn--nav" type="button" data-dialog-close>
                 <img class="btn__icon" src="assets/icons/icon-close.svg" alt="" width="24" height="24"><span class="btn__label">Close</span>
               </button>
             </div>
-            <div class="plan-modal__copy">
+            <div data-cms-html="training_popup.text" class="plan-modal__copy">
               <p>One-on-one strength training tailored to each client's goals, experience, and needs. Sessions include
                 individualized coaching, exercise technique, and personalized programming.</p>
               <p>*Duo and trio training may also be available upon request. Clients can contact us to discuss pricing
@@ -467,35 +467,35 @@
               <button class="modal-page-link modal-page-link--back mobile-only" type="button" data-modal-prev>
                 <img class="modal-page-link__icon" src="assets/icons/arrow-right.svg" alt="" width="18" height="18">
                 Back to Program Details</button>
-              <h3 class="h2">pricing.</h3>
+              <h3 data-cms="training_popup.pricing_heading" class="h2">pricing.</h3>
               <ul class="price-cards price-cards--packed">
                 <li class="price-card">
                   <div class="price-card__body">
-                    <h4 class="sp-card-title">Single Session</h4>
-                    <p>60 minutes</p>
-                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                        class="price__num">140</span><span class="price__unit">/Session</span></p>
+                    <h4 data-cms="training_popup.price_1_title" class="sp-card-title">Single Session</h4>
+                    <p data-cms="training_popup.price_1_note">60 minutes</p>
+                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span data-cms="training_popup.price_1_amount"
+                        class="price__num">140</span><span data-cms="training_popup.price_1_unit" class="price__unit">/Session</span></p>
                   </div>
                 </li>
                 <li class="price-card">
                   <div class="price-card__body">
-                    <h4 class="sp-card-title">Duo Training*</h4>
-                    <p>Price upon request</p>
-                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                        class="price__num">TBD</span><span class="price__unit">/Session</span></p>
+                    <h4 data-cms="training_popup.price_2_title" class="sp-card-title">Duo Training*</h4>
+                    <p data-cms="training_popup.price_2_note">Price upon request</p>
+                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span data-cms="training_popup.price_2_amount"
+                        class="price__num">TBD</span><span data-cms="training_popup.price_2_unit" class="price__unit">/Session</span></p>
                   </div>
                 </li>
                 <li class="price-card">
                   <div class="price-card__body">
-                    <h4 class="sp-card-title">Trio<br>training*</h4>
-                    <p>Price upon request</p>
-                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                        class="price__num">TBD</span><span class="price__unit">/Session</span></p>
+                    <h4 data-cms="training_popup.price_3_title" class="sp-card-title">Trio<br>training*</h4>
+                    <p data-cms="training_popup.price_3_note">Price upon request</p>
+                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span data-cms="training_popup.price_3_amount"
+                        class="price__num">TBD</span><span data-cms="training_popup.price_3_unit" class="price__unit">/Session</span></p>
                   </div>
                 </li>
               </ul>
             </section>
-            <a class="btn btn--tertiary btn--block" href="contact.html"><span class="desktop-only">book your personal training session</span><span class="mobile-only">Book Your Session</span></a>
+            <a data-cms-href="training_popup.button_link" class="btn btn--tertiary btn--block" href="contact.html"><span data-cms="training_popup.button_text" class="desktop-only">book your personal training session</span><span data-cms="training_popup.button_text_mobile" class="mobile-only">Book Your Session</span></a>
             <div class="modal-dots mobile-only">
               <button type="button" data-modal-page="1" aria-label="Show details"></button>
               <button type="button" data-modal-page="2" aria-label="Show pricing"></button>
@@ -509,11 +509,11 @@
              part of the page. Its modal (1729:4507) sits directly beneath
              it. Individual/self-guided use — distinct from the personal
              trainers band that follows. -->
-        <section class="sp-band" data-reveal-group>
+        <section data-cms-section="rental" class="sp-band" data-reveal-group>
           <div class="sp-band__col sp-band__col--copy hover-lift-group" data-reveal>
             <div class="sp-band__text hover-lift__target">
-              <h2>private gym rental.</h2>
-              <div class="sp-band__prose">
+              <h2 data-cms="rental.heading">private gym rental.</h2>
+              <div data-cms-html="rental.text" class="sp-band__prose">
                 <p class="sp-band__lead sp-band__lead--h4">Self-guided workouts.</p>
                 <p>Clients can rent the studio to use the equipment and complete their own workouts independently,
                   without coaching.</p>
@@ -524,21 +524,21 @@
             </div>
           </div>
           <div class="sp-band__col" data-reveal>
-            <img class="sp-band__photo" src="assets/img/sp-single-use.png" alt="" width="708" height="650"
+            <img data-cms-img="rental.photo" class="sp-band__photo" src="assets/img/sp-single-use.png" alt="" width="708" height="650"
               loading="lazy">
           </div>
         </section>
 
-        <dialog class="plan-modal plan-modal--paged" id="modal-rental" closedby="any" aria-labelledby="modal-rental-title">
+        <dialog data-cms-section="rental" class="plan-modal plan-modal--paged" id="modal-rental" closedby="any" aria-labelledby="modal-rental-title">
           <div class="plan-modal__info">
             <div class="plan-modal__top">
-              <h2 id="modal-rental-title">private gym rental.</h2>
+              <h2 data-cms="rental_popup.heading" id="modal-rental-title">private gym rental.</h2>
               <button class="btn btn--nav" type="button" data-dialog-close>
                 <img class="btn__icon" src="assets/icons/icon-close.svg" alt="" width="24" height="24"><span class="btn__label">Close</span>
               </button>
             </div>
-            <div class="plan-modal__copy plan-modal__copy--led">
-              <p class="plan-modal__lead">Self-guided workouts.</p>
+            <div data-cms-html="rental_popup.text" class="plan-modal__copy plan-modal__copy--led">
+              <p data-cms="rental_popup.lead" class="plan-modal__lead">Self-guided workouts.</p>
               <p>Clients can rent the studio to use the equipment and complete their own workouts independently,
                 without coaching. You are welcome to bring your own workout routine or follow a custom workout program
                 from us!</p>
@@ -552,27 +552,27 @@
               <button class="modal-page-link modal-page-link--back mobile-only" type="button" data-modal-prev>
                 <img class="modal-page-link__icon" src="assets/icons/arrow-right.svg" alt="" width="18" height="18">
                 Back to Session Details</button>
-              <h3 class="h2">packages.</h3>
+              <h3 data-cms="rental_popup.pricing_heading" class="h2">packages.</h3>
               <ul class="price-cards price-cards--packed">
                 <li class="price-card">
                   <div class="price-card__body">
-                    <h4 class="sp-card-title">Hourly Rental</h4>
-                    <p>Up to 4 people per booking</p>
-                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                        class="price__num">50</span><span class="price__unit">/HR</span></p>
+                    <h4 data-cms="rental_popup.price_1_title" class="sp-card-title">Hourly Rental</h4>
+                    <p data-cms="rental_popup.price_1_note">Up to 4 people per booking</p>
+                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span data-cms="rental_popup.price_1_amount"
+                        class="price__num">50</span><span data-cms="rental_popup.price_1_unit" class="price__unit">/HR</span></p>
                   </div>
                 </li>
                 <li class="price-card">
                   <div class="price-card__body">
-                    <h4 class="sp-card-title">Rental Package*</h4>
-                    <p>Valid for 30 days</p>
-                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                        class="price__num">450</span><span class="price__unit">/10 HR</span></p>
+                    <h4 data-cms="rental_popup.price_2_title" class="sp-card-title">Rental Package*</h4>
+                    <p data-cms="rental_popup.price_2_note">Valid for 30 days</p>
+                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span data-cms="rental_popup.price_2_amount"
+                        class="price__num">450</span><span data-cms="rental_popup.price_2_unit" class="price__unit">/10 HR</span></p>
                   </div>
                 </li>
               </ul>
             </section>
-            <a class="btn btn--tertiary btn--block" href="contact.html">claim your rental slot</a>
+            <a data-cms="rental_popup.button_text" data-cms-href="rental_popup.button_link" class="btn btn--tertiary btn--block" href="contact.html">claim your rental slot</a>
             <div class="modal-dots mobile-only">
               <button type="button" data-modal-page="1" aria-label="Show details"></button>
               <button type="button" data-modal-page="2" aria-label="Show pricing"></button>
@@ -581,15 +581,15 @@
         </dialog>
 
         <!-- ================= Studio rental for personal trainers (1729:3821) ================= -->
-        <section class="sp-band" data-reveal-group>
+        <section data-cms-section="trainers" class="sp-band" data-reveal-group>
           <div class="sp-band__col" data-reveal>
-            <img class="sp-band__photo" src="assets/img/sp-gym-rentals.png" alt="" width="684" height="650"
+            <img data-cms-img="trainers.photo" class="sp-band__photo" src="assets/img/sp-gym-rentals.png" alt="" width="684" height="650"
               loading="lazy">
           </div>
           <div class="sp-band__col sp-band__col--copy hover-lift-group" data-reveal>
             <div class="sp-band__text hover-lift__target">
-              <h2>studio rental for personal trainers.</h2>
-              <div class="sp-band__prose">
+              <h2 data-cms="trainers.heading">studio rental for personal trainers.</h2>
+              <div data-cms-html="trainers.text" class="sp-band__prose">
                 <p>If you are a personal trainer, you can rent our studio space to train your own clients.</p>
               </div>
               <button class="btn btn--primary" type="button" data-dialog-open="modal-trainers"
@@ -598,15 +598,15 @@
           </div>
         </section>
 
-        <dialog class="plan-modal plan-modal--paged" id="modal-trainers" closedby="any" aria-labelledby="modal-trainers-title">
+        <dialog data-cms-section="trainers" class="plan-modal plan-modal--paged" id="modal-trainers" closedby="any" aria-labelledby="modal-trainers-title">
           <div class="plan-modal__info">
             <div class="plan-modal__top">
-              <h2 id="modal-trainers-title">studio rental for personal trainers.</h2>
+              <h2 data-cms="trainers_popup.heading" id="modal-trainers-title">studio rental for personal trainers.</h2>
               <button class="btn btn--nav" type="button" data-dialog-close>
                 <img class="btn__icon" src="assets/icons/icon-close.svg" alt="" width="24" height="24"><span class="btn__label">Close</span>
               </button>
             </div>
-            <div class="plan-modal__copy">
+            <div data-cms-html="trainers_popup.text" class="plan-modal__copy">
               <p>If you are a personal trainer, you can rent our studio space to train your own clients.</p>
               <p>*Discounted rates are available only when purchasing a package. Hours can be used across multiple
                 visits within the validity period. Unused hours expire and do not roll over.</p>
@@ -618,43 +618,43 @@
               <button class="modal-page-link modal-page-link--back mobile-only" type="button" data-modal-prev>
                 <img class="modal-page-link__icon" src="assets/icons/arrow-right.svg" alt="" width="18" height="18">
                 Back to Session Details</button>
-              <h3 class="h2">packages.</h3>
+              <h3 data-cms="trainers_popup.pricing_heading" class="h2">packages.</h3>
               <ul class="price-cards">
                 <li class="price-card">
                   <div class="price-card__body">
-                    <h4 class="sp-card-title">Hourly Rental</h4>
-                    <p>Valid for 1 entry</p>
-                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                        class="price__num">50</span><span class="price__unit">/HR</span></p>
+                    <h4 data-cms="trainers_popup.price_1_title" class="sp-card-title">Hourly Rental</h4>
+                    <p data-cms="trainers_popup.price_1_note">Valid for 1 entry</p>
+                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span data-cms="trainers_popup.price_1_amount"
+                        class="price__num">50</span><span data-cms="trainers_popup.price_1_unit" class="price__unit">/HR</span></p>
                   </div>
                 </li>
                 <li class="price-card">
                   <div class="price-card__body">
-                    <h4 class="sp-card-title">10-Hour Package*</h4>
-                    <p>Valid for 30 days</p>
-                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                        class="price__num">450</span><span class="price__unit">/PKG</span></p>
+                    <h4 data-cms="trainers_popup.price_2_title" class="sp-card-title">10-Hour Package*</h4>
+                    <p data-cms="trainers_popup.price_2_note">Valid for 30 days</p>
+                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span data-cms="trainers_popup.price_2_amount"
+                        class="price__num">450</span><span data-cms="trainers_popup.price_2_unit" class="price__unit">/PKG</span></p>
                   </div>
                 </li>
                 <li class="price-card">
                   <div class="price-card__body">
-                    <h4 class="sp-card-title">20-Hour Package*</h4>
-                    <p>Valid for 60 days</p>
-                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                        class="price__num">850</span><span class="price__unit">/PKG</span></p>
+                    <h4 data-cms="trainers_popup.price_3_title" class="sp-card-title">20-Hour Package*</h4>
+                    <p data-cms="trainers_popup.price_3_note">Valid for 60 days</p>
+                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span data-cms="trainers_popup.price_3_amount"
+                        class="price__num">850</span><span data-cms="trainers_popup.price_3_unit" class="price__unit">/PKG</span></p>
                   </div>
                 </li>
                 <li class="price-card">
                   <div class="price-card__body">
-                    <h4 class="sp-card-title">40-Hour Package*</h4>
-                    <p>Valid for 90 days</p>
-                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                        class="price__num">1600</span><span class="price__unit">/PKG</span></p>
+                    <h4 data-cms="trainers_popup.price_4_title" class="sp-card-title">40-Hour Package*</h4>
+                    <p data-cms="trainers_popup.price_4_note">Valid for 90 days</p>
+                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span data-cms="trainers_popup.price_4_amount"
+                        class="price__num">1600</span><span data-cms="trainers_popup.price_4_unit" class="price__unit">/PKG</span></p>
                   </div>
                 </li>
               </ul>
             </section>
-            <a class="btn btn--tertiary btn--block" href="contact.html">Rent your Studio space</a>
+            <a data-cms="trainers_popup.button_text" data-cms-href="trainers_popup.button_link" class="btn btn--tertiary btn--block" href="contact.html">Rent your Studio space</a>
             <div class="modal-dots mobile-only">
               <button type="button" data-modal-page="1" aria-label="Show details"></button>
               <button type="button" data-modal-page="2" aria-label="Show pricing"></button>
@@ -663,11 +663,11 @@
         </dialog>
 
         <!-- ================= Custom workout programs (1729:3828) — new section, not on the previous frame ================= -->
-        <section class="sp-band" data-reveal-group>
+        <section data-cms-section="programs" class="sp-band" data-reveal-group>
           <div class="sp-band__col sp-band__col--copy hover-lift-group" data-reveal>
             <div class="sp-band__text hover-lift__target">
-              <h2>custom <br class="desktop-only">workout <br class="desktop-only">programs.</h2>
-              <div class="sp-band__prose">
+              <h2 data-cms="programs.heading">custom <br class="desktop-only">workout <br class="desktop-only">programs.</h2>
+              <div data-cms-html="programs.text" class="sp-band__prose">
                 <p>Our studio provides custom workout programs so you can have a better direction when designing your
                   journey to a healthier life.</p>
                 <p>We can also provide you with exclusive consultation to guide you in the right direction.</p>
@@ -677,20 +677,20 @@
             </div>
           </div>
           <div class="sp-band__col" data-reveal>
-            <img class="sp-band__photo" src="assets/img/sp-custom-programs.png" alt="" width="700" height="696"
+            <img data-cms-img="programs.photo" class="sp-band__photo" src="assets/img/sp-custom-programs.png" alt="" width="700" height="696"
               loading="lazy">
           </div>
         </section>
 
-        <dialog class="plan-modal plan-modal--paged" id="modal-programs" closedby="any" aria-labelledby="modal-programs-title">
+        <dialog data-cms-section="programs" class="plan-modal plan-modal--paged" id="modal-programs" closedby="any" aria-labelledby="modal-programs-title">
           <div class="plan-modal__info">
             <div class="plan-modal__top">
-              <h2 id="modal-programs-title">Custom workout programs.</h2>
+              <h2 data-cms="programs_popup.heading" id="modal-programs-title">Custom workout programs.</h2>
               <button class="btn btn--nav" type="button" data-dialog-close>
                 <img class="btn__icon" src="assets/icons/icon-close.svg" alt="" width="24" height="24"><span class="btn__label">Close</span>
               </button>
             </div>
-            <div class="plan-modal__copy">
+            <div data-cms-html="programs_popup.text" class="plan-modal__copy">
               <p>Our studio provides custom workout programs and exclusive consultation so you can have a better
                 direction when designing your journey to a healthier life. Choose between our two options:</p>
               <ul>
@@ -709,27 +709,27 @@
               <button class="modal-page-link modal-page-link--back mobile-only" type="button" data-modal-prev>
                 <img class="modal-page-link__icon" src="assets/icons/arrow-right.svg" alt="" width="18" height="18">
                 Back to Program Details</button>
-              <h3 class="h2">options.</h3>
+              <h3 data-cms="programs_popup.pricing_heading" class="h2">options.</h3>
               <ul class="price-cards price-cards--packed">
                 <li class="price-card">
                   <div class="price-card__body">
-                    <h4 class="sp-card-title">Program Only</h4>
-                    <p>Includes one custom program</p>
-                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                        class="price__num">75</span><span class="price__unit">/Program</span></p>
+                    <h4 data-cms="programs_popup.price_1_title" class="sp-card-title">Program Only</h4>
+                    <p data-cms="programs_popup.price_1_note">Includes one custom program</p>
+                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span data-cms="programs_popup.price_1_amount"
+                        class="price__num">75</span><span data-cms="programs_popup.price_1_unit" class="price__unit">/Program</span></p>
                   </div>
                 </li>
                 <li class="price-card">
                   <div class="price-card__body">
-                    <h4 class="sp-card-title sp-card-title--sm">Program + Consultation</h4>
-                    <p>Includes 1 program and 1 consultation</p>
-                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                        class="price__num">150</span><span class="price__unit">/Program</span></p>
+                    <h4 data-cms="programs_popup.price_2_title" class="sp-card-title sp-card-title--sm">Program + Consultation</h4>
+                    <p data-cms="programs_popup.price_2_note">Includes 1 program and 1 consultation</p>
+                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span data-cms="programs_popup.price_2_amount"
+                        class="price__num">150</span><span data-cms="programs_popup.price_2_unit" class="price__unit">/Program</span></p>
                   </div>
                 </li>
               </ul>
             </section>
-            <a class="btn btn--tertiary btn--block" href="contact.html">Get your custom program</a>
+            <a data-cms="programs_popup.button_text" data-cms-href="programs_popup.button_link" class="btn btn--tertiary btn--block" href="contact.html">Get your custom program</a>
             <div class="modal-dots mobile-only">
               <button type="button" data-modal-page="1" aria-label="Show details"></button>
               <button type="button" data-modal-page="2" aria-label="Show pricing"></button>
@@ -740,24 +740,23 @@
         <!-- ================= Hotel guest (1729:3835) =================
              Figma note: "Comment this section out in HTML"; hidden at
              Rafael's request (2026-09-23). The section and its modal
-             (1729:4542) sit together between the markers below.
-             To show them again: delete the opening comment line after
-             START and the closing one before END. -->
-        <!-- ▼▼▼ HOTEL GUEST — START commenting here ▼▼▼ -->
-        <!--
+             (1729:4542) sit together in the <template> below, which the
+             browser never renders. The CMS "Show this section" toggle
+             (hotel.show) unwraps it at build time. -->
+        <template data-cms-section="hotel">
         <section class="sp-hotel">
-          <img class="sp-band__photo" src="assets/img/sp-hotel-guest.jpg" alt="" width="2499" height="1666"
+          <img data-cms-img="hotel.photo" class="sp-band__photo" src="assets/img/sp-hotel-guest.jpg" alt="" width="2499" height="1666"
             loading="lazy">
           <div class="sp-hotel__content">
             <img class="sp-hotel__wavy mobile-only" src="assets/icons/sp-wavy-lines-mobile.svg" alt="" aria-hidden="true"
               width="582" height="425" loading="lazy">
-            <h2 class="sp-title">Hotel Guest Exclusive Spots &amp; Discounts.</h2>
-            <div class="sp-hotel__text">
+            <h2 data-cms="hotel.heading" class="sp-title">Hotel Guest Exclusive Spots &amp; Discounts.</h2>
+            <div data-cms-html="hotel.text" class="sp-hotel__text">
               <p>Guest from the Holiday Inn and local nearby hotels get a 10% off discount at FORGE Studios. We believe
                 your short stay does not to be full of dealing with crowded and under equipped gyms, so we have a space
                 ready for you.</p>
             </div>
-            <button class="btn btn--primary" type="button" data-dialog-open="modal-hotel" aria-haspopup="dialog">Book
+            <button data-cms="hotel.button_text" class="btn btn--primary" type="button" data-dialog-open="modal-hotel" aria-haspopup="dialog">Book
               Now</button>
           </div>
         </section>
@@ -765,12 +764,12 @@
         <dialog class="plan-modal plan-modal--paged" id="modal-hotel" closedby="any" aria-labelledby="modal-hotel-title">
           <div class="plan-modal__info">
             <div class="plan-modal__top">
-              <h2 id="modal-hotel-title"><span class="desktop-only">Hotel Guest<br>Exclusive Spots &amp; Discounts.</span><span class="mobile-only">Hotel Guest<br>Exclusive Spots &amp;<br>Discounts.</span></h2>
+              <h2 id="modal-hotel-title"><span data-cms="hotel_popup.heading" class="desktop-only">Hotel Guest<br>Exclusive Spots &amp; Discounts.</span><span data-cms="hotel_popup.heading_mobile" class="mobile-only">Hotel Guest<br>Exclusive Spots &amp;<br>Discounts.</span></h2>
               <button class="btn btn--nav" type="button" data-dialog-close>
                 <img class="btn__icon" src="assets/icons/icon-close.svg" alt="" width="24" height="24"><span class="btn__label">Close</span>
               </button>
             </div>
-            <div class="plan-modal__copy">
+            <div data-cms-html="hotel_popup.text" class="plan-modal__copy">
               <p>Guests from the Holiday Inn and nearby hotels get a 10% discount at FORGE Studios. We believe your short
                 stay does not need to be full of dealing with crowded and under-equipped gyms, so we have a space ready for
                 you.</p>
@@ -782,49 +781,48 @@
               <button class="modal-page-link modal-page-link--back mobile-only" type="button" data-modal-prev>
                 <img class="modal-page-link__icon" src="assets/icons/arrow-right.svg" alt="" width="18" height="18">
                 Back to Session Details</button>
-              <h3 class="h2">Exclusive guest rates.</h3>
+              <h3 data-cms="hotel_popup.pricing_heading" class="h2">Exclusive guest rates.</h3>
               <ul class="price-cards">
                 <li class="price-card">
                   <div class="price-card__body">
-                    <h4 class="sp-card-title">single<br>drop-in</h4>
-                    <p>20% off<br>Regularly $50/hr.</p>
-                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                        class="price__num">40</span><span class="price__unit">/Visit</span></p>
+                    <h4 data-cms="hotel_popup.price_1_title" class="sp-card-title">single<br>drop-in</h4>
+                    <p data-cms="hotel_popup.price_1_note">20% off<br>Regularly $50/hr.</p>
+                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span data-cms="hotel_popup.price_1_amount"
+                        class="price__num">40</span><span data-cms="hotel_popup.price_1_unit" class="price__unit">/Visit</span></p>
                   </div>
                 </li>
                 <li class="price-card">
                   <div class="price-card__body">
-                    <h4 class="sp-card-title">traveler’s pass</h4>
-                    <p>15% off<br>Valid for 3 visits during your stay.</p>
-                    <p class="price"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                        class="price__num">85</span><span class="price__unit">/3 Visits</span></p>
+                    <h4 data-cms="hotel_popup.price_2_title" class="sp-card-title">traveler’s pass</h4>
+                    <p data-cms="hotel_popup.price_2_note">15% off<br>Valid for 3 visits during your stay.</p>
+                    <p class="price"><span class="price__cur">$</span><span class="price__sp"> </span><span data-cms="hotel_popup.price_2_amount"
+                        class="price__num">85</span><span data-cms="hotel_popup.price_2_unit" class="price__unit">/3 Visits</span></p>
                   </div>
                 </li>
                 <li class="price-card">
                   <div class="price-card__body">
-                    <h4 class="sp-card-title">small group drop-in</h4>
-                    <p>For up to 4 guests sharing a session.</p>
-                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span
-                        class="price__num">380</span><span class="price__unit">/mO</span></p>
+                    <h4 data-cms="hotel_popup.price_3_title" class="sp-card-title">small group drop-in</h4>
+                    <p data-cms="hotel_popup.price_3_note">For up to 4 guests sharing a session.</p>
+                    <p class="price gap-1"><span class="price__cur">$</span><span class="price__sp"> </span><span data-cms="hotel_popup.price_3_amount"
+                        class="price__num">380</span><span data-cms="hotel_popup.price_3_unit" class="price__unit">/mO</span></p>
                   </div>
                 </li>
                 <li class="price-card price-card--accent">
-                  <h4 class="sp-card-title">How to book</h4>
-                  <p class="price-card__body price-card__body--small">Simply show your room key at our front desk or use
+                  <h4 data-cms="hotel_popup.price_4_title" class="sp-card-title">How to book</h4>
+                  <p data-cms="hotel_popup.price_4_note" class="price-card__body price-card__body--small">Simply show your room key at our front desk or use
                     your
                     exclusive hotel promo code on our booking app.</p>
                 </li>
               </ul>
             </section>
-            <a class="btn btn--tertiary btn--block" href="contact.html"><span class="desktop-only">book your exclusive spot</span><span class="mobile-only">Book Your Spot</span></a>
+            <a data-cms-href="hotel_popup.button_link" class="btn btn--tertiary btn--block" href="contact.html"><span data-cms="hotel_popup.button_text" class="desktop-only">book your exclusive spot</span><span data-cms="hotel_popup.button_text_mobile" class="mobile-only">Book Your Spot</span></a>
             <div class="modal-dots mobile-only">
               <button type="button" data-modal-page="1" aria-label="Show details"></button>
               <button type="button" data-modal-page="2" aria-label="Show pricing"></button>
             </div>
           </div>
         </dialog>
-        -->
-        <!-- ▲▲▲ HOTEL GUEST — END commenting here ▲▲▲ -->
+        </template>
 
       </div>
     </div>
@@ -837,17 +835,17 @@
           <address class="footer__contact">
             <div class="footer__contact-row">
               <img src="assets/icons/icon-location.svg" alt="" width="24" height="24" loading="lazy">
-              <a class="link" href="https://www.google.com/maps/search/?api=1&query=District+1881+Chilliwack+BC" target="_blank" rel="noopener noreferrer">District 1881, Chilliwack, BC</a>
+              <a data-cms="global.contact.address" data-cms-attr="href=https://www.google.com/maps/search/?api=1&amp;query={global.contact.address|url}" class="link" href="https://www.google.com/maps/search/?api=1&query=District+1881+Chilliwack+BC" target="_blank" rel="noopener noreferrer">District 1881, Chilliwack, BC</a>
             </div>
             <div class="footer__contact-row footer__contact-row--phone">
               <img src="assets/icons/icon-phone.svg" alt="" width="24" height="24" loading="lazy">
-              <a class="link" href="tel:+10000000000">(000) 000-0000</a>
+              <a data-cms="global.contact.phone" data-cms-attr="href=tel:{global.contact.phone|tel}" class="link" href="tel:+10000000000">(000) 000-0000</a>
             </div>
             <div class="footer__contact-row">
               <img src="assets/icons/icon-mail.svg" alt="" width="24" height="24" loading="lazy">
-              <a class="link" href="mailto:info@forgestrengthstudio.com">info@forgestrengthstudio.com</a>
+              <a data-cms="global.contact.email" data-cms-attr="href=mailto:{global.contact.email}" class="link" href="mailto:info@forgestrengthstudio.com">info@forgestrengthstudio.com</a>
             </div>
-            <p class="footer__hours">Open 7 days: 5:00 AM &ndash; 10:00 PM</p>
+            <p data-cms="global.contact.hours" class="footer__hours">Open 7 days: 5:00 AM &ndash; 10:00 PM</p>
           </address>
 
           <ul class="footer__nav">
@@ -863,13 +861,13 @@
         <div class="footer__socials">
           <ul class="footer__sns">
             <li>
-              <a href="https://www.instagram.com/forgestrengthstudio" target="_blank" rel="noopener noreferrer">
+              <a data-cms-href="global.social.instagram_link" href="https://www.instagram.com/forgestrengthstudio" target="_blank" rel="noopener noreferrer">
                 <img src="assets/icons/icon-instagram.svg" alt="" width="40" height="40" loading="lazy">
                 <span class="visually-hidden">Instagram</span>
               </a>
             </li>
             <li>
-              <a href="#" target="_blank" rel="noopener noreferrer">
+              <a data-cms-href="global.social.facebook_link" href="#" target="_blank" rel="noopener noreferrer">
                 <img src="assets/icons/icon-facebook.svg" alt="" width="40" height="40" loading="lazy">
                 <span class="visually-hidden">Facebook</span>
               </a>
@@ -886,7 +884,7 @@
         <div class="footer__legal">
           <button class="link link--button" type="button" data-dialog-open="modal-privacy">Privacy Policy</button>
           <button class="link link--button" type="button" data-dialog-open="modal-terms">Terms &amp; Conditions</button>
-          <p>&copy; 2026 Forge Strength Studio. All Rights Reserved.</p>
+          <p data-cms="global.footer.copyright">&copy; 2026 Forge Strength Studio. All Rights Reserved.</p>
         </div>
       </div>
     </footer>

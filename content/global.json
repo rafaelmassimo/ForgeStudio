@@ -1,0 +1,21 @@
+{
+  "marquee": {
+    "word_1": "Show up",
+    "word_2": "Get strong",
+    "word_3": "Stay consistent",
+    "word_4": "No pressure"
+  },
+  "contact": {
+    "address": "District 1881, Chilliwack, BC",
+    "phone": "(000) 000-0000",
+    "email": "info@forgestrengthstudio.com",
+    "hours": "Open 7 days: 5:00 AM – 10:00 PM"
+  },
+  "social": {
+    "instagram_link": "https://www.instagram.com/forgestrengthstudio",
+    "facebook_link": "#"
+  },
+  "footer": {
+    "copyright": "© 2026 Forge Strength Studio. All Rights Reserved."
+  }
+}

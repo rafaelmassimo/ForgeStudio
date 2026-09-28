@@ -1,0 +1,15 @@
+{
+  "name": "forge-strength-studio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "extract": "node scripts/extract.mjs"
+  },
+  "dependencies": {
+    "node-html-parser": "^7.0.1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

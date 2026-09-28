@@ -1,0 +1,53 @@
+{
+  "hero": {
+    "photo": "/assets/img/home-hero.jpg",
+    "heading": "A place to build your body\nat your own pace.",
+    "text": "A distraction-free, private studio to strengthen your mind, muscle and spirit",
+    "button_text": "Book Your Sessions",
+    "button_link": "services-and-plans.html"
+  },
+  "who_we_are": {
+    "show": true,
+    "heading": "Less intimidation,\nmore confidence.",
+    "text": "At FORGE, transformation goes beyond physique. We help you build  a healthier lifestyle.\n\nOur No Pressure Space gives you the freedom to train however you like: Choose an Personal Training, join a Semi-Private Group Training, or rent a Private Gym for an exclusive session in our space.\n\nYour body. Your strength. Your journey.",
+    "photo": "/assets/img/who-we-are.jpg",
+    "photo_alt": "Kettlebells racked on a rolling stand in the FORGE studio"
+  },
+  "commitment": {
+    "show": true,
+    "photo": "/assets/img/commitment.jpg",
+    "photo_alt": "Weight plates and equipment stored along the studio wall",
+    "heading": "A 3 month commitment.\nA Lifetime change.",
+    "text": "At FORGE, we help you achieve goals that matter, like building strength and improving your quality of life. Through consistency, you can shape your body and build a stronger connection with yourself.\n\nOur 3-month commitment gives you the time and support to build a routine, stay accountable, and create meaningful progress.",
+    "button_text": "Learn About Our Services",
+    "button_link": "services-and-plans.html"
+  },
+  "our_space": {
+    "show": true,
+    "photo": "/assets/img/our-space.jpg",
+    "heading": "A space to call yours.",
+    "text": "FORGE’s studio is designed to make you feel at home, with an intimate, welcoming space in the heart of the Fraser Valley.",
+    "button_1_text": "Discover Our Space",
+    "button_1_link": "our-space.html",
+    "button_2_text": "Rent The Studio",
+    "button_2_link": "services-and-plans.html"
+  },
+  "meet": {
+    "show": true,
+    "heading": "Meet the person helping forge your future.",
+    "heading_mobile": "Meet the person forging\nyour future.",
+    "text": "Gabriela has spent over a decade teaching Yoga and now has became a Certified Personal Trainer, combined with years of gym experience and a passion for helping people feel confident in their bodies.\n\nHer approach goes beyond building a better physique. She builds confidence, discipline, resilience, and a better quality of life through sustainable results.\n\nNo miracle diets. No shortcuts. Just balanced training, consistency, and a good dose of humour.",
+    "button_text": "Get To Know Us",
+    "button_link": "who-we-are.html",
+    "photo": "/assets/img/GabrielaUptaded.png",
+    "photo_alt": "Gabriela, founder and strength trainer at FORGE"
+  },
+  "stories": {
+    "show": true,
+    "background_photo": "/assets/img/community-board.jpg",
+    "heading": "Community stories",
+    "text": "What previous mentees have to say",
+    "button_text": "Be A Part Of The Community",
+    "button_link": "services-and-plans.html"
+  }
+}
